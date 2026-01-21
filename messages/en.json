@@ -1,0 +1,279 @@
+{
+  "common": {
+    "requestDemo": "Request a Demo",
+    "footer": {
+      "description": "Empowering the future of digital dynamics through innovative 3D experiences and strategic technology solutions.",
+      "navigationTitle": "Navigation",
+      "navExpertise": "Expertise",
+      "navVisuals": "Visuals",
+      "navStats": "Stats",
+      "navAnnouncements": "Announcements",
+      "newsletterTitle": "Newsletter",
+      "newsletterPlaceholder": "Enter your email",
+      "newsletterJoin": "JOIN",
+      "newsletterHint": "Be the first to see our next evolution.",
+      "rights": "© {year} RAPTORS ME. ALL RIGHTS RESERVED.",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "socialTwitter": "Twitter",
+      "socialLinkedIn": "LinkedIn",
+      "socialInstagram": "Instagram"
+    }
+  },
+  "home": {
+    "slogan": "Move faster with AI-powered operations.",
+    "subheading": "One platform to automate workflows, surface real-time insights, and ship outcomes your team can measure.",
+    "hero": {
+      "brandLeft": "Agile",
+      "brandRight": "Rapid",
+      "followLine1": "Transformation is not a goal.",
+      "followLine2": "It's a continuous motion."
+    },
+    "logosTitle": "Trusted by Industry Leaders",
+    "logos": ["Northwind", "Contoso", "Fabrikam", "Globex", "Initech", "Umbrella"],
+    "about": {
+      "backdropText": "RAPTORS",
+      "imageAlt": "Agile Enterprise",
+      "cardPlumTitle": "AGILE DNA",
+      "cardPlumText": "Transforming core structures into high-velocity engines.",
+      "cardCyanTitle": "10X SPEED",
+      "cardCyanText": "Execution. Precision. Growth.",
+      "centerHeadingLine1": "SPEED IS",
+      "centerHeadingLine2": "CERTAINTY.",
+      "edgeVision": "The Vision",
+      "edgeStrategy": "The Strategy",
+      "revealPrefix": "At",
+      "brandName": "Raptors ME",
+      "revealMiddle": "we dismantle the complexity of legacy systems and replace them with the",
+      "revealHighlight": "fluid power of agility",
+      "revealSuffix": "No friction. Only momentum.",
+      "cta": "Explore the Agile Engine"
+    },
+    "statsTitle": "Impact in numbers",
+    "statsKicker": "Global Tech Excellence",
+    "stats": [
+      { "value": "99.9%", "label": "Uptime" },
+      { "value": "24/7", "label": "Monitoring" },
+      { "value": "60%", "label": "Less manual work" },
+      { "value": "2x", "label": "Faster decisions" }
+    ],
+    "visualsTitle": "See it in action",
+    "visualsSubtitle": "Short walkthroughs, demos, and real customer workflows.",
+    "visualsCard1Title": "Workflow View",
+    "visualsCard1Text": "UI snapshots that define your agile journey.",
+    "visualsCard2Title": "Advanced Reports",
+    "visualsCard2Text": "Stakeholder-ready insights in one click.",
+    "visualsVideoTitle": "Product demo",
+    "visualsCarousel": {
+      "badge": "Raptors Experience",
+      "titlePrefix": "Project",
+      "titleHighlight": "Archive",
+      "slideTitles": [
+        "Digital Nexus",
+        "Core Strategy",
+        "Cyber Pulse",
+        "Creative Flow",
+        "Future Vision"
+      ]
+    },
+    "announcementsTitle": "Recent announcements",
+    "announcementsKicker": "Updates & News",
+    "announcementsBlurb": "Stay updated with our latest breakthroughs and corporate milestones.",
+    "announcementsReadMoreLabel": "Read More",
+    "announcementsReadMoreArrow": "→",
+    "announcements": [
+      {
+        "title": "New analytics dashboard",
+        "date": "Jan 2026",
+        "description": "Track KPIs, performance, and bottlenecks in one place."
+      },
+      {
+        "title": "SOC2-ready controls",
+        "date": "Dec 2025",
+        "description": "Better audit logs, policies, and access controls."
+      },
+      {
+        "title": "Workflow templates library",
+        "date": "Nov 2025",
+        "description": "Start fast with best-practice automations."
+      }
+    ]
+  },
+  "about": {
+    "stickyStory": {
+      "hero": {
+        "titleLeft": "RAPTORS",
+        "titleRight": "ME",
+        "tagline": "UNFOLDING THE ARCHITECTURE"
+      },
+      "mission": {
+        "kicker": "// OUR MISSION",
+        "textPrefix": "Bridging the gap between",
+        "highlight": "Raw Code",
+        "textMiddle": "and",
+        "italic": "Human Experience."
+      },
+      "vision": {
+        "kicker": "// THE VISION",
+        "textPrefix": "Engineering the",
+        "highlight": "First Digital",
+        "textSuffix": "Meta-Structure."
+      },
+      "stats": {
+        "items": [
+          { "label": "Active Nodes", "value": "150+", "color": "#43becc" },
+          { "label": "Data Streams", "value": "40+", "color": "#bcd647" },
+          { "label": "Success Rate", "value": "99%", "color": "#ffffff" },
+          { "label": "Core Years", "value": "10+", "color": "#43becc" }
+        ]
+      },
+      "founder": {
+        "badge": "Architect_Identity",
+        "nameLine1": "JOHNATHAN",
+        "nameHighlight": "RAPTOR",
+        "quote": "\"We don't build websites. We build the interfaces through which humanity interacts with the future.\"",
+        "buttonLabel": "INITIATE PROTOCOL",
+        "imageSrc": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974",
+        "imageAlt": "Founder"
+      }
+    },
+    "heroKicker": "Behind the Dynamics",
+    "heroTitlePrefix": "WE ARE",
+    "heroTitleHighlight": "RAPTORS",
+    "heroDescription": "Transcending the ordinary through digital mastery and strategic innovation. We don't just build solutions; we craft legacies.",
+    "heroScrollHint": "SCROLL TO DECODE ORIGIN",
+    "stickyMissionTitle": "The Mission",
+    "stickyMissionDescription": "We engineer digital artifacts that bridge the gap between reality and the next dimension.",
+    "contentKicker": "Our Chronicle",
+    "visionTitle": "Our Vision",
+    "visionDescription": "To be the global epicenter of digital transformation, where technology meets human intuition to create a seamless future.",
+    "missionTitle": "Our Mission",
+    "missionDescription": "Empowering businesses with cutting-edge 3D dynamics and data-led strategies to dominate their respective industries.",
+    "statsTitle": "Metrics of Mastery",
+    "stats": [
+      { "label": "Projects Completed", "value": "150+" },
+      { "label": "Global Clients", "value": "40+" },
+      { "label": "Team Experts", "value": "25+" },
+      { "label": "Years Experience", "value": "10+" }
+    ],
+    "founderKicker": "The Genesis",
+    "founderTitle": "FROM A SPARK TO A",
+    "founderTitleHighlight": "REVOLUTION.",
+    "founderQuote1": "\"Raptors ME didn't start in a boardroom. It started in a small garage with a single vision: to bridge the gap between imagination and digital reality. I saw a world where businesses were limited by technology, so I decided to build the tools that would set them free.\"",
+    "founderQuote2": "Today, we stand as a testament to what happens when you combine relentless grit with cutting-edge innovation. Our journey is just beginning.",
+    "founderButton": "Read Full Story",
+    "founderProfileLabel": "Architect Profile",
+    "founderQuote": "\"The digital realm is no longer a tool; it is the environment. We don't adapt to it, we build it.\"",
+    "founderButtonLabel": "Initialize Contact",
+    "ctaTitle": "Join The Digital Evolution",
+    "ctaDescription": "Ready to transform your vision into reality? Our team of experts awaits.",
+    "ctaButtonLabel": "Engage with Raptors",
+    "founderRole": "Founder & CEO",
+    "founderName": "Johnathan Raptor",
+    "founderImageAlt": "Founder"
+  },
+  "contact": {
+    "kicker": "// INITIATE_COMMUNICATION",
+    "titlePrefix": "GET IN",
+    "titleHighlight": "TOUCH.",
+    "form": {
+      "operatorNameLabel": "Operator_Name",
+      "operatorNamePlaceholder": "Your Name",
+      "signalAddressLabel": "Signal_Address",
+      "signalAddressPlaceholder": "Your Email",
+      "subjectProtocolLabel": "Subject_Protocol",
+      "subjectOptions": ["Digital Branding", "Web Engineering", "3D Evolution", "Other Services"],
+      "payloadLabel": "Transmission_Payload",
+      "payloadPlaceholder": "Write your message here...",
+      "sendButton": "SEND SIGNAL",
+      "sendingButton": "SENDING...",
+      "sentToast": "Signal sent"
+    },
+    "info": {
+      "copiedToast": "Copied",
+      "items": [
+        {
+          "type": "email",
+          "label": "E-mail",
+          "value": "ops@raptors-me.com",
+          "description": "For general inquiries"
+        },
+        {
+          "type": "phone",
+          "label": "Hotline",
+          "value": "+20 123 456 7890",
+          "description": "Mon-Fri | 9am - 6pm"
+        },
+        {
+          "type": "location",
+          "label": "HQ Location",
+          "value": "New Cairo, Egypt",
+          "description": "Digital District, Sector 5"
+        }
+      ]
+    },
+    "social": {
+      "title": "Connect_Socially",
+      "items": [
+        { "label": "LinkedIn", "href": "#" },
+        { "label": "Twitter", "href": "#" },
+        { "label": "Behance", "href": "#" },
+        { "label": "Instagram", "href": "#" }
+      ]
+    },
+    "terminal": {
+      "lines": [
+        "> Connection established: 192.168.1.104",
+        "> Encrypting transmission... [OK]",
+        "> Raptors ME Server: ONLINE"
+      ],
+      "liveCursor": "_"
+    }
+  },
+  "services": {
+    "header": {
+      "kicker": "System_Capabilities // V.2.0",
+      "titleLine1": "CORE",
+      "titleLine2": "",
+      "titleStroke": "SERVICES."
+    },
+    "services": [
+      {
+        "id": "01",
+        "title": "Software Arch",
+        "desc": "Building the backbone of digital empires with robust, scalable codebases.",
+        "icon": "code",
+        "color": "#43becc",
+        "tags": ["REACT", "NEXT.JS", "NODE"]
+      },
+      {
+        "id": "02",
+        "title": "Cyber Security",
+        "desc": "Deploying advanced defensive protocols to shield your data from the void.",
+        "icon": "shield",
+        "color": "#bcd647",
+        "tags": ["ENCRYPTION", "AUDIT", "SHIELD"]
+      },
+      {
+        "id": "03",
+        "title": "Cloud Systems",
+        "desc": "Merging physical reality with cloud efficiency for seamless operations.",
+        "icon": "globe",
+        "color": "#8e257a",
+        "tags": ["AWS", "DOCKER", "CI/CD"]
+      },
+      {
+        "id": "04",
+        "title": "AI Integration",
+        "desc": "Neural networks designed to automate, predict, and evolve your workflow.",
+        "icon": "cpu",
+        "color": "#43becc",
+        "tags": ["LLM", "PYTORCH", "ML"]
+      }
+    ],
+    "footer": {
+      "status": "Neural_Link // Active_and_Secure",
+      "downloadLabel": "Download_Specs [PDF]"
+    }
+  }
+}
