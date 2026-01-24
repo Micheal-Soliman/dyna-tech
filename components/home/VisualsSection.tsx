@@ -64,18 +64,24 @@ export default function VisualsSection({
   );
 
   const particles = useMemo(() => {
-    let seed = 1337;
-    const rand = () => {
-      seed = (seed * 1664525 + 1013904223) % 4294967296;
-      return seed / 4294967296;
+    const rand = (n: number) => {
+      const x = Math.sin(n) * 10000;
+      return x - Math.floor(x);
     };
 
-    return Array.from({ length: 20 }, () => ({
-      top: `${rand() * 100}%`,
-      left: `${rand() * 100}%`,
-      duration: rand() * 6 + 4,
-      delay: rand() * 5,
-    }));
+    return Array.from({ length: 20 }, (_, i) => {
+      const r1 = rand(1337 + i * 4 + 0);
+      const r2 = rand(1337 + i * 4 + 1);
+      const r3 = rand(1337 + i * 4 + 2);
+      const r4 = rand(1337 + i * 4 + 3);
+
+      return {
+        top: `${r1 * 100}%`,
+        left: `${r2 * 100}%`,
+        duration: r3 * 6 + 4,
+        delay: r4 * 5,
+      };
+    });
   }, []);
 
   // --- منطق تفاعل الخلفية مع الماوس ---

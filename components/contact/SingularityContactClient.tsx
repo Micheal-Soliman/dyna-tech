@@ -2,13 +2,9 @@
 
 import { useRef } from "react";
 import { useScroll, useSpring, useTransform } from "framer-motion";
-import { Mail, MapPin, Phone } from "lucide-react";
 
 import ContactCoreSingularity from "./components/ContactCoreSingularity";
-import ContactHeroSection from "./components/ContactHeroSection";
-import ContactOrbitItemSection from "./components/ContactOrbitItemSection";
-import ContactUltimateFormSection from "./components/ContactUltimateFormSection";
-import ContactParticleFieldBackground from "./components/ContactParticleFieldBackground";
+import ContactTimedLayers from "./ContactTimedLayers";
 
 export default function SingularityContactClient() {
   const containerRef = useRef<HTMLElement | null>(null);
@@ -17,55 +13,32 @@ export default function SingularityContactClient() {
     offset: ["start start", "end end"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 25 });
 
-  const coreScale = useTransform(smoothProgress, [0, 0.4, 0.8, 1], [1, 2.5, 5, 20]);
+  const coreScale = useTransform(smoothProgress, [0, 0.4, 0.8, 1], [1, 2.5, 5, 25]);
   const coreRotate = useTransform(smoothProgress, [0, 1], [0, 360]);
-  const coreOpacity = useTransform(smoothProgress, [0, 0.8, 0.9, 1], [1, 1, 0, 0]);
-
-  const heroOpacity = useTransform(smoothProgress, [0, 0.1], [1, 0]);
+  const coreOpacity = useTransform(smoothProgress, [0, 0.8, 0.95], [0.8, 0.8, 0]);
 
   return (
     <main
       ref={containerRef}
-      className="bg-[#050505] min-h-[500vh] relative overflow-x-hidden font-['Montserrat',sans-serif]"
+      className="bg-[#050505] text-white min-h-[1200vh] relative overflow-x-hidden font-['Montserrat',sans-serif]"
     >
-      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-20">
+      <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-10">
         <ContactCoreSingularity scale={coreScale} rotate={coreRotate} opacity={coreOpacity} />
       </div>
 
-      <div className="relative z-30 w-full">
-        <ContactHeroSection opacity={heroOpacity} />
+      <ContactTimedLayers progress={smoothProgress} />
 
-        <ContactOrbitItemSection
-          smoothProgress={smoothProgress}
-          icon={<Phone />}
-          label="Frequency"
-          value="+20 123 456 7890"
-          range={[0.2, 0.4]}
-          xOffset={-300}
+      <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(#43becc 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
         />
-        <ContactOrbitItemSection
-          smoothProgress={smoothProgress}
-          icon={<Mail />}
-          label="Packet"
-          value="ops@raptors.me"
-          range={[0.4, 0.6]}
-          xOffset={300}
-        />
-        <ContactOrbitItemSection
-          smoothProgress={smoothProgress}
-          icon={<MapPin />}
-          label="Station"
-          value="New Cairo, Egypt"
-          range={[0.6, 0.8]}
-          xOffset={-300}
-        />
-
-        <ContactUltimateFormSection smoothProgress={smoothProgress} />
       </div>
-
-      <ContactParticleFieldBackground />
     </main>
   );
 }

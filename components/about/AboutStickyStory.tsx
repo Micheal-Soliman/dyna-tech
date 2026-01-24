@@ -11,6 +11,9 @@ import AboutStatsLayer, {
   type AboutStickyStatItem,
 } from "@/components/about/AboutStatsLayer";
 import AboutVisionLayer from "@/components/about/AboutVisionLayer";
+import LeadershipLayer from "@/components/about/LeadershipLayer";
+import PartnersLayer from "@/components/about/PartnersLayer";
+import WhyChooseLayer from "@/components/about/WhyChooseLayer";
 
 export type AboutStickyStoryContent = {
   hero: {
@@ -43,6 +46,28 @@ export type AboutStickyStoryContent = {
     imageSrc: string;
     imageAlt: string;
   };
+  whyChoose: {
+    kicker: string;
+    titlePrefix: string;
+    titleHighlight: string;
+    titleSuffix: string;
+    items: { title: string; description: string }[];
+  };
+  leadership: {
+    kicker: string;
+    titlePrefix: string;
+    titleHighlight: string;
+    titleSuffix: string;
+    members: { name: string; title: string; bio: string }[];
+  };
+  partners: {
+    titlePrefix: string;
+    titleHighlight: string;
+    titleSuffix: string;
+    subtitle: string;
+    badges: { label: string }[];
+    ctaLabel: string;
+  };
 };
 
 export default function AboutStickyStory({
@@ -63,28 +88,35 @@ export default function AboutStickyStory({
     restDelta: 0.001,
   });
 
-  const heroScale = useTransform(smoothProgress, [0, 0.2], [1, 2]);
-  const heroOpacity = useTransform(smoothProgress, [0, 0.15], [1, 0]);
+  const heroScale = useTransform(smoothProgress, [0, 0.12], [1, 2]);
+  const heroOpacity = useTransform(smoothProgress, [0, 0.1, 0.12], [1, 1, 0]);
 
-  const missionX = useTransform(smoothProgress, [0.2, 0.3, 0.4], [1000, 0, -1000]);
-  const missionRotate = useTransform(smoothProgress, [0.2, 0.3, 0.4], [45, 0, -45]);
+  const missionX = useTransform(smoothProgress, [0.12, 0.2, 0.28], [1000, 0, -1000]);
+  const missionRotate = useTransform(smoothProgress, [0.12, 0.2, 0.28], [45, 0, -45]);
+  const missionOpacity = useTransform(smoothProgress, [0.12, 0.16, 0.24, 0.28], [0, 1, 1, 0]);
 
-  const visionRotateX = useTransform(smoothProgress, [0.4, 0.5, 0.6], [90, 0, -90]);
-  const visionOpacity = useTransform(smoothProgress, [0.4, 0.45, 0.55, 0.6], [0, 1, 1, 0]);
+  const visionRotateX = useTransform(smoothProgress, [0.28, 0.34, 0.4, 0.42], [90, 0, 0, -90]);
+  const visionOpacity = useTransform(smoothProgress, [0.28, 0.31, 0.39, 0.42], [0, 1, 1, 0]);
 
-  const statsZ = useTransform(smoothProgress, [0.6, 0.7, 0.8], [-500, 0, 500]);
-  const statsOpacity = useTransform(smoothProgress, [0.6, 0.65, 0.75, 0.8], [0, 1, 1, 0]);
+  const statsZ = useTransform(smoothProgress, [0.42, 0.5, 0.58], [-500, 0, 500]);
+  const statsOpacity = useTransform(smoothProgress, [0.42, 0.46, 0.54, 0.58], [0, 1, 1, 0]);
 
-  const founderScale = useTransform(smoothProgress, [0.85, 1], [0.8, 1]);
-  const founderOpacity = useTransform(smoothProgress, [0.8, 0.9], [0, 1]);
+  const founderScale = useTransform(smoothProgress, [0.58, 0.66], [0.8, 1]);
+  const founderOpacity = useTransform(smoothProgress, [0.58, 0.6, 0.68, 0.72], [0, 1, 1, 0]);
 
-  const missionOpacity = useTransform(smoothProgress, [0.2, 0.25, 0.35, 0.4], [0, 1, 1, 0]);
+  const whyX = useTransform(smoothProgress, [0.72, 0.78, 0.84], [600, 0, -600]);
+  const whyOpacity = useTransform(smoothProgress, [0.72, 0.75, 0.82, 0.84], [0, 1, 1, 0]);
+
+  const leadershipY = useTransform(smoothProgress, [0.84, 0.89, 0.94], [200, 0, -200]);
+  const leadershipOpacity = useTransform(smoothProgress, [0.84, 0.87, 0.92, 0.94], [0, 1, 1, 0]);
+
+  const partnersOpacity = useTransform(smoothProgress, [0.94, 0.97], [0, 1]);
 
   return (
     <section
       ref={containerRef}
       className="bg-[#050505] relative w-full"
-      style={{ height: "600vh" }}
+      style={{ height: "900vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center perspective-[1200px]">
         <AboutHeroLayer
@@ -123,6 +155,33 @@ export default function AboutStickyStory({
           buttonLabel={content.founder.buttonLabel}
           imageSrc={content.founder.imageSrc}
           imageAlt={content.founder.imageAlt}
+        />
+        <WhyChooseLayer
+          x={whyX}
+          opacity={whyOpacity}
+          kicker={content.whyChoose.kicker}
+          titlePrefix={content.whyChoose.titlePrefix}
+          titleHighlight={content.whyChoose.titleHighlight}
+          titleSuffix={content.whyChoose.titleSuffix}
+          items={content.whyChoose.items}
+        />
+        <LeadershipLayer
+          y={leadershipY}
+          opacity={leadershipOpacity}
+          kicker={content.leadership.kicker}
+          titlePrefix={content.leadership.titlePrefix}
+          titleHighlight={content.leadership.titleHighlight}
+          titleSuffix={content.leadership.titleSuffix}
+          members={content.leadership.members}
+        />
+        <PartnersLayer
+          opacity={partnersOpacity}
+          titlePrefix={content.partners.titlePrefix}
+          titleHighlight={content.partners.titleHighlight}
+          titleSuffix={content.partners.titleSuffix}
+          subtitle={content.partners.subtitle}
+          badges={content.partners.badges}
+          ctaLabel={content.partners.ctaLabel}
         />
       </div>
 

@@ -135,6 +135,57 @@
         "buttonLabel": "INITIATE PROTOCOL",
         "imageSrc": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974",
         "imageAlt": "Founder"
+      },
+      "whyChoose": {
+        "kicker": "// WHY RAPTORS",
+        "titlePrefix": "WHY",
+        "titleHighlight": "CHOOSE",
+        "titleSuffix": "US",
+        "items": [
+          {
+            "title": "Strategy-first delivery",
+            "description": "We align product, brand, and engineering into one execution system."
+          },
+          {
+            "title": "High-performance builds",
+            "description": "Optimized UX, clean architecture, and measurable outcomes."
+          },
+          {
+            "title": "MENA-ready scale",
+            "description": "Localized workflows with global delivery standards."
+          }
+        ]
+      },
+      "leadership": {
+        "kicker": "// LEADERSHIP",
+        "titlePrefix": "THE",
+        "titleHighlight": "TEAM",
+        "titleSuffix": "BEHIND IT",
+        "members": [
+          {
+            "name": "John Doe",
+            "title": "CEO",
+            "bio": "Ex-enterprise architect with a product and systems mindset."
+          },
+          {
+            "name": "Jane Smith",
+            "title": "CTO",
+            "bio": "Engineering lead focused on scalable platforms and DX excellence."
+          },
+          {
+            "name": "Ahmed Ali",
+            "title": "COO",
+            "bio": "Operations leader driving consistency across delivery and quality."
+          }
+        ]
+      },
+      "partners": {
+        "titlePrefix": "OUR TRUSTED",
+        "titleHighlight": "ALLIANCE",
+        "titleSuffix": ".",
+        "subtitle": "PARTNERSHIPS + CERTIFICATIONS",
+        "badges": [{ "label": "SAP_GOLD" }, { "label": "ISO_27001" }, { "label": "AWS_PARTNER" }],
+        "ctaLabel": "REQUEST A DEMO"
       }
     },
     "heroKicker": "Behind the Dynamics",

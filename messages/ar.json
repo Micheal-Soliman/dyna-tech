@@ -135,6 +135,57 @@
         "buttonLabel": "بدء البروتوكول",
         "imageSrc": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974",
         "imageAlt": "المؤسس"
+      },
+      "whyChoose": {
+        "kicker": "// لماذا رابتورز",
+        "titlePrefix": "لماذا",
+        "titleHighlight": "تختارنا",
+        "titleSuffix": "؟",
+        "items": [
+          {
+            "title": "استراتيجية قبل التنفيذ",
+            "description": "نربط المنتج والهوية والهندسة ضمن منظومة تنفيذ واحدة."
+          },
+          {
+            "title": "بناء عالي الأداء",
+            "description": "تجربة مستخدم سريعة، بنية نظيفة، ونتائج قابلة للقياس."
+          },
+          {
+            "title": "جاهزية توسّع للمنطقة",
+            "description": "توطين ذكي مع معايير تسليم عالمية."
+          }
+        ]
+      },
+      "leadership": {
+        "kicker": "// القيادة",
+        "titlePrefix": "الفريق",
+        "titleHighlight": "القيادي",
+        "titleSuffix": "وراء التنفيذ",
+        "members": [
+          {
+            "name": "John Doe",
+            "title": "الرئيس التنفيذي",
+            "bio": "خبرة في بناء الأنظمة والمنتجات بعقلية هندسية."
+          },
+          {
+            "name": "Jane Smith",
+            "title": "المدير التقني",
+            "bio": "قيادة تقنية تركّز على المنصات القابلة للتوسع وتجربة المطوّر."
+          },
+          {
+            "name": "Ahmed Ali",
+            "title": "مدير العمليات",
+            "bio": "يدير الاتساق والجودة عبر عمليات التسليم والتنفيذ."
+          }
+        ]
+      },
+      "partners": {
+        "titlePrefix": "تحالفنا",
+        "titleHighlight": "الموثوق",
+        "titleSuffix": ".",
+        "subtitle": "شراكات + اعتمادات",
+        "badges": [{ "label": "SAP_GOLD" }, { "label": "ISO_27001" }, { "label": "AWS_PARTNER" }],
+        "ctaLabel": "اطلب عرضًا"
       }
     },
     "heroKicker": "ما وراء الديناميكيات",

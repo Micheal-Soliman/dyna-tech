@@ -13,30 +13,25 @@ export default function SmoothScroll({
   const rafIdRef = useRef<number | null>(null);
 
   useEffect(() => {
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const media = window.matchMedia(
+      "(prefers-reduced-motion: reduce), (pointer: coarse), (max-width: 768px)"
+    );
 
     function start() {
       if (lenisRef.current) return;
 
       const lenis = new Lenis({
-        duration: 1.5,
-        lerp: 0.1,
+        duration: 1.1,
+        lerp: 0.08,
         smoothWheel: true,
         wheelMultiplier: 1,
-      });
-
-      let lastScroll = -1;
-      lenis.on("scroll", (e: any) => {
-        const next = typeof e?.scroll === "number" ? e.scroll : window.scrollY;
-        if (next === lastScroll) return;
-        lastScroll = next;
-        window.dispatchEvent(new Event("scroll"));
       });
 
       lenisRef.current = lenis;
 
       const raf = (time: number) => {
         lenis.raf(time);
+
         rafIdRef.current = requestAnimationFrame(raf);
       };
 
