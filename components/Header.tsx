@@ -38,6 +38,7 @@ export function Header() {
       navItems: [
         { href: `/${locale}`, label: _isAr ? "الرئيسية" : "Home" },
         { href: `/${locale}/about`, label: _isAr ? "من نحن" : "About" },
+        { href: `/${locale}/services`, label: _isAr ? "الخدمات" : "Services" },
         { href: `/${locale}/accelerators`, label: _isAr ? "المسرّعات" : "Accelerators" },
         { href: `/${locale}/case-study`, label: _isAr ? "قصص النجاح" : "Cases" },
         { href: `/${locale}/knowledge`, label: _isAr ? "المعرفة" : "Knowledge" },
@@ -45,6 +46,12 @@ export function Header() {
       ]
     };
   }, [pathname]);
+
+  const isNavActive = (href: string) => {
+    const homeHref = `/${currentLocale}`;
+    if (href === homeHref) return pathname === href;
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   const showGlass = pathname !== `/${currentLocale}` || isScrolled;
 
@@ -73,7 +80,7 @@ export function Header() {
           {/* DESKTOP NAV */}
           <nav className="hidden lg:flex items-center bg-white/[0.03] border border-white/[0.08] rounded-full p-1.5 backdrop-blur-md">
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = isNavActive(item.href);
               return (
                 <Link
                   key={item.href}
@@ -148,7 +155,7 @@ export function Header() {
 
               <nav className="flex-1 overflow-y-auto p-8 space-y-6">
                 {navItems.map((item) => {
-                  const isActive = pathname === item.href;
+                  const isActive = isNavActive(item.href);
                   return (
                     <Link
                       key={item.href}
