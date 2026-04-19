@@ -48,7 +48,3 @@ export function middleware(request: NextRequest) {
   response.cookies.set("locale", locale, { path: "/" });
   return response;
 }
-
-export const config = {
-  matcher: ["/:path*"],
-};
