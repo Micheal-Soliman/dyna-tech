@@ -35,21 +35,10 @@ export default async function LocaleLayout({
     common: {
       footer: {
         description: string;
-        navigationTitle: string;
         navExpertise: string;
         navVisuals: string;
         navStats: string;
         navAnnouncements: string;
-        newsletterTitle: string;
-        newsletterPlaceholder: string;
-        newsletterJoin: string;
-        newsletterHint: string;
-        rights: string;
-        privacyPolicy: string;
-        termsOfService: string;
-        socialTwitter: string;
-        socialLinkedIn: string;
-        socialInstagram: string;
       };
     };
   };
@@ -60,21 +49,10 @@ export default async function LocaleLayout({
       {children}
       <Footer
         description={dict.common.footer.description}
-        navigationTitle={dict.common.footer.navigationTitle}
         navExpertise={dict.common.footer.navExpertise}
         navVisuals={dict.common.footer.navVisuals}
         navStats={dict.common.footer.navStats}
         navAnnouncements={dict.common.footer.navAnnouncements}
-        newsletterTitle={dict.common.footer.newsletterTitle}
-        newsletterPlaceholder={dict.common.footer.newsletterPlaceholder}
-        newsletterJoin={dict.common.footer.newsletterJoin}
-        newsletterHint={dict.common.footer.newsletterHint}
-        rights={dict.common.footer.rights}
-        privacyPolicy={dict.common.footer.privacyPolicy}
-        termsOfService={dict.common.footer.termsOfService}
-        socialTwitter={dict.common.footer.socialTwitter}
-        socialLinkedIn={dict.common.footer.socialLinkedIn}
-        socialInstagram={dict.common.footer.socialInstagram}
       />
     </SmoothScroll>
   );

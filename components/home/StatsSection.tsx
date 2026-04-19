@@ -13,20 +13,21 @@ function parseStatValue(raw: string) {
     const numeric = Number.parseFloat(left);
     const safeNumeric = Number.isFinite(numeric) ? numeric : 0;
     const precision = (left.split(".")[1] ?? "").length;
-    return { numericValue: safeNumeric, suffix: `/${right}`, precision };
+    return { numericValue: safeNumeric, prefix: "", suffix: `/${right}`, precision };
   }
 
-  const match = value.match(/^(\d+(?:\.\d+)?)(.*)$/);
+  const match = value.match(/^([^0-9]*)(\d+(?:\.\d+)?)(.*)$/);
   if (!match) {
-    return { numericValue: 0, suffix: value, precision: 0 };
+    return { numericValue: 0, prefix: "", suffix: value, precision: 0 };
   }
 
-  const numericStr = match[1];
-  const suffix = match[2] ?? "";
+  const prefix = match[1] ?? "";
+  const numericStr = match[2];
+  const suffix = match[3] ?? "";
   const numeric = Number.parseFloat(numericStr);
   const safeNumeric = Number.isFinite(numeric) ? numeric : 0;
   const precision = (numericStr.split(".")[1] ?? "").length;
-  return { numericValue: safeNumeric, suffix, precision };
+  return { numericValue: safeNumeric, prefix, suffix, precision };
 }
 
 function NexusCircle({ value, label }: { value: string; label: string }) {
@@ -34,7 +35,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
   const isInViewOnce = useInView(ref, { once: true, margin: "-100px" });
   const isActive = useInView(ref, { once: false, margin: "-100px" });
   const reduceMotion = useReducedMotion();
-  const { numericValue, suffix, precision } = parseStatValue(value);
+  const { numericValue, prefix, suffix, precision } = parseStatValue(value);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -105,10 +106,11 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           <span
             dir="ltr"
             style={{ unicodeBidi: "plaintext" }}
-            className="text-6xl md:text-7xl font-black text-white tracking-tighter"
+            className="text-5xl md:text-6xl font-black text-white tracking-tighter"
           >
+            {prefix && <span className="text-[#43becc]">{prefix}</span>}
             {count.toFixed(precision)}
-            <span className="text-2xl font-bold text-[#43becc]">{suffix}</span>
+            <span className="text-xl md:text-2xl font-bold text-[#43becc]">{suffix}</span>
           </span>
         </motion.div>
         
@@ -136,7 +138,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
   );
 }
 
-export function StatsSection({ title, kicker, stats }: { title: string; kicker: string; stats: StatItem[] }) {
+export function StatsSection({ title, kicker, stats, isAr = false }: { title: string; kicker: string; stats: StatItem[]; isAr?: boolean }) {
   return (
     <section className="py-40 bg-[#121b43] relative overflow-hidden font-['Montserrat',sans-serif]">
       
@@ -157,7 +159,7 @@ export function StatsSection({ title, kicker, stats }: { title: string; kicker: 
           </p>
         </div>
 
-        <div className="grid gap-20 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
           {stats.map((s) => (
             <NexusCircle key={s.label} value={s.value} label={s.label} />
           ))}

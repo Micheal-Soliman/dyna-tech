@@ -2,77 +2,143 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
+
+type Partner = {
+  name: string;
+  oneLiner: string;
+  logoUrl?: string;
+};
 
 type LogosLoopProps = {
   title: string;
-  logos: string[];
+  partners: Partner[];
+  ctaLabel?: string;
+  ctaHref?: string;
+  isAr?: boolean;
 };
 
-export function LogosLoop({ title, logos }: LogosLoopProps) {
+export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: LogosLoopProps) {
   const reduceMotion = useReducedMotion();
-  const items = Array.isArray(logos) ? logos.filter(Boolean) : [];
-  const minItems = 40;
-  const base: string[] = [];
-  if (items.length > 0) {
-    while (base.length < minItems) base.push(...items);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    let raf1 = 0;
+    let raf2 = 0;
+
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        setIsAnimating(true);
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, []);
+
+  // Reduced from 20 to 10 for better performance
+  const minItems = 10;
+  let base: Partner[] = [];
+  if (partners.length > 0) {
+    while (base.length < minItems) base.push(...partners);
   }
+
   const duplicated = [...base, ...base];
-  const durationSeconds = Math.max(22, Math.min(70, base.length * 1.35));
+  const durationSeconds = Math.max(20, Math.min(60, base.length * 3));
 
   return (
-    <section className="bg-[#121b43] py-20 overflow-hidden">
-      <div className="mx-auto max-w-6xl px-6 mb-10 text-center">
+    <section className="bg-[#121b43] pt-24 pb-12 mt-20 md:mt-32 overflow-hidden" style={{ contain: 'layout paint' }}>
+      {/* Section Header */}
+      <div className="mx-auto max-w-6xl px-6 mb-16 text-center">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-[#43becc] font-bold tracking-[0.3em] text-5xl uppercase"
+          className="text-[#43becc] font-bold tracking-[0.2em] text-sm md:text-base uppercase mb-4"
         >
           {title}
         </motion.p>
+        <h2 className="text-white text-3xl md:text-5xl font-bold">
+          Global Expertise, Local Excellence
+        </h2>
       </div>
 
+      {/* Marquee Container - GPU Optimized */}
       <div className="relative flex overflow-hidden group">
-        <div className="absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-[#121b43] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-[#121b43] to-transparent z-10 pointer-events-none" />
+        {/* Gradient Fades - flip for RTL */}
+        <div className={`absolute inset-y-0 ${isAr ? 'right-0 bg-gradient-to-l' : 'left-0 bg-gradient-to-r'} w-32 md:w-64 from-[#121b43] via-[#121b43]/80 to-transparent z-10 pointer-events-none`} />
+        <div className={`absolute inset-y-0 ${isAr ? 'left-0 bg-gradient-to-r' : 'right-0 bg-gradient-to-l'} w-32 md:w-64 from-[#121b43] via-[#121b43]/80 to-transparent z-10 pointer-events-none`} />
 
         <div
-          className={`logos-marquee flex whitespace-nowrap${reduceMotion ? " paused" : ""}`}
-          style={{ ["--marquee-duration" as never]: `${durationSeconds}s` } as CSSProperties}
+          className={`logos-marquee pointer-events-none flex whitespace-nowrap ${isAr ? "rtl" : ""} ${reduceMotion ? "paused" : ""} ${isAnimating ? "animating" : ""}`}
+          style={{ 
+            ["--marquee-duration" as never]: `${durationSeconds}s`,
+            willChange: 'transform',
+            transform: isAr ? "translate3d(-50%, 0, 0)" : "translate3d(0, 0, 0)",
+          } as CSSProperties}
         >
-          {duplicated.map((name, index) => (
-            <div key={`${name}-${index}`} className="flex items-center justify-center px-10 md:px-16 shrink-0">
-              <span className="select-none text-white/40 font-semibold tracking-wide uppercase transition-all duration-300 grayscale hover:grayscale-0 hover:text-[#43becc] hover:scale-110 cursor-pointer">
-                {name}
+          {duplicated.map((partner, index) => (
+            <div
+              key={`${partner.name}-${index}`}
+              className={`flex flex-col justify-center px-8 md:px-12 shrink-0 ${isAr ? 'items-end border-r border-white/10' : 'items-start border-l border-white/10'} group/item`}
+            >
+              <span className="text-white text-xl md:text-2xl font-bold tracking-tight mb-2 group-hover/item:text-[#43becc] transition-colors">
+                {partner.name}
               </span>
+              <p className="text-white/50 text-xs md:text-sm max-w-[200px] whitespace-normal leading-relaxed">
+                {partner.oneLiner}
+              </p>
             </div>
           ))}
         </div>
       </div>
 
+      {/* CTA Section */}
+      {ctaLabel && ctaHref && (
+        <div className="mt-4 text-center">
+          <a
+            href={ctaHref}
+            className="inline-block px-8 py-3 bg-transparent border border-[#43becc] text-[#43becc] font-semibold uppercase tracking-widest hover:bg-[#43becc] hover:text-[#121b43] transition-all duration-300 rounded-sm"
+          >
+            {ctaLabel}
+          </a>
+        </div>
+      )}
+
       <style jsx>{`
         @keyframes logos-marquee {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
-
+        @keyframes logos-marquee-rtl {
+          0% { transform: translate3d(-50%, 0, 0); }
+          100% { transform: translate3d(0, 0, 0); }
+        }
         .logos-marquee {
-          animation: logos-marquee var(--marquee-duration, 25s) linear infinite;
+          animation: none;
           width: max-content;
-          will-change: transform;
+          backface-visibility: hidden;
+          perspective: 1000px;
         }
-
-        .logos-marquee.paused {
-          animation-play-state: paused;
+        .logos-marquee.animating {
+          animation: logos-marquee var(--marquee-duration, 40s) linear infinite;
         }
-
-        .group:hover .logos-marquee {
-          animation-play-state: paused;
+        .logos-marquee.rtl {
+          animation-name: logos-marquee-rtl;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .logos-marquee {
+            animation: none;
+          }
+        }
+        /* Pause animation when not in viewport */
+        @media (hover: none) {
+          .logos-marquee {
+            animation-play-state: running;
+          }
         }
       `}</style>
     </section>

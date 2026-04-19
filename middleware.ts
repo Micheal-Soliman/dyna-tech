@@ -3,12 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { defaultLocale, locales, type Locale } from "@/i18n/config";
 
 function getPreferredLocale(request: NextRequest): Locale {
-  const header = request.headers.get("accept-language") || "";
-
-  const lower = header.toLowerCase();
-  if (lower.includes("ar")) return "ar";
-  if (lower.includes("en")) return "en";
-
+  // Always default to English for new visitors
   return defaultLocale;
 }
 

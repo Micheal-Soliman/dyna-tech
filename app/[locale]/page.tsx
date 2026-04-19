@@ -6,6 +6,12 @@ import type {
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/config";
 
+type Partner = {
+  name: string;
+  oneLiner: string;
+  logoUrl?: string;
+};
+
 type HomeDictionary = {
   common: {
     requestDemo: string;
@@ -18,9 +24,18 @@ type HomeDictionary = {
       brandRight: string;
       followLine1: string;
       followLine2: string;
+      primaryCtaLabel: string;
+      secondaryCtaLabel: string;
+      ceoQuote: string;
+      ceoName: string;
+      ceoTitle: string;
+      ceoCtaLabel: string;
+      ceoSectionLabel: string;
+      ceoSubtitle: string;
     };
-    logosTitle: string;
-    logos: string[];
+    partnersTitle: string;
+    partners: Partner[];
+    partnersCtaLabel: string;
     about: {
       backdropText: string;
       imageAlt: string;
@@ -42,18 +57,10 @@ type HomeDictionary = {
     statsTitle: string;
     statsKicker: string;
     stats: StatItem[];
-    visualsTitle: string;
-    visualsSubtitle: string;
-    visualsCard1Title: string;
-    visualsCard1Text: string;
-    visualsCard2Title: string;
-    visualsCard2Text: string;
-    visualsVideoTitle: string;
     visualsCarousel: {
       badge: string;
       titlePrefix: string;
       titleHighlight: string;
-      slideTitles: string[];
     };
     announcementsTitle: string;
     announcementsKicker: string;
@@ -71,36 +78,42 @@ export default async function Home({
 }) {
   const { locale } = await Promise.resolve(params);
   const dict = (await getDictionary(locale)) as HomeDictionary;
-  const requestDemoHref = `/${locale}/request-demo`;
-  
+  const isAr = locale === "ar";
+
   return (
-    <div className="min-h-screen bg-zinc-50 font-sans text-zinc-950 dark:bg-black dark:text-zinc-50">
+    <div className="min-h-screen bg-zinc-50 font-sans text-zinc-950 dark:bg-black dark:text-zinc-50" dir={isAr ? "rtl" : "ltr"}>
       <HomeSections
+        locale={locale}
+        isAr={isAr}
         slogan={dict.home.slogan}
         subheading={dict.home.subheading}
-        requestDemoLabel={dict.common.requestDemo}
-        requestDemoHref={requestDemoHref}
+        primaryCtaLabel={dict.home.hero.primaryCtaLabel}
+        primaryCtaHref={`/${locale}/about`}
+        secondaryCtaLabel={dict.home.hero.secondaryCtaLabel}
+        secondaryCtaHref={`/${locale}/contact`}
         heroBrandLeft={dict.home.hero.brandLeft}
         heroBrandRight={dict.home.hero.brandRight}
         heroFollowLine1={dict.home.hero.followLine1}
         heroFollowLine2={dict.home.hero.followLine2}
-        logosTitle={dict.home.logosTitle}
-        logos={dict.home.logos}
+        heroPrimaryCtaLabel={dict.home.hero.primaryCtaLabel}
+        heroSecondaryCtaLabel={dict.home.hero.secondaryCtaLabel}
+        heroCeoQuote={dict.home.hero.ceoQuote}
+        heroCeoName={dict.home.hero.ceoName}
+        heroCeoTitle={dict.home.hero.ceoTitle}
+        heroCeoCtaLabel={dict.home.hero.ceoCtaLabel}
+        heroCeoSectionLabel={dict.home.hero.ceoSectionLabel}
+        heroCeoSubtitle={dict.home.hero.ceoSubtitle}
+        partnersTitle={dict.home.partnersTitle}
+        partners={dict.home.partners}
+        partnersCtaLabel={dict.home.partnersCtaLabel}
+        partnersCtaHref={`/${locale}/about`}
         about={dict.home.about}
         statsTitle={dict.home.statsTitle}
         statsKicker={dict.home.statsKicker}
         stats={dict.home.stats}
-        visualsTitle={dict.home.visualsTitle}
-        visualsSubtitle={dict.home.visualsSubtitle}
-        visualsCard1Title={dict.home.visualsCard1Title}
-        visualsCard1Text={dict.home.visualsCard1Text}
-        visualsCard2Title={dict.home.visualsCard2Title}
-        visualsCard2Text={dict.home.visualsCard2Text}
-        visualsVideoTitle={dict.home.visualsVideoTitle}
         visualsCarouselBadge={dict.home.visualsCarousel.badge}
         visualsCarouselTitlePrefix={dict.home.visualsCarousel.titlePrefix}
         visualsCarouselTitleHighlight={dict.home.visualsCarousel.titleHighlight}
-        visualsCarouselSlides={dict.home.visualsCarousel.slideTitles}
         announcementsTitle={dict.home.announcementsTitle}
         announcementsKicker={dict.home.announcementsKicker}
         announcementsBlurb={dict.home.announcementsBlurb}
@@ -110,4 +123,4 @@ export default async function Home({
       />
     </div>
   );
- }
+}

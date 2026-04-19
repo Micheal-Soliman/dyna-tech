@@ -1,308 +1,410 @@
 "use client";
-import React, { useEffect } from "react";
-import { animate, motion, useMotionValue, useTransform, type Variants } from "framer-motion";
-import {
-    ArrowLeft, CheckCircle2, BarChart3, Quote,
-    Cpu, Globe, Zap, ArrowRight, ExternalLink
+
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { 
+  CheckCircle2, Target, Globe, Thermometer, 
+  ArrowLeft, Layers, FileText, ArrowRight, Download, Mail
 } from "lucide-react";
+import Link from "next/link";
 
-// إعدادات الأنيميشن الافتراضية للظهور عند السكرول
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+// --- UNIQUE SCROLL PATTERN: Cascading 3D Cards with Rotation ---
 
-const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 40 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.8, ease: EASE }
-    }
+const PROJECT_DATA = {
+  id: "RFP1",
+  title: "LIB Battery Enclosure",
+  subtitle: "Pack Level Engineering",
+  category: "Energy Storage",
+  status: "Open for Proposals",
+  location: "New Cairo, EG",
+  investment: "EGP 5M - 8M",
+  timeline: "Q3 2026 - Q2 2027",
+  description: "Request for Proposal for Lithium-Ion Battery enclosures focusing on structural safety and thermal regulation for industrial ESS applications.",
+  challenge: "Current battery enclosures lack sufficient thermal management for harsh desert climates, leading to 15% efficiency loss during peak summer operations.",
+  solution: "Engineering high-performance aluminum-steel composite enclosures with integrated liquid cooling channels and IP67 sealing.",
+  specs: [
+    { label: "Dimensions", value: "1200x800x600 mm" },
+    { label: "Weight", value: "45-60 kg" },
+    { label: "IP Rating", value: "IP67" },
+    { label: "Cooling", value: "Liquid/Passive Hybrid" },
+  ],
+  metrics: [
+    { label: "Thermal Efficiency", val: "95", unit: "%", color: "#bcd647" },
+    { label: "Safety Rating", val: "IP67", unit: "", color: "#43becc" },
+    { label: "Design Life", val: "15", unit: "Years", color: "#bcd647" },
+    { label: "Temp Range", val: "-20", unit: "°C to +60", color: "#43becc" },
+  ],
+  techStack: ["CFD Thermal Analysis", "FEA Structural", "Aluminum 6061-T6", "Ceramic Coating"],
+  deliverables: ["CAD Drawings", "Thermal Simulations", "Prototype Units", "Test Reports"],
+  partner: "CFK Valley Germany",
+  contact: "procurement@dynatech-eg.com"
 };
 
-const staggerContainer: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-        opacity: 1,
-        transition: {
-            staggerChildren: 0.2
-        }
-    }
+// 3D Card Flip Reveal
+function Card3D({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, rotateX: 25, y: 60, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, rotateX: 0, y: 0, scale: 1 } : {}}
+      transition={{ duration: 0.8, delay, ease: "easeOut" }}
+      style={{ transformPerspective: 1200, transformStyle: "preserve-3d" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// Slide from Side with Skew
+function SkewSlide({ children, direction = "left", delay = 0, className = "" }: { 
+  children: React.ReactNode; 
+  direction?: "left" | "right"; 
+  delay?: number; 
+  className?: string 
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const xOffset = direction === "left" ? -80 : 80;
+  const skewValue = direction === "left" ? 5 : -5;
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, x: xOffset, skewX: skewValue }}
+      animate={isInView ? { opacity: 1, x: 0, skewX: 0 } : {}}
+      transition={{ duration: 0.7, delay, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// Scale Pop Reveal
+function ScalePop({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, scale: 0.7 }}
+      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.6, delay, type: "spring", stiffness: 100 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// Stagger Container
+function StaggerContainer({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={{
+        hidden: {},
+        visible: { transition: { staggerChildren: 0.12 } }
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const }
+  }
 };
 
-type CounterProps = {
-    value: number;
-    duration?: number;
-};
+export default function IndustrialProjectDetail() {
+  const project = PROJECT_DATA;
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  
+  return (
+    <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#bcd647] selection:text-black overflow-x-hidden">
+      
+      {/* Floating Back Link */}
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 0.5 }}
+        className="fixed top-24 left-6 z-50"
+      >
+        <Link 
+          href="/case-study" 
+          className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/80 backdrop-blur border border-white/10 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-[#bcd647] hover:border-[#bcd647]/30 transition-all group"
+        >
+          <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+          Back to Projects
+        </Link>
+      </motion.div>
+      
+      {/* HERO: Parallax Fade */}
+      <motion.section 
+        ref={heroRef}
+        style={{ y: heroY, opacity: heroOpacity }}
+        className="min-h-screen pt-32 pb-24 px-6 md:px-16 border-b border-white/5 relative"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Status */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <span className="px-3 py-1 bg-[#bcd647]/20 text-[#bcd647] text-[9px] font-black uppercase tracking-widest border border-[#bcd647]/30">
+              {project.status}
+            </span>
+            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 italic">
+              {project.category} // {project.id}
+            </span>
+          </motion.div>
 
-const Counter = ({ value, duration = 2 }: CounterProps) => {
-    const count = useMotionValue(0);
-    // إضافة spring لجعل الحركة أكثر انسيابية (Bounce خفيف)
-    const rounded = useTransform(count, (latest) => {
-        // التعامل مع الأرقام العشرية مثل 2.5 أو الأرقام الصحيحة
-        return latest.toFixed(value % 1 !== 0 ? 1 : 0);
-    });
+          <div className="grid lg:grid-cols-12 gap-12 items-end">
+            <div className="lg:col-span-8">
+              <motion.h1 
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.8 }}
+                className="text-5xl md:text-8xl font-[1000] italic uppercase tracking-tighter text-white leading-[0.85] mb-6"
+              >
+                {project.title}
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-2xl md:text-3xl text-zinc-500 italic font-light"
+              >
+                {project.subtitle}
+              </motion.p>
+            </div>
 
-    useEffect(() => {
-        const controls = animate(count, value, { duration: duration, ease: "circOut" });
-        return controls.stop;
-    }, [value, duration]);
-
-    return <motion.span>{rounded}</motion.span>;
-};
-
-export default function IndividualCaseStudy() {
-
-    return (
-        <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#43becc] selection:text-black">
-
-            {/* 2. HERO HEADER (Reveal Animation) */}
-            <section className="py-24 px-6 md:px-16 border-b border-white/5 relative overflow-hidden">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={staggerContainer}
-                    className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-end relative z-10"
-                >
-                    <motion.div variants={fadeInUp}>
-                        <span className="text-[#43becc] text-[10px] font-bold tracking-[0.4em] uppercase mb-6 block italic">
-                            Data_Log // Sector: Pharma_Healthcare
-                        </span>
-                        <h1 className="text-6xl md:text-9xl font-[1000] italic uppercase tracking-[ -0.05em] text-white leading-[0.8]">
-                            AL-NAHDI<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/20">MEDICAL.</span>
-                        </h1>
-                    </motion.div>
-
-                    <motion.div variants={fadeInUp} className="flex flex-col items-end gap-6">
-                        <div className="relative group">
-                            <div className="absolute inset-0 bg-[#43becc]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
-                            <div className="w-32 h-32 bg-zinc-900 border border-white/10 flex items-center justify-center relative z-10">
-                                <span className="text-[10px] font-black opacity-20 text-center uppercase">Logo_Ref</span>
-                            </div>
-                        </div>
-                        <p className="text-right text-[9px] text-zinc-500 font-bold uppercase tracking-[0.3em] leading-loose">
-                            Ref_ID: <span className="text-white">NH-2024</span> <br />
-                            Region: <span className="text-white">Saudi_Arabia</span>
-                        </p>
-                    </motion.div>
-                </motion.div>
-            </section>
-
-            {/* 3. METRICS (ULTRA-MODERN HUD STYLE WITH COUNTERS) */}
-            <motion.section
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-                variants={staggerContainer}
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 border-b border-white/5 bg-[#050505]"
-            >
-                {[
-                    { label: "Efficiency_Boost", val: 40, unit: "%", icon: <Zap size={14} />, color: "#bcd647" },
-                    { label: "Compliance_Rate", val: 100, unit: "%", icon: <CheckCircle2 size={14} />, color: "#43becc" },
-                    { label: "Payroll_Speed", val: 2.5, unit: "x", icon: <BarChart3 size={14} />, color: "#bcd647" },
-                    { label: "System_Uptime", val: 99.9, unit: "%", icon: <Globe size={14} />, color: "#43becc" },
-                ].map((stat, i) => (
-                    <motion.div
-                        key={i}
-                        variants={fadeInUp}
-                        className="relative p-12 border-r border-white/5 overflow-hidden group hover:bg-black transition-all duration-500"
-                    >
-                        {/* خلفية تفاعلية */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                            <div className="absolute top-[-20%] left-[-20%] w-[150px] h-[150px] bg-[#43becc]/10 blur-[60px] rounded-full" />
-                        </div>
-
-                        <div className="relative z-10 space-y-8">
-                            <div className="flex justify-between items-start">
-                                <div className="p-3 border border-white/5 bg-white/[0.02] relative" style={{ color: stat.color }}>
-                                    {stat.icon}
-                                    <div className="absolute -top-1 -right-1 w-1 h-1 bg-current" />
-                                </div>
-                                <span className="text-[8px] font-mono text-zinc-700 tracking-[0.3em] uppercase">
-                                    DS_{i + 1} // METRIC_LIVE
-                                </span>
-                            </div>
-
-                            <div className="space-y-1">
-                                <div className="flex items-baseline gap-1">
-                                    <h3 className="text-6xl font-[1000] italic text-white tracking-tighter">
-                                        <Counter value={stat.val} />
-                                    </h3>
-                                    <span className="text-2xl font-black italic text-[#43becc]">{stat.unit}</span>
-                                </div>
-                                <p className="text-[10px] uppercase tracking-[0.4em] text-zinc-500 font-bold group-hover:text-white transition-colors">
-                                    {stat.label}
-                                </p>
-                            </div>
-
-                            {/* الـ Animated Mini-graph اللي عملناه */}
-                            <div className="flex items-end gap-[3px] h-10 opacity-20 group-hover:opacity-100 transition-opacity duration-700">
-                                {[...Array(15)].map((_, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ height: 2 }}
-                                        whileInView={{ height: Math.random() * 25 + 5 }}
-                                        transition={{ repeat: Infinity, duration: 1.2, repeatType: 'reverse', delay: idx * 0.05 }}
-                                        className="w-[2px] bg-zinc-800"
-                                        style={{ backgroundColor: idx % 4 === 0 ? stat.color : '' }}
-                                    />
-                                ))}
-                            </div>
-
-                            <div className="pt-4 border-t border-white/5 flex justify-between items-center text-[7px] font-mono text-zinc-800">
-                                <span className="flex items-center gap-2">
-                                    <span className="w-1 h-1 bg-[#bcd647] rounded-full animate-ping" />
-                                    STREAMING_DATA
-                                </span>
-                                <span>VAL_SYNC: OK</span>
-                            </div>
-                        </div>
-
-                        {/* الخط الجمالي المتحرك في الأسفل */}
-                        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#43becc] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-                    </motion.div>
-                ))}
-            </motion.section>
-
-            {/* 4. CONTENT BODY (Reveal on Scroll) */}
-            <section className="py-32 px-6 md:px-16 max-w-7xl mx-auto">
-                <div className="grid lg:grid-cols-12 gap-24">
-
-                    <div className="lg:col-span-8 space-y-32">
-                        {/* The Challenge */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.5 }}
-                            variants={fadeInUp}
-                            className="space-y-10"
-                        >
-                            <h2 className="text-2xl font-black italic uppercase tracking-widest flex items-center gap-6 text-white">
-                                <span className="w-12 h-[1px] bg-[#43becc]" /> 01_The_Challenge
-                            </h2>
-                            <p className="text-2xl font-light leading-relaxed italic text-zinc-400 pl-18">
-                                Al-Nahdi was facing massive delays in <span className="text-white">GOSI compliance</span> reporting and payroll processing. The legacy system lacked localization, causing 15% error margins in monthly audits.
-                            </p>
-                        </motion.div>
-
-                        {/* Raptor Solution */}
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.5 }}
-                            variants={fadeInUp}
-                            className="space-y-10"
-                        >
-                            <h2 className="text-2xl font-black italic uppercase tracking-widest flex items-center gap-6 text-[#43becc]">
-                                <span className="w-12 h-[1px] bg-[#43becc]" /> 02_Raptor_Solution
-                            </h2>
-                            <div className="pl-18 space-y-12">
-                                <p className="text-xl leading-relaxed font-light">
-                                    We engineered a <span className="text-white underline decoration-[#43becc] underline-offset-8">Clean-Core SAP SuccessFactors</span> architecture, eliminating custom technical debt while providing 100% localization.
-                                </p>
-                                <div className="grid md:grid-cols-2 gap-4">
-                                    {['Automated Zakat reporting', 'BTP Extension Suite', 'KSA Localization Pack', 'HCM Cloud Migration'].map((item, idx) => (
-                                        <motion.div
-                                            key={item}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: idx * 0.1 }}
-                                            className="flex items-center gap-4 p-5 bg-zinc-950 border border-white/5 text-[10px] font-black uppercase tracking-widest"
-                                        >
-                                            <div className="w-1.5 h-1.5 bg-[#bcd647]" /> {item}
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-
-                    {/* Right Sidebar (Sticky) */}
-                    <aside className="lg:col-span-4">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            className="sticky top-32 p-10 bg-zinc-900/50 border border-white/10 space-y-12"
-                        >
-                            <div className="space-y-6">
-                                <Quote className="text-[#43becc] opacity-50" size={32} />
-                                <p className="text-lg italic leading-relaxed text-white">
-                                    "Raptor's precision in SAP localization is unmatched in the MENA region."
-                                </p>
-                                <div>
-                                    <p className="font-black italic uppercase text-[11px] tracking-widest text-white">Dr. Ahmed Salem</p>
-                                    <p className="text-[9px] uppercase text-zinc-600 font-bold">CTO // Al-Nahdi Medical</p>
-                                </div>
-                            </div>
-
-                            <div className="pt-10 border-t border-white/5 space-y-6">
-                                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600">Core_Stack</h4>
-                                <div className="flex flex-wrap gap-2">
-                                    {['S/4HANA', 'BTP', 'HXM'].map(s => (
-                                        <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 text-[9px] font-bold text-[#43becc]">{s}</span>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.div>
-                    </aside>
+            <div className="lg:col-span-4 space-y-4">
+              <Card3D delay={0.3}>
+                <div className="p-6 bg-zinc-950 border border-white/10">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Investment Range</p>
+                  <p className="text-2xl font-black italic text-[#bcd647]">{project.investment}</p>
                 </div>
-            </section>
-
-            {/* 5. ACCELERATORS (Scroll Reveal) */}
-            <section className="py-32 px-6 md:px-16 bg-white/[0.01] border-y border-white/5">
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={staggerContainer}
-                    className="max-w-7xl mx-auto"
-                >
-                    <motion.h3 variants={fadeInUp} className="text-[10px] font-black uppercase tracking-[0.6em] mb-16 text-center text-zinc-500">
-                        Proprietary_Tech_Deployment
-                    </motion.h3>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {['GOSI_Bridge_v2', 'Zakat_Engine'].map((tech, i) => (
-                            <motion.div
-                                key={tech}
-                                variants={fadeInUp}
-                                whileHover={{ y: -10 }}
-                                className="p-10 border border-white/10 bg-black hover:border-[#43becc]/40 transition-all cursor-pointer group"
-                            >
-                                <h4 className="text-2xl font-[1000] italic mb-4 uppercase group-hover:text-[#43becc]">{tech}</h4>
-                                <p className="text-sm text-zinc-500 font-light leading-relaxed mb-8">Advanced middleware designed for rapid GCC compliance orchestration.</p>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-[9px] font-black tracking-widest text-zinc-700 italic underline">View_Documentation</span>
-                                    <ExternalLink size={14} className="text-zinc-700" />
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
-            </section>
-
-            {/* 6. CTA (Final Interaction) */}
-            <section className="py-48 px-6 text-center relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="relative z-10"
-                >
-                    <h2 className="text-6xl md:text-8xl font-[1000] italic uppercase tracking-tighter mb-12">
-                        Initialize<br /><span className="text-[#43becc]">Evolution.</span>
-                    </h2>
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-16 py-8 bg-white text-black font-black uppercase text-[11px] tracking-[0.6em] relative overflow-hidden group"
-                    >
-                        <span className="relative z-10">Request_System_Audit()</span>
-                        <div className="absolute inset-0 bg-[#43becc] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                    </motion.button>
-                </motion.div>
-            </section>
-
+              </Card3D>
+              <Card3D delay={0.4}>
+                <div className="p-6 bg-zinc-950 border border-white/10">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Timeline</p>
+                  <p className="text-xl font-black italic text-white">{project.timeline}</p>
+                </div>
+              </Card3D>
+            </div>
+          </div>
         </div>
-    );
+      </motion.section>
+
+      {/* METRICS: Stagger Grid */}
+      <section className="border-b border-white/5 bg-[#050505]">
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4">
+          {project.metrics.map((stat, i) => (
+            <motion.div
+              key={i}
+              variants={itemVariants}
+              className="relative p-10 border-r border-white/5 overflow-hidden group hover:bg-black transition-all duration-500"
+            >
+              <div className="relative z-10 space-y-6">
+                <div className="flex items-center gap-3" style={{ color: stat.color }}>
+                  <span className="text-[8px] font-mono tracking-[0.3em] uppercase text-zinc-600">SPEC_0{i+1}</span>
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-baseline gap-2">
+                    <h3 className="text-4xl md:text-5xl font-[1000] italic text-white tracking-tighter">{stat.val}</h3>
+                    <span className="text-lg font-black italic" style={{ color: stat.color }}>{stat.unit}</span>
+                  </div>
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold">{stat.label}</p>
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#bcd647] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+            </motion.div>
+          ))}
+        </StaggerContainer>
+      </section>
+
+      {/* MAIN CONTENT: 3D Cards */}
+      <section className="py-32 px-6 md:px-16 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-12 gap-24">
+          
+          {/* Left Content */}
+          <div className="lg:col-span-8 space-y-20">
+            
+            {/* Description */}
+            <SkewSlide direction="left">
+              <div className="p-8 bg-zinc-950/50 border border-white/5">
+                <p className="text-xl leading-relaxed text-zinc-400">{project.description}</p>
+              </div>
+            </SkewSlide>
+
+            {/* Challenge */}
+            <Card3D delay={0.1}>
+              <div className="space-y-6 p-8 bg-gradient-to-br from-zinc-950 to-zinc-900/50 border border-white/5">
+                <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-white">
+                  <span className="w-12 h-[1px] bg-[#bcd647]" /> 01_The_Challenge
+                </h2>
+                <p className="text-lg font-light leading-relaxed italic text-zinc-400">{project.challenge}</p>
+              </div>
+            </Card3D>
+
+            {/* Solution */}
+            <Card3D delay={0.15}>
+              <div className="space-y-6 p-8 bg-gradient-to-br from-zinc-900/50 to-zinc-950 border-l-2 border-[#bcd647]">
+                <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-[#bcd647]">
+                  <span className="w-12 h-[1px] bg-[#bcd647]" /> 02_The_Solution
+                </h2>
+                <p className="text-lg font-light leading-relaxed italic text-zinc-400">{project.solution}</p>
+              </div>
+            </Card3D>
+
+            {/* Specs Grid */}
+            <div className="space-y-6">
+              <SkewSlide direction="left">
+                <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-white">
+                  <span className="w-12 h-[1px] bg-zinc-600" /> 03_Technical_Specs
+                </h2>
+              </SkewSlide>
+              <div className="grid md:grid-cols-2 gap-4">
+                {project.specs.map((spec, idx) => (
+                  <ScalePop key={spec.label} delay={idx * 0.1}>
+                    <div className="flex justify-between items-center p-5 bg-zinc-950 border border-white/5 hover:border-[#bcd647]/30 transition-colors">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{spec.label}</span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-white">{spec.value}</span>
+                    </div>
+                  </ScalePop>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Sidebar */}
+          <aside className="lg:col-span-4">
+            <Card3D delay={0.2}>
+              <div className="sticky top-32 p-10 bg-zinc-900/50 border border-white/10 space-y-12">
+                
+                {/* Tech Stack */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-2">
+                    <Layers className="text-[#bcd647]" size={18} />
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Tech_Stack</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((s, i) => (
+                      <motion.span 
+                        key={s} 
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        className="px-3 py-2 bg-[#bcd647]/10 border border-[#bcd647]/20 text-[9px] font-bold text-[#bcd647]"
+                      >
+                        {s}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Deliverables */}
+                <div className="pt-10 border-t border-white/5 space-y-6">
+                  <div className="flex items-center gap-2">
+                    <FileText className="text-[#43becc]" size={18} />
+                    <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Deliverables</h4>
+                  </div>
+                  <div className="space-y-3">
+                    {project.deliverables.map((d, i) => (
+                      <motion.div 
+                        key={d} 
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.1 }}
+                        className="flex items-center gap-3 text-[10px] text-zinc-400"
+                      >
+                        <div className="w-1 h-1 bg-[#43becc]" />
+                        {d}
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Contact */}
+                <div className="pt-10 border-t border-white/5 space-y-4">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600">Partner: {project.partner}</p>
+                  <p className="text-[9px] font-mono text-[#bcd647]">{project.contact}</p>
+                </div>
+              </div>
+            </Card3D>
+          </aside>
+        </div>
+      </section>
+
+      {/* CTA: Scale Pop */}
+      <section className="py-32 px-6 text-center relative border-t border-white/5">
+        <ScalePop>
+          <div className="relative z-10">
+            <h2 className="text-5xl md:text-7xl font-[1000] italic uppercase tracking-tighter mb-8">
+              Submit <span className="text-[#bcd647]">Proposal.</span>
+            </h2>
+            <p className="text-zinc-500 max-w-xl mx-auto mb-12 text-xs uppercase tracking-widest">
+              Technical proposals accepted until Q2 2026. Direct all inquiries to procurement.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-12 py-6 bg-[#bcd647] text-black font-black uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-3"
+              >
+                <Download size={16} />
+                DOWNLOAD_RFP_DOC
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-12 py-6 border-2 border-white/10 text-white font-black uppercase text-[10px] tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3"
+              >
+                <Mail size={16} />
+                CONTACT_TEAM
+              </motion.button>
+            </div>
+          </div>
+        </ScalePop>
+      </section>
+
+      {/* Next Project Link */}
+      <section className="py-20 px-6 border-t border-white/5">
+        <SkewSlide direction="right">
+          <Link 
+            href="/case-study" 
+            className="max-w-7xl mx-auto flex items-center justify-between p-8 bg-zinc-950/30 border border-white/5 hover:border-[#bcd647]/30 transition-all group"
+          >
+            <div>
+              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600 block mb-2">Back to</span>
+              <span className="text-2xl font-[1000] uppercase italic text-white group-hover:text-[#bcd647] transition-colors">All Projects</span>
+            </div>
+            <ArrowRight size={32} className="text-zinc-600 group-hover:text-[#bcd647] group-hover:translate-x-2 transition-all" />
+          </Link>
+        </SkewSlide>
+      </section>
+    </div>
+  );
 }

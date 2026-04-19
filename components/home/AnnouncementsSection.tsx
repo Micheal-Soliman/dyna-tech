@@ -114,9 +114,10 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
         </div>
 
         <div className="mt-12 flex items-center justify-between">
-          <motion.button
+          <motion.a
+            href="/knowledge"
             whileHover={{ gap: "15px" }}
-            className="flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all"
+            className="inline-flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer"
           >
             {readMoreLabel}
             <span
@@ -126,7 +127,7 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
             >
               {readMoreArrow}
             </span>
-          </motion.button>
+          </motion.a>
 
           {/* أيقونة ديكورية صغيرة تتفاعل مع الهوفر */}
           <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:border-[#43becc]/30 group-hover:bg-[#43becc]/5 transition-all duration-500">
@@ -148,6 +149,7 @@ export function AnnouncementsSection({
   readMoreLabel,
   readMoreArrow,
   items,
+  isAr = false,
 }: {
   title: string;
   kicker: string;
@@ -155,6 +157,7 @@ export function AnnouncementsSection({
   readMoreLabel: string;
   readMoreArrow: string;
   items: AnnouncementItem[];
+  isAr?: boolean;
 }) {
   return (
     <section className="py-32 bg-[#121b43] font-['Montserrat',sans-serif] relative overflow-hidden">
@@ -206,7 +209,7 @@ export function AnnouncementsSection({
 
         {/* Grid الكروت المطور */}
         <div className="grid gap-8 lg:grid-cols-3">
-          {items.map((a, index) => (
+          {items.slice(0, 3).map((a, index) => (
             <AnnouncementCard
               key={`${a.title}-${index}`}
               a={a}
@@ -216,6 +219,22 @@ export function AnnouncementsSection({
             />
           ))}
         </div>
+
+        {/* Global CTA: View All News */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="mt-20 flex justify-center"
+        >
+          <a href="/knowledge" className="group relative inline-block px-8 py-4 bg-transparent overflow-hidden cursor-pointer">
+            <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#121b43] transition-colors duration-300">
+              View All News
+            </span>
+            <div className="absolute inset-0 border border-white/20 group-hover:bg-[#43becc] group-hover:border-[#43becc] transition-all duration-300" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 bg-[#bcd647]" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

@@ -16,22 +16,22 @@ export default function FinalLinksLayer({ progress }: Props) {
         <Layer progress={progress} range={[0.92, 1]}>
             <div className="relative flex flex-col items-center max-w-5xl w-full px-6">
 
-                {/* Decorative Grid Background - لإضافة عمق بصري خلف المحتوى */}
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#43becc]/5 via-transparent to-transparent blur-3xl" />
+                {/* Decorative Grid Background */}
+                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#bcd647]/5 via-transparent to-transparent blur-3xl" />
 
-                {/* 1. Quick Links Cards - تصميم الكروت الزجاجية */}
+                {/* 1. Quick Links Cards */}
                 <div className="grid md:grid-cols-2 gap-6 w-full mb-20">
                     <QuickLinkCard
-                        title="Success Stories"
-                        subtitle="View Case Studies"
+                        title="Knowledge Hub"
+                        subtitle="Technical Resources"
                         icon={<Globe size={18} />}
-                        color="#43becc"
+                        color="#bcd647"
                     />
                     <QuickLinkCard
-                        title="Core Capabilities"
-                        subtitle="Explore Services"
+                        title="Career Portal"
+                        subtitle="Join The Force"
                         icon={<Zap size={18} />}
-                        color="#bcd647"
+                        color="#43becc"
                     />
                 </div>
 
@@ -41,53 +41,44 @@ export default function FinalLinksLayer({ progress }: Props) {
                         <motion.p
                             initial={{ opacity: 0, letterSpacing: "0.2em" }}
                             whileInView={{ opacity: 1, letterSpacing: "1em" }}
-                            className="text-[#43becc] font-mono text-[10px] uppercase italic"
+                            className="text-[#bcd647] font-mono text-[10px] uppercase italic"
                         >
-              {"// Next_Protocol_Initiated"}
+              {"// Connection_Established"}
                         </motion.p>
                         <h2 className="relative z-10 w-full text-[7vw] md:text-[5vw] font-black italic uppercase leading-[0.85] tracking-tighter text-white">
-                            <span className="block opacity-80 drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]">READY TO</span>
+                            <span className="block opacity-80">READY TO</span>
 
                             <span className="relative inline-block mt-2">
-                                {/* الكلمة الأساسية مع تدرج لوني فخم */}
-                                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-[#43becc] via-[#ffffff] to-[#bcd647] bg-[length:200%_auto] animate-gradient-flow drop-shadow-[0_0_30px_rgba(67,190,204,0.4)] px-4">
-                                    SYNC?
+                                <span className="relative z-10 text-[#bcd647] px-4">
+                                    CONNECT?
                                 </span>
-
-                                {/* تأثير الـ Ghost/Glitch خلف الكلمة (يظهر عند الـ Hover أو السكرول) */}
-                                <span className="absolute inset-0 z-0 text-[#43becc] blur-lg opacity-40 group-hover:opacity-100 transition-opacity duration-500">
-                                    SYNC?
-                                </span>
-
-                                {/* إطار تقني صغير تحت الكلمة */}
                                 <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "100%" }}
                                     transition={{ duration: 1, delay: 0.5 }}
-                                    className="absolute -bottom-2 left-0 h-[2px] bg-gradient-to-r from-[#43becc] to-transparent"
+                                    className="absolute -bottom-2 left-0 h-[2px] bg-gradient-to-r from-[#bcd647] to-transparent"
                                 />
                             </span>
                         </h2>
                     </div>
 
-                    {/* Magnetic-style Button */}
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="group relative px-12 py-6 md:px-20 md:py-10 bg-white rounded-full overflow-hidden transition-all duration-500"
+                        className="group relative px-12 py-6 md:px-20 md:py-10 bg-white overflow-hidden transition-all duration-500"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-r from-[#43becc] to-[#bcd647] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-[#bcd647] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                         <span className="relative z-10 flex items-center gap-4 text-black font-black text-xl md:text-3xl italic uppercase tracking-tighter">
-                            Request Demo
+                            Start Partnership
                             <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={32} />
                         </span>
                     </motion.button>
                 </div>
 
-                {/* Footer Subtle Info */}
+                {/* Footer Info */}
                 <div className="absolute -bottom-20 flex justify-between w-full border-t border-white/5 pt-4 opacity-30">
-                    <p className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">System Status: Optimal</p>
-                    <p className="text-[8px] font-mono uppercase tracking-widest text-zinc-500"> 2024 Raptors_Ops</p>
+                    <p className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">DYNATECH_INDUSTRIES // EST.2024</p>
+                    <p className="text-[8px] font-mono uppercase tracking-widest text-zinc-500">info@dynatech-eg.net</p>
                 </div>
             </div>
         </Layer>

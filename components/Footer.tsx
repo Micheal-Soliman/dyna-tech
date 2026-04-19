@@ -1,180 +1,158 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { ArrowUpRight, Mail, Phone, MapPin, ArrowRight, Activity } from "lucide-react";
+
+// مكون فرعي للأرقام المتحركة (Key Numbers)
+const StatItem = ({ label, value }: { label: string; value: string }) => (
+  <div className="flex flex-col">
+    <span className="text-2xl md:text-3xl font-black text-white tracking-tighter">{value}</span>
+    <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.3em] mt-1">{label}</span>
+  </div>
+);
 
 export function Footer({
   description,
-  navigationTitle,
   navExpertise,
   navVisuals,
   navStats,
   navAnnouncements,
-  newsletterTitle,
-  newsletterPlaceholder,
-  newsletterJoin,
-  newsletterHint,
-  rights,
-  privacyPolicy,
-  termsOfService,
-  socialTwitter,
-  socialLinkedIn,
-  socialInstagram,
 }: {
   description: string;
-  navigationTitle: string;
   navExpertise: string;
   navVisuals: string;
   navStats: string;
   navAnnouncements: string;
-  newsletterTitle: string;
-  newsletterPlaceholder: string;
-  newsletterJoin: string;
-  newsletterHint: string;
-  rights: string;
-  privacyPolicy: string;
-  termsOfService: string;
-  socialTwitter: string;
-  socialLinkedIn: string;
-  socialInstagram: string;
 }) {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
-  const rightsText = rights.replace("{year}", String(currentYear));
+  const locale = pathname?.split("/")[1] || "en";
 
   return (
-    <footer className="relative bg-[#0a0f29] pt-24 pb-12 overflow-hidden font-['Montserrat',sans-serif]">
-      {/* 1. تأثير الشبكة المنظورية في الخلفية (Perspective Grid) */}
-      <div 
-        className="absolute bottom-0 left-0 w-full h-[300px] opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(#43becc 1px, transparent 1px), linear-gradient(90deg, #43becc 1px, transparent 1px)`,
-          backgroundSize: '40px 40px',
-          transform: 'perspective(500px) rotateX(45deg)',
-          maskImage: 'linear-gradient(to top, black, transparent)'
-        }}
-      />
-
-      {/* 2. توهج نيون خلفي */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[1px] bg-gradient-to-r from-transparent via-[#43becc]/50 to-transparent" />
-
+    <footer className="relative bg-[#0a0f29] text-white pt-16 pb-6 font-['Montserrat',sans-serif] overflow-hidden border-t border-white/5">
+      
+      {/* --- Background Aesthetics --- */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#43becc]/5 blur-[120px] rounded-full pointer-events-none" />
+      
       <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-20">
-          
-          {/* القسم الأول: البراند والوصف */}
-          <div className="md:col-span-5 space-y-8">
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              whileInView={{ opacity: 1 }}
-              className="flex items-center gap-3"
-            >
-              <div className="w-10 h-10 bg-[#43becc] rounded-xl flex items-center justify-center shadow-[0_0_20px_#43becc]">
-                 <span className="text-black font-black text-xl">R</span>
+        
+        {/* 1. TOP BAR: Branding & Refined CTA */}
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12">
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#43becc] to-[#bcd647] rounded-lg flex items-center justify-center shadow-lg shadow-[#43becc]/20">
+                <span className="text-[#0a0f29] font-black text-xl">D</span>
               </div>
-              <h2 className="text-white text-3xl font-black tracking-tighter">RAPTORS <span className="text-[#43becc]">ME</span></h2>
-            </motion.div>
-            
-            <p
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-zinc-400 text-lg leading-relaxed max-w-md"
-            >
-              {description}
-            </p>
+              <h2 className="text-3xl font-black tracking-tighter italic uppercase text-white">DYNATECH</h2>
+            </div>
+            <p className="text-zinc-500 text-xs font-bold uppercase tracking-[0.5em] pl-1">Architecture of Industry</p>
+          </div>
 
-            <div className="flex gap-4">
-              {[socialTwitter, socialLinkedIn, socialInstagram].map((social) => (
-                <motion.a
-                  key={social}
-                  href="#"
-                  whileHover={{ y: -5, color: '#43becc' }}
-                  className="text-white/40 text-sm font-bold uppercase tracking-widest transition-colors"
-                >
-                  {social}
-                </motion.a>
-              ))}
+          <motion.a 
+            href={`/${locale}/contact`}
+            whileHover="hover"
+            className="relative group flex items-center gap-6 border border-white/10 pl-8 pr-2 py-2 rounded-full overflow-hidden transition-all duration-500"
+          >
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] group-hover:text-[#0a0f29] relative z-10 transition-colors duration-500">
+              Start a Project
+            </span>
+            <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center group-hover:bg-[#0a0f29] relative z-10 transition-all duration-500">
+              <ArrowUpRight className="w-4 h-4 text-[#43becc]" />
+            </div>
+            <motion.div 
+              variants={{ hover: { x: 0 } }}
+              initial={{ x: "-101%" }}
+              transition={{ duration: 0.4, ease: "circOut" }}
+              className="absolute inset-0 bg-[#43becc]"
+            />
+          </motion.a>
+        </div>
+
+
+        {/* 3. MAIN CONTENT GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-8">
+          
+          {/* Column A: 3 Locations */}
+          <div className="lg:col-span-5 space-y-6">
+            <h4 className="text-[#bcd647] text-[10px] font-black uppercase tracking-[0.4em]">Presence</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <span className="text-[10px] text-white font-bold uppercase tracking-widest block">CFC Main Office</span>
+                <p className="text-zinc-500 text-xs leading-relaxed">Business Park, Building A3, New Cairo, Egypt.</p>
+              </div>
+              <div className="space-y-2">
+                <span className="text-[10px] text-white font-bold uppercase tracking-widest block">Automotive Hub</span>
+                <p className="text-zinc-500 text-xs leading-relaxed">Industrial Zone, 6th of October City, Giza.</p>
+              </div>
+              <div className="space-y-2">
+                <span className="text-[10px] text-white font-bold uppercase tracking-widest block">Showroom</span>
+                <p className="text-zinc-500 text-xs leading-relaxed">1st Settlement, Northern Investors, Cairo.</p>
+              </div>
             </div>
           </div>
 
-          {/* القسم الثاني: روابط سريعة */}
-          <div className="md:col-span-3">
-            <h4
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-white font-black uppercase text-xs tracking-[0.3em] mb-10 border-l-2 border-[#bcd647] pl-4"
-            >
-              {navigationTitle}
-            </h4>
-            <ul className="space-y-4">
-              {[
-                { id: "expertise", label: navExpertise },
-                { id: "visuals", label: navVisuals },
-                { id: "stats", label: navStats },
-                { id: "announcements", label: navAnnouncements },
-              ].map((item) => (
-                <li key={item.id}>
-                  <motion.a 
-                    href={`#${item.id}`}
-                    whileHover={{ x: 10 }}
-                    className="text-zinc-500 hover:text-white transition-colors flex items-center gap-2 group"
-                  >
-                    <span className="w-0 h-[1px] bg-[#43becc] group-hover:w-4 transition-all" />
-                    <span dir="auto" style={{ unicodeBidi: "plaintext" }}>{item.label}</span>
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
+          {/* Column B: News & Events Teaser */}
+          <div className="lg:col-span-4 space-y-6">
+            <h4 className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">Latest News</h4>
+            <div className="group cursor-pointer">
+              <span className="text-[10px] text-[#43becc] font-bold">APR 2026</span>
+              <p className="text-sm font-bold mt-2 group-hover:text-[#43becc] transition-colors uppercase italic text-white">New AI-Integrated Assembly Line in October Hub.</p>
+              <div className="h-[1px] w-0 group-hover:w-full bg-[#43becc] mt-4 transition-all duration-500" />
+            </div>
+            <div className="group cursor-pointer">
+              <span className="text-[10px] text-[#43becc] font-bold">MAR 2026</span>
+              <p className="text-sm font-bold mt-2 group-hover:text-[#43becc] transition-colors uppercase italic text-white">Partnership with KUKA Robotics for MENA expansion.</p>
+            </div>
           </div>
 
-          {/* القسم الثالث: الاشتراك (Newsletter) */}
-          <div className="md:col-span-4">
-            <h4
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-white font-black uppercase text-xs tracking-[0.3em] mb-10 border-l-2 border-[#43becc] pl-4"
-            >
-              {newsletterTitle}
-            </h4>
-            <div className="relative group">
-              <input 
-                type="email" 
-                placeholder={newsletterPlaceholder}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 text-white outline-none focus:border-[#43becc] transition-all"
-              />
-              <button className="absolute right-2 top-2 bottom-2 bg-[#43becc] text-black font-bold px-6 rounded-xl hover:bg-[#bcd647] transition-colors">
-                {newsletterJoin}
-              </button>
+          {/* Column C: Navigation & Connect */}
+          <div className="lg:col-span-3 space-y-6">
+            <div>
+              <h4 className="text-[#bcd647] text-[10px] font-black uppercase tracking-[0.4em] mb-3">Quick Links</h4>
+              <div className="space-y-2">
+                <a href={`/${locale}/accelerators`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Our Partners</a>
+                <a href={`/${locale}/updates`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Tech Updates</a>
+                <a href={`/${locale}/knowledge`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Blog</a>
+                <a href={`/${locale}/contact`} className="block text-xs font-bold uppercase tracking-wider text-[#43becc] hover:text-white hover:translate-x-1 transition-all">Contact Us</a>
+              </div>
             </div>
-            <p
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="mt-4 text-zinc-600 text-[10px] uppercase tracking-widest"
-            >
-              {newsletterHint}
-            </p>
+            <div className="pt-4 border-t border-white/5">
+              <h4 className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em] mb-3">Connect</h4>
+              <a href="tel:+20223456789" className="block text-lg font-bold mb-2 tracking-tighter hover:text-[#43becc] transition-colors text-white">+20 2 2345 6789</a>
+              <a href="mailto:info@dynatech.com" className="text-xs text-zinc-500 hover:text-white transition-colors">info@dynatech-eg.com</a>
+            </div>
+            <div className="flex flex-wrap gap-2">
+               {['LinkedIn', 'Instagram', 'Twitter'].map(s => (
+                 <a key={s} href="#" className="text-[9px] font-black uppercase tracking-widest px-3 py-2 border border-white/5 rounded-lg hover:border-[#43becc] hover:text-[#43becc] transition-all text-zinc-500">{s}</a>
+               ))}
+            </div>
           </div>
         </div>
 
-        {/* الجزء السفلي: الحقوق */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p
-            dir="auto"
-            style={{ unicodeBidi: "plaintext" }}
-            className="text-zinc-600 text-xs font-medium"
-          >
-            {rightsText}
-          </p>
-          <div className="flex items-center gap-8">
-            <a href="#" className="text-zinc-600 hover:text-white text-xs transition-colors" dir="auto" style={{ unicodeBidi: "plaintext" }}>
-              {privacyPolicy}
-            </a>
-            <a href="#" className="text-zinc-600 hover:text-white text-xs transition-colors" dir="auto" style={{ unicodeBidi: "plaintext" }}>
-              {termsOfService}
-            </a>
+        {/* 4. PARTNERS STRIP (Minimal & Chic) */}
+        <div className="py-6 border-t border-white/5 flex flex-wrap justify-between items-center gap-6 opacity-20 grayscale transition-all duration-700 hover:opacity-100 hover:grayscale-0">
+          {['SIEMENS', 'ABB', 'SCHNEIDER', 'KUKA', 'FANUC'].map(p => (
+            <span key={p} className="text-lg font-black italic tracking-tighter text-white">{p}</span>
+          ))}
+        </div>
+
+        {/* 5. BOTTOM BAR */}
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-zinc-700 text-[9px] font-bold uppercase tracking-[0.5em]">
+            &copy; {currentYear} DYNATECH CORP — ALL RIGHTS RESERVED
+          </div>
+          <div className="flex items-center gap-4 text-zinc-500">
+            <Activity className="w-3 h-3 text-[#bcd647]" />
+            <span className="text-[9px] font-black uppercase tracking-widest">System Status: Operational</span>
           </div>
         </div>
       </div>
 
-      {/* لمسة فنية: "النبض" الضوئي في الزاوية */}
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#bcd647]/5 blur-[100px] rounded-full pointer-events-none" />
+      {/* Ghost Background Text */}
+      <div className="absolute -bottom-10 left-0 opacity-[0.015] pointer-events-none select-none">
+        <h2 className="text-[16vw] font-black uppercase italic leading-none text-white">DYNATECH</h2>
+      </div>
     </footer>
   );
 }

@@ -17,8 +17,8 @@ export default function OrbitMailLayer({ progress }: Props) {
           <Mail size={20} />
         </div>
         <div>
-          <p className="text-[#43becc] font-mono text-[9px] uppercase tracking-widest">{"// DATA_PACKET"}</p>
-          <h3 className="text-2xl font-black italic">ops@raptors.me</h3>
+          <p className="text-[#43becc] font-mono text-[9px] uppercase tracking-widest">{"// COMM_LINK"}</p>
+          <h3 className="text-2xl font-black italic">info@dynatech-eg.net</h3>
         </div>
       </div>
     </Layer>

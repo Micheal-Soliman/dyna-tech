@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -37,12 +36,11 @@ export function Header() {
       },
       navItems: [
         { href: `/${locale}`, label: _isAr ? "الرئيسية" : "Home" },
-        { href: `/${locale}/about`, label: _isAr ? "من نحن" : "About" },
-        { href: `/${locale}/services`, label: _isAr ? "الخدمات" : "Services" },
-        { href: `/${locale}/accelerators`, label: _isAr ? "المسرّعات" : "Accelerators" },
-        { href: `/${locale}/case-study`, label: _isAr ? "قصص النجاح" : "Cases" },
-        { href: `/${locale}/knowledge`, label: _isAr ? "المعرفة" : "Knowledge" },
-        { href: `/${locale}/career`, label: _isAr ? "وظائف" : "Careers" },
+        { href: `/${locale}/about`, label: _isAr ? "من نحن" : "About Us" },
+        { href: `/${locale}/services`, label: _isAr ? "نطاق العمل" : "Business Scope" },
+        { href: `/${locale}/case-study`, label: _isAr ? "المشاريع" : "Projects" },
+        { href: `/${locale}/media`, label: _isAr ? "الإعلام" : "Events & Media" },
+        { href: `/${locale}/career`, label: _isAr ? "الوظائف" : "Careers" },
       ]
     };
   }, [pathname]);
@@ -67,14 +65,9 @@ export function Header() {
           
           {/* LOGO */}
           <Link href={`/${currentLocale}`} className="relative group shrink-0">
-            <Image
-              src="/Raptors_Logo_Color.png"
-              alt="Raptors Logo"
-              width={120}
-              height={50}
-              className="object-contain w-32 h-10 md:h-14"
-              priority
-            />
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-white group-hover:text-[#43becc] transition-colors duration-300">
+              DYNA<span className="text-[#43becc]">TECH</span>
+            </span>
           </Link>
 
           {/* DESKTOP NAV */}

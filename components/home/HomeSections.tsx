@@ -3,20 +3,41 @@ import { AnnouncementsSection } from "@/components/home/AnnouncementsSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { HeroSection } from "@/components/home/HeroSection";
 import { LogosLoop } from "@/components/home/LogosLoop";
+import { SectorsGrid } from "@/components/home/SectorsGrid";
 import { StatsSection } from "@/components/home/StatsSection";
 import VisualsSection from "@/components/home/VisualsSection";
 
+type Partner = {
+  name: string;
+  oneLiner: string;
+  logoUrl?: string;
+};
+
 type HomeSectionsProps = {
+  locale: string;
+  isAr: boolean;
   slogan: string;
   subheading: string;
-  requestDemoLabel: string;
-  requestDemoHref: string;
+  primaryCtaLabel: string;
+  primaryCtaHref: string;
+  secondaryCtaLabel: string;
+  secondaryCtaHref: string;
   heroBrandLeft: string;
   heroBrandRight: string;
   heroFollowLine1: string;
   heroFollowLine2: string;
-  logosTitle: string;
-  logos: string[];
+  heroPrimaryCtaLabel: string;
+  heroSecondaryCtaLabel: string;
+  heroCeoQuote: string;
+  heroCeoName: string;
+  heroCeoTitle: string;
+  heroCeoCtaLabel: string;
+  heroCeoSectionLabel: string;
+  heroCeoSubtitle: string;
+  partnersTitle: string;
+  partners: Partner[];
+  partnersCtaLabel?: string;
+  partnersCtaHref?: string;
   about: {
     backdropText: string;
     imageAlt: string;
@@ -38,17 +59,9 @@ type HomeSectionsProps = {
   statsTitle: string;
   statsKicker: string;
   stats: StatItem[];
-  visualsTitle: string;
-  visualsSubtitle: string;
-  visualsCard1Title: string;
-  visualsCard1Text: string;
-  visualsCard2Title: string;
-  visualsCard2Text: string;
-  visualsVideoTitle: string;
   visualsCarouselBadge: string;
   visualsCarouselTitlePrefix: string;
   visualsCarouselTitleHighlight: string;
-  visualsCarouselSlides: string[];
   announcementsTitle: string;
   announcementsKicker: string;
   announcementsBlurb: string;
@@ -58,30 +71,49 @@ type HomeSectionsProps = {
 };
 
 export function HomeSections(props: HomeSectionsProps) {
+  const { locale, isAr } = props;
+
   return (
     <>
       <HeroSection
+        locale={locale}
+        isAr={isAr}
         slogan={props.slogan}
         subheading={props.subheading}
-        requestDemoLabel={props.requestDemoLabel}
-        requestDemoHref={props.requestDemoHref}
+        primaryCtaLabel={props.heroPrimaryCtaLabel}
+        primaryCtaHref={props.primaryCtaHref}
+        secondaryCtaLabel={props.heroSecondaryCtaLabel}
+        secondaryCtaHref={props.secondaryCtaHref}
         brandLeft={props.heroBrandLeft}
         brandRight={props.heroBrandRight}
-        followLine1={props.heroFollowLine1}
-        followLine2={props.heroFollowLine2}
+        ceoQuote={props.heroCeoQuote}
+        ceoName={props.heroCeoName}
+        ceoTitle={props.heroCeoTitle}
+        ceoCtaLabel={props.heroCeoCtaLabel}
+        ceoSectionLabel={props.heroCeoSectionLabel}
+        ceoSubtitle={props.heroCeoSubtitle}
       />
 
-      <LogosLoop title={props.logosTitle} logos={props.logos} />
+      <LogosLoop
+        title={props.partnersTitle}
+        partners={props.partners}
+        ctaLabel={props.partnersCtaLabel}
+        ctaHref={props.partnersCtaHref}
+        isAr={isAr}
+      />
 
-      <AboutSection copy={props.about} />
+      <AboutSection copy={props.about} isAr={isAr} locale={locale} />
 
-      <StatsSection title={props.statsTitle} kicker={props.statsKicker} stats={props.stats} />
+      <SectorsGrid isAr={isAr} locale={locale} />
+
+      <StatsSection title={props.statsTitle} kicker={props.statsKicker} stats={props.stats} isAr={isAr} />
 
       <VisualsSection
         badge={props.visualsCarouselBadge}
         titlePrefix={props.visualsCarouselTitlePrefix}
         titleHighlight={props.visualsCarouselTitleHighlight}
-        slideTitles={props.visualsCarouselSlides}
+        slideTitles={[]}
+        isAr={isAr}
       />
 
       <AnnouncementsSection
@@ -91,6 +123,7 @@ export function HomeSections(props: HomeSectionsProps) {
         readMoreLabel={props.announcementsReadMoreLabel}
         readMoreArrow={props.announcementsReadMoreArrow}
         items={props.announcements}
+        isAr={isAr}
       />
 
     </>

@@ -13,13 +13,32 @@ import type { MouseEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-// الداتا الخاصة بالصور - تقدر تغير الروابط دي لصور من مشروعك
-const IMAGES = [
-  { url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800" },
-  { url: "https://images.unsplash.com/photo-1633167606207-d840b5070fc2?w=800" },
-  { url: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800" },
-  { url: "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?w=800" },
-  { url: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800" },
+// بيانات المشاريع والمرافق الخاصة بـ DYNATECH
+const PROJECTS = [
+  {
+    url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
+    title: "Automotive Hub",
+    status: "Operational",
+    details: "6,000 sqm • 40+ Work Bays",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop",
+    title: "E-Mobility RFP",
+    status: "Open for RFP",
+    details: "Electric Bus Assembly Line",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    title: "Lightweight Materials",
+    status: "In Development",
+    details: "Carbon Fiber Parts Plant",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=2070&auto=format&fit=crop",
+    title: "Energy Storage",
+    status: "Strategic RFP",
+    details: "Battery Management Systems",
+  },
 ];
 
 export default function VisualsSection({
@@ -27,11 +46,13 @@ export default function VisualsSection({
   titlePrefix,
   titleHighlight,
   slideTitles,
+  isAr = false,
 }: {
   badge: string;
   titlePrefix: string;
   titleHighlight: string;
   slideTitles: string[];
+  isAr?: boolean;
 }) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const inView = useInView(sectionRef, { margin: "-20% 0px -20% 0px" });
@@ -56,11 +77,13 @@ export default function VisualsSection({
 
   const slides = useMemo(
     () =>
-      IMAGES.map((img, i) => ({
-        url: img.url,
-        title: slideTitles[i] ?? "",
+      PROJECTS.map((project) => ({
+        url: project.url,
+        title: project.title,
+        status: project.status,
+        details: project.details,
       })),
-    [slideTitles]
+    []
   );
 
   const particles = useMemo(() => {
@@ -245,20 +268,48 @@ export default function VisualsSection({
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-transparent p-12 flex flex-col justify-end items-start"
+                      className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-[#0a0f29]/20 to-transparent p-12 flex flex-col justify-end items-start"
                     >
+                      {/* Status Badge داخل الكارت */}
+                      <motion.span
+                        initial={{ x: -20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="bg-[#bcd647] text-[#0a0f29] text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4"
+                      >
+                        {img.status}
+                      </motion.span>
+
                       <motion.h4
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        className="text-white text-5xl font-black uppercase tracking-tighter leading-none"
+                        className="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2"
                       >
                         {img.title}
                       </motion.h4>
+
+                      <motion.p
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-[#43becc] text-sm md:text-lg font-bold uppercase tracking-widest opacity-80"
+                      >
+                        {img.details}
+                      </motion.p>
+
                       <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: 64 }}
-                        className="h-1.5 bg-[#43becc] mt-6 rounded-full"
-                      />
+                        animate={{ width: 96 }}
+                        transition={{ delay: 0.3, duration: 0.8 }}
+                        className="h-1 w-24 bg-white/20 mt-8 rounded-full overflow-hidden"
+                      >
+                        <motion.div
+                          initial={{ x: "-100%" }}
+                          animate={{ x: 0 }}
+                          transition={{ delay: 0.5, duration: 0.8 }}
+                          className="h-full bg-[#43becc]"
+                        />
+                      </motion.div>
                     </motion.div>
                   )}
                 </motion.div>
@@ -279,15 +330,35 @@ export default function VisualsSection({
       </div>
 
       {/* --- النقاط (Pagination Dots) --- */}
-      <div className="flex gap-4 mt-24 relative z-10">
+      <div className="flex gap-4 mt-16 relative z-10">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setIndex(i)}
             className={`h-2 rounded-full transition-all duration-700 ${i === index ? 'w-20 bg-[#43becc]' : 'w-4 bg-white/10 hover:bg-white/30'}`}
+            aria-label={`Go to slide ${i + 1}`}
           />
         ))}
       </div>
+
+      {/* --- زر الـ CTA النهائي --- */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-20 z-10"
+      >
+        <a href="/projects" className="group relative inline-block px-10 py-5 bg-transparent overflow-hidden border border-white/10 rounded-xl transition-all cursor-pointer">
+          <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#0a0f29] transition-colors duration-500">
+            View All Projects & Investment Opportunities
+          </span>
+          <div className="absolute inset-0 bg-[#43becc] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+          {/* أيقونة السهم */}
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all group-hover:right-6">
+            <ChevronRight className="text-[#0a0f29] w-5 h-5" />
+          </span>
+        </a>
+      </motion.div>
     </section>
   );
 }

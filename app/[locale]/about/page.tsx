@@ -1,12 +1,12 @@
 import AboutStickyStory, {
-  type AboutStickyStoryContent,
-} from "@/components/about/AboutStickyStory";
+  type DynatechContent,
+} from "@/components/about/AboutStickyStoryInstitutional";
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 
 type AboutDictionary = {
   about: {
-    stickyStory: AboutStickyStoryContent;
+    institutional: DynatechContent;
   };
 };
 
@@ -18,5 +18,5 @@ export default async function Page({
   const { locale } = await Promise.resolve(params);
   const dict = (await getDictionary(locale)) as AboutDictionary;
 
-  return <AboutStickyStory content={dict.about.stickyStory} />;
+  return <AboutStickyStory content={dict.about.institutional} locale={locale} />;
 }

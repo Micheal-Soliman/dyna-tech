@@ -2,7 +2,7 @@
   "common": {
     "requestDemo": "اطلب عرضًا",
     "footer": {
-      "description": "نُمكّن مستقبل الديناميكيات الرقمية عبر تجارب ثلاثية الأبعاد مبتكرة وحلول تقنية استراتيجية.",
+      "description": "نُمكّن مستقبل التكنولوجيا الصناعية من خلال حلول مبتكرة وشراكات استراتيجية.",
       "navigationTitle": "روابط",
       "navExpertise": "الخبرات",
       "navVisuals": "المرئيات",
@@ -12,7 +12,7 @@
       "newsletterPlaceholder": "أدخل بريدك الإلكتروني",
       "newsletterJoin": "انضم",
       "newsletterHint": "كن أول من يرى تطورنا القادم.",
-      "rights": "© {year} RAPTORS ME. جميع الحقوق محفوظة.",
+      "rights": "© {year} DYNATECH CORP. جميع الحقوق محفوظة.",
       "privacyPolicy": "سياسة الخصوصية",
       "termsOfService": "شروط الخدمة",
       "socialTwitter": "تويتر",
@@ -21,224 +21,159 @@
     }
   },
   "home": {
-    "slogan": "تحرّك أسرع بعمليات مدعومة بالذكاء الاصطناعي.",
-    "subheading": "منصة واحدة لأتمتة سير العمل، وإظهار رؤى لحظية، وتحقيق نتائج قابلة للقياس لفريقك.",
+    "slogan": "قوة دافعة جديدة — حيث يلتقي الابتكار بالاستثمار",
+    "subheading": "بوابة مصر للتنقل الكهربائي وتخزين الطاقة وتقنيات المواد الخفيفة",
     "hero": {
-      "brandLeft": "المرونة",
-      "brandRight": "السرعة",
-      "followLine1": "التحوّل ليس هدفًا.",
-      "followLine2": "إنه حركة مستمرة."
+      "brandLeft": "داينا",
+      "brandRight": "تك",
+      "followLine1": "نربط الابتكار",
+      "followLine2": "بالاستثمار",
+      "primaryCtaLabel": "استكشف عملنا",
+      "secondaryCtaLabel": "تواصل معنا",
+      "ceoQuote": "مهمتنا هي خلق نظام صناعي مستدام في مصر من خلال دمج التكنولوجيا العالمية مع الخبرة المحلية.",
+      "ceoName": "م. أحمد سرور",
+      "ceoTitle": "الرئيس التنفيذي",
+      "ceoCtaLabel": "اقرأ رسالة الرئيس التنفيذي",
+      "ceoSectionLabel": "رسالة من القيادة",
+      "ceoSubtitle": "النمو الاستراتيجي والتميز الهندسي"
     },
-    "logosTitle": "موثوق لدى روّاد الصناعة",
-    "logos": ["Northwind", "Contoso", "Fabrikam", "Globex", "Initech", "Umbrella"],
-    "about": {
-      "backdropText": "رابتورز",
-      "imageAlt": "مؤسسة رشيقة",
-      "cardPlumTitle": "DNA الرشاقة",
-      "cardPlumText": "نحوّل الهياكل الأساسية إلى محرّكات عالية السرعة.",
-      "cardCyanTitle": "10X SPEED",
-      "cardCyanText": "تنفيذ. دقة. نمو.",
-      "centerHeadingLine1": "السرعة هي",
-      "centerHeadingLine2": "اليقين.",
-      "edgeVision": "الرؤية",
-      "edgeStrategy": "الاستراتيجية",
-      "revealPrefix": "في",
-      "brandName": "Raptors ME",
-      "revealMiddle": "نُفكّك تعقيد الأنظمة القديمة ونستبدله بـ",
-      "revealHighlight": "قوة الرشاقة السلسة",
-      "revealSuffix": "بدون احتكاك. فقط زخم.",
-      "cta": "استكشف محرّك الرشاقة"
-    },
-    "statsTitle": "الأثر بالأرقام",
-    "statsKicker": "تميّز تقني عالمي",
-    "stats": [
-      { "value": "99.9%", "label": "توفر الخدمة" },
-      { "value": "24/7", "label": "مراقبة مستمرة" },
-      { "value": "60%", "label": "عمل يدوي أقل" },
-      { "value": "2x", "label": "قرارات أسرع" }
+    "partnersTitle": "تحالفنا الاستراتيجي",
+    "partners": [
+      {
+        "name": "FFT",
+        "oneLiner": "شريك تكنولوجي حصري — أكثر من 50 عامًا عالميًا"
+      },
+      {
+        "name": "Composites United",
+        "oneLiner": "الممثل الحصري في مصر"
+      }
     ],
-    "visualsTitle": "شاهدها على أرض الواقع",
-    "visualsSubtitle": "جولات قصيرة، عروض توضيحية، وسير عمل حقيقي للعملاء.",
-    "visualsCard1Title": "عرض سير العمل",
-    "visualsCard1Text": "لقطات من الواجهة تُعرّف رحلتك الرشيقة.",
-    "visualsCard2Title": "تقارير متقدمة",
-    "visualsCard2Text": "رؤى جاهزة لأصحاب المصلحة بنقرة واحدة.",
-    "visualsVideoTitle": "عرض توضيحي للمنتج",
-    "visualsCarousel": {
-      "badge": "تجربة رابتورز",
-      "titlePrefix": "أرشيف",
-      "titleHighlight": "المشاريع",
-      "slideTitles": [
-        "العُقدة الرقمية",
-        "استراتيجية القلب",
-        "نبض سيبراني",
-        "تدفق إبداعي",
-        "رؤية المستقبل"
-      ]
+    "partnersCtaLabel": "تعرّف على شركائنا",
+    "about": {
+      "backdropText": "دايناتك",
+      "imageAlt": "تقنية صناعية متقدمة",
+      "cardPlumTitle": "تأسست 2017",
+      "cardPlumText": "مقرها مصر، تُسد الفجوة بين الابتكار الأوروبي والاحتياجات الصناعية الإقليمية.",
+      "cardCyanTitle": "القطاعات",
+      "cardCyanText": "الفضاء • السيارات • الطاقة المتجددة • الدفاع",
+      "centerHeadingLine1": "هندسة",
+      "centerHeadingLine2": "التميز",
+      "edgeVision": "رؤية 2030",
+      "edgeStrategy": "تقنية أوروبية",
+      "revealPrefix": "تأسست بمهمة لإحداث ثورة في التصنيع الصناعي،",
+      "brandName": "دايناتك",
+      "revealMiddle": "تعمل كـ",
+      "revealHighlight": "البوابة الحصرية لقادة التكنولوجيا الأوروبيين",
+      "revealSuffix": "تقدم حلولاً متكاملة عبر القطاعات التقنية المتقدمة عالمياً.",
+      "cta": "اكتشف استراتيجيتنا"
     },
-    "announcementsTitle": "آخر الإعلانات",
-    "announcementsKicker": "تحديثات وأخبار",
-    "announcementsBlurb": "تابع آخر إنجازاتنا ومحطاتنا المؤسسية أولًا بأول.",
+    "statsTitle": "دايناتك في أرقام",
+    "statsKicker": "النمو والبنية التحتية",
+    "stats": [
+      { "value": "2017", "label": "الوجود في السوق" },
+      { "value": "15M EGP", "label": "رأس المال المدفوع" },
+      { "value": "≥6000sqm", "label": "مركز السيارات" },
+      { "value": "35+Years", "label": "خبرة القيادة" },
+      { "value": "40Cars", "label": "القدرة اليومية" }
+    ],
+    "visualsCarousel": {
+      "badge": "مشاريع دايناتك",
+      "titlePrefix": "التميز",
+      "titleHighlight": "الصناعي"
+    },
+    "announcementsTitle": "الفعاليات والإعلام",
+    "announcementsKicker": "آخر التحديثات",
+    "announcementsBlurb": "استكشف أحدث شراكاتنا وتوسعات المرافق ومحطاتنا الصناعية.",
     "announcementsReadMoreLabel": "اقرأ المزيد",
     "announcementsReadMoreArrow": "←",
     "announcements": [
       {
-        "title": "لوحة تحليلات جديدة",
-        "date": "يناير 2026",
-        "description": "تابع المؤشرات والأداء ونقاط الاختناق في مكان واحد."
+        "title": "شراكة استراتيجية مع مجموعة FFT",
+        "date": "نوفمبر 2023",
+        "description": "تصبح دايناتك رسميًا الشريك التكنولوجي الحصري لـ FFT في مصر، جسرًا لأكثر من 50 عامًا من الخبرة الألمانية في الأتمتة للسوق المحلي."
       },
       {
-        "title": "ضوابط جاهزة لـ SOC2",
-        "date": "ديسمبر 2025",
-        "description": "سجلات تدقيق أفضل، سياسات، وضوابط وصول."
+        "title": "توسع Composites United",
+        "date": "أكتوبر 2023",
+        "description": "تمثيل الشبكة العالمية الرائدة في تصميم المواد الخفيفة متعددة المواد القائمة على الألياف كممثل حصري في مصر."
       },
       {
-        "title": "مكتبة قوالب سير العمل",
-        "date": "نوفمبر 2025",
-        "description": "ابدأ بسرعة بأتمتة مبنية على أفضل الممارسات."
+        "title": "إنجاز بنية مركز السيارات التحتية",
+        "date": "سبتمبر 2023",
+        "description": "منشأتنا المتطورة بمساحة 6000 متر مربع جاهزة الآن بالكامل، لدعم تجميع وصيانة السيارات بقدرة عالية."
       }
     ]
   },
   "about": {
-    "stickyStory": {
+    "institutional": {
       "hero": {
-        "titleLeft": "RAPTORS",
-        "titleRight": "ME",
-        "tagline": "كشف البنية"
+        "titleLeft": "داينا",
+        "titleRight": "تك",
+        "tagline": "التطوير الصناعي ونقل التكنولوجيا"
       },
-      "mission": {
-        "kicker": "// مهمتنا",
-        "textPrefix": "نسدّ الفجوة بين",
-        "highlight": "الكود الخام",
-        "textMiddle": "و",
-        "italic": "التجربة الإنسانية."
+      "missionVision": {
+        "kicker": "// المؤسسة",
+        "visionTitle": "الرؤية",
+        "visionText": "أن نصبح قوة دافعة جديدة في مجال التنقل الكهربائي وأنظمة تخزين الطاقة والمواد الخفيفة في مصر ومنطقة الشرق الأوسط وشمال أفريقيا.",
+        "missionTitle": "المهمة",
+        "missionText": "اقتناص الفرص ذات الإمكانات العالية في مجال السيارات وتحويلها إلى مشاريع صناعية ناجحة مع شركاء تكنولوجيا عالميين.",
+        "established": "تأسست 2017",
+        "capital": "15,000,000 جنيه مصري"
       },
-      "vision": {
-        "kicker": "// الرؤية",
-        "textPrefix": "نُهندس",
-        "highlight": "أول هيكل رقمي",
-        "textSuffix": "فوق-بنيوي."
-      },
-      "stats": {
-        "items": [
-          { "label": "عُقد نشطة", "value": "150+", "color": "#43becc" },
-          { "label": "تدفّقات بيانات", "value": "40+", "color": "#bcd647" },
-          { "label": "نسبة النجاح", "value": "99%", "color": "#ffffff" },
-          { "label": "سنوات النواة", "value": "10+", "color": "#43becc" }
-        ]
-      },
+      "stats": [
+        { "label": "رأس المال", "value": "15 مليون", "color": "#bcd647" },
+        { "label": "التأسيس", "value": "2017", "color": "#43becc" },
+        { "label": "المساحة", "value": "6000 م²", "color": "#ffffff" },
+        { "label": "المواقع", "value": "3 مواقع", "color": "#43becc" }
+      ],
       "founder": {
-        "badge": "Architect_Identity",
-        "nameLine1": "JOHNATHAN",
-        "nameHighlight": "RAPTOR",
-        "quote": "\"نحن لا نبني مواقع. نحن نبني الواجهات التي يتفاعل عبرها الإنسان مع المستقبل.\"",
-        "buttonLabel": "بدء البروتوكول",
-        "imageSrc": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974",
-        "imageAlt": "المؤسس"
+        "name": "م. أحمد سرور",
+        "title": "المؤسس والرئيس التنفيذي",
+        "highlights": ["قيادي منطقة الشرق الأوسط", "جائزة تويوتا", "خبرة 35+ عاماً"],
+        "experience": [
+          { "period": "1990–1995", "company": "ALJ / السعودية", "achievement": "حاصل على جائزة تويوتا الأفضل من الأفضل" },
+          { "period": "1996–2007", "company": "الفردان قطر", "achievement": "نائب أول للرئيس — #1 السيارات الفاخرة" },
+          { "period": "2007–2015", "company": "قطر أوتو زد", "achievement": "شريك مؤسس — منشأة 35,000 م²" },
+          { "period": "2017–الآن", "company": "دايناتك", "achievement": "المؤسس والرئيس التنفيذي — بوابة التكنولوجيا" }
+        ],
+        "imageSrc": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974",
+        "imageAlt": "م. أحمد سرور — المؤسس والرئيس التنفيذي لدايناتك"
       },
-      "whyChoose": {
-        "kicker": "// لماذا رابتورز",
-        "titlePrefix": "لماذا",
-        "titleHighlight": "تختارنا",
-        "titleSuffix": "؟",
-        "items": [
-          {
-            "title": "استراتيجية قبل التنفيذ",
-            "description": "نربط المنتج والهوية والهندسة ضمن منظومة تنفيذ واحدة."
-          },
-          {
-            "title": "بناء عالي الأداء",
-            "description": "تجربة مستخدم سريعة، بنية نظيفة، ونتائج قابلة للقياس."
-          },
-          {
-            "title": "جاهزية توسّع للمنطقة",
-            "description": "توطين ذكي مع معايير تسليم عالمية."
-          }
-        ]
-      },
-      "leadership": {
-        "kicker": "// القيادة",
-        "titlePrefix": "الفريق",
-        "titleHighlight": "القيادي",
-        "titleSuffix": "وراء التنفيذ",
-        "members": [
-          {
-            "name": "John Doe",
-            "title": "الرئيس التنفيذي",
-            "bio": "خبرة في بناء الأنظمة والمنتجات بعقلية هندسية."
-          },
-          {
-            "name": "Jane Smith",
-            "title": "المدير التقني",
-            "bio": "قيادة تقنية تركّز على المنصات القابلة للتوسع وتجربة المطوّر."
-          },
-          {
-            "name": "Ahmed Ali",
-            "title": "مدير العمليات",
-            "bio": "يدير الاتساق والجودة عبر عمليات التسليم والتنفيذ."
-          }
-        ]
-      },
-      "partners": {
-        "titlePrefix": "تحالفنا",
-        "titleHighlight": "الموثوق",
-        "titleSuffix": ".",
-        "subtitle": "شراكات + اعتمادات",
-        "badges": [{ "label": "SAP_GOLD" }, { "label": "ISO_27001" }, { "label": "AWS_PARTNER" }],
-        "ctaLabel": "اطلب عرضًا"
-      }
-    },
-    "heroKicker": "ما وراء الديناميكيات",
-    "heroTitlePrefix": "نحن",
-    "heroTitleHighlight": "رابتورز",
-    "heroDescription": "نرتقي فوق المألوف عبر إتقان رقمي وابتكار استراتيجي. نحن لا نبني حلولًا فقط؛ بل نصنع إرثًا.",
-    "heroScrollHint": "مرّر للأسفل لفك الشفرة",
-    "stickyMissionTitle": "المهمة",
-    "stickyMissionDescription": "نُهندس منتجات رقمية تربط بين الواقع والبُعد القادم.",
-    "contentKicker": "سِجلّنا",
-    "visionTitle": "رؤيتنا",
-    "visionDescription": "أن نكون المركز العالمي للتحول الرقمي، حيث تلتقي التكنولوجيا بحدس الإنسان لصناعة مستقبل سلس.",
-    "missionTitle": "رسالتنا",
-    "missionDescription": "تمكين الشركات عبر ديناميكيات ثلاثية الأبعاد متقدمة واستراتيجيات مدعومة بالبيانات للهيمنة على أسواقها.",
-    "statsTitle": "مقاييس التميّز",
-    "stats": [
-      { "label": "مشاريع مكتملة", "value": "150+" },
-      { "label": "عملاء حول العالم", "value": "40+" },
-      { "label": "خبراء الفريق", "value": "25+" },
-      { "label": "سنوات خبرة", "value": "10+" }
-    ],
-    "founderKicker": "البداية",
-    "founderTitle": "من شرارة إلى",
-    "founderTitleHighlight": "ثورة.",
-    "founderQuote1": "\"لم تبدأ Raptors ME في قاعة اجتماعات. بل بدأت في مرآب صغير مع رؤية واحدة: ردم الفجوة بين الخيال والواقع الرقمي. رأيت عالمًا تُقيّده التكنولوجيا، فقررت بناء الأدوات التي ستطلقه.\"",
-    "founderQuote2": "اليوم نقف كدليل على ما يحدث عندما تدمج الإصرار الحقيقي مع الابتكار المتقدم. رحلتنا بدأت للتو.",
-    "founderButton": "اقرأ القصة كاملة",
-    "founderProfileLabel": "ملف المهندس",
-    "founderQuote": "\"العالم الرقمي لم يعد مجرد أداة؛ بل أصبح بيئة. نحن لا نتأقلم معه، نحن نبنيه.\"",
-    "founderButtonLabel": "ابدأ التواصل",
-    "ctaTitle": "انضم إلى التطور الرقمي",
-    "ctaDescription": "جاهز لتحويل رؤيتك إلى واقع؟ فريق خبرائنا بانتظارك.",
-    "ctaButtonLabel": "تواصل مع رابتورز",
-    "founderRole": "المؤسس والرئيس التنفيذي",
-    "founderName": "جوناثان رابتور",
-    "founderImageAlt": "المؤسس"
+      "timeline": [
+        { "year": "2017", "desc": "تأسيس DYNATECH Corp. + الانضمام لشبكة CFK Valley e.V. (ألمانيا)" },
+        { "year": "2018", "desc": "عضوية Composites United + توقيع خطاب نوايا (LOI)" },
+        { "year": "2020", "desc": "تأسيس DYNATECH للتطوير الصناعي (DID) + الحصول على أرض من هيئة المجتمعات العمرانية (NUCA) في القاهرة الجديدة" },
+        { "year": "2021", "desc": "تعيين DYNATECH كممثل حصري لـ CU في مصر" },
+        { "year": "2022", "desc": "إعلان الاتفاق الاستراتيجي — معرض هانوفر ميسه" },
+        { "year": "2023", "desc": "توقيع اتفاق الوكالة الحصرية — FFT Production Systems GmbH، فولدا" },
+        { "year": "2024", "desc": "الحصول على مساحة توسعة لمركز السيارات + أعمال تجهيز مقر CFC الرئيسي" },
+        { "year": "2025", "desc": "اكتمال تصميم مركز السيارات + تسليم مكتب CFC" },
+        { "year": "2026", "desc": "اكتمال إنشاء مركز السيارات + أعمال التجهيز" },
+        { "year": "2027", "desc": "الافتتاح التجريبي لمركز السيارات (SOP)" }
+      ],
+      "locations": [
+        { "name": "المقر الرئيسي", "detail": "CFC Business Park، القاهرة الجديدة" },
+        { "name": "مركز السيارات", "detail": "المنطقة الصناعية، القاهرة الجديدة" },
+        { "name": "صالة العرض", "detail": "الحي الأول، القاهرة الجديدة" }
+      ]
+    }
   },
   "contact": {
-    "kicker": "// INITIATE_COMMUNICATION",
-    "titlePrefix": "تواصل",
-    "titleHighlight": "معنا.",
+    "kicker": "// تواصل معنا",
+    "titlePrefix": "ابدأ",
+    "titleHighlight": "محادثة",
     "form": {
-      "operatorNameLabel": "Operator_Name",
-      "operatorNamePlaceholder": "اسمك",
-      "signalAddressLabel": "Signal_Address",
-      "signalAddressPlaceholder": "بريدك الإلكتروني",
-      "subjectProtocolLabel": "Subject_Protocol",
-      "subjectOptions": ["الهوية الرقمية", "هندسة الويب", "تجارب ثلاثية الأبعاد", "خدمات أخرى"],
-      "payloadLabel": "Transmission_Payload",
-      "payloadPlaceholder": "اكتب رسالتك هنا...",
-      "sendButton": "إرسال الإشارة",
+      "nameLabel": "الاسم الكامل",
+      "namePlaceholder": "اسمك",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "بريدك@email.com",
+      "subjectLabel": "الموضوع",
+      "subjectOptions": ["استفسار تجاري", "شراكة", "وظائف", "أخرى"],
+      "messageLabel": "الرسالة",
+      "messagePlaceholder": "اخبرنا عن مشروعك...",
+      "sendButton": "إرسال الرسالة",
       "sendingButton": "جارٍ الإرسال...",
-      "sentToast": "تم إرسال الإشارة"
+      "sentToast": "تم إرسال الرسالة بنجاح"
     },
     "info": {
       "copiedToast": "تم النسخ",
@@ -246,85 +181,76 @@
         {
           "type": "email",
           "label": "البريد",
-          "value": "ops@raptors-me.com",
+          "value": "info@dynatech-eg.com",
           "description": "للاستفسارات العامة"
         },
         {
           "type": "phone",
-          "label": "الخط الساخن",
-          "value": "+20 123 456 7890",
-          "description": "الاثنين-الجمعة | 9ص - 6م"
+          "label": "الهاتف",
+          "value": "+20 2 2345 6789",
+          "description": "الأحد-الخميس | 9ص - 6م"
         },
         {
           "type": "location",
-          "label": "المقر",
-          "value": "القاهرة الجديدة، مصر",
-          "description": "الحي الرقمي، القطاع 5"
+          "label": "المقر الرئيسي",
+          "value": "CFC Business Park، القاهرة الجديدة",
+          "description": "مبنى A3، الدور الأول"
         }
       ]
     },
     "social": {
-      "title": "Connect_Socially",
+      "title": "تواصل معنا",
       "items": [
-        { "label": "LinkedIn", "href": "#" },
-        { "label": "Twitter", "href": "#" },
-        { "label": "Behance", "href": "#" },
-        { "label": "Instagram", "href": "#" }
+        { "label": "لينكدإن", "href": "#" },
+        { "label": "تويتر", "href": "#" },
+        { "label": "إنستغرام", "href": "#" }
       ]
-    },
-    "terminal": {
-      "lines": [
-        "> تم إنشاء الاتصال: 192.168.1.104",
-        "> تشفير الإرسال... [OK]",
-        "> خادم Raptors ME: ONLINE"
-      ],
-      "liveCursor": "_"
     }
   },
   "services": {
     "header": {
-      "kicker": "System_Capabilities // V.2.0",
-      "titleLine1": "الخدمات",
+      "kicker": "خبرة دايناتك",
+      "titleLine1": "خدماتنا",
       "titleLine2": "",
-      "titleStroke": "الأساسية."
+      "titleStroke": ""
     },
     "services": [
       {
         "id": "01",
-        "title": "هندسة البرمجيات",
-        "desc": "نُشيّد عمودًا فقريًا متينًا وقابلًا للتوسع للأنظمة الرقمية.",
-        "icon": "code",
+        "title": "أنظمة الإنتاج",
+        "desc": "حلول متكاملة لتجميع السيارات وأتمتة التصنيع.",
+        "icon": "settings",
         "color": "#43becc",
-        "tags": ["REACT", "NEXT.JS", "NODE"]
+        "tags": ["أتمتة", "روبوتات", "تجميع"]
       },
       {
         "id": "02",
-        "title": "الأمن السيبراني",
-        "desc": "نطبّق بروتوكولات دفاع متقدمة لحماية بياناتك من التهديدات.",
-        "icon": "shield",
+        "title": "المواد الخفيفة",
+        "desc": "حلول متقدمة من المواد المركبة للفضاء والسيارات.",
+        "icon": "layers",
         "color": "#bcd647",
-        "tags": ["ENCRYPTION", "AUDIT", "SHIELD"]
+        "tags": ["مواد مركبة", "كربون", "ألياف"]
       },
       {
         "id": "03",
-        "title": "أنظمة سحابية",
-        "desc": "نمزج الواقع التشغيلي بكفاءة السحابة لعمليات أكثر سلاسة.",
-        "icon": "globe",
-        "color": "#8e257a",
-        "tags": ["AWS", "DOCKER", "CI/CD"]
+        "title": "التنقل الكهربائي",
+        "desc": "بنية تحتية للسيارات الكهربائية وأنظمة البطاريات.",
+        "icon": "zap",
+        "color": "#43becc",
+        "tags": ["سيارات كهربائية", "بطاريات", "شحن"]
       },
       {
         "id": "04",
-        "title": "دمج الذكاء الاصطناعي",
-        "desc": "شبكات عصبية تُصمَّم للأتمتة والتنبؤ وتطوير سير عملك.",
-        "icon": "cpu",
-        "color": "#43becc",
-        "tags": ["LLM", "PYTORCH", "ML"]
+        "title": "تخزين الطاقة",
+        "desc": "حلول ESS صناعية لاستقرار الشبكة والطاقة المتجددة.",
+        "icon": "battery",
+        "color": "#bcd647",
+        "tags": ["بطاريات", "شبكة", "متجددة"]
       }
     ],
     "footer": {
-      "status": "Neural_Link // Active_and_Secure",
-      "downloadLabel": "Download_Specs [PDF]"
+      "status": "دايناتك // جاهزون للتنفيذ",
+      "downloadLabel": "تحميل بروفايل الشركة [PDF]"
     }
   }
 }

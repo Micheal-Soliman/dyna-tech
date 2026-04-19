@@ -2,7 +2,7 @@
   "common": {
     "requestDemo": "Request a Demo",
     "footer": {
-      "description": "Empowering the future of digital dynamics through innovative 3D experiences and strategic technology solutions.",
+      "description": "Empowering the future of industrial technology through innovative solutions and strategic partnerships.",
       "navigationTitle": "Navigation",
       "navExpertise": "Expertise",
       "navVisuals": "Visuals",
@@ -12,7 +12,7 @@
       "newsletterPlaceholder": "Enter your email",
       "newsletterJoin": "JOIN",
       "newsletterHint": "Be the first to see our next evolution.",
-      "rights": "© {year} RAPTORS ME. ALL RIGHTS RESERVED.",
+      "rights": "© {year} DYNATECH CORP. ALL RIGHTS RESERVED.",
       "privacyPolicy": "Privacy Policy",
       "termsOfService": "Terms of Service",
       "socialTwitter": "Twitter",
@@ -21,310 +21,236 @@
     }
   },
   "home": {
-    "slogan": "Move faster with AI-powered operations.",
-    "subheading": "One platform to automate workflows, surface real-time insights, and ship outcomes your team can measure.",
+    "slogan": "A New Driving Force — Innovation Meets Investment",
+    "subheading": "Egypt gateway to E-Mobility, Energy Storage & Lightweight Materials technology",
     "hero": {
-      "brandLeft": "Agile",
-      "brandRight": "Rapid",
-      "followLine1": "Transformation is not a goal.",
-      "followLine2": "It's a continuous motion."
+      "brandLeft": "DYNA",
+      "brandRight": "TECH",
+      "followLine1": "Connecting Innovation",
+      "followLine2": "To Investment",
+      "primaryCtaLabel": "Explore Our Work",
+      "secondaryCtaLabel": "Contact Us",
+      "ceoQuote": "Our mission is to create a sustainable industrial ecosystem in Egypt by integrating world-class technology with local expertise.",
+      "ceoName": "Eng. Ahmed Sorour",
+      "ceoTitle": "CEO",
+      "ceoCtaLabel": "Read Full CEO Message",
+      "ceoSectionLabel": "A Message From Leadership",
+      "ceoSubtitle": "Strategic Growth & Engineering Excellence"
     },
-    "logosTitle": "Trusted by Industry Leaders",
-    "logos": ["Northwind", "Contoso", "Fabrikam", "Globex", "Initech", "Umbrella"],
-    "about": {
-      "backdropText": "RAPTORS",
-      "imageAlt": "Agile Enterprise",
-      "cardPlumTitle": "AGILE DNA",
-      "cardPlumText": "Transforming core structures into high-velocity engines.",
-      "cardCyanTitle": "10X SPEED",
-      "cardCyanText": "Execution. Precision. Growth.",
-      "centerHeadingLine1": "SPEED IS",
-      "centerHeadingLine2": "CERTAINTY.",
-      "edgeVision": "The Vision",
-      "edgeStrategy": "The Strategy",
-      "revealPrefix": "At",
-      "brandName": "Raptors ME",
-      "revealMiddle": "we dismantle the complexity of legacy systems and replace them with the",
-      "revealHighlight": "fluid power of agility",
-      "revealSuffix": "No friction. Only momentum.",
-      "cta": "Explore the Agile Engine"
-    },
-    "statsTitle": "Impact in numbers",
-    "statsKicker": "Global Tech Excellence",
-    "stats": [
-      { "value": "99.9%", "label": "Uptime" },
-      { "value": "24/7", "label": "Monitoring" },
-      { "value": "60%", "label": "Less manual work" },
-      { "value": "2x", "label": "Faster decisions" }
+    "partnersTitle": "Our Strategic Alliance",
+    "partners": [
+      {
+        "name": "FFT",
+        "oneLiner": "Exclusive technology partner — 50+ years globally"
+      },
+      {
+        "name": "Composites United",
+        "oneLiner": "Exclusive representative in Egypt"
+      }
     ],
-    "visualsTitle": "See it in action",
-    "visualsSubtitle": "Short walkthroughs, demos, and real customer workflows.",
-    "visualsCard1Title": "Workflow View",
-    "visualsCard1Text": "UI snapshots that define your agile journey.",
-    "visualsCard2Title": "Advanced Reports",
-    "visualsCard2Text": "Stakeholder-ready insights in one click.",
-    "visualsVideoTitle": "Product demo",
-    "visualsCarousel": {
-      "badge": "Raptors Experience",
-      "titlePrefix": "Project",
-      "titleHighlight": "Archive",
-      "slideTitles": [
-        "Digital Nexus",
-        "Core Strategy",
-        "Cyber Pulse",
-        "Creative Flow",
-        "Future Vision"
-      ]
+    "partnersCtaLabel": "Meet Our Partners",
+    "about": {
+      "backdropText": "DYNATECH",
+      "imageAlt": "Advanced Industrial Technology",
+      "cardPlumTitle": "EST. 2017",
+      "cardPlumText": "Headquartered in Egypt, bridging the gap between European innovation and regional industrial needs.",
+      "cardCyanTitle": "SECTORS",
+      "cardCyanText": "Aerospace • Automotive • Renewable Energy • Defense",
+      "centerHeadingLine1": "ENGINEERING",
+      "centerHeadingLine2": "EXCELLENCE",
+      "edgeVision": "Vision 2030",
+      "edgeStrategy": "European Tech",
+      "revealPrefix": "Founded with a mission to revolutionize industrial manufacturing,",
+      "brandName": "DYNATECH",
+      "revealMiddle": "serves as the",
+      "revealHighlight": "exclusive gateway to European technology leaders",
+      "revealSuffix": "delivering turnkey solutions across high-tech sectors globally.",
+      "cta": "Discover Our Strategy"
     },
-    "announcementsTitle": "Recent announcements",
-    "announcementsKicker": "Updates & News",
-    "announcementsBlurb": "Stay updated with our latest breakthroughs and corporate milestones.",
+    "statsTitle": "DYNATECH IN NUMBERS",
+    "statsKicker": "Growth & Infrastructure",
+    "stats": [
+      { "value": "2017", "label": "Industry Presence" },
+      { "value": "15M EGP", "label": "Paid Capital" },
+      { "value": "≥6000sqm", "label": "Automotive Hub" },
+      { "value": "35+Years", "label": "Leadership Expertise" },
+      { "value": "40Cars", "label": "Daily Work Capacity" }
+    ],
+    "visualsCarousel": {
+      "badge": "DYNATECH Projects",
+      "titlePrefix": "Industrial",
+      "titleHighlight": "Excellence"
+    },
+    "announcementsTitle": "Events & Media",
+    "announcementsKicker": "Latest Updates",
+    "announcementsBlurb": "Explore our latest partnerships, facility expansions, and industry milestones.",
     "announcementsReadMoreLabel": "Read More",
     "announcementsReadMoreArrow": "→",
     "announcements": [
       {
-        "title": "New analytics dashboard",
-        "date": "Jan 2026",
-        "description": "Track KPIs, performance, and bottlenecks in one place."
+        "title": "Strategic Partnership with FFT Group",
+        "date": "Nov 2023",
+        "description": "Dynatech officially becomes the exclusive technology partner for FFT in Egypt, bridging 50+ years of global automation expertise to the local market."
       },
       {
-        "title": "SOC2-ready controls",
-        "date": "Dec 2025",
-        "description": "Better audit logs, policies, and access controls."
+        "title": "Composites United Expansion",
+        "date": "Oct 2023",
+        "description": "Representing the world leading network for fiber-based multi-material lightweight design as the exclusive Egyptian representative."
       },
       {
-        "title": "Workflow templates library",
-        "date": "Nov 2025",
-        "description": "Start fast with best-practice automations."
+        "title": "Automotive Hub Infrastructure Completion",
+        "date": "Sept 2023",
+        "description": "Our 6,000 sqm state-of-the-art facility is now fully operational, supporting high-capacity automotive assembly and maintenance."
       }
     ]
   },
   "about": {
-    "stickyStory": {
+    "institutional": {
       "hero": {
-        "titleLeft": "RAPTORS",
-        "titleRight": "ME",
-        "tagline": "UNFOLDING THE ARCHITECTURE"
+        "titleLeft": "DYNA",
+        "titleRight": "TECH",
+        "tagline": "INDUSTRIAL DEVELOPMENT & TECHNOLOGY TRANSFER"
       },
-      "mission": {
-        "kicker": "// OUR MISSION",
-        "textPrefix": "Bridging the gap between",
-        "highlight": "Raw Code",
-        "textMiddle": "and",
-        "italic": "Human Experience."
+      "missionVision": {
+        "kicker": "// THE INSTITUTION",
+        "visionTitle": "VISION",
+        "visionText": "To become a new impetus contributing to E-Mobility, ESS & LWM advancement in Egypt & MENA through technology localization.",
+        "missionTitle": "MISSION",
+        "missionText": "Seizing high-potential opportunities in the automotive hub and turning them into successful industrial projects with global technology partners.",
+        "established": "EST. 2017",
+        "capital": "EGP 15,000,000"
       },
-      "vision": {
-        "kicker": "// THE VISION",
-        "textPrefix": "Engineering the",
-        "highlight": "First Digital",
-        "textSuffix": "Meta-Structure."
-      },
-      "stats": {
-        "items": [
-          { "label": "Active Nodes", "value": "150+", "color": "#43becc" },
-          { "label": "Data Streams", "value": "40+", "color": "#bcd647" },
-          { "label": "Success Rate", "value": "99%", "color": "#ffffff" },
-          { "label": "Core Years", "value": "10+", "color": "#43becc" }
-        ]
-      },
+      "stats": [
+        { "label": "Paid Capital", "value": "15M", "color": "#bcd647" },
+        { "label": "Established", "value": "2017", "color": "#43becc" },
+        { "label": "Facility", "value": "6,000m²", "color": "#ffffff" },
+        { "label": "Locations", "value": "3 Sites", "color": "#43becc" }
+      ],
       "founder": {
-        "badge": "Architect_Identity",
-        "nameLine1": "JOHNATHAN",
-        "nameHighlight": "RAPTOR",
-        "quote": "\"We don't build websites. We build the interfaces through which humanity interacts with the future.\"",
-        "buttonLabel": "INITIATE PROTOCOL",
-        "imageSrc": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974",
-        "imageAlt": "Founder"
+        "name": "ENG. AHMED SOROUR",
+        "title": "FOUNDER & CEO",
+        "highlights": ["C-Level MENA", "Toyota Award", "35+ Years"],
+        "experience": [
+          { "period": "1990–1995", "company": "ALJ / KSA", "achievement": "Toyota Best of the Best Award Recipient" },
+          { "period": "1996–2007", "company": "Al Fardan Qatar", "achievement": "SVP Operations — #1 Luxury Automotive" },
+          { "period": "2007–2015", "company": "Qatar Auto-Z", "achievement": "Co-Founder — 35,000 m² Facility" },
+          { "period": "2017–Present", "company": "DYNATECH", "achievement": "Founder & CEO — Technology Gateway" }
+        ],
+        "imageSrc": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974",
+        "imageAlt": "Eng. Ahmed Sorour — Founder & CEO of DYNATECH"
       },
-      "whyChoose": {
-        "kicker": "// WHY RAPTORS",
-        "titlePrefix": "WHY",
-        "titleHighlight": "CHOOSE",
-        "titleSuffix": "US",
-        "items": [
-          {
-            "title": "Strategy-first delivery",
-            "description": "We align product, brand, and engineering into one execution system."
-          },
-          {
-            "title": "High-performance builds",
-            "description": "Optimized UX, clean architecture, and measurable outcomes."
-          },
-          {
-            "title": "MENA-ready scale",
-            "description": "Localized workflows with global delivery standards."
-          }
-        ]
-      },
-      "leadership": {
-        "kicker": "// LEADERSHIP",
-        "titlePrefix": "THE",
-        "titleHighlight": "TEAM",
-        "titleSuffix": "BEHIND IT",
-        "members": [
-          {
-            "name": "John Doe",
-            "title": "CEO",
-            "bio": "Ex-enterprise architect with a product and systems mindset."
-          },
-          {
-            "name": "Jane Smith",
-            "title": "CTO",
-            "bio": "Engineering lead focused on scalable platforms and DX excellence."
-          },
-          {
-            "name": "Ahmed Ali",
-            "title": "COO",
-            "bio": "Operations leader driving consistency across delivery and quality."
-          }
-        ]
-      },
-      "partners": {
-        "titlePrefix": "OUR TRUSTED",
-        "titleHighlight": "ALLIANCE",
-        "titleSuffix": ".",
-        "subtitle": "PARTNERSHIPS + CERTIFICATIONS",
-        "badges": [{ "label": "SAP_GOLD" }, { "label": "ISO_27001" }, { "label": "AWS_PARTNER" }],
-        "ctaLabel": "REQUEST A DEMO"
-      }
-    },
-    "heroKicker": "Behind the Dynamics",
-    "heroTitlePrefix": "WE ARE",
-    "heroTitleHighlight": "RAPTORS",
-    "heroDescription": "Transcending the ordinary through digital mastery and strategic innovation. We don't just build solutions; we craft legacies.",
-    "heroScrollHint": "SCROLL TO DECODE ORIGIN",
-    "stickyMissionTitle": "The Mission",
-    "stickyMissionDescription": "We engineer digital artifacts that bridge the gap between reality and the next dimension.",
-    "contentKicker": "Our Chronicle",
-    "visionTitle": "Our Vision",
-    "visionDescription": "To be the global epicenter of digital transformation, where technology meets human intuition to create a seamless future.",
-    "missionTitle": "Our Mission",
-    "missionDescription": "Empowering businesses with cutting-edge 3D dynamics and data-led strategies to dominate their respective industries.",
-    "statsTitle": "Metrics of Mastery",
-    "stats": [
-      { "label": "Projects Completed", "value": "150+" },
-      { "label": "Global Clients", "value": "40+" },
-      { "label": "Team Experts", "value": "25+" },
-      { "label": "Years Experience", "value": "10+" }
-    ],
-    "founderKicker": "The Genesis",
-    "founderTitle": "FROM A SPARK TO A",
-    "founderTitleHighlight": "REVOLUTION.",
-    "founderQuote1": "\"Raptors ME didn't start in a boardroom. It started in a small garage with a single vision: to bridge the gap between imagination and digital reality. I saw a world where businesses were limited by technology, so I decided to build the tools that would set them free.\"",
-    "founderQuote2": "Today, we stand as a testament to what happens when you combine relentless grit with cutting-edge innovation. Our journey is just beginning.",
-    "founderButton": "Read Full Story",
-    "founderProfileLabel": "Architect Profile",
-    "founderQuote": "\"The digital realm is no longer a tool; it is the environment. We don't adapt to it, we build it.\"",
-    "founderButtonLabel": "Initialize Contact",
-    "ctaTitle": "Join The Digital Evolution",
-    "ctaDescription": "Ready to transform your vision into reality? Our team of experts awaits.",
-    "ctaButtonLabel": "Engage with Raptors",
-    "founderRole": "Founder & CEO",
-    "founderName": "Johnathan Raptor",
-    "founderImageAlt": "Founder"
+      "timeline": [
+        { "year": "2017", "desc": "DYNATECH Corp. established + CFK Valley e.V. network (Germany)" },
+        { "year": "2018", "desc": "Composites United membership + LOI signed" },
+        { "year": "2020", "desc": "DYNATECH for Industrial Development (DID) established + land acquired from NUCA, New Cairo" },
+        { "year": "2021", "desc": "CU appoints DYNATECH exclusive representative in Egypt" },
+        { "year": "2022", "desc": "Strategic agreement announced — Hannover Messe" },
+        { "year": "2023", "desc": "Exclusive agency agreement signed — FFT Production Systems GmbH, Fulda" },
+        { "year": "2024", "desc": "Extension area acquired for Automotive Hub + CFC Main Office fit-out" },
+        { "year": "2025", "desc": "Automotive Hub design completed + CFC office handover" },
+        { "year": "2026", "desc": "Automotive Hub construction completion + fit-out" },
+        { "year": "2027", "desc": "Automotive Hub soft opening (SOP)" }
+      ],
+      "locations": [
+        { "name": "Main Office", "detail": "CFC Business Park, New Cairo" },
+        { "name": "Automotive Hub", "detail": "Industrial Area, New Cairo" },
+        { "name": "Showroom", "detail": "1st Settlement, New Cairo" }
+      ]
+    }
   },
   "contact": {
-    "kicker": "// INITIATE_COMMUNICATION",
-    "titlePrefix": "GET IN",
-    "titleHighlight": "TOUCH.",
+    "kicker": "// GET IN TOUCH",
+    "titlePrefix": "START A",
+    "titleHighlight": "CONVERSATION",
     "form": {
-      "operatorNameLabel": "Operator_Name",
-      "operatorNamePlaceholder": "Your Name",
-      "signalAddressLabel": "Signal_Address",
-      "signalAddressPlaceholder": "Your Email",
-      "subjectProtocolLabel": "Subject_Protocol",
-      "subjectOptions": ["Digital Branding", "Web Engineering", "3D Evolution", "Other Services"],
-      "payloadLabel": "Transmission_Payload",
-      "payloadPlaceholder": "Write your message here...",
-      "sendButton": "SEND SIGNAL",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Your Name",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "your@email.com",
+      "subjectLabel": "Subject",
+      "subjectOptions": ["Business Inquiry", "Partnership", "Careers", "Other"],
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell us about your project...",
+      "sendButton": "SEND MESSAGE",
       "sendingButton": "SENDING...",
-      "sentToast": "Signal sent"
+      "sentToast": "Message sent successfully"
     },
     "info": {
       "copiedToast": "Copied",
       "items": [
         {
           "type": "email",
-          "label": "E-mail",
-          "value": "ops@raptors-me.com",
+          "label": "Email",
+          "value": "info@dynatech-eg.com",
           "description": "For general inquiries"
         },
         {
           "type": "phone",
-          "label": "Hotline",
-          "value": "+20 123 456 7890",
-          "description": "Mon-Fri | 9am - 6pm"
+          "label": "Phone",
+          "value": "+20 2 2345 6789",
+          "description": "Sun-Thu | 9am - 6pm"
         },
         {
           "type": "location",
-          "label": "HQ Location",
-          "value": "New Cairo, Egypt",
-          "description": "Digital District, Sector 5"
+          "label": "Headquarters",
+          "value": "CFC Business Park, New Cairo",
+          "description": "Building A3, 1st Floor"
         }
       ]
     },
     "social": {
-      "title": "Connect_Socially",
+      "title": "Connect With Us",
       "items": [
         { "label": "LinkedIn", "href": "#" },
         { "label": "Twitter", "href": "#" },
-        { "label": "Behance", "href": "#" },
         { "label": "Instagram", "href": "#" }
       ]
-    },
-    "terminal": {
-      "lines": [
-        "> Connection established: 192.168.1.104",
-        "> Encrypting transmission... [OK]",
-        "> Raptors ME Server: ONLINE"
-      ],
-      "liveCursor": "_"
     }
   },
   "services": {
     "header": {
-      "kicker": "System_Capabilities // V.2.0",
-      "titleLine1": "CORE",
+      "kicker": "DYNATECH EXPERTISE",
+      "titleLine1": "OUR",
       "titleLine2": "",
-      "titleStroke": "SERVICES."
+      "titleStroke": "SERVICES"
     },
     "services": [
       {
         "id": "01",
-        "title": "Software Arch",
-        "desc": "Building the backbone of digital empires with robust, scalable codebases.",
-        "icon": "code",
+        "title": "Production Systems",
+        "desc": "Complete turnkey solutions for automotive assembly and manufacturing automation.",
+        "icon": "settings",
         "color": "#43becc",
-        "tags": ["REACT", "NEXT.JS", "NODE"]
+        "tags": ["AUTOMATION", "ROBOTICS", "ASSEMBLY"]
       },
       {
         "id": "02",
-        "title": "Cyber Security",
-        "desc": "Deploying advanced defensive protocols to shield your data from the void.",
-        "icon": "shield",
+        "title": "Lightweight Materials",
+        "desc": "Advanced composites and fiber-based solutions for aerospace and automotive sectors.",
+        "icon": "layers",
         "color": "#bcd647",
-        "tags": ["ENCRYPTION", "AUDIT", "SHIELD"]
+        "tags": ["COMPOSITES", "CFRP", "GFRP"]
       },
       {
         "id": "03",
-        "title": "Cloud Systems",
-        "desc": "Merging physical reality with cloud efficiency for seamless operations.",
-        "icon": "globe",
-        "color": "#8e257a",
-        "tags": ["AWS", "DOCKER", "CI/CD"]
+        "title": "E-Mobility",
+        "desc": "Electric vehicle infrastructure, battery systems, and charging solutions.",
+        "icon": "zap",
+        "color": "#43becc",
+        "tags": ["EV", "BATTERY", "CHARGING"]
       },
       {
         "id": "04",
-        "title": "AI Integration",
-        "desc": "Neural networks designed to automate, predict, and evolve your workflow.",
-        "icon": "cpu",
-        "color": "#43becc",
-        "tags": ["LLM", "PYTORCH", "ML"]
+        "title": "Energy Storage",
+        "desc": "Industrial-scale ESS solutions for grid stability and renewable integration.",
+        "icon": "battery",
+        "color": "#bcd647",
+        "tags": ["BESS", "GRID", "RENEWABLES"]
       }
     ],
     "footer": {
-      "status": "Neural_Link // Active_and_Secure",
-      "downloadLabel": "Download_Specs [PDF]"
+      "status": "DYNATECH // Ready to Deliver",
+      "downloadLabel": "Download Company Profile [PDF]"
     }
   }
 }

@@ -17,8 +17,8 @@ export default function OrbitPhoneLayer({ progress }: Props) {
           <Phone size={20} />
         </div>
         <div>
-          <p className="text-[#bcd647] font-mono text-[9px] uppercase tracking-widest">{"// FREQUENCY"}</p>
-          <h3 className="text-2xl font-black italic">+20 123 456 7890</h3>
+          <p className="text-[#bcd647] font-mono text-[9px] uppercase tracking-widest">{"// DIRECT_LINE"}</p>
+          <h3 className="text-2xl font-black italic">+20 105 528 2565</h3>
         </div>
       </div>
     </Layer>
