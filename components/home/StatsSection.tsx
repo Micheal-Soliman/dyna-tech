@@ -76,13 +76,13 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
         />
         <motion.circle
           cx="50%" cy="50%" r="45%"
-          className="stroke-[#43becc] fill-none"
+          className="stroke-[#0087cb] fill-none"
           strokeWidth="2"
           strokeDasharray="100 100"
           initial={{ strokeDashoffset: 100 }}
           animate={isInViewOnce ? { strokeDashoffset: 100 - progress * 100 } : {}}
           transition={{ duration: 2.5, ease: "circOut" }}
-          style={{ filter: "drop-shadow(0 0 10px #43becc)" }}
+          style={{ filter: "drop-shadow(0 0 10px #0087cb)" }}
         />
 
         <motion.circle
@@ -108,9 +108,9 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
             style={{ unicodeBidi: "plaintext" }}
             className="text-5xl md:text-6xl font-black text-white tracking-tighter"
           >
-            {prefix && <span className="text-[#43becc]">{prefix}</span>}
+            {prefix && <span className="text-[#0087cb]">{prefix}</span>}
             {count.toFixed(precision)}
-            <span className="text-xl md:text-2xl font-bold text-[#43becc]">{suffix}</span>
+            <span className="text-xl md:text-2xl font-bold text-[#0087cb]">{suffix}</span>
           </span>
         </motion.div>
         
@@ -120,7 +120,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           className="mt-4 px-4 py-1 bg-white/5 backdrop-blur-md rounded-full border border-white/10"
         >
 
-          <p className="text-[10px] font-black text-[#bcd647] uppercase tracking-[0.3em]">
+          <p className="text-[10px] font-black text-[#006db1] uppercase tracking-[0.3em]">
             {label}
           </p>
         </motion.div>
@@ -143,7 +143,7 @@ export function StatsSection({ title, kicker, stats, isAr = false }: { title: st
     <section className="py-40 bg-[#121b43] relative overflow-hidden font-['Montserrat',sans-serif]">
       
       <div className="absolute inset-0 opacity-20" 
-           style={{ backgroundImage: 'radial-gradient(circle, #43becc 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+           style={{ backgroundImage: 'radial-gradient(circle, #0087cb 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-32">
@@ -154,7 +154,7 @@ export function StatsSection({ title, kicker, stats, isAr = false }: { title: st
           >
             {title}
           </motion.h2>
-          <p className="text-[#43becc] mt-4 font-bold tracking-[0.5em] uppercase text-xs">
+          <p className="text-[#0087cb] mt-4 font-bold tracking-[0.5em] uppercase text-xs">
             {kicker}
           </p>
         </div>

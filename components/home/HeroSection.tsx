@@ -62,11 +62,11 @@ function HeroMainSection({
     : [slogan, ""];
 
   return (
-    <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pt-12 md:pt-16">
+    <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pt-12 md:pt-16 transform-gpu">
         
         {/* 1. High-Impact Background Image */}
         <motion.div
-          style={{ scale: imageScale, borderRadius: imageRadius }}
+          style={{ scale: imageScale, borderRadius: imageRadius, willChange: "transform" }}
           className="absolute inset-0 z-10 overflow-hidden"
         >
           <img
@@ -80,7 +80,7 @@ function HeroMainSection({
 
         {/* 2. Primary Hero Content */}
         <motion.div
-          style={{ y: textY, opacity: mainOpacity }}
+          style={{ y: textY, opacity: mainOpacity, willChange: "transform" }}
           className="absolute z-30 inset-0 flex flex-col items-center justify-center text-center px-6"
         >
           <motion.div
@@ -97,7 +97,7 @@ function HeroMainSection({
               {sloganParts[1] && (
                 <>
                   <br />
-                  <span className="text-[#43becc]">{sloganParts[1]}</span>
+                  <span className="text-[#0087cb]">{sloganParts[1]}</span>
                 </>
               )}
             </h1>
@@ -115,7 +115,7 @@ function HeroMainSection({
                 href={primaryCtaHref}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-[#43becc] text-[#0a0f29] font-black uppercase tracking-widest rounded-full shadow-lg text-xs sm:text-sm cursor-pointer relative"
+                className="px-8 py-4 bg-[#0087cb] text-[#0a0f29] font-black uppercase tracking-widest rounded-full shadow-lg text-xs sm:text-sm cursor-pointer relative"
               >
                 {primaryCtaLabel}
               </motion.a>
@@ -123,7 +123,7 @@ function HeroMainSection({
                 href={secondaryCtaHref}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 border-2 border-[#bcd647] text-[#bcd647] font-black uppercase tracking-widest rounded-full hover:bg-[#bcd647] hover:text-[#0a0f29] transition-all text-xs sm:text-sm cursor-pointer relative"
+                className="px-8 py-4 border-2 border-[#006db1] text-[#006db1] font-black uppercase tracking-widest rounded-full hover:bg-[#006db1] hover:text-[#0a0f29] transition-all text-xs sm:text-sm cursor-pointer relative"
               >
                 {secondaryCtaLabel}
               </motion.a>
@@ -141,14 +141,14 @@ function HeroMainSection({
               <motion.div
                 animate={{ height: [20, 40, 20], opacity: [0.3, 1, 0.3] }}
                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="w-[2px] bg-gradient-to-b from-[#43becc] to-[#bcd647]"
+                className="w-[2px] bg-gradient-to-b from-[#0087cb] to-[#006db1]"
               />
               <motion.div
                 animate={{ y: [0, 5, 0], opacity: [0.3, 1, 0.3] }}
                 transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 className="flex flex-col items-center -mt-1"
               >
-                <div className="w-3 h-3 border-b-2 border-r-2 border-[#bcd647] rotate-45 transform" />
+                <div className="w-3 h-3 border-b-2 border-r-2 border-[#006db1] rotate-45 transform" />
               </motion.div>
             </div>
           </div>
@@ -185,7 +185,7 @@ function CeoMessageSection({
             transition={{ duration: 1, ease: "circOut" }}
             className="relative w-full lg:w-1/2 aspect-[4/5] md:aspect-square lg:aspect-[3/4] max-w-md"
           >
-            <div className={`absolute inset-0 border-2 border-[#43becc]/20 ${isAr ? '-translate-x-6' : 'translate-x-6'} translate-y-6 rounded-2xl`} />
+            <div className={`absolute inset-0 border-2 border-[#0087cb]/20 ${isAr ? '-translate-x-6' : 'translate-x-6'} translate-y-6 rounded-2xl`} />
             <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl">
               <img 
                 src={ceoImageUrl || heroImageUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop"} 
@@ -196,7 +196,7 @@ function CeoMessageSection({
             </div>
             
             {/* Title card - flip position for RTL */}
-            <div className={`absolute -bottom-6 ${isAr ? '-left-6' : '-right-6'} bg-[#43becc] p-6 rounded-xl shadow-xl hidden md:block`}>
+            <div className={`absolute -bottom-6 ${isAr ? '-left-6' : '-right-6'} bg-[#0087cb] p-6 rounded-xl shadow-xl hidden md:block`}>
               <p className="text-[#0a0f29] font-black text-xs uppercase tracking-widest">{ceoTitle || "Founder & CEO"}</p>
               <div className="w-10 h-1 bg-[#0a0f29] mt-2" />
             </div>
@@ -213,7 +213,7 @@ function CeoMessageSection({
             <span 
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-[#bcd647] font-black tracking-[0.4em] text-[10px] uppercase mb-6 block"
+              className="text-[#006db1] font-black tracking-[0.4em] text-[10px] uppercase mb-6 block"
             >
               {ceoSectionLabel || "A Message From Leadership"}
             </span>
@@ -224,7 +224,7 @@ function CeoMessageSection({
               className="text-white text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-[1.15] mb-6 md:mb-8 tracking-tight"
             >
               {(ceoName || "Eng. Ahmed Sorour").split(" ").slice(0, -1).join(" ")} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#43becc] to-white/60">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-white/60">
                 {(ceoName || "Eng. Ahmed Sorour").split(" ").slice(-1)}
               </span>
             </h2>
@@ -246,7 +246,7 @@ function CeoMessageSection({
               <p 
                 dir="auto"
                 style={{ unicodeBidi: "plaintext" }}
-                className="text-[#43becc] text-2xl md:text-3xl opacity-80 italic font-serif"
+                className="text-[#0087cb] text-2xl md:text-3xl opacity-80 italic font-serif"
               >
                 {(ceoName || "Ahmed Sorour").split(" ").slice(-1)}
               </p>
@@ -266,7 +266,7 @@ function CeoMessageSection({
               className={`group inline-flex items-center gap-6 text-white text-xs font-black uppercase tracking-[0.3em] border-b border-white/10 pb-4 transition-all cursor-pointer ${isAr ? 'flex-row-reverse' : ''}`}
             >
               {ceoCtaLabel || "Read Full CEO Message"}
-              <span className={`text-[#bcd647] group-hover:${isAr ? '-translate-x-2' : 'translate-x-2'} transition-transform duration-300`}>{isAr ? '←' : '→'}</span>
+              <span className={`text-[#006db1] group-hover:${isAr ? '-translate-x-2' : 'translate-x-2'} transition-transform duration-300`}>{isAr ? '←' : '→'}</span>
             </motion.a>
           </motion.div>
         </div>
@@ -296,7 +296,7 @@ function BrandOutroSection({
   return (
     <motion.div 
       style={{ opacity }}
-      className="relative h-screen w-full overflow-hidden bg-[#0a0f29] flex items-center justify-center"
+      className="relative h-screen w-full overflow-hidden bg-[#0a0f29] flex items-center justify-center transform-gpu"
     >
       {/* Background Image with Parallax */}
       <motion.div style={{ scale }} className="absolute inset-0 z-10">
@@ -319,14 +319,14 @@ function BrandOutroSection({
           </motion.h2>
           <motion.h2 
             style={{ x: xRight }}
-            className="text-[#43becc] text-[15vw] font-black uppercase italic tracking-tighter drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="text-[#0087cb] text-[15vw] font-black uppercase italic tracking-tighter drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
           >
             {brandRight}
           </motion.h2>
         </div>
 
         {/* Neon line under the name */}
-        <div className="h-[2px] bg-gradient-to-r from-transparent via-[#bcd647] to-transparent mt-6 w-48" />
+        <div className="h-[2px] bg-gradient-to-r from-transparent via-[#006db1] to-transparent mt-6 w-48" />
         
         <motion.p 
           style={{ opacity: taglineOpacity }}
@@ -400,8 +400,8 @@ export function HeroSection({
     <section ref={containerRef} className="relative h-[300vh] bg-[#0a0f29] font-['Montserrat',sans-serif]">
       {/* Section 1: Hero - with controlled visibility */}
       <motion.div
-        style={{ opacity: heroVisibility }}
-        className="sticky top-0 h-screen w-full z-10"
+        style={{ opacity: heroVisibility, willChange: "transform" }}
+        className="sticky top-0 h-screen w-full z-10 transform-gpu"
       >
         <HeroMainSection
           slogan={slogan}
@@ -436,7 +436,7 @@ export function HeroSection({
       </div>
 
       {/* Section 3: Brand Outro - Highest z-index to appear on top */}
-      <div className="sticky bottom-0 h-screen w-full z-50 pointer-events-none">
+      <div className="sticky bottom-0 h-screen w-full z-50 pointer-events-none transform-gpu">
         <BrandOutroSection
           brandLeft={brandLeft}
           brandRight={brandRight}

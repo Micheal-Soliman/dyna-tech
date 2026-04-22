@@ -32,7 +32,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
     <section ref={horizontalRef} className="relative h-[250vh] bg-black">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         <div className="absolute top-20 left-12 flex items-center gap-4">
-          <Activity size={16} className="text-[#bcd647]" />
+          <Activity size={16} className="text-[#006db1]" />
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-600 italic">High_Priority_Impact //</span>
         </div>
 
@@ -41,15 +41,15 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
             <div key={project.id} className="w-[85vw] md:w-[70vw] h-[65vh] flex-shrink-0 bg-zinc-950 border border-white/10 p-12 flex flex-col justify-between relative group overflow-hidden">
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-[0.02] pointer-events-none group-hover:opacity-[0.05] transition-opacity">
-                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, #bcd647 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+                <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, #006db1 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
               </div>
 
               <div className="flex justify-between items-start z-10">
-                <h3 className="text-6xl md:text-8xl font-[1000] italic uppercase tracking-tighter leading-none group-hover:text-[#bcd647] transition-colors max-w-3xl">
+                <h3 className="text-6xl md:text-8xl font-[1000] italic uppercase tracking-tighter leading-none group-hover:text-[#006db1] transition-colors max-w-3xl">
                   {project.title}
                 </h3>
                 <div className="text-right">
-                  <p className="text-[10px] font-black text-[#bcd647] tracking-widest uppercase mb-2 italic underline underline-offset-4">{project.category}</p>
+                  <p className="text-[10px] font-black text-[#006db1] tracking-widest uppercase mb-2 italic underline underline-offset-4">{project.category}</p>
                   <div className="text-2xl font-black text-zinc-800">INV_{project.id}</div>
                 </div>
               </div>
@@ -61,7 +61,7 @@ export default function FeaturedProjects({ projects }: FeaturedProjectsProps) {
                   <br />
                   <Link 
                     href={`/case-study/${project.slug}`}
-                    className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 hover:text-[#bcd647] transition-colors"
+                    className="inline-flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-zinc-400 hover:text-[#006db1] transition-colors"
                   >
                     VIEW_PROJECT <ArrowUpRight size={16} />
                   </Link>

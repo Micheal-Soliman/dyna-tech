@@ -61,7 +61,7 @@ export default function ProjectMetrics({ metrics }: ProjectMetricsProps) {
             </div>
           </div>
 
-          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#bcd647] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+          <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#006db1] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
         </motion.div>
       ))}
     </motion.section>

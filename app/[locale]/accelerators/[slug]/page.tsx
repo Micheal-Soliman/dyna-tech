@@ -18,7 +18,7 @@ const PARTNERS: Record<string, PartnerData> = {
     shortName: "CU",
     location: "Berlin, Germany",
     node: "BERLIN.DE_OFFICE",
-    color: "#bcd647",
+    color: "#006db1",
     accent: "lime",
     role: "EXCLUSIVE_REPRESENTATIVE",
     founded: "Global Network",
@@ -65,7 +65,7 @@ const PARTNERS: Record<string, PartnerData> = {
     shortName: "FFT",
     location: "Fulda, Germany",
     node: "FULDA.DE_HEADQUARTERS", 
-    color: "#43becc",
+    color: "#0087cb",
     accent: "cyan",
     role: "EXCLUSIVE_AGENCY",
     founded: "1974",
@@ -152,7 +152,7 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
         <div className="text-center space-y-8">
           <h1 className="text-6xl font-[1000] italic">404</h1>
           <p className="text-zinc-500">Partner not found</p>
-          <Link href="/accelerators" className="inline-flex items-center gap-4 text-[#43becc] hover:text-white transition-colors">
+          <Link href="/accelerators" className="inline-flex items-center gap-4 text-[#0087cb] hover:text-white transition-colors">
             <ArrowLeft size={16} /> Back to Partners
           </Link>
         </div>
@@ -161,7 +161,7 @@ export default function PartnerDetailPage({ params }: { params: Promise<{ slug: 
   }
 
   const isLime = partner.accent === "lime";
-  const accentColor = isLime ? "#bcd647" : "#43becc";
+  const accentColor = isLime ? "#006db1" : "#0087cb";
   const otherPartner = partner.id === 'cu' ? PARTNERS['fft'] : PARTNERS['composites-united'];
 
   return (

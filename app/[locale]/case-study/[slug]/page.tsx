@@ -29,10 +29,10 @@ const PROJECT_DATA = {
     { label: "Cooling", value: "Liquid/Passive Hybrid" },
   ],
   metrics: [
-    { label: "Thermal Efficiency", val: "95", unit: "%", color: "#bcd647" },
-    { label: "Safety Rating", val: "IP67", unit: "", color: "#43becc" },
-    { label: "Design Life", val: "15", unit: "Years", color: "#bcd647" },
-    { label: "Temp Range", val: "-20", unit: "°C to +60", color: "#43becc" },
+    { label: "Thermal Efficiency", val: "95", unit: "%", color: "#006db1" },
+    { label: "Safety Rating", val: "IP67", unit: "", color: "#0087cb" },
+    { label: "Design Life", val: "15", unit: "Years", color: "#006db1" },
+    { label: "Temp Range", val: "-20", unit: "°C to +60", color: "#0087cb" },
   ],
   techStack: ["CFD Thermal Analysis", "FEA Structural", "Aluminum 6061-T6", "Ceramic Coating"],
   deliverables: ["CAD Drawings", "Thermal Simulations", "Prototype Units", "Test Reports"],
@@ -141,7 +141,7 @@ export default function IndustrialProjectDetail() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   
   return (
-    <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#bcd647] selection:text-black overflow-x-hidden">
+    <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#006db1] selection:text-black overflow-x-hidden">
       
       {/* Floating Back Link */}
       <motion.div 
@@ -152,7 +152,7 @@ export default function IndustrialProjectDetail() {
       >
         <Link 
           href="/case-study" 
-          className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/80 backdrop-blur border border-white/10 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-[#bcd647] hover:border-[#bcd647]/30 transition-all group"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/80 backdrop-blur border border-white/10 text-[10px] font-black uppercase tracking-widest text-zinc-400 hover:text-[#006db1] hover:border-[#006db1]/30 transition-all group"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Back to Projects
@@ -172,7 +172,7 @@ export default function IndustrialProjectDetail() {
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center gap-4 mb-8"
           >
-            <span className="px-3 py-1 bg-[#bcd647]/20 text-[#bcd647] text-[9px] font-black uppercase tracking-widest border border-[#bcd647]/30">
+            <span className="px-3 py-1 bg-[#006db1]/20 text-[#006db1] text-[9px] font-black uppercase tracking-widest border border-[#006db1]/30">
               {project.status}
             </span>
             <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 italic">
@@ -204,7 +204,7 @@ export default function IndustrialProjectDetail() {
               <Card3D delay={0.3}>
                 <div className="p-6 bg-zinc-950 border border-white/10">
                   <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Investment Range</p>
-                  <p className="text-2xl font-black italic text-[#bcd647]">{project.investment}</p>
+                  <p className="text-2xl font-black italic text-[#006db1]">{project.investment}</p>
                 </div>
               </Card3D>
               <Card3D delay={0.4}>
@@ -239,7 +239,7 @@ export default function IndustrialProjectDetail() {
                   <p className="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-bold">{stat.label}</p>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#bcd647] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#006db1] to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             </motion.div>
           ))}
         </StaggerContainer>
@@ -263,7 +263,7 @@ export default function IndustrialProjectDetail() {
             <Card3D delay={0.1}>
               <div className="space-y-6 p-8 bg-gradient-to-br from-zinc-950 to-zinc-900/50 border border-white/5">
                 <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-white">
-                  <span className="w-12 h-[1px] bg-[#bcd647]" /> 01_The_Challenge
+                  <span className="w-12 h-[1px] bg-[#006db1]" /> 01_The_Challenge
                 </h2>
                 <p className="text-lg font-light leading-relaxed italic text-zinc-400">{project.challenge}</p>
               </div>
@@ -271,9 +271,9 @@ export default function IndustrialProjectDetail() {
 
             {/* Solution */}
             <Card3D delay={0.15}>
-              <div className="space-y-6 p-8 bg-gradient-to-br from-zinc-900/50 to-zinc-950 border-l-2 border-[#bcd647]">
-                <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-[#bcd647]">
-                  <span className="w-12 h-[1px] bg-[#bcd647]" /> 02_The_Solution
+              <div className="space-y-6 p-8 bg-gradient-to-br from-zinc-900/50 to-zinc-950 border-l-2 border-[#006db1]">
+                <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-[#006db1]">
+                  <span className="w-12 h-[1px] bg-[#006db1]" /> 02_The_Solution
                 </h2>
                 <p className="text-lg font-light leading-relaxed italic text-zinc-400">{project.solution}</p>
               </div>
@@ -289,7 +289,7 @@ export default function IndustrialProjectDetail() {
               <div className="grid md:grid-cols-2 gap-4">
                 {project.specs.map((spec, idx) => (
                   <ScalePop key={spec.label} delay={idx * 0.1}>
-                    <div className="flex justify-between items-center p-5 bg-zinc-950 border border-white/5 hover:border-[#bcd647]/30 transition-colors">
+                    <div className="flex justify-between items-center p-5 bg-zinc-950 border border-white/5 hover:border-[#006db1]/30 transition-colors">
                       <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{spec.label}</span>
                       <span className="text-[10px] font-black uppercase tracking-widest text-white">{spec.value}</span>
                     </div>
@@ -307,7 +307,7 @@ export default function IndustrialProjectDetail() {
                 {/* Tech Stack */}
                 <div className="space-y-6">
                   <div className="flex items-center gap-2">
-                    <Layers className="text-[#bcd647]" size={18} />
+                    <Layers className="text-[#006db1]" size={18} />
                     <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Tech_Stack</h4>
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -317,7 +317,7 @@ export default function IndustrialProjectDetail() {
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.05 }}
-                        className="px-3 py-2 bg-[#bcd647]/10 border border-[#bcd647]/20 text-[9px] font-bold text-[#bcd647]"
+                        className="px-3 py-2 bg-[#006db1]/10 border border-[#006db1]/20 text-[9px] font-bold text-[#006db1]"
                       >
                         {s}
                       </motion.span>
@@ -328,7 +328,7 @@ export default function IndustrialProjectDetail() {
                 {/* Deliverables */}
                 <div className="pt-10 border-t border-white/5 space-y-6">
                   <div className="flex items-center gap-2">
-                    <FileText className="text-[#43becc]" size={18} />
+                    <FileText className="text-[#0087cb]" size={18} />
                     <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Deliverables</h4>
                   </div>
                   <div className="space-y-3">
@@ -340,7 +340,7 @@ export default function IndustrialProjectDetail() {
                         transition={{ delay: i * 0.1 }}
                         className="flex items-center gap-3 text-[10px] text-zinc-400"
                       >
-                        <div className="w-1 h-1 bg-[#43becc]" />
+                        <div className="w-1 h-1 bg-[#0087cb]" />
                         {d}
                       </motion.div>
                     ))}
@@ -350,7 +350,7 @@ export default function IndustrialProjectDetail() {
                 {/* Contact */}
                 <div className="pt-10 border-t border-white/5 space-y-4">
                   <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600">Partner: {project.partner}</p>
-                  <p className="text-[9px] font-mono text-[#bcd647]">{project.contact}</p>
+                  <p className="text-[9px] font-mono text-[#006db1]">{project.contact}</p>
                 </div>
               </div>
             </Card3D>
@@ -363,7 +363,7 @@ export default function IndustrialProjectDetail() {
         <ScalePop>
           <div className="relative z-10">
             <h2 className="text-5xl md:text-7xl font-[1000] italic uppercase tracking-tighter mb-8">
-              Submit <span className="text-[#bcd647]">Proposal.</span>
+              Submit <span className="text-[#006db1]">Proposal.</span>
             </h2>
             <p className="text-zinc-500 max-w-xl mx-auto mb-12 text-xs uppercase tracking-widest">
               Technical proposals accepted until Q2 2026. Direct all inquiries to procurement.
@@ -372,7 +372,7 @@ export default function IndustrialProjectDetail() {
               <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="px-12 py-6 bg-[#bcd647] text-black font-black uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-3"
+                className="px-12 py-6 bg-[#006db1] text-black font-black uppercase text-[10px] tracking-[0.4em] flex items-center justify-center gap-3"
               >
                 <Download size={16} />
                 DOWNLOAD_RFP_DOC
@@ -395,13 +395,13 @@ export default function IndustrialProjectDetail() {
         <SkewSlide direction="right">
           <Link 
             href="/case-study" 
-            className="max-w-7xl mx-auto flex items-center justify-between p-8 bg-zinc-950/30 border border-white/5 hover:border-[#bcd647]/30 transition-all group"
+            className="max-w-7xl mx-auto flex items-center justify-between p-8 bg-zinc-950/30 border border-white/5 hover:border-[#006db1]/30 transition-all group"
           >
             <div>
               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600 block mb-2">Back to</span>
-              <span className="text-2xl font-[1000] uppercase italic text-white group-hover:text-[#bcd647] transition-colors">All Projects</span>
+              <span className="text-2xl font-[1000] uppercase italic text-white group-hover:text-[#006db1] transition-colors">All Projects</span>
             </div>
-            <ArrowRight size={32} className="text-zinc-600 group-hover:text-[#bcd647] group-hover:translate-x-2 transition-all" />
+            <ArrowRight size={32} className="text-zinc-600 group-hover:text-[#006db1] group-hover:translate-x-2 transition-all" />
           </Link>
         </SkewSlide>
       </section>

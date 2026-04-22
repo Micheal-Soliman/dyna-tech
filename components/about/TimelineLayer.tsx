@@ -21,12 +21,12 @@ export default function TimelineLayer({ x, opacity, scale, items, isAr = false }
         {/* Title Block */}
         <div className={`min-w-[200px] md:min-w-[280px] sticky left-0 ${isAr ? 'text-right' : ''}`}>
           <div className={`flex items-center gap-4 mb-6 ${isAr ? 'flex-row-reverse' : ''}`}>
-            <div className="h-[2px] w-16 bg-[#bcd647]" />
-            <span className="text-[#bcd647] font-mono text-xs tracking-[0.3em] uppercase">History</span>
+            <div className="h-[2px] w-16 bg-[#006db1]" />
+            <span className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">History</span>
           </div>
           <h2 className={`text-white text-5xl md:text-8xl font-black italic tracking-tighter leading-none ${isAr ? '[direction:rtl]' : ''}`}>
             THE<br/>
-            <span className="text-[#43becc]">JOURNEY</span>
+            <span className="text-[#0087cb]">JOURNEY</span>
           </h2>
         </div>
         
@@ -40,7 +40,7 @@ export default function TimelineLayer({ x, opacity, scale, items, isAr = false }
             
             {/* Content */}
             <div className="relative z-10">
-              <div className={`w-3 h-3 bg-[#bcd647] rounded-full mb-6 shadow-[0_0_10px_#bcd647] ${isAr ? 'mr-auto' : ''}`} />
+              <div className={`w-3 h-3 bg-[#006db1] rounded-full mb-6 shadow-[0_0_10px_#006db1] ${isAr ? 'mr-auto' : ''}`} />
               <div className="text-white font-black text-2xl md:text-4xl mb-3 tracking-tighter">{item.year}</div>
               <p 
                 dir="auto"

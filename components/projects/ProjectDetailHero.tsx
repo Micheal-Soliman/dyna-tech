@@ -40,7 +40,7 @@ export default function ProjectDetailHero({
       <div className="fixed top-0 left-0 w-full p-6 z-50">
         <Link 
           href="/case-study" 
-          className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#bcd647] transition-colors"
+          className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#006db1] transition-colors"
         >
           <ArrowLeft size={14} />
           Back to Projects
@@ -58,7 +58,7 @@ export default function ProjectDetailHero({
         >
           {/* Status Bar */}
           <motion.div variants={fadeInUp} className="flex items-center gap-4 mb-8">
-            <span className="px-3 py-1 bg-[#bcd647]/20 text-[#bcd647] text-[9px] font-black uppercase tracking-widest border border-[#bcd647]/30">
+            <span className="px-3 py-1 bg-[#006db1]/20 text-[#006db1] text-[9px] font-black uppercase tracking-widest border border-[#006db1]/30">
               {status}
             </span>
             <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-zinc-500 italic">
@@ -79,7 +79,7 @@ export default function ProjectDetailHero({
             <motion.div variants={fadeInUp} className="lg:col-span-4 space-y-4">
               <div className="p-6 bg-zinc-950 border border-white/10">
                 <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Investment Range</p>
-                <p className="text-2xl font-black italic text-[#bcd647]">{investment}</p>
+                <p className="text-2xl font-black italic text-[#006db1]">{investment}</p>
               </div>
               <div className="p-6 bg-zinc-950 border border-white/10">
                 <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Timeline</p>

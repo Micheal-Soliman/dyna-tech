@@ -26,16 +26,16 @@ function BackgroundDecoration() {
       <div 
         className="absolute inset-0 opacity-[0.15]"
         style={{
-          backgroundImage: `linear-gradient(#43becc22 1px, transparent 1px), linear-gradient(90deg, #43becc22 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(#0087cb22 1px, transparent 1px), linear-gradient(90deg, #0087cb22 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
       
       {/* Gradient Orbs - positioned within viewport */}
       <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-10 left-10 w-[350px] h-[350px] bg-[#43becc]/25 rounded-full blur-[90px]" />
-        <div className="absolute bottom-10 right-10 w-[250px] h-[250px] bg-[#bcd647]/20 rounded-full blur-[70px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#43becc]/10 rounded-full blur-[120px]" />
+        <div className="absolute top-10 left-10 w-[350px] h-[350px] bg-[#0087cb]/25 rounded-full blur-[90px]" />
+        <div className="absolute bottom-10 right-10 w-[250px] h-[250px] bg-[#006db1]/20 rounded-full blur-[70px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0087cb]/10 rounded-full blur-[120px]" />
       </div>
     </div>
   );

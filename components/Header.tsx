@@ -64,10 +64,14 @@ export function Header() {
         <div className="mx-auto max-w-7xl px-6 flex items-center justify-between gap-8">
           
           {/* LOGO */}
-          <Link href={`/${currentLocale}`} className="relative group shrink-0">
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-white group-hover:text-[#43becc] transition-colors duration-300">
-              DYNA<span className="text-[#43becc]">TECH</span>
-            </span>
+          <Link href={`/${currentLocale}`} className="relative group flex items-center shrink-0">
+            <div className="h-10 md:h-12 w-[150px] md:w-[190px] overflow-hidden">
+              <img
+                src="/logo.png"
+                alt="DYNATECH"
+                className="w-full h-full object-cover object-left object-bottom transition-opacity duration-300 group-hover:opacity-80"
+              />
+            </div>
           </Link>
 
           {/* DESKTOP NAV */}
@@ -85,7 +89,7 @@ export function Header() {
                   {isActive && (
                     <motion.div
                       layoutId="nav-pill"
-                      className="absolute inset-0 bg-[#43becc] rounded-full z-0 shadow-[0_0_15px_rgba(67,190,204,0.5)]"
+                      className="absolute inset-0 bg-[#0087cb] rounded-full z-0 shadow-[0_0_15px_rgba(0,135,203,0.5)]"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -97,11 +101,11 @@ export function Header() {
 
           {/* ACTIONS */}
           <div className="flex items-center gap-3 shrink-0">
-            <LocaleSwitcher className="hidden md:flex text-white hover:text-[#43becc] transition-colors text-[10px] font-black uppercase bg-transparent border-none px-2" />
+            <LocaleSwitcher className="hidden md:flex text-white hover:text-[#0087cb] transition-colors text-[10px] font-black uppercase bg-transparent border-none px-2" />
             
             <Link
               href={`/${currentLocale}/contact`}
-              className="group hidden md:flex relative items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest overflow-hidden transition-all hover:bg-[#43becc] hover:text-white"
+              className="group hidden md:flex relative items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest overflow-hidden transition-all hover:bg-[#0087cb] hover:text-white"
             >
               <span className="relative z-10">{labels.demo}</span>
               <ArrowRight size={14} className="relative z-10" />
@@ -140,7 +144,7 @@ export function Header() {
               className={`fixed top-0 ${isAr ? 'right-0' : 'left-0'} bottom-0 w-[80%] max-w-[320px] bg-black border-${isAr ? 'l' : 'r'} border-white/10 z-[120] lg:hidden shadow-2xl flex flex-col`}
             >
               <div className="p-6 flex items-center justify-between border-b border-white/5">
-                <span className="text-[#43becc] font-black text-sm uppercase tracking-tighter">Menu</span>
+                <span className="text-[#0087cb] font-black text-sm uppercase tracking-tighter">Menu</span>
                 <button onClick={() => setIsMenuOpen(false)} className="text-white p-1">
                   <X size={24} />
                 </button>
@@ -154,7 +158,7 @@ export function Header() {
                       key={item.href}
                       href={item.href}
                       className={`block text-2xl font-black uppercase tracking-tighter transition-all ${
-                        isActive ? "text-[#43becc] translate-x-2" : "text-zinc-500 hover:text-white"
+                        isActive ? "text-[#0087cb] translate-x-2" : "text-zinc-500 hover:text-white"
                       }`}
                     >
                       {item.label}
@@ -167,7 +171,7 @@ export function Header() {
                 <LocaleSwitcher className="justify-start p-0 text-white font-bold" />
                 <Link
                   href={`/${currentLocale}/contact`}
-                  className="flex items-center justify-center w-full bg-[#43becc] text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest"
+                  className="flex items-center justify-center w-full bg-[#0087cb] text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest"
                 >
                   {labels.demo}
                 </Link>

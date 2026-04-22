@@ -32,7 +32,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                className="group p-10 bg-zinc-950/50 border border-white/5 hover:border-[#bcd647]/30 transition-all flex flex-col justify-between aspect-[4/5] relative overflow-hidden cursor-pointer h-full"
+                className="group p-10 bg-zinc-950/50 border border-white/5 hover:border-[#006db1]/30 transition-all flex flex-col justify-between aspect-[4/5] relative overflow-hidden cursor-pointer h-full"
               >
                 <div className="space-y-6 relative z-10">
                   <div className="flex justify-between items-center">
@@ -50,7 +50,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                 <div className="space-y-6 relative z-10">
                   <p className="text-sm text-zinc-500 italic leading-relaxed">&ldquo;{project.desc}&rdquo;</p>
                   <div className="pt-6 border-t border-white/5 flex justify-between items-end">
-                    <p className="text-lg font-black italic text-[#bcd647] tracking-tighter">{project.metric}</p>
+                    <p className="text-lg font-black italic text-[#006db1] tracking-tighter">{project.metric}</p>
                     <ArrowUpRight size={20} className="text-zinc-800 group-hover:text-white transition-all" />
                   </div>
                 </div>

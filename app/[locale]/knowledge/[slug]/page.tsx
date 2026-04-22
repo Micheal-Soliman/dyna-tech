@@ -27,7 +27,7 @@ const ARTICLES: Record<string, {
     date: "January 15, 2026",
     author: "Eng. Ahmed Sorour",
     category: "E-Mobility",
-    categoryColor: "#43becc",
+    categoryColor: "#0087cb",
     reportId: "061",
     readTime: "8_Min_Read",
     excerpt: "Analyzing the rapid expansion of charging networks and government incentives driving electric vehicle adoption across major Egyptian cities."
@@ -38,7 +38,7 @@ const ARTICLES: Record<string, {
     date: "January 10, 2026",
     author: "DYNATECH Team",
     category: "Energy Storage",
-    categoryColor: "#bcd647",
+    categoryColor: "#006db1",
     reportId: "058",
     readTime: "10_Min_Read",
     excerpt: "Exploring how solid-state technology could revolutionize grid-scale storage and EV range capabilities in the region."
@@ -49,7 +49,7 @@ const ARTICLES: Record<string, {
     date: "January 5, 2026",
     author: "Eng. Ahmed Sorour",
     category: "Lightweight Materials",
-    categoryColor: "#43becc",
+    categoryColor: "#0087cb",
     reportId: "055",
     readTime: "6_Min_Read",
     excerpt: "Why lightweight materials are becoming critical for EV efficiency and how local manufacturing can reduce costs."
@@ -60,7 +60,7 @@ const ARTICLES: Record<string, {
     date: "December 28, 2025",
     author: "DYNATECH Team",
     category: "Industry News",
-    categoryColor: "#bcd647",
+    categoryColor: "#006db1",
     reportId: "052",
     readTime: "12_Min_Read",
     excerpt: "Understanding the government's vision for transforming Egypt into a leading automotive manufacturing destination."
@@ -71,7 +71,7 @@ const ARTICLES: Record<string, {
     date: "December 20, 2025",
     author: "Eng. Ahmed Sorour",
     category: "E-Mobility",
-    categoryColor: "#43becc",
+    categoryColor: "#0087cb",
     reportId: "049",
     readTime: "9_Min_Read",
     excerpt: "Addressing the unique cooling challenges posed by desert climates and high-temperature operating conditions."
@@ -82,7 +82,7 @@ const ARTICLES: Record<string, {
     date: "December 15, 2025",
     author: "DYNATECH Team",
     category: "Energy Storage",
-    categoryColor: "#bcd647",
+    categoryColor: "#006db1",
     reportId: "046",
     readTime: "7_Min_Read",
     excerpt: "Why sodium-ion technology is gaining traction for stationary storage applications in emerging markets."
@@ -93,7 +93,7 @@ const ARTICLES: Record<string, {
     date: "December 10, 2025",
     author: "Eng. Ahmed Sorour",
     category: "E-Mobility",
-    categoryColor: "#43becc",
+    categoryColor: "#0087cb",
     reportId: "042",
     readTime: "8_Min_Read",
     excerpt: "Analyzing the shift from fixed-chassis engineering to modular 'Skateboard' architectures in the 2026 European market."
@@ -104,7 +104,7 @@ const ARTICLES: Record<string, {
     date: "December 5, 2025",
     author: "DYNATECH Team",
     category: "E-Mobility",
-    categoryColor: "#43becc",
+    categoryColor: "#0087cb",
     reportId: "038",
     readTime: "6_Min_Read",
     excerpt: "Best practices for maintaining battery health through advanced cooling systems in extreme climates."
@@ -116,18 +116,18 @@ export default function ArticleDetail() {
   const slug = params.slug as string;
   const article = ARTICLES[slug] || ARTICLES["modular-ev-platforms"];
   return (
-    <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#bcd647] selection:text-black min-h-screen pb-24">
+    <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#006db1] selection:text-black min-h-screen pb-24">
       
       {/* --- 1. TOP NAVIGATION --- */}
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/knowledge" className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#bcd647] transition-colors">
+          <Link href="/knowledge" className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#006db1] transition-colors">
             <ArrowLeft size={14} /> Back_to_Archives
           </Link>
           <div className="flex gap-6">
             <button className="text-zinc-500 hover:text-white transition-colors"><Share2 size={16} /></button>
             <button className="text-zinc-500 hover:text-white transition-colors"><Printer size={16} /></button>
-            <button className="px-4 py-1 bg-[#bcd647] text-black text-[9px] font-[1000] uppercase tracking-tighter">Download_PDF</button>
+            <button className="px-4 py-1 bg-[#006db1] text-black text-[9px] font-[1000] uppercase tracking-tighter">Download_PDF</button>
           </div>
         </div>
       </nav>
@@ -135,7 +135,7 @@ export default function ArticleDetail() {
       {/* --- ARTICLE HERO - Editorial Style --- */}
       <header className="pt-28 pb-20 px-6 md:px-16 lg:px-32 border-b-2 border-white/5 relative overflow-hidden">
         {/* Subtle Background Accent */}
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#bcd647]/5 blur-[100px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#006db1]/5 blur-[100px] rounded-full pointer-events-none" />
         
         <div className="max-w-4xl mx-auto relative z-10">
           {/* Top Meta Bar */}
@@ -177,7 +177,7 @@ export default function ArticleDetail() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-[1000] italic text-white uppercase tracking-tighter leading-[0.95]">
               {article.title}
             </h1>
-            <p className="text-xl md:text-2xl font-light italic text-[#bcd647] tracking-tight">
+            <p className="text-xl md:text-2xl font-light italic text-[#006db1] tracking-tight">
               {article.subtitle}
             </p>
           </div>
@@ -186,7 +186,7 @@ export default function ArticleDetail() {
           <div className="flex flex-col md:flex-row gap-8 md:gap-12">
             {/* Author Card */}
             <div className="flex items-center gap-4 p-4 bg-zinc-950/30 border border-white/5 min-w-fit">
-              <div className="w-12 h-12 bg-[#bcd647] rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-[#006db1] rounded-full flex items-center justify-center">
                 <User size={20} className="text-black" />
               </div>
               <div>
@@ -198,7 +198,7 @@ export default function ArticleDetail() {
             </div>
             
             {/* Excerpt */}
-            <p className="text-lg text-zinc-400 italic font-light leading-relaxed border-l-2 border-[#bcd647]/30 pl-6">
+            <p className="text-lg text-zinc-400 italic font-light leading-relaxed border-l-2 border-[#006db1]/30 pl-6">
               {article.excerpt}
             </p>
           </div>
@@ -211,14 +211,14 @@ export default function ArticleDetail() {
         {/* LEFT SIDEBAR: TECH SPECS */}
         <aside className="lg:col-span-3 space-y-12 order-2 lg:order-1">
           <div className="p-6 border border-white/5 bg-zinc-950/50 space-y-6">
-            <h4 className="text-[10px] font-black text-[#bcd647] uppercase tracking-[0.3em] border-b border-white/5 pb-4">Document_Metadata</h4>
+            <h4 className="text-[10px] font-black text-[#006db1] uppercase tracking-[0.3em] border-b border-white/5 pb-4">Document_Metadata</h4>
             
             <div className="space-y-4">
               {[
                 { label: "Status", value: "Verified", color: "text-green-500" },
                 { label: "Published", value: article.date, color: "text-white" },
                 { label: "Author", value: article.author, color: "text-white" },
-                { label: "Category", value: article.category, color: "text-[#bcd647]" },
+                { label: "Category", value: article.category, color: "text-[#006db1]" },
               ].map((item, i) => (
                 <div key={i} className="flex justify-between items-center text-[10px]">
                   <span className="text-zinc-600 font-bold uppercase">{item.label}:</span>
@@ -232,7 +232,7 @@ export default function ArticleDetail() {
             <h4 className="text-[10px] font-black text-white uppercase tracking-[0.3em]">Related_Tags</h4>
             <div className="flex flex-wrap gap-2">
               {["Chassis", "EV_Safety", "Modular", "R&D"].map(tag => (
-                <span key={tag} className="px-2 py-1 bg-zinc-900 text-zinc-500 text-[8px] font-black uppercase hover:text-[#bcd647] cursor-pointer transition-colors">#{tag}</span>
+                <span key={tag} className="px-2 py-1 bg-zinc-900 text-zinc-500 text-[8px] font-black uppercase hover:text-[#006db1] cursor-pointer transition-colors">#{tag}</span>
               ))}
             </div>
           </div>
@@ -249,11 +249,11 @@ export default function ArticleDetail() {
 
             <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter mt-12 mb-6">01. Structural Integrity & Flexibility</h3>
             <p className="leading-loose text-zinc-400">
-              Unlike traditional unibody designs, a modular platform integrates the battery pack, motors, and suspension into a single, low-profile unit. This not only lowers the center of gravity by <span className="text-[#bcd647]">15-20%</span> but also provides a standardized interface for various body styles&mdash;from compact city cars to heavy-duty logistics vans.
+              Unlike traditional unibody designs, a modular platform integrates the battery pack, motors, and suspension into a single, low-profile unit. This not only lowers the center of gravity by <span className="text-[#006db1]">15-20%</span> but also provides a standardized interface for various body styles&mdash;from compact city cars to heavy-duty logistics vans.
             </p>
 
             {/* DATA BLOCK INSET */}
-            <div className="my-12 p-8 bg-zinc-950 border-l-4 border-[#bcd647] grid md:grid-cols-3 gap-8">
+            <div className="my-12 p-8 bg-zinc-950 border-l-4 border-[#006db1] grid md:grid-cols-3 gap-8">
               <div>
                 <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Weight_Reduction</p>
                 <p className="text-3xl font-black text-white italic">-120kg</p>
@@ -280,11 +280,11 @@ export default function ArticleDetail() {
             <p className="text-3xl font-light italic text-white leading-snug">
               &ldquo;Modularity is not just about cost-cutting; it&apos;s about the democratization of high-performance EV technology.&rdquo;
             </p>
-            <footer className="mt-6 text-[10px] font-black text-[#bcd647] uppercase tracking-widest">&mdash; Head of R&D, DYNATECH</footer>
+            <footer className="mt-6 text-[10px] font-black text-[#006db1] uppercase tracking-widest">&mdash; Head of R&D, DYNATECH</footer>
           </blockquote>
 
           {/* CTA / CONTACT */}
-          <div className="p-12 bg-zinc-950 border-2 border-[#bcd647]">
+          <div className="p-12 bg-zinc-950 border-2 border-[#006db1]">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div className="space-y-2">
                 <h4 className="text-2xl font-[1000] uppercase tracking-tighter italic text-white">Discuss This Topic?</h4>
@@ -294,7 +294,7 @@ export default function ArticleDetail() {
               </div>
               <Link 
                 href="/contact"
-                className="flex items-center gap-4 bg-[#bcd647] text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-colors"
+                className="flex items-center gap-4 bg-[#006db1] text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-colors"
               >
                 Contact Us <ArrowRight size={16} />
               </Link>
@@ -309,9 +309,9 @@ export default function ArticleDetail() {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="flex-1 bg-black border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#bcd647] outline-none"
+                className="flex-1 bg-black border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#006db1] outline-none"
               />
-              <button className="flex items-center justify-center gap-4 bg-white text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#bcd647] transition-colors">
+              <button className="flex items-center justify-center gap-4 bg-white text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#006db1] transition-colors">
                 Subscribe <Mail size={16} />
               </button>
             </div>
@@ -324,7 +324,7 @@ export default function ArticleDetail() {
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex justify-between items-end">
             <h5 className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-600 italic">Continue_Reading //</h5>
-            <button className="text-[9px] font-black uppercase tracking-widest text-[#bcd647] flex items-center gap-2">View_All <ChevronRight size={14}/></button>
+            <button className="text-[9px] font-black uppercase tracking-widest text-[#006db1] flex items-center gap-2">View_All <ChevronRight size={14}/></button>
           </div>
           
           <div className="grid md:grid-cols-3 gap-1">
@@ -334,7 +334,7 @@ export default function ArticleDetail() {
               { title: "The Impact of Recycled Aluminum", cat: "Materials" },
             ].map((rel, i) => (
               <div key={i} className="p-8 bg-zinc-950/50 border border-white/5 hover:bg-zinc-900 transition-all cursor-pointer group">
-                <span className="text-[8px] font-black text-[#bcd647] uppercase tracking-widest">{rel.cat}</span>
+                <span className="text-[8px] font-black text-[#006db1] uppercase tracking-widest">{rel.cat}</span>
                 <h6 className="text-lg font-black text-white uppercase italic tracking-tighter mt-2 group-hover:underline">{rel.title}</h6>
               </div>
             ))}

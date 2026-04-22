@@ -11,10 +11,10 @@ import Link from "next/link";
 // --- CATEGORIES ---
 const CATEGORIES = [
   { id: "all", label: "All Insights", icon: null },
-  { id: "e-mobility", label: "E-Mobility", icon: <Zap size={14} />, color: "#43becc" },
-  { id: "energy-storage", label: "Energy Storage", icon: <Battery size={14} />, color: "#bcd647" },
-  { id: "lightweight-materials", label: "Lightweight Materials", icon: <Microscope size={14} />, color: "#43becc" },
-  { id: "industry-news", label: "Industry News", icon: <Factory size={14} />, color: "#bcd647" }
+  { id: "e-mobility", label: "E-Mobility", icon: <Zap size={14} />, color: "#0087cb" },
+  { id: "energy-storage", label: "Energy Storage", icon: <Battery size={14} />, color: "#006db1" },
+  { id: "lightweight-materials", label: "Lightweight Materials", icon: <Microscope size={14} />, color: "#0087cb" },
+  { id: "industry-news", label: "Industry News", icon: <Factory size={14} />, color: "#006db1" }
 ];
 
 // --- ARTICLES DATA ---
@@ -81,7 +81,7 @@ export default function KnowledgeHub() {
   });
 
   return (
-    <div className="bg-black text-white font-mono selection:bg-[#bcd647] selection:text-black min-h-screen">
+    <div className="bg-black text-white font-mono selection:bg-[#006db1] selection:text-black min-h-screen">
       
       {/* --- KNOWLEDGE HERO - Centered Layout --- */}
       <header className="pt-32 pb-24 px-6 md:px-16 lg:px-32 border-b-2 border-white/5 relative overflow-hidden">
@@ -92,22 +92,22 @@ export default function KnowledgeHub() {
         }} />
         
         {/* Single Accent Glow - Top Left */}
-        <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-[#43becc]/15 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute -top-20 -left-20 w-[400px] h-[400px] bg-[#0087cb]/15 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="max-w-5xl mx-auto relative z-10 text-center space-y-12">
           {/* Kicker */}
           <div className="flex flex-col items-center justify-center gap-2">
-            <BookOpen size={18} className="text-[#bcd647]" />
-            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-[#bcd647]">
+            <BookOpen size={18} className="text-[#006db1]" />
+            <span className="text-[10px] font-black tracking-[0.4em] uppercase text-[#006db1]">
               KNOWLEDGE HUB
             </span>
-            <div className="w-16 h-px bg-[#bcd647]/50" />
+            <div className="w-16 h-px bg-[#006db1]/50" />
           </div>
           
           {/* Title - Centered */}
           <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-[1000] tracking-tighter uppercase italic leading-[0.9]">
             <span className="text-white">Technical</span> <br/>
-            <span className="text-[#43becc]">Insights.</span>
+            <span className="text-[#0087cb]">Insights.</span>
           </h1>
           
           {/* Subtitle */}
@@ -118,12 +118,12 @@ export default function KnowledgeHub() {
           {/* Quick Stats Row */}
           <div className="flex justify-center gap-12 pt-8">
             <div className="flex items-center gap-3">
-              <span className="text-2xl font-[1000] text-[#bcd647]">6</span>
+              <span className="text-2xl font-[1000] text-[#006db1]">6</span>
               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600">Articles</span>
             </div>
             <div className="w-px h-8 bg-white/10" />
             <div className="flex items-center gap-3">
-              <span className="text-2xl font-[1000] text-[#43becc]">4</span>
+              <span className="text-2xl font-[1000] text-[#0087cb]">4</span>
               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600">Categories</span>
             </div>
             <div className="w-px h-8 bg-white/10" />
@@ -147,7 +147,7 @@ export default function KnowledgeHub() {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-zinc-950 border border-white/10 p-4 pl-12 text-[10px] font-black uppercase tracking-widest focus:border-[#bcd647] outline-none transition-all"
+              className="w-full bg-zinc-950 border border-white/10 p-4 pl-12 text-[10px] font-black uppercase tracking-widest focus:border-[#006db1] outline-none transition-all"
             />
           </div>
 
@@ -159,8 +159,8 @@ export default function KnowledgeHub() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`flex items-center gap-2 px-5 py-3 border text-[9px] font-black uppercase tracking-widest transition-all ${
                   activeCategory === cat.id 
-                    ? 'bg-[#bcd647] text-black border-[#bcd647]' 
-                    : 'bg-transparent text-zinc-500 border-white/10 hover:border-[#bcd647] hover:text-white'
+                    ? 'bg-[#006db1] text-black border-[#006db1]' 
+                    : 'bg-transparent text-zinc-500 border-white/10 hover:border-[#006db1] hover:text-white'
                 }`}
               >
                 {cat.icon && <span style={{ color: activeCategory === cat.id ? 'black' : cat.color }}>{cat.icon}</span>}
@@ -173,7 +173,7 @@ export default function KnowledgeHub() {
         {/* --- ARTICLES GRID --- */}
         <section className="pb-24">
           <div className="flex items-center gap-4 mb-12">
-            <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#43becc] italic">
+            <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#0087cb] italic">
               // {filteredArticles.length} ARTICLES_FOUND
             </span>
             <div className="h-px flex-grow bg-white/5" />
@@ -195,7 +195,7 @@ export default function KnowledgeHub() {
                   <div className="flex items-center justify-between">
                     <span 
                       className="text-[9px] font-black uppercase tracking-widest"
-                      style={{ color: category?.color || '#bcd647' }}
+                      style={{ color: category?.color || '#006db1' }}
                     >
                       {category?.label}
                     </span>
@@ -206,7 +206,7 @@ export default function KnowledgeHub() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-xl font-[1000] uppercase italic tracking-tighter leading-tight group-hover:text-[#43becc] transition-colors">
+                  <h3 className="text-xl font-[1000] uppercase italic tracking-tighter leading-tight group-hover:text-[#0087cb] transition-colors">
                     {article.title}
                   </h3>
 
@@ -226,8 +226,8 @@ export default function KnowledgeHub() {
                     href={`/knowledge/${article.slug}`}
                     className="flex items-center gap-3 text-[9px] font-black uppercase tracking-widest pt-4 border-t border-white/5 group/link"
                   >
-                    <span className="text-zinc-500 group-hover/link:text-[#bcd647] transition-colors">Read More</span>
-                    <ArrowRight size={14} className="text-zinc-600 group-hover/link:text-[#bcd647] group-hover/link:translate-x-1 transition-all" />
+                    <span className="text-zinc-500 group-hover/link:text-[#006db1] transition-colors">Read More</span>
+                    <ArrowRight size={14} className="text-zinc-600 group-hover/link:text-[#006db1] group-hover/link:translate-x-1 transition-all" />
                   </Link>
                 </motion.div>
               );
@@ -247,11 +247,11 @@ export default function KnowledgeHub() {
         <section className="py-24 border-t-2 border-white/5">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <div className="space-y-4">
-              <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#bcd647] italic">
+              <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#006db1] italic">
                 // STAY_INFORMED
               </span>
               <h2 className="text-4xl md:text-5xl font-[1000] uppercase italic tracking-tighter">
-                Subscribe to Our <span className="text-[#43becc]">Insights.</span>
+                Subscribe to Our <span className="text-[#0087cb]">Insights.</span>
               </h2>
             </div>
             <p className="text-sm text-zinc-500 font-bold uppercase tracking-widest leading-loose italic">
@@ -261,9 +261,9 @@ export default function KnowledgeHub() {
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="flex-1 bg-zinc-950 border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#bcd647] outline-none transition-all"
+                className="flex-1 bg-zinc-950 border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#006db1] outline-none transition-all"
               />
-              <button className="px-8 py-4 bg-[#bcd647] text-black text-[10px] font-[1000] uppercase tracking-[0.4em] hover:bg-white transition-all flex items-center justify-center gap-3">
+              <button className="px-8 py-4 bg-[#006db1] text-black text-[10px] font-[1000] uppercase tracking-[0.4em] hover:bg-white transition-all flex items-center justify-center gap-3">
                 Subscribe <Mail size={16} />
               </button>
             </div>

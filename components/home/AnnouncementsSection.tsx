@@ -65,7 +65,7 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
       onPointerEnter={handlePointerEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      className="group relative rounded-[40px] border border-white/10 bg-white/[0.02] p-10 overflow-hidden transition-all duration-500 hover:border-[#43becc]/50"
+      className="group relative rounded-[40px] border border-white/10 bg-white/[0.02] p-10 overflow-hidden transition-all duration-500 hover:border-[#0087cb]/50"
     >
       {/* تأثير الـ Spotlight (الإضاءة اللي بتلحق الماوس) */}
       {!reduceMotion ? (
@@ -75,7 +75,7 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
             background: useMotionTemplate`
               radial-gradient(
                 650px circle at ${mouseX}px ${mouseY}px,
-                rgba(67, 190, 204, 0.15),
+                rgba(0, 135, 203, 0.15),
                 transparent 80%
               )
             `,
@@ -86,11 +86,11 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
       <div className="relative z-10 flex flex-col h-full justify-between">
         <div>
           <div className="flex items-center gap-4 mb-8">
-            <div className="h-px w-8 bg-[#bcd647]" />
+            <div className="h-px w-8 bg-[#006db1]" />
             <span
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-[11px] font-black text-[#bcd647] tracking-[0.3em] uppercase"
+              className="text-[11px] font-black text-[#006db1] tracking-[0.3em] uppercase"
             >
               {a.date}
             </span>
@@ -99,7 +99,7 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
           <h3
             dir="auto"
             style={{ unicodeBidi: "plaintext" }}
-            className="text-2xl font-bold text-white mb-5 leading-tight group-hover:text-[#43becc] transition-colors duration-300"
+            className="text-2xl font-bold text-white mb-5 leading-tight group-hover:text-[#0087cb] transition-colors duration-300"
           >
             {a.title}
           </h3>
@@ -123,21 +123,21 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
             <span
               dir="ltr"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-2xl leading-none text-[#43becc] translate-y-[-2px]"
+              className="text-2xl leading-none text-[#0087cb] translate-y-[-2px]"
             >
               {readMoreArrow}
             </span>
           </motion.a>
 
           {/* أيقونة ديكورية صغيرة تتفاعل مع الهوفر */}
-          <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:border-[#43becc]/30 group-hover:bg-[#43becc]/5 transition-all duration-500">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#43becc] animate-pulse" />
+          <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:border-[#0087cb]/30 group-hover:bg-[#0087cb]/5 transition-all duration-500">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#0087cb] animate-pulse" />
           </div>
         </div>
       </div>
 
       {/* لمسة نهائية: خط نيون خفي في الأسفل */}
-      <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#43becc] to-transparent w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
+      <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#0087cb] to-transparent w-full scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
     </motion.div>
   );
 }
@@ -163,7 +163,7 @@ export function AnnouncementsSection({
     <section className="py-32 bg-[#121b43] font-['Montserrat',sans-serif] relative overflow-hidden">
 
       {/* دوائر خلفية ضوئية لزيادة الفخامة */}
-      <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-[#43becc]/5 blur-[120px] rounded-full" />
+      <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-[#0087cb]/5 blur-[120px] rounded-full" />
       <div className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-[#8e257a]/5 blur-[120px] rounded-full" />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -176,8 +176,8 @@ export function AnnouncementsSection({
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-[2px] bg-[#43becc]" />
-              <span className="text-[#43becc] font-black tracking-[0.4em] text-[10px] uppercase">{kicker}</span>
+              <div className="w-12 h-[2px] bg-[#0087cb]" />
+              <span className="text-[#0087cb] font-black tracking-[0.4em] text-[10px] uppercase">{kicker}</span>
             </div>
 
             <h2 className="text-white text-5xl md:text-7xl font-black tracking-tighter leading-none">
@@ -231,8 +231,8 @@ export function AnnouncementsSection({
             <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#121b43] transition-colors duration-300">
               View All News
             </span>
-            <div className="absolute inset-0 border border-white/20 group-hover:bg-[#43becc] group-hover:border-[#43becc] transition-all duration-300" />
-            <div className="absolute bottom-0 right-0 w-2 h-2 bg-[#bcd647]" />
+            <div className="absolute inset-0 border border-white/20 group-hover:bg-[#0087cb] group-hover:border-[#0087cb] transition-all duration-300" />
+            <div className="absolute bottom-0 right-0 w-2 h-2 bg-[#006db1]" />
           </a>
         </motion.div>
       </div>

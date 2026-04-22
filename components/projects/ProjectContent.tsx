@@ -45,7 +45,7 @@ export default function ProjectContent({ description, challenge, solution, specs
         className="space-y-6"
       >
         <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-white">
-          <span className="w-12 h-[1px] bg-[#bcd647]" /> 01_The_Challenge
+          <span className="w-12 h-[1px] bg-[#006db1]" /> 01_The_Challenge
         </h2>
         <p className="text-lg font-light leading-relaxed italic text-zinc-400 pl-18">
           {challenge}
@@ -60,8 +60,8 @@ export default function ProjectContent({ description, challenge, solution, specs
         variants={fadeInUp}
         className="space-y-6"
       >
-        <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-[#bcd647]">
-          <span className="w-12 h-[1px] bg-[#bcd647]" /> 02_The_Solution
+        <h2 className="text-xl font-black italic uppercase tracking-widest flex items-center gap-6 text-[#006db1]">
+          <span className="w-12 h-[1px] bg-[#006db1]" /> 02_The_Solution
         </h2>
         <p className="text-lg font-light leading-relaxed italic text-zinc-400 pl-18">
           {solution}

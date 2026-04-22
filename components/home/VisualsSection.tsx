@@ -143,7 +143,7 @@ export default function VisualsSection({
         style={{
           x: bgMoveX,
           y: bgMoveY,
-          backgroundImage: `linear-gradient(#43becc 1px, transparent 1px), linear-gradient(90deg, #43becc 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(#0087cb 1px, transparent 1px), linear-gradient(90deg, #0087cb 1px, transparent 1px)`,
           backgroundSize: "80px 80px",
           maskImage: "radial-gradient(circle at center, black, transparent 80%)",
         }}
@@ -166,7 +166,7 @@ export default function VisualsSection({
                   repeat: Infinity,
                   delay: p.delay,
                 }}
-                className="absolute w-1.5 h-1.5 bg-[#43becc] rounded-full blur-[1px]"
+                className="absolute w-1.5 h-1.5 bg-[#0087cb] rounded-full blur-[1px]"
                 style={{
                   top: p.top,
                   left: p.left,
@@ -177,7 +177,7 @@ export default function VisualsSection({
       </div>
 
       {/* 3. توهجات السديم (Nebula Glows) */}
-      <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-[#43becc]/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-[#0087cb]/10 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 -right-32 w-[600px] h-[600px] bg-[#8e257a]/10 blur-[150px] rounded-full pointer-events-none" />
 
       {/* --- العنوان الرئيسي --- */}
@@ -185,13 +185,13 @@ export default function VisualsSection({
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="inline-block px-6 py-1.5 border border-[#43becc]/40 rounded-full mb-6 bg-[#43becc]/5"
+          className="inline-block px-6 py-1.5 border border-[#0087cb]/40 rounded-full mb-6 bg-[#0087cb]/5"
         >
-          <span className="text-[#43becc] text-[10px] font-black tracking-[0.5em] uppercase">{badge}</span>
+          <span className="text-[#0087cb] text-[10px] font-black tracking-[0.5em] uppercase">{badge}</span>
         </motion.div>
         <h2 className="text-white text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none">
           {titlePrefix}{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#43becc] via-white to-[#bcd647]">{titleHighlight}</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] via-white to-[#006db1]">{titleHighlight}</span>
         </h2>
       </div>
 
@@ -199,10 +199,10 @@ export default function VisualsSection({
       <div className="relative w-full max-w-7xl h-[550px] flex items-center justify-center z-10">
         {/* زر السهم لليسار */}
         <motion.button
-          whileHover={{ scale: 1.1, x: -5, backgroundColor: "rgba(67, 190, 204, 0.15)" }}
+          whileHover={{ scale: 1.1, x: -5, backgroundColor: "rgba(0, 135, 203, 0.15)" }}
           whileTap={{ scale: 0.9 }}
           onClick={prevStep}
-          className="hidden md:flex absolute left-4 md:left-8 z-50 p-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl text-[#43becc] shadow-2xl transition-all"
+          className="hidden md:flex absolute left-4 md:left-8 z-50 p-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl text-[#0087cb] shadow-2xl transition-all"
         >
           <ChevronLeft size={36} strokeWidth={2.5} />
         </motion.button>
@@ -258,7 +258,7 @@ export default function VisualsSection({
                       className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       alt={img.title}
                       onError={(e) => {
-                        e.currentTarget.src = "https://via.placeholder.com/800x600/121b43/43becc?text=Raptors+Creative";
+                        e.currentTarget.src = "https://via.placeholder.com/800x600/121b43/0087cb?text=Raptors+Creative";
                       }}
                     />
                     <div className="absolute inset-0 rounded-[60px] border border-white/20 pointer-events-none" />
@@ -275,7 +275,7 @@ export default function VisualsSection({
                         initial={{ x: -20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-[#bcd647] text-[#0a0f29] text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4"
+                        className="bg-[#006db1] text-[#0a0f29] text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest mb-4"
                       >
                         {img.status}
                       </motion.span>
@@ -292,7 +292,7 @@ export default function VisualsSection({
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.1 }}
-                        className="text-[#43becc] text-sm md:text-lg font-bold uppercase tracking-widest opacity-80"
+                        className="text-[#0087cb] text-sm md:text-lg font-bold uppercase tracking-widest opacity-80"
                       >
                         {img.details}
                       </motion.p>
@@ -307,7 +307,7 @@ export default function VisualsSection({
                           initial={{ x: "-100%" }}
                           animate={{ x: 0 }}
                           transition={{ delay: 0.5, duration: 0.8 }}
-                          className="h-full bg-[#43becc]"
+                          className="h-full bg-[#0087cb]"
                         />
                       </motion.div>
                     </motion.div>
@@ -320,10 +320,10 @@ export default function VisualsSection({
 
         {/* زر السهم لليمين */}
         <motion.button
-          whileHover={{ scale: 1.1, x: 5, backgroundColor: "rgba(67, 190, 204, 0.15)" }}
+          whileHover={{ scale: 1.1, x: 5, backgroundColor: "rgba(0, 135, 203, 0.15)" }}
           whileTap={{ scale: 0.9 }}
           onClick={nextStep}
-          className="hidden md:flex absolute right-4 md:right-8 z-50 p-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl text-[#43becc] shadow-2xl transition-all"
+          className="hidden md:flex absolute right-4 md:right-8 z-50 p-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-2xl text-[#0087cb] shadow-2xl transition-all"
         >
           <ChevronRight size={36} strokeWidth={2.5} />
         </motion.button>
@@ -335,7 +335,7 @@ export default function VisualsSection({
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`h-2 rounded-full transition-all duration-700 ${i === index ? 'w-20 bg-[#43becc]' : 'w-4 bg-white/10 hover:bg-white/30'}`}
+            className={`h-2 rounded-full transition-all duration-700 ${i === index ? 'w-20 bg-[#0087cb]' : 'w-4 bg-white/10 hover:bg-white/30'}`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
@@ -352,7 +352,7 @@ export default function VisualsSection({
           <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#0a0f29] transition-colors duration-500">
             View All Projects & Investment Opportunities
           </span>
-          <div className="absolute inset-0 bg-[#43becc] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+          <div className="absolute inset-0 bg-[#0087cb] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
           {/* أيقونة السهم */}
           <span className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all group-hover:right-6">
             <ChevronRight className="text-[#0a0f29] w-5 h-5" />

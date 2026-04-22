@@ -23,12 +23,12 @@ export default function ProjectSidebar({ techStack, deliverables, partner, conta
         {/* Tech Stack */}
         <div className="space-y-6">
           <div className="flex items-center gap-2">
-            <Layers className="text-[#bcd647]" size={18} />
+            <Layers className="text-[#006db1]" size={18} />
             <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Tech_Stack</h4>
           </div>
           <div className="flex flex-wrap gap-2">
             {techStack.map(s => (
-              <span key={s} className="px-3 py-2 bg-[#bcd647]/10 border border-[#bcd647]/20 text-[9px] font-bold text-[#bcd647]">{s}</span>
+              <span key={s} className="px-3 py-2 bg-[#006db1]/10 border border-[#006db1]/20 text-[9px] font-bold text-[#006db1]">{s}</span>
             ))}
           </div>
         </div>
@@ -36,13 +36,13 @@ export default function ProjectSidebar({ techStack, deliverables, partner, conta
         {/* Deliverables */}
         <div className="pt-10 border-t border-white/5 space-y-6">
           <div className="flex items-center gap-2">
-            <FileText className="text-[#43becc]" size={18} />
+            <FileText className="text-[#0087cb]" size={18} />
             <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">Deliverables</h4>
           </div>
           <div className="space-y-3">
             {deliverables.map(d => (
               <div key={d} className="flex items-center gap-3 text-[10px] text-zinc-400">
-                <div className="w-1 h-1 bg-[#43becc]" />
+                <div className="w-1 h-1 bg-[#0087cb]" />
                 {d}
               </div>
             ))}
@@ -52,7 +52,7 @@ export default function ProjectSidebar({ techStack, deliverables, partner, conta
         {/* Contact */}
         <div className="pt-10 border-t border-white/5 space-y-4">
           <p className="text-[9px] font-black uppercase tracking-widest text-zinc-600">Partner: {partner}</p>
-          <p className="text-[9px] font-mono text-[#bcd647]">{contact}</p>
+          <p className="text-[9px] font-mono text-[#006db1]">{contact}</p>
         </div>
       </motion.div>
     </aside>

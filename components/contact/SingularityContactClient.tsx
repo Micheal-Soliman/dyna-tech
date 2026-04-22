@@ -34,7 +34,7 @@ export default function SingularityContactClient() {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: "radial-gradient(#43becc 1px, transparent 1px)",
+            backgroundImage: "radial-gradient(#0087cb 1px, transparent 1px)",
             backgroundSize: "60px 60px",
           }}
         />

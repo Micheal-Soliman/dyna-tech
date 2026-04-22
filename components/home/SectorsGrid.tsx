@@ -11,19 +11,19 @@ const SECTORS = [
     title: "E-Mobility",
     description: "Driving Egypt's automotive transition through NEV localization and advanced EV battery integration.",
     icon: <Car className="w-8 h-8" />,
-    color: "#43becc"
+    color: "#0087cb"
   },
   {
     title: "Energy Storage Systems",
     description: "Developing scalable battery solutions and smart charging infrastructure to power the next generation of energy.",
     icon: <Battery className="w-8 h-8" />,
-    color: "#bcd647"
+    color: "#006db1"
   },
   {
     title: "Lightweight Materials",
     description: "Leading the localization of fiber-composite manufacturing to enhance efficiency across industrial applications.",
     icon: <Layers className="w-8 h-8" />,
-    color: "#8e257a"
+    color: "#005093"
   }
 ];
 
@@ -102,7 +102,7 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
     <section className="py-32 bg-[#0a0f29] relative overflow-hidden font-['Montserrat',sans-serif]">
       {/* خلفية تقنية خفيفة */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-           style={{ backgroundImage: 'radial-gradient(#43becc 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+           style={{ backgroundImage: 'radial-gradient(#0087cb 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
@@ -114,8 +114,8 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
               viewport={{ once: true }}
               className={`flex items-center gap-3 mb-6 ${isAr ? 'flex-row-reverse' : ''}`}
             >
-              <div className={`w-12 h-[2px] bg-gradient-to-${isAr ? 'l' : 'r'} from-[#43becc] to-transparent`} />
-              <span className="text-[#43becc] font-black tracking-[0.5em] text-[10px] uppercase">Strategic Expertise</span>
+              <div className={`w-12 h-[2px] bg-gradient-to-${isAr ? 'l' : 'r'} from-[#0087cb] to-transparent`} />
+              <span className="text-[#0087cb] font-black tracking-[0.5em] text-[10px] uppercase">Strategic Expertise</span>
             </motion.div>
 
             <motion.h2
@@ -127,7 +127,7 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
             >
               OUR CORE <br />
               <span className="relative inline-block mt-2">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#43becc] via-white to-[#bcd647]">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] via-white to-[#006db1]">
                   SECTORS
                 </span>
                 {/* Underline decorative element - flip for RTL */}
@@ -135,7 +135,7 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
                   initial={{ width: 0 }}
                   whileInView={{ width: '100%' }}
                   transition={{ delay: 0.5, duration: 1 }}
-                  className={`absolute -bottom-2 ${isAr ? 'right-0' : 'left-0'} h-[4px] bg-gradient-to-r from-[#43becc] to-transparent rounded-full`}
+                  className={`absolute -bottom-2 ${isAr ? 'right-0' : 'left-0'} h-[4px] bg-gradient-to-r from-[#0087cb] to-transparent rounded-full`}
                 />
               </span>
             </motion.h2>
@@ -149,7 +149,7 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
             dir="auto"
             style={{
               unicodeBidi: "plaintext",
-              borderInlineStart: "1px solid rgba(67, 190, 204, 0.3)",
+              borderInlineStart: "1px solid rgba(0, 135, 203, 0.3)",
               paddingInlineStart: "1.5rem",
             }}
             className={`text-zinc-500 text-sm max-w-sm font-medium leading-relaxed italic ${isAr ? 'text-right' : 'text-left'}`}
@@ -174,7 +174,7 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
         >
           <Link 
             href={`/${locale}/services`}
-            className="group relative inline-flex items-center gap-8 pl-10 pr-3 py-3 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden transition-all duration-700 hover:border-[#43becc]/50 hover:shadow-[0_0_30px_rgba(67,190,204,0.15)]"
+            className="group relative inline-flex items-center gap-8 pl-10 pr-3 py-3 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden transition-all duration-700 hover:border-[#0087cb]/50 hover:shadow-[0_0_30px_rgba(67,190,204,0.15)]"
           >
             {/* Label */}
             <span className="text-[11px] font-black uppercase tracking-[0.4em] text-zinc-300 group-hover:text-[#0a0f29] relative z-20 transition-colors duration-500">
@@ -183,12 +183,12 @@ export function SectorsGrid({ isAr = false, locale = "en" }: { isAr?: boolean; l
             
             {/* Icon Circle */}
             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-[#0a0f29]/20 group-hover:rotate-[360deg] relative z-20 transition-all duration-700 ease-in-out">
-              <ArrowUpRight className="w-5 h-5 text-[#43becc] group-hover:text-[#0a0f29]" />
+              <ArrowUpRight className="w-5 h-5 text-[#0087cb] group-hover:text-[#0a0f29]" />
             </div>
 
             {/* Dynamic Background Slide */}
             <div 
-              className="absolute inset-0 bg-gradient-to-r from-[#43becc] to-[#bcd647] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-700 ease-[0.22,1,0.36,1] z-10"
+              className="absolute inset-0 bg-gradient-to-r from-[#0087cb] to-[#006db1] translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-700 ease-[0.22,1,0.36,1] z-10"
             />
           </Link>
         </motion.div>

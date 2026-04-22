@@ -13,7 +13,7 @@ export default function ProposalCTA() {
         className="relative z-10"
       >
         <h2 className="text-5xl md:text-7xl font-[1000] italic uppercase tracking-tighter mb-8">
-          Submit <span className="text-[#bcd647]">Proposal.</span>
+          Submit <span className="text-[#006db1]">Proposal.</span>
         </h2>
         <p className="text-zinc-500 max-w-xl mx-auto mb-12 text-xs uppercase tracking-widest">
           Technical proposals accepted until Q2 2026. Direct all inquiries to procurement.
@@ -22,7 +22,7 @@ export default function ProposalCTA() {
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="px-12 py-6 bg-[#bcd647] text-black font-black uppercase text-[10px] tracking-[0.4em]"
+            className="px-12 py-6 bg-[#006db1] text-black font-black uppercase text-[10px] tracking-[0.4em]"
           >
             DOWNLOAD_RFP_DOC
           </motion.button>

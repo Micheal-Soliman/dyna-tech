@@ -14,10 +14,10 @@ export default function InvestmentCTA() {
           Download our full 2026 investment prospectus or submit technical proposals for open RFPs.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <button className="px-12 py-6 bg-[#bcd647] text-black font-[1000] text-[10px] uppercase tracking-[0.4em] hover:bg-white transition-colors">
+          <button className="px-12 py-6 bg-[#006db1] text-black font-[1000] text-[10px] uppercase tracking-[0.4em] hover:bg-white transition-colors">
             SUBMIT_PROPOSAL()
           </button>
-          <button className="px-12 py-6 border-2 border-white/10 text-white font-[1000] text-[10px] uppercase tracking-[0.4em] hover:bg-[#bcd647] hover:text-black transition-all">
+          <button className="px-12 py-6 border-2 border-white/10 text-white font-[1000] text-[10px] uppercase tracking-[0.4em] hover:bg-[#006db1] hover:text-black transition-all">
             INVEST_PROSPECTUS.PDF
           </button>
         </div>

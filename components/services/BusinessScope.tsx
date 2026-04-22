@@ -9,7 +9,7 @@ const BUSINESS_SCOPE = [
     title: "E-MOBILITY", 
     sub: "Technology Localization", 
     desc: "Establishing a regional hub for EV assembly and tech-transfer, integrating European manufacturing standards into the MENA ecosystem.", 
-    color: "#43becc", 
+    color: "#0087cb", 
     details: "Focuses on localizing the assembly of electric vehicles and charging infrastructure, reducing carbon footprints while building local technical expertise.",
     tech: ["EV Assembly Lines", "Charging Infrastructure", "Battery Integration"],
   },
@@ -18,7 +18,7 @@ const BUSINESS_SCOPE = [
     title: "ESS", 
     sub: "Energy Storage Systems", 
     desc: "Advanced BESS solutions designed to stabilize industrial power grids and support renewable energy transitions.", 
-    color: "#bcd647", 
+    color: "#006db1", 
     details: "Developing large-scale industrial battery systems (BESS) with smart thermal management to ensure power reliability in harsh desert climates.",
     tech: ["BESS Units", "Load Balancing", "Thermal Management"],
   },
@@ -42,7 +42,7 @@ export default function BusinessScope() {
             SCOPE<span className="text-white">_01</span>
           </h2>
           <div className="text-right">
-            <p className="text-[#43becc] tracking-[0.4em] uppercase text-[10px] font-black italic mb-2">// Operational_Verticals</p>
+            <p className="text-[#0087cb] tracking-[0.4em] uppercase text-[10px] font-black italic mb-2">// Operational_Verticals</p>
             <p className="text-zinc-600 text-[8px] uppercase tracking-widest">Document Ref: DYN-2026-B</p>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function BusinessScope() {
                   <p className="text-zinc-500 text-sm leading-loose uppercase tracking-wide">
                     {item.details}
                   </p>
-                  <button className="flex items-center gap-4 text-[#bcd647] text-[10px] font-black uppercase tracking-[0.5em] group hover:gap-8 transition-all">
+                  <button className="flex items-center gap-4 text-[#006db1] text-[10px] font-black uppercase tracking-[0.5em] group hover:gap-8 transition-all">
                     Explore_Technical_Specs <ChevronRight size={16} />
                   </button>
                 </div>

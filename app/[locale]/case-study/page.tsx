@@ -37,7 +37,7 @@ const RFPS = [
     status: "In Discussion",
     seeking: "Manufacturing partner / investor",
     icon: React.createElement(Battery, { size: 24 }),
-    accent: "#43becc"
+    accent: "#0087cb"
   },
   {
     id: "RFP2",
@@ -48,7 +48,7 @@ const RFPS = [
     status: "Under Negotiation",
     why: "Lower cost, no rare earth dependency",
     icon: React.createElement(Zap, { size: 24 }),
-    accent: "#bcd647"
+    accent: "#006db1"
   },
   {
     id: "RFP3",
@@ -59,7 +59,7 @@ const RFPS = [
     capacity: "4 cars/device",
     status: "Active development",
     icon: React.createElement(Sun, { size: 24 }),
-    accent: "#43becc"
+    accent: "#0087cb"
   }
 ];
 
@@ -95,8 +95,8 @@ function HeroSection() {
         backgroundImage: `linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)`,
         backgroundSize: '50px 50px'
       }} />
-      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#bcd647]/10 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#43becc]/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#006db1]/10 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#0087cb]/10 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-16">
@@ -105,7 +105,7 @@ function HeroSection() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-[11px] font-black tracking-[0.3em] uppercase text-[#bcd647] block"
+              className="text-[11px] font-black tracking-[0.3em] uppercase text-[#006db1] block"
             >
               Active Project Pipeline
             </motion.span>
@@ -116,7 +116,7 @@ function HeroSection() {
               className="text-4xl md:text-6xl lg:text-[5rem] xl:text-[6rem] font-[1000] tracking-tighter uppercase italic leading-[0.9]"
             >
               Turning <br/>
-              <span className="text-[#bcd647]">Innovation</span> <br/>
+              <span className="text-[#006db1]">Innovation</span> <br/>
               <span className="text-zinc-600">Into Reality.</span>
             </motion.h1>
             <motion.p 
@@ -133,7 +133,7 @@ function HeroSection() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <div className="px-8 py-4 bg-[#bcd647] text-black text-[10px] font-[1000] uppercase tracking-[0.4em] flex items-center gap-3">
+              <div className="px-8 py-4 bg-[#006db1] text-black text-[10px] font-[1000] uppercase tracking-[0.4em] flex items-center gap-3">
                 View Flagship Project <ArrowRight size={16} />
               </div>
               <div className="px-8 py-4 border border-white/20 text-white text-[10px] font-[1000] uppercase tracking-[0.4em]">
@@ -144,9 +144,9 @@ function HeroSection() {
           
           <div className="max-w-md space-y-4">
             <RevealCard delay={0.2}>
-              <div className="flex items-center gap-4 p-6 bg-[#bcd647]/10 border border-[#bcd647]/30">
-                <div className="w-12 h-12 bg-[#bcd647]/20 flex items-center justify-center">
-                  <CheckCircle2 size={24} className="text-[#bcd647]" />
+              <div className="flex items-center gap-4 p-6 bg-[#006db1]/10 border border-[#006db1]/30">
+                <div className="w-12 h-12 bg-[#006db1]/20 flex items-center justify-center">
+                  <CheckCircle2 size={24} className="text-[#006db1]" />
                 </div>
                 <div>
                   <div className="text-2xl font-[1000] text-white">100%</div>
@@ -156,8 +156,8 @@ function HeroSection() {
             </RevealCard>
             <RevealCard delay={0.3}>
               <div className="flex items-center gap-4 p-6 bg-zinc-950/50 border border-white/10">
-                <div className="w-12 h-12 bg-[#43becc]/10 flex items-center justify-center">
-                  <Clock size={24} className="text-[#43becc]" />
+                <div className="w-12 h-12 bg-[#0087cb]/10 flex items-center justify-center">
+                  <Clock size={24} className="text-[#0087cb]" />
                 </div>
                 <div>
                   <div className="text-2xl font-[1000] text-white">Active</div>
@@ -189,8 +189,8 @@ function HubSection() {
       <div className="max-w-7xl mx-auto">
         <RevealCard>
           <div className="flex items-center gap-4 mb-12">
-            <div className="h-px w-20 bg-gradient-to-r from-[#bcd647] to-transparent" />
-            <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#bcd647] italic">// Flagship_Project</span>
+            <div className="h-px w-20 bg-gradient-to-r from-[#006db1] to-transparent" />
+            <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#006db1] italic">// Flagship_Project</span>
           </div>
         </RevealCard>
         
@@ -199,13 +199,13 @@ function HubSection() {
             <RevealCard delay={0.1}>
               <h2 className="text-4xl md:text-5xl font-[1000] uppercase italic tracking-tighter leading-none">
                 DYNATECH <br/>
-                <span className="text-[#bcd647]">Automotive Hub.</span>
+                <span className="text-[#006db1]">Automotive Hub.</span>
               </h2>
             </RevealCard>
             
             <RevealCard delay={0.2}>
               <div className="flex flex-wrap gap-3">
-                <span className="px-4 py-2 bg-[#bcd647] text-black text-[10px] font-[1000] uppercase tracking-widest">
+                <span className="px-4 py-2 bg-[#006db1] text-black text-[10px] font-[1000] uppercase tracking-widest">
                   {AUTOMOTIVE_HUB.status}
                 </span>
                 <span className="px-4 py-2 bg-zinc-950 border border-white/10 text-[10px] font-black uppercase tracking-widest text-white">
@@ -217,12 +217,12 @@ function HubSection() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { label: "Area", value: AUTOMOTIVE_HUB.area, color: "text-white" },
-                { label: "Bays", value: AUTOMOTIVE_HUB.bays, color: "text-[#43becc]" },
-                { label: "Stockyard", value: AUTOMOTIVE_HUB.stockyard, color: "text-[#bcd647]" },
+                { label: "Bays", value: AUTOMOTIVE_HUB.bays, color: "text-[#0087cb]" },
+                { label: "Stockyard", value: AUTOMOTIVE_HUB.stockyard, color: "text-[#006db1]" },
                 { label: "Capacity", value: AUTOMOTIVE_HUB.capacity, color: "text-white" }
               ].map((stat, i) => (
                 <RevealCard key={stat.label} delay={0.25 + i * 0.1}>
-                  <div className="p-5 bg-zinc-950 border border-white/5 space-y-2 hover:border-[#bcd647]/30 transition-colors">
+                  <div className="p-5 bg-zinc-950 border border-white/5 space-y-2 hover:border-[#006db1]/30 transition-colors">
                     <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600">{stat.label}</span>
                     <div className={`text-xl font-[1000] ${stat.color}`}>{stat.value}</div>
                   </div>
@@ -233,13 +233,13 @@ function HubSection() {
           
           <div className="space-y-6">
             <RevealCard delay={0.3}>
-              <h3 className="text-lg font-[1000] uppercase italic tracking-tight text-[#43becc]">Key SBUs</h3>
+              <h3 className="text-lg font-[1000] uppercase italic tracking-tight text-[#0087cb]">Key SBUs</h3>
             </RevealCard>
             <div className="space-y-4">
               {AUTOMOTIVE_HUB.sbus.map((sbu, i) => (
                 <RevealCard key={i} delay={0.35 + i * 0.08}>
-                  <div className="flex items-start gap-4 p-4 bg-zinc-950/30 border-l-2 border-[#bcd647] hover:bg-zinc-950/50 transition-all group">
-                    <CheckCircle2 size={16} className="text-[#bcd647] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  <div className="flex items-start gap-4 p-4 bg-zinc-950/30 border-l-2 border-[#006db1] hover:bg-zinc-950/50 transition-all group">
+                    <CheckCircle2 size={16} className="text-[#006db1] mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform" />
                     <span className="text-[11px] font-bold text-zinc-300 uppercase tracking-wide leading-relaxed">{sbu}</span>
                   </div>
                 </RevealCard>
@@ -256,14 +256,14 @@ function RFPSection() {
   return (
     <section className="py-32 px-6 md:px-16 lg:px-24 relative overflow-hidden">
       <div className="absolute inset-0 opacity-20" style={{ 
-        background: `radial-gradient(circle at 50% 50%, #43becc10 0%, transparent 50%)` 
+        background: `radial-gradient(circle at 50% 50%, #0087cb10 0%, transparent 50%)` 
       }} />
       
       <div className="max-w-7xl mx-auto relative">
         <RevealCard>
           <div className="flex items-center gap-4 mb-16">
-            <div className="h-px w-20 bg-gradient-to-r from-[#43becc] to-transparent" />
-            <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#43becc] italic">// Investment_Opportunities</span>
+            <div className="h-px w-20 bg-gradient-to-r from-[#0087cb] to-transparent" />
+            <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#0087cb] italic">// Investment_Opportunities</span>
           </div>
         </RevealCard>
         
@@ -274,7 +274,7 @@ function RFPSection() {
                 <motion.div 
                   whileHover={{ y: -10, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
-                  className="p-8 bg-zinc-950 border border-white/5 hover:border-[#43becc]/50 transition-all space-y-6 h-full"
+                  className="p-8 bg-zinc-950 border border-white/5 hover:border-[#0087cb]/50 transition-all space-y-6 h-full"
                 >
                   <div className="flex items-start justify-between">
                     <div className="w-14 h-14 flex items-center justify-center" style={{ backgroundColor: `${rfp.accent}15` }}>
@@ -288,7 +288,7 @@ function RFPSection() {
                   </div>
                   <div className="space-y-3 text-[10px] font-bold text-zinc-500 uppercase tracking-wide leading-relaxed">
                     <p>{rfp.tech}</p>
-                    {rfp.why && <p className="text-[#bcd647]">Why: {rfp.why}</p>}
+                    {rfp.why && <p className="text-[#006db1]">Why: {rfp.why}</p>}
                   </div>
                   <div className="pt-4 border-t border-white/5">
                     <div className="flex items-center gap-2 mb-2">
@@ -315,25 +315,25 @@ function RFPSection() {
 function CTASection() {
   return (
     <section className="py-32 px-6 md:px-16 lg:px-24 relative">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#bcd647]/10 blur-[150px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#006db1]/10 blur-[150px]" />
       <div className="max-w-4xl mx-auto text-center relative">
         <RevealCard>
           <div className="flex items-center justify-center gap-6 mb-8">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#bcd647]" />
-            <div className="w-12 h-12 border border-[#bcd647]/30 flex items-center justify-center">
-              <Sparkles size={20} className="text-[#bcd647]" />
+            <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#006db1]" />
+            <div className="w-12 h-12 border border-[#006db1]/30 flex items-center justify-center">
+              <Sparkles size={20} className="text-[#006db1]" />
             </div>
-            <div className="h-px w-24 bg-gradient-to-l from-transparent to-[#bcd647]" />
+            <div className="h-px w-24 bg-gradient-to-l from-transparent to-[#006db1]" />
           </div>
         </RevealCard>
         
         <RevealCard delay={0.1}>
-          <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#bcd647] italic block mb-6">// Strategic Partnership</span>
+          <span className="text-[10px] font-black tracking-[0.5em] uppercase text-[#006db1] italic block mb-6">// Strategic Partnership</span>
         </RevealCard>
         
         <RevealCard delay={0.2}>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-[1000] uppercase italic tracking-tighter mb-8">
-            Partner with <span className="text-[#43becc]">DYNATECH.</span>
+            Partner with <span className="text-[#0087cb]">DYNATECH.</span>
           </h2>
         </RevealCard>
         
@@ -344,7 +344,7 @@ function CTASection() {
         </RevealCard>
         
         <RevealCard delay={0.4}>
-          <Link href="/contact" className="inline-flex items-center gap-4 px-12 py-6 bg-[#bcd647] text-black text-[12px] font-[1000] uppercase tracking-[0.4em] hover:bg-white transition-all">
+          <Link href="/contact" className="inline-flex items-center gap-4 px-12 py-6 bg-[#006db1] text-black text-[12px] font-[1000] uppercase tracking-[0.4em] hover:bg-white transition-all">
             Submit Partnership Inquiry <ArrowRight size={20} />
           </Link>
         </RevealCard>
@@ -358,13 +358,13 @@ export default function CaseStudyPage() {
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
   
   return (
-    <div className="bg-black text-white font-mono selection:bg-[#43becc] selection:text-black min-h-screen overflow-x-hidden">
-      <motion.div className="fixed top-0 left-0 right-0 h-[2px] z-[100] origin-left" style={{ scaleX, background: "linear-gradient(90deg, #bcd647, #43becc)" }} />
+    <div className="bg-black text-white font-mono selection:bg-[#0087cb] selection:text-black min-h-screen overflow-x-hidden">
+      <motion.div className="fixed top-0 left-0 right-0 h-[2px] z-[100] origin-left" style={{ scaleX, background: "linear-gradient(90deg, #006db1, #0087cb)" }} />
       
       {/* Ambient Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] rounded-full opacity-10 blur-[150px]" style={{ background: "radial-gradient(circle, #bcd64720 0%, transparent 70%)" }} />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full opacity-10 blur-[120px]" style={{ background: "radial-gradient(circle, #43becc20 0%, transparent 70%)" }} />
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] rounded-full opacity-10 blur-[150px]" style={{ background: "radial-gradient(circle, #006db120 0%, transparent 70%)" }} />
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full opacity-10 blur-[120px]" style={{ background: "radial-gradient(circle, #0087cb20 0%, transparent 70%)" }} />
       </div>
       
       {/* Normal Scroll Content with Parallax */}

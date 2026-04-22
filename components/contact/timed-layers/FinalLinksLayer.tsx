@@ -17,7 +17,7 @@ export default function FinalLinksLayer({ progress }: Props) {
             <div className="relative flex flex-col items-center max-w-5xl w-full px-6">
 
                 {/* Decorative Grid Background */}
-                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#bcd647]/5 via-transparent to-transparent blur-3xl" />
+                <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#006db1]/5 via-transparent to-transparent blur-3xl" />
 
                 {/* 1. Quick Links Cards */}
                 <div className="grid md:grid-cols-2 gap-6 w-full mb-20">
@@ -25,13 +25,13 @@ export default function FinalLinksLayer({ progress }: Props) {
                         title="Knowledge Hub"
                         subtitle="Technical Resources"
                         icon={<Globe size={18} />}
-                        color="#bcd647"
+                        color="#006db1"
                     />
                     <QuickLinkCard
                         title="Career Portal"
                         subtitle="Join The Force"
                         icon={<Zap size={18} />}
-                        color="#43becc"
+                        color="#0087cb"
                     />
                 </div>
 
@@ -41,7 +41,7 @@ export default function FinalLinksLayer({ progress }: Props) {
                         <motion.p
                             initial={{ opacity: 0, letterSpacing: "0.2em" }}
                             whileInView={{ opacity: 1, letterSpacing: "1em" }}
-                            className="text-[#bcd647] font-mono text-[10px] uppercase italic"
+                            className="text-[#006db1] font-mono text-[10px] uppercase italic"
                         >
               {"// Connection_Established"}
                         </motion.p>
@@ -49,14 +49,14 @@ export default function FinalLinksLayer({ progress }: Props) {
                             <span className="block opacity-80">READY TO</span>
 
                             <span className="relative inline-block mt-2">
-                                <span className="relative z-10 text-[#bcd647] px-4">
+                                <span className="relative z-10 text-[#006db1] px-4">
                                     CONNECT?
                                 </span>
                                 <motion.div
                                     initial={{ width: 0 }}
                                     whileInView={{ width: "100%" }}
                                     transition={{ duration: 1, delay: 0.5 }}
-                                    className="absolute -bottom-2 left-0 h-[2px] bg-gradient-to-r from-[#bcd647] to-transparent"
+                                    className="absolute -bottom-2 left-0 h-[2px] bg-gradient-to-r from-[#006db1] to-transparent"
                                 />
                             </span>
                         </h2>
@@ -67,7 +67,7 @@ export default function FinalLinksLayer({ progress }: Props) {
                         whileTap={{ scale: 0.95 }}
                         className="group relative px-12 py-6 md:px-20 md:py-10 bg-white overflow-hidden transition-all duration-500"
                     >
-                        <div className="absolute inset-0 bg-[#bcd647] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                        <div className="absolute inset-0 bg-[#006db1] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                         <span className="relative z-10 flex items-center gap-4 text-black font-black text-xl md:text-3xl italic uppercase tracking-tighter">
                             Start Partnership
                             <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={32} />

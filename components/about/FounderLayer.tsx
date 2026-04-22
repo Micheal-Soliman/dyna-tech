@@ -40,7 +40,7 @@ export default function FounderLayer({
             <span 
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="bg-[#43becc] text-black font-black text-xs px-4 py-2 uppercase tracking-widest"
+              className="bg-[#0087cb] text-black font-black text-xs px-4 py-2 uppercase tracking-widest"
             >
               {data.title}
             </span>
@@ -64,7 +64,7 @@ export default function FounderLayer({
                 key={i} 
                 dir="auto"
                 style={{ unicodeBidi: "plaintext" }}
-                className="text-[#bcd647] border border-[#bcd647]/30 px-4 py-2 text-xs font-bold uppercase tracking-wider"
+                className="text-[#006db1] border border-[#006db1]/30 px-4 py-2 text-xs font-bold uppercase tracking-wider"
               >
                 {h}
               </span>
@@ -76,10 +76,10 @@ export default function FounderLayer({
             {data.experience.map((exp, i) => (
               <div 
                 key={i} 
-                className={`${isAr ? 'border-r-2 pr-6' : 'border-l-2 pl-6'} border-[#43becc] py-2`}
+                className={`${isAr ? 'border-r-2 pr-6' : 'border-l-2 pl-6'} border-[#0087cb] py-2`}
               >
                 <div className={`flex items-baseline gap-4 mb-1 ${isAr ? 'flex-row-reverse md:justify-end' : ''}`}>
-                  <span className="text-[#43becc] font-black text-lg">{exp.period}</span>
+                  <span className="text-[#0087cb] font-black text-lg">{exp.period}</span>
                   <span 
                     dir="auto"
                     style={{ unicodeBidi: "plaintext" }}

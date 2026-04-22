@@ -16,7 +16,7 @@ const UPDATES = [
     source: "Composites United",
     title: "Breakthrough in Fiber-Based Multi-Material Construction for 2026",
     tag: "LWM_TECH",
-    accent: "#bcd647",
+    accent: "#006db1",
     excerpt: "New manufacturing processes enabling cost-effective carbon fiber integration for automotive applications."
   },
   {
@@ -25,34 +25,34 @@ const UPDATES = [
     source: "FFT Produktionssysteme",
     title: "AI-Driven Flexible Manufacturing: The New Standard in Automotive Assembly",
     tag: "AUTOMATION",
-    accent: "#43becc",
+    accent: "#0087cb",
     excerpt: "Intelligent production systems that adapt to multiple vehicle models without retooling."
   }
 ];
 
 export default function TechnologyUpdates() {
   return (
-    <div className="bg-black text-white font-mono selection:bg-[#43becc] selection:text-black min-h-screen">
+    <div className="bg-black text-white font-mono selection:bg-[#0087cb] selection:text-black min-h-screen">
       
       {/* --- UPDATES HERO - Terminal Dashboard Style --- */}
       <header className="pt-28 pb-16 px-6 md:px-16 lg:px-32 border-b-2 border-white/5 relative overflow-hidden">
         {/* Animated Grid Background */}
         <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `linear-gradient(to right, #43becc 1px, transparent 1px), linear-gradient(to bottom, #43becc 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(to right, #0087cb 1px, transparent 1px), linear-gradient(to bottom, #0087cb 1px, transparent 1px)`,
           backgroundSize: '40px 40px'
         }} />
         
         {/* Corner Accents */}
-        <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-[#43becc]/30" />
-        <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-[#bcd647]/30" />
+        <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-[#0087cb]/30" />
+        <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-[#006db1]/30" />
         
         <div className="max-w-7xl mx-auto relative z-10">
           {/* Top Status Bar */}
           <div className="flex items-center justify-between mb-12 pb-4 border-b border-white/10">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-[#bcd647] rounded-full animate-pulse" />
-                <span className="text-[10px] font-black uppercase tracking-widest text-[#bcd647]">LIVE FEED</span>
+                <div className="w-2 h-2 bg-[#006db1] rounded-full animate-pulse" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-[#006db1]">LIVE FEED</span>
               </div>
               <div className="h-3 w-px bg-white/20" />
               <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600">Updates synchronized</span>
@@ -65,15 +65,15 @@ export default function TechnologyUpdates() {
             {/* Left: Title */}
             <div className="lg:col-span-7 space-y-6">
               <div className="flex items-center gap-3">
-                <Rss size={16} className="text-[#43becc]" />
-                <span className="text-[11px] font-black tracking-[0.3em] uppercase text-[#43becc]">
+                <Rss size={16} className="text-[#0087cb]" />
+                <span className="text-[11px] font-black tracking-[0.3em] uppercase text-[#0087cb]">
                   TECH INTELLIGENCE
                 </span>
               </div>
               
               <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-[1000] tracking-tighter uppercase italic leading-[0.9]">
                 <span className="text-white">Sector</span>
-                <span className="text-[#43becc]">_</span>
+                <span className="text-[#0087cb]">_</span>
                 <span className="text-zinc-600">Updates.</span>
               </h1>
               
@@ -85,7 +85,7 @@ export default function TechnologyUpdates() {
             {/* Right: Stats Grid */}
             <div className="lg:col-span-5 grid grid-cols-2 gap-px bg-white/10 border border-white/10">
               <div className="bg-black p-6 space-y-2">
-                <div className="flex items-center gap-2 text-[#bcd647]">
+                <div className="flex items-center gap-2 text-[#006db1]">
                   <Zap size={14} />
                   <span className="text-[9px] font-black uppercase tracking-widest">Partners</span>
                 </div>
@@ -93,7 +93,7 @@ export default function TechnologyUpdates() {
                 <div className="text-[8px] font-black uppercase tracking-widest text-zinc-600">Active Feeds</div>
               </div>
               <div className="bg-black p-6 space-y-2">
-                <div className="flex items-center gap-2 text-[#43becc]">
+                <div className="flex items-center gap-2 text-[#0087cb]">
                   <TrendingUp size={14} />
                   <span className="text-[9px] font-black uppercase tracking-widest">Insights</span>
                 </div>
@@ -105,7 +105,7 @@ export default function TechnologyUpdates() {
                   <Bell size={14} />
                   <span className="text-[9px] font-black uppercase tracking-widest">Bulletins</span>
                 </div>
-                <div className="text-3xl font-[1000] text-[#bcd647]">4</div>
+                <div className="text-3xl font-[1000] text-[#006db1]">4</div>
                 <div className="text-[8px] font-black uppercase tracking-widest text-zinc-600">Announcements</div>
               </div>
               <div className="bg-black p-6 space-y-2">
@@ -113,7 +113,7 @@ export default function TechnologyUpdates() {
                   <Share2 size={14} />
                   <span className="text-[9px] font-black uppercase tracking-widest">Sources</span>
                 </div>
-                <div className="text-3xl font-[1000] text-[#43becc]">6+</div>
+                <div className="text-3xl font-[1000] text-[#0087cb]">6+</div>
                 <div className="text-[8px] font-black uppercase tracking-widest text-zinc-600">Curated</div>
               </div>
             </div>
@@ -128,7 +128,7 @@ export default function TechnologyUpdates() {
           <div className="space-y-2">
             <span className="text-[10px] font-black tracking-[0.5em] uppercase text-zinc-600 italic">// Partner Technology Updates</span>
             <div className="flex items-center gap-4">
-               <h2 className="text-3xl font-[1000] italic uppercase tracking-tighter">Latest from <span className="text-[#bcd647]">Partners.</span></h2>
+               <h2 className="text-3xl font-[1000] italic uppercase tracking-tighter">Latest from <span className="text-[#006db1]">Partners.</span></h2>
                <div className="h-px flex-grow bg-white/5" />
             </div>
           </div>
@@ -175,17 +175,17 @@ export default function TechnologyUpdates() {
            <div className="lg:col-span-4 space-y-8 sticky top-32">
               <div className="space-y-2">
                 <span className="text-[10px] font-black tracking-[0.5em] uppercase text-zinc-600 italic">// Industry Insights</span>
-                <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter leading-[0.8]">MENA <br/><span className="text-[#43becc]">INSIGHTS.</span></h2>
+                <h2 className="text-4xl font-[1000] italic uppercase tracking-tighter leading-[0.8]">MENA <br/><span className="text-[#0087cb]">INSIGHTS.</span></h2>
               </div>
               <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest leading-relaxed italic">
                  Egypt automotive sector news and MENA EV/battery industry updates. Sourced + curated by DYNATECH team.
               </p>
               <div className="flex gap-4">
-                 <div className="p-4 bg-zinc-950 border border-[#43becc]/20">
-                    <TrendingUp className="text-[#43becc]" size={20} />
+                 <div className="p-4 bg-zinc-950 border border-[#0087cb]/20">
+                    <TrendingUp className="text-[#0087cb]" size={20} />
                  </div>
-                 <div className="p-4 bg-zinc-950 border border-[#bcd647]/20">
-                    <Battery className="text-[#bcd647]" size={20} />
+                 <div className="p-4 bg-zinc-950 border border-[#006db1]/20">
+                    <Battery className="text-[#006db1]" size={20} />
                  </div>
               </div>
            </div>
@@ -199,7 +199,7 @@ export default function TechnologyUpdates() {
                 <Link 
                   key={idx} 
                   href={`/updates/${insight.slug}`}
-                  className="block p-10 border-2 border-white/5 bg-zinc-950/20 group hover:border-[#43becc] transition-all relative overflow-hidden"
+                  className="block p-10 border-2 border-white/5 bg-zinc-950/20 group hover:border-[#0087cb] transition-all relative overflow-hidden"
                 >
                    <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
                       <Bookmark size={14} />
@@ -207,7 +207,7 @@ export default function TechnologyUpdates() {
                    <div className="flex gap-6 items-center mb-4">
                       <span className="text-[8px] font-black text-zinc-600 uppercase tracking-[0.4em] italic">{insight.date}</span>
                       <span className="h-px w-8 bg-zinc-800" />
-                      <span className="text-[8px] font-black text-[#43becc] uppercase tracking-[0.4em] italic">{insight.cat}</span>
+                      <span className="text-[8px] font-black text-[#0087cb] uppercase tracking-[0.4em] italic">{insight.cat}</span>
                    </div>
                    <h4 className="text-xl font-[1000] uppercase italic tracking-tighter leading-tight">{insight.title}</h4>
                 </Link>
@@ -221,7 +221,7 @@ export default function TechnologyUpdates() {
               <div className="space-y-10">
                  <div className="space-y-2">
                    <span className="text-[10px] font-black tracking-[0.5em] uppercase text-zinc-600 italic">// DYNATECH Announcements</span>
-                   <div className="inline-block px-4 py-1 border border-[#bcd647] text-[#bcd647] text-[10px] font-black uppercase tracking-widest animate-pulse">
+                   <div className="inline-block px-4 py-1 border border-[#006db1] text-[#006db1] text-[10px] font-black uppercase tracking-widest animate-pulse">
                       INTERNAL_MILESTONES
                    </div>
                  </div>
@@ -231,7 +231,7 @@ export default function TechnologyUpdates() {
                  </p>
                  <div className="space-y-4 border-l border-white/10 pl-8">
                     <Link href="/updates/dynatech-lab-phase-2-complete" className="flex gap-4 items-center group">
-                       <span className="text-[10px] font-black italic text-[#bcd647]">APR_2026:</span>
+                       <span className="text-[10px] font-black italic text-[#006db1]">APR_2026:</span>
                        <span className="text-[10px] font-medium text-zinc-300 group-hover:text-white transition-colors">Phase II Technical Lab Infrastructure Completion.</span>
                     </Link>
                     <Link href="/updates/dynatech-strategic-logistics-agreement" className="flex gap-4 items-center opacity-50 group hover:opacity-100 transition-opacity">
@@ -243,7 +243,7 @@ export default function TechnologyUpdates() {
 
               {/* NEWSLETTER CAPTURE */}
               <div className="p-12 bg-black border-2 border-white/10 relative overflow-hidden group shadow-2xl">
-                 <div className="absolute top-0 right-0 p-8 opacity-5 text-[#bcd647]">
+                 <div className="absolute top-0 right-0 p-8 opacity-5 text-[#006db1]">
                     <Bell size={120} />
                  </div>
                  <div className="space-y-8 relative z-10">
@@ -253,9 +253,9 @@ export default function TechnologyUpdates() {
                        <input 
                         type="email" 
                         placeholder="OFFICIAL_EMAIL_ADDRESS" 
-                        className="w-full bg-zinc-900 border border-white/10 p-5 text-[10px] font-black tracking-widest focus:outline-none focus:border-[#bcd647] transition-all"
+                        className="w-full bg-zinc-900 border border-white/10 p-5 text-[10px] font-black tracking-widest focus:outline-none focus:border-[#006db1] transition-all"
                        />
-                       <button className="w-full bg-[#bcd647] text-black p-5 text-[10px] font-[1000] uppercase tracking-[0.4em] hover:bg-white transition-all flex items-center justify-center gap-4">
+                       <button className="w-full bg-[#006db1] text-black p-5 text-[10px] font-[1000] uppercase tracking-[0.4em] hover:bg-white transition-all flex items-center justify-center gap-4">
                           SECURE_SUBSCRIPTION <Mail size={16} />
                        </button>
                     </div>

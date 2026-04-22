@@ -57,7 +57,7 @@ export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5 }}
-          className="text-[#43becc] font-bold tracking-[0.2em] text-sm md:text-base uppercase mb-4"
+          className="text-[#0087cb] font-bold tracking-[0.2em] text-sm md:text-base uppercase mb-4"
         >
           {title}
         </motion.p>
@@ -85,7 +85,7 @@ export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: 
               key={`${partner.name}-${index}`}
               className={`flex flex-col justify-center px-8 md:px-12 shrink-0 ${isAr ? 'items-end border-r border-white/10' : 'items-start border-l border-white/10'} group/item`}
             >
-              <span className="text-white text-xl md:text-2xl font-bold tracking-tight mb-2 group-hover/item:text-[#43becc] transition-colors">
+              <span className="text-white text-xl md:text-2xl font-bold tracking-tight mb-2 group-hover/item:text-[#0087cb] transition-colors">
                 {partner.name}
               </span>
               <p className="text-white/50 text-xs md:text-sm max-w-[200px] whitespace-normal leading-relaxed">
@@ -101,7 +101,7 @@ export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: 
         <div className="mt-4 text-center">
           <a
             href={ctaHref}
-            className="inline-block px-8 py-3 bg-transparent border border-[#43becc] text-[#43becc] font-semibold uppercase tracking-widest hover:bg-[#43becc] hover:text-[#121b43] transition-all duration-300 rounded-sm"
+            className="inline-block px-8 py-3 bg-transparent border border-[#0087cb] text-[#0087cb] font-semibold uppercase tracking-widest hover:bg-[#0087cb] hover:text-[#121b43] transition-all duration-300 rounded-sm"
           >
             {ctaLabel}
           </a>

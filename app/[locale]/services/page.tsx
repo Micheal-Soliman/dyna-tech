@@ -14,7 +14,7 @@ const PILLARS = [
   {
     id: "e-mobility",
     icon: Car,
-    accent: "#bcd647",
+    accent: "#006db1",
     headline: "The Future of How Egypt Moves",
     tagline: "E-Mobility",
     whatItMeans: "Transition from traditional combustion engine vehicles to new energy vehicles (NEVs) — electric cars, EV charging, battery-powered transportation.",
@@ -26,7 +26,7 @@ const PILLARS = [
   {
     id: "ess",
     icon: Battery,
-    accent: "#43becc",
+    accent: "#0087cb",
     headline: "Powering the Next Generation",
     tagline: "Energy Storage Systems",
     whatItMeans: "Battery technology, lithium-ion and sodium-ion solutions, EV charging infrastructure, and grid-scale energy storage.",
@@ -38,7 +38,7 @@ const PILLARS = [
   {
     id: "lwm",
     icon: Layers,
-    accent: "#bcd647",
+    accent: "#006db1",
     headline: "Building Lighter, Stronger, Smarter",
     tagline: "Lightweight Materials",
     whatItMeans: "Replacing traditional heavy metals in vehicles and structures with advanced fiber-based composite materials — reducing weight, improving efficiency.",
@@ -66,14 +66,14 @@ function HeroLayer({ opacity, scale, y }: { opacity: any; scale: any; y: any }) 
       className="absolute inset-0 flex items-center z-10 px-6 md:px-16 lg:px-24"
     >
       {/* Background decorative elements */}
-      <div className="absolute top-1/4 right-20 w-64 h-64 rounded-full bg-[#bcd647]/5 blur-[100px]" />
-      <div className="absolute bottom-1/4 left-20 w-48 h-48 rounded-full bg-[#43becc]/5 blur-[80px]" />
+      <div className="absolute top-1/4 right-20 w-64 h-64 rounded-full bg-[#006db1]/5 blur-[100px]" />
+      <div className="absolute bottom-1/4 left-20 w-48 h-48 rounded-full bg-[#0087cb]/5 blur-[80px]" />
       
       <div className="max-w-7xl mx-auto w-full relative">
         {/* Top badge */}
         <div className="flex items-center gap-4 mb-12">
-          <div className="h-px w-16 bg-gradient-to-r from-[#bcd647] to-transparent" />
-          <span className="text-[11px] tracking-[0.4em] uppercase text-[#bcd647] font-medium">What We Do</span>
+          <div className="h-px w-16 bg-gradient-to-r from-[#006db1] to-transparent" />
+          <span className="text-[11px] tracking-[0.4em] uppercase text-[#006db1] font-medium">What We Do</span>
         </div>
         
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -81,7 +81,7 @@ function HeroLayer({ opacity, scale, y }: { opacity: any; scale: any; y: any }) 
           <div className="space-y-8">
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.85]">
               <span className="text-white block">DYNA</span>
-              <span className="text-[#43becc] italic block">TECH</span>
+              <span className="text-[#0087cb] italic block">TECH</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-zinc-400 max-w-lg leading-relaxed font-light">
@@ -93,10 +93,10 @@ function HeroLayer({ opacity, scale, y }: { opacity: any; scale: any; y: any }) 
               {PILLARS.map((pillar, i) => (
                 <div
                   key={pillar.id}
-                  className="group flex items-center gap-3 px-5 py-3 border border-white/10 bg-white/[0.02] hover:border-[#bcd647]/30 hover:bg-white/[0.04] transition-all cursor-pointer"
+                  className="group flex items-center gap-3 px-5 py-3 border border-white/10 bg-white/[0.02] hover:border-[#006db1]/30 hover:bg-white/[0.04] transition-all cursor-pointer"
                 >
                   <div 
-                    className="w-8 h-8 flex items-center justify-center border border-white/20 group-hover:border-[#bcd647]/50 transition-colors"
+                    className="w-8 h-8 flex items-center justify-center border border-white/20 group-hover:border-[#006db1]/50 transition-colors"
                     style={{ color: pillar.accent }}
                   >
                     <pillar.icon size={16} strokeWidth={1.5} />
@@ -111,21 +111,21 @@ function HeroLayer({ opacity, scale, y }: { opacity: any; scale: any; y: any }) 
           <div className="lg:pl-12">
             <div className="relative">
               {/* Corner accents */}
-              <div className="absolute -top-px -left-px w-20 h-px bg-gradient-to-r from-[#43becc] to-transparent" />
-              <div className="absolute -top-px -left-px w-px h-20 bg-gradient-to-b from-[#43becc] to-transparent" />
-              <div className="absolute -bottom-px -right-px w-20 h-px bg-gradient-to-l from-[#43becc] to-transparent" />
-              <div className="absolute -bottom-px -right-px w-px h-20 bg-gradient-to-t from-[#43becc] to-transparent" />
+              <div className="absolute -top-px -left-px w-20 h-px bg-gradient-to-r from-[#0087cb] to-transparent" />
+              <div className="absolute -top-px -left-px w-px h-20 bg-gradient-to-b from-[#0087cb] to-transparent" />
+              <div className="absolute -bottom-px -right-px w-20 h-px bg-gradient-to-l from-[#0087cb] to-transparent" />
+              <div className="absolute -bottom-px -right-px w-px h-20 bg-gradient-to-t from-[#0087cb] to-transparent" />
               
               <div className="backdrop-blur-md bg-white/[0.02] border border-white/10 p-10">
                 <div className="flex items-center gap-3 pb-6 border-b border-white/10 mb-8">
-                  <Sparkles size={16} className="text-[#43becc]" />
-                  <span className="text-[11px] tracking-[0.25em] uppercase text-[#43becc] font-medium">Market Overview 2025</span>
+                  <Sparkles size={16} className="text-[#0087cb]" />
+                  <span className="text-[11px] tracking-[0.25em] uppercase text-[#0087cb] font-medium">Market Overview 2025</span>
                 </div>
                 
                 <div className="grid grid-cols-3 gap-6">
                   {EGYPT_STATS.map((stat, i) => (
                     <div key={i} className="text-center group">
-                      <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-[#bcd647] transition-colors">{stat.value}{stat.suffix}</div>
+                      <div className="text-3xl md:text-4xl font-bold text-white mb-2 group-hover:text-[#006db1] transition-colors">{stat.value}{stat.suffix}</div>
                       <div className="text-[10px] uppercase tracking-wider text-zinc-500 leading-tight">{stat.label}</div>
                     </div>
                   ))}
@@ -262,21 +262,21 @@ function CTALayer({ opacity }: { opacity: any }) {
       className="absolute inset-0 flex items-center justify-center z-30 px-6"
     >
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#bcd647]/10 blur-[150px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#006db1]/10 blur-[150px]" />
       
       <div className="text-center max-w-4xl relative">
         {/* Top decoration */}
         <div className="flex items-center justify-center gap-6 mb-10">
-          <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#bcd647]" />
-          <div className="w-12 h-12 border border-[#bcd647]/30 flex items-center justify-center">
-            <Sparkles size={20} className="text-[#bcd647]" />
+          <div className="h-px w-24 bg-gradient-to-r from-transparent to-[#006db1]" />
+          <div className="w-12 h-12 border border-[#006db1]/30 flex items-center justify-center">
+            <Sparkles size={20} className="text-[#006db1]" />
           </div>
-          <div className="h-px w-24 bg-gradient-to-l from-transparent to-[#bcd647]" />
+          <div className="h-px w-24 bg-gradient-to-l from-transparent to-[#006db1]" />
         </div>
         
         <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[0.9]">
           Ready to Drive<br />
-          <span className="text-[#bcd647] italic">The Future?</span>
+          <span className="text-[#006db1] italic">The Future?</span>
         </h2>
         
         <p className="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -286,7 +286,7 @@ function CTALayer({ opacity }: { opacity: any }) {
         <div className="flex flex-wrap justify-center gap-4">
           <Link 
             href="/contact"
-            className="group px-10 py-5 bg-[#bcd647] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#d4e86c] transition-all flex items-center gap-3"
+            className="group px-10 py-5 bg-[#006db1] text-black font-bold text-sm uppercase tracking-wider hover:bg-[#d4e86c] transition-all flex items-center gap-3"
           >
             Start a Conversation
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -346,21 +346,21 @@ export default function ServicesPage() {
   });
 
   return (
-    <div ref={containerRef} className="bg-[#0a0a0a] text-white min-h-screen selection:bg-[#bcd647] selection:text-black">
+    <div ref={containerRef} className="bg-[#0a0a0a] text-white min-h-screen selection:bg-[#006db1] selection:text-black">
       <Header />
       
       {/* Progress Bar */}
       <motion.div 
         className="fixed top-0 left-0 right-0 h-[2px] z-[100] origin-left" 
-        style={{ scaleX, background: "linear-gradient(90deg, #bcd647, #43becc)" }} 
+        style={{ scaleX, background: "linear-gradient(90deg, #006db1, #0087cb)" }} 
       />
 
       {/* Ambient Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[800px] h-[800px] rounded-full opacity-20 blur-[150px]" 
-          style={{ background: "radial-gradient(circle, #bcd64720 0%, transparent 70%)" }} />
+          style={{ background: "radial-gradient(circle, #006db120 0%, transparent 70%)" }} />
         <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] rounded-full opacity-15 blur-[120px]" 
-          style={{ background: "radial-gradient(circle, #43becc20 0%, transparent 70%)" }} />
+          style={{ background: "radial-gradient(circle, #0087cb20 0%, transparent 70%)" }} />
         <div className="absolute inset-0 opacity-[0.03]" 
           style={{ 
             backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,

@@ -14,15 +14,15 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-center border-b border-white/5 z-20 bg-black/50 backdrop-blur-md">
         <div className="flex items-center gap-4">
           <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-[#bcd647]/50 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-[#006db1]/50 animate-pulse" />
             <div className="w-2 h-2 rounded-full bg-white/20" />
           </div>
           <span className="text-[9px] font-mono tracking-[0.2em] text-zinc-500 uppercase">
-            Project_Vault: <span className="text-white">ACTIVE_INVESTMENTS</span> // Mode: <span className="text-[#bcd647]">SECURE</span>
+            Project_Vault: <span className="text-white">ACTIVE_INVESTMENTS</span> // Mode: <span className="text-[#006db1]">SECURE</span>
           </span>
         </div>
         <div className="hidden md:block text-[9px] font-mono text-zinc-500 tracking-widest uppercase italic">
-          Industrial_Ref: DYN_P-2026 // <span className="text-[#bcd647]">Access_Granted</span>
+          Industrial_Ref: DYN_P-2026 // <span className="text-[#006db1]">Access_Granted</span>
         </div>
       </div>
 
@@ -43,14 +43,14 @@ export default function HeroSection() {
               <h1 className="text-[12vw] md:text-[9vw] font-[1000] italic leading-[0.8] tracking-tighter uppercase">
                 <span className="block text-white">PROJECTS &</span>
                 <span className="relative inline-block mt-4">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#bcd647] to-white">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#006db1] to-white">
                     INVESTMENT.
                   </span>
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: '100%' }}
                     transition={{ delay: 1, duration: 1.5 }}
-                    className="absolute -bottom-2 left-0 h-1 bg-[#bcd647]/30"
+                    className="absolute -bottom-2 left-0 h-1 bg-[#006db1]/30"
                   />
                 </span>
               </h1>
@@ -64,12 +64,12 @@ export default function HeroSection() {
             transition={{ delay: 0.5 }}
             className="lg:col-span-4 bg-zinc-950/80 border border-white/5 p-8 relative group"
           >
-            <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#43becc]" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#bcd647]" />
+            <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-[#0087cb]" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-[#006db1]" />
 
             <div className="space-y-6">
               <div className="flex items-center gap-2">
-                <Factory size={14} className="text-[#bcd647]" />
+                <Factory size={14} className="text-[#006db1]" />
                 <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest italic font-mono">Investment_Core</span>
               </div>
               <p className="text-zinc-400 text-lg font-light leading-relaxed italic border-l border-white/10 pl-4">
@@ -77,7 +77,7 @@ export default function HeroSection() {
               </p>
               <div className="pt-4 flex items-center justify-between border-t border-white/5">
                 <div className="text-[10px] font-black text-zinc-600 uppercase tracking-tighter">Total_RFPs: [03]</div>
-                <div className="text-[10px] font-black text-[#bcd647]">Sectors: ENERGY | AUTO</div>
+                <div className="text-[10px] font-black text-[#006db1]">Sectors: ENERGY | AUTO</div>
               </div>
             </div>
           </motion.div>
@@ -92,7 +92,7 @@ export default function HeroSection() {
         className="mt-20 flex flex-col md:flex-row items-center gap-8 px-16 max-w-7xl mx-auto w-full"
       >
         <button className="group relative px-12 py-5 overflow-hidden">
-          <div className="absolute inset-0 bg-white skew-x-[-20deg] group-hover:bg-[#bcd647] transition-colors duration-300" />
+          <div className="absolute inset-0 bg-white skew-x-[-20deg] group-hover:bg-[#006db1] transition-colors duration-300" />
           <span className="relative z-10 text-black font-[1000] uppercase text-xs tracking-[0.5em] flex items-center gap-3">
             VIEW_ACTIVE_RFPs <ArrowUpRight size={18} />
           </span>
@@ -101,7 +101,7 @@ export default function HeroSection() {
           <motion.div
             animate={{ left: ['0%', '100%'] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
-            className="absolute top-0 w-20 h-full bg-gradient-to-r from-transparent via-[#43becc]/20 to-transparent"
+            className="absolute top-0 w-20 h-full bg-gradient-to-r from-transparent via-[#0087cb]/20 to-transparent"
           />
         </div>
       </motion.div>
