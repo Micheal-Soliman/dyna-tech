@@ -97,7 +97,7 @@ function HeroMainSection({
             <h1
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight uppercase italic tracking-tight max-w-5xl"
+              className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-white leading-tight uppercase italic tracking-tight max-w-4xl"
             >
               {sloganParts[0]}
               {sloganParts[1] && (
@@ -111,7 +111,7 @@ function HeroMainSection({
             <p
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="mt-6 text-sm sm:text-base md:text-lg text-zinc-300 max-w-xl mx-auto font-medium uppercase tracking-wider px-4"
+              className="mt-6 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl mx-auto font-medium leading-relaxed tracking-wide px-4"
             >
               {subheading}
             </p>
@@ -227,7 +227,7 @@ function CeoMessageSection({
             <h2 
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-white text-3xl md:text-4xl lg:text-5xl font-black uppercase leading-[1.15] mb-6 md:mb-8 tracking-tight"
+              className="text-white text-3xl md:text-4xl lg:text-[2.75rem] font-black uppercase leading-[1.15] mb-6 md:mb-8 tracking-tight"
             >
               {(ceoName || "Eng. Ahmed Sorour").split(" ").slice(0, -1).join(" ")} <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-white/60">
@@ -320,13 +320,13 @@ function BrandOutroSection({
         <div className="flex items-center justify-center gap-[0.04em]">
           <motion.h2 
             style={{ x: xLeft }}
-            className="text-white text-[15vw] font-black uppercase italic tracking-tighter drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem] font-black uppercase italic tracking-tight drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
           >
             {brandLeft}
           </motion.h2>
           <motion.h2 
             style={{ x: xRight }}
-            className="text-[#0087cb] text-[15vw] font-black uppercase italic tracking-tighter drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+            className="text-[#0087cb] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem] font-black uppercase italic tracking-tight drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
           >
             {brandRight}
           </motion.h2>
@@ -337,7 +337,7 @@ function BrandOutroSection({
         
         <motion.p 
           style={{ opacity: taglineOpacity }}
-          className="text-white/40 text-xs md:text-sm uppercase tracking-[0.5em] mt-6 font-bold"
+          className="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.35em] mt-6 font-bold"
         >
           {brandOutroTagline}
         </motion.p>

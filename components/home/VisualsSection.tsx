@@ -203,7 +203,7 @@ export default function VisualsSection({
         >
           <span className="text-[#0087cb] text-[10px] font-black tracking-[0.5em] uppercase">{badge}</span>
         </motion.div>
-        <h2 className="text-white text-5xl md:text-8xl font-black tracking-tighter uppercase leading-none">
+        <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-black tracking-tight uppercase leading-tight">
           {titlePrefix}{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] via-white to-[#006db1]">{titleHighlight}</span>
         </h2>
@@ -263,7 +263,7 @@ export default function VisualsSection({
                     pointerEvents: isCenter ? "auto" : "none",
                     touchAction: isCenter && isMobile ? "pan-y" : undefined,
                   }}
-                  className="absolute w-[340px] h-[480px] md:w-[650px] md:h-[420px] rounded-[60px] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.7)] group"
+                  className="absolute w-[320px] h-[460px] md:w-[620px] md:h-[400px] rounded-[36px] md:rounded-[48px] overflow-hidden shadow-[0_36px_90px_rgba(0,0,0,0.65)] group"
                 >
                   {/* حاوية الصورة مع Error Handling */}
                   <div className="w-full h-full bg-[#121b43] relative">
@@ -282,7 +282,7 @@ export default function VisualsSection({
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-[#0a0f29]/20 to-transparent p-12 flex flex-col justify-end items-start"
+                      className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-[#0a0f29]/20 to-transparent p-8 md:p-10 flex flex-col justify-end items-start"
                     >
                       {/* Status Badge داخل الكارت */}
                       <motion.span
@@ -297,7 +297,7 @@ export default function VisualsSection({
                       <motion.h4
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        className="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-2"
+                        className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight leading-none mb-2"
                       >
                         {img.title}
                       </motion.h4>
@@ -306,7 +306,7 @@ export default function VisualsSection({
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.1 }}
-                        className="text-[#0087cb] text-sm md:text-lg font-bold uppercase tracking-widest opacity-80"
+                        className="text-[#0087cb] text-xs md:text-base font-bold uppercase tracking-wider opacity-80"
                       >
                         {img.details}
                       </motion.p>
@@ -362,8 +362,8 @@ export default function VisualsSection({
         viewport={{ once: true }}
         className="mt-20 z-10"
       >
-        <Link href={`/${locale}/case-study`} className={`group relative inline-block px-10 py-5 bg-transparent overflow-hidden border border-white/10 rounded-xl transition-all cursor-pointer ${isAr ? "text-right" : "text-left"}`}>
-          <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#0a0f29] transition-colors duration-500">
+        <Link href={`/${locale}/case-study`} className={`group relative inline-block px-8 py-4 bg-transparent overflow-hidden border border-white/10 rounded-lg transition-all cursor-pointer ${isAr ? "text-right" : "text-left"}`}>
+          <span className="relative z-10 text-white font-black uppercase tracking-[0.22em] text-[10px] sm:text-[11px] group-hover:text-[#0a0f29] transition-colors duration-500">
             {ctaLabel}
           </span>
           <div className="absolute inset-0 bg-[#0087cb] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />

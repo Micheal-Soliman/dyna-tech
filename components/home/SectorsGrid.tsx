@@ -147,7 +147,7 @@ export function SectorsGrid({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className={`relative text-white text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] uppercase ${isAr ? 'text-right' : 'text-left'}`}
+              className={`relative text-white text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] uppercase max-w-4xl ${isAr ? 'text-right' : 'text-left'}`}
             >
               <span dir="auto" style={{ unicodeBidi: "plaintext" }}>{titleLine1}</span>{" "}
               <span dir="auto" style={{ unicodeBidi: "plaintext" }} className="text-[#0087cb]">{highlight}</span> <br />
@@ -206,10 +206,10 @@ export function SectorsGrid({
         >
           <Link
             href={`/${locale}/case-study`}
-            className={`group relative inline-flex items-center gap-8 py-3 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden transition-all duration-700 hover:border-[#0087cb]/50 hover:shadow-[0_0_30px_rgba(67,190,204,0.15)] ${isAr ? "pr-10 pl-3 flex-row-reverse" : "pl-10 pr-3"}`}
+            className={`group relative inline-flex items-center gap-6 py-3 border border-white/10 bg-white/5 backdrop-blur-sm rounded-full overflow-hidden transition-all duration-700 hover:border-[#0087cb]/50 hover:shadow-[0_0_30px_rgba(67,190,204,0.15)] ${isAr ? "pr-8 pl-3 flex-row-reverse" : "pl-8 pr-3"}`}
           >
             {/* Label */}
-            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-zinc-300 group-hover:text-[#0a0f29] relative z-20 transition-colors duration-500">
+            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] text-zinc-300 group-hover:text-[#0a0f29] relative z-20 transition-colors duration-500">
               {ctaLabel}
             </span>
             

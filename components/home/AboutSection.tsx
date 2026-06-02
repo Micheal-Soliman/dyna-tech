@@ -27,7 +27,7 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
         className="absolute top-4 left-0 w-full text-center z-50 pointer-events-none"
       >
         <span className="text-[#0087cb] font-black tracking-[0.5em] text-[10px] uppercase block mb-2">{copy.sectionKicker}</span>
-        <h2 className="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter mb-12">
+        <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight mb-12">
           {copy.sectionTitleFirst} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-[#006db1]">{copy.sectionTitleHighlight}</span>
         </h2>
       </motion.div>
@@ -41,7 +41,7 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
           className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none opacity-10"
         >
           <h2
-            className="text-[18vw] font-black text-transparent"
+            className="text-5xl md:text-7xl lg:text-[7rem] font-black text-transparent"
             style={{ WebkitTextStroke: "2px rgba(0, 135, 203, 0.5)" }}
           >
             {copy.backdropText}
@@ -85,7 +85,7 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
 
           {/* Main Heading Overlay */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full">
-            <h3 className="text-white text-5xl md:text-[8rem] font-black tracking-tighter leading-none mix-blend-difference">
+            <h3 className="text-white text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none mix-blend-difference">
               {copy.centerHeadingLine1}<br />
               <span className="text-[#0087cb]">{copy.centerHeadingLine2}</span>
             </h3>
@@ -118,7 +118,7 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <p className="text-white/80 text-xl md:text-4xl font-light leading-tight">
+            <p className="text-white/80 text-lg md:text-3xl lg:text-4xl font-light leading-tight">
               {copy.revealPrefix}{" "}
               <span className="font-extrabold text-white">{copy.brandName}</span>{" "}
               {copy.revealMiddle}{" "}
@@ -131,7 +131,7 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
             <Link href={`/${locale}/about`}>
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: "#0087cb", color: "#121b43" }}
-                className="mt-16 px-10 py-4 rounded-full border-2 border-[#0087cb] text-[#0087cb] font-bold text-lg transition-all cursor-pointer"
+                className="mt-14 px-8 py-3.5 rounded-full border-2 border-[#0087cb] text-[#0087cb] font-bold text-base transition-all cursor-pointer"
               >
                 {copy.cta}
               </motion.button>

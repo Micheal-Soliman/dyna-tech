@@ -204,7 +204,7 @@ export function AnnouncementsSection({
               <span className="text-[#0087cb] font-black tracking-[0.4em] text-[10px] uppercase">{kicker}</span>
             </div>
 
-            <h2 className="text-white text-5xl md:text-7xl font-black tracking-tighter leading-none">
+            <h2 className="text-white text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
               <span dir="auto" style={{ unicodeBidi: "plaintext" }}>
                 {title.split(' ')[0]}{" "}
               </span>
@@ -252,8 +252,8 @@ export function AnnouncementsSection({
           transition={{ delay: 0.5 }}
           className="mt-20 flex justify-center"
         >
-          <Link href={knowledgeHref} className="group relative inline-block px-8 py-4 bg-transparent overflow-hidden cursor-pointer">
-            <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#121b43] transition-colors duration-300">
+          <Link href={knowledgeHref} className="group relative inline-block px-7 py-3.5 bg-transparent overflow-hidden cursor-pointer">
+            <span className="relative z-10 text-white font-black uppercase tracking-[0.22em] text-[10px] sm:text-[11px] group-hover:text-[#121b43] transition-colors duration-300">
               {viewAllLabel}
             </span>
             <div className="absolute inset-0 border border-white/20 group-hover:bg-[#0087cb] group-hover:border-[#0087cb] transition-all duration-300" />

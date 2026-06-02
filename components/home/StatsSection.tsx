@@ -65,10 +65,10 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
       <motion.div 
         animate={!reduceMotion && isActive ? { rotate: 360 } : { rotate: 0 }}
         transition={!reduceMotion && isActive ? { duration: 20, repeat: Infinity, ease: "linear" } : undefined}
-        className="absolute w-64 h-64 md:w-72 md:h-72 border border-dashed border-white/5 rounded-full"
+        className="absolute w-48 h-48 md:w-52 md:h-52 lg:w-56 lg:h-56 border border-dashed border-white/5 rounded-full"
       />
 
-      <svg className="w-56 h-56 md:w-64 md:h-64 transform -rotate-90">
+      <svg className="w-44 h-44 md:w-48 md:h-48 lg:w-52 lg:h-52 transform -rotate-90">
         <circle
           cx="50%" cy="50%" r="45%"
           className="stroke-white/5 fill-none"
@@ -106,11 +106,11 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           <span
             dir="ltr"
             style={{ unicodeBidi: "plaintext" }}
-            className="text-5xl md:text-6xl font-black text-white tracking-tighter"
+            className="text-4xl md:text-5xl font-black text-white tracking-tight"
           >
             {prefix && <span className="text-[#0087cb]">{prefix}</span>}
             {count.toFixed(precision)}
-            <span className="text-xl md:text-2xl font-bold text-[#0087cb]">{suffix}</span>
+            <span className="text-base md:text-xl font-bold text-[#0087cb]">{suffix}</span>
           </span>
         </motion.div>
         
@@ -120,7 +120,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           className="mt-4 px-4 py-1 bg-white/5 backdrop-blur-md rounded-full border border-white/10"
         >
 
-          <p className="text-[10px] font-black text-[#006db1] uppercase tracking-[0.3em]">
+          <p className="text-[10px] font-black text-[#006db1] uppercase tracking-[0.18em]">
             {label}
           </p>
         </motion.div>
@@ -140,26 +140,26 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
 
 export function StatsSection({ title, kicker, stats, isAr = false }: { title: string; kicker: string; stats: StatItem[]; isAr?: boolean }) {
   return (
-    <section className="py-40 bg-[#121b43] relative overflow-hidden font-['Montserrat',sans-serif]">
+    <section className="py-32 md:py-40 bg-[#121b43] relative overflow-hidden font-['Montserrat',sans-serif]" dir={isAr ? "rtl" : "ltr"}>
       
       <div className="absolute inset-0 opacity-20" 
            style={{ backgroundImage: 'radial-gradient(circle, #0087cb 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-32">
+        <div className="text-center mb-20 md:mb-28">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            className="text-white text-5xl md:text-7xl font-black tracking-tighter"
+            className="text-white text-4xl md:text-5xl lg:text-6xl font-black tracking-tight"
           >
             {title}
           </motion.h2>
-          <p className="text-[#0087cb] mt-4 font-bold tracking-[0.5em] uppercase text-xs">
+          <p className="text-[#0087cb] mt-4 font-bold tracking-[0.3em] uppercase text-xs">
             {kicker}
           </p>
         </div>
 
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {stats.map((s) => (
             <NexusCircle key={s.label} value={s.value} label={s.label} />
           ))}
