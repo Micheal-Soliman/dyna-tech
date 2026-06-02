@@ -102,11 +102,12 @@ export default function OurPartnersPage({ content, locale }: Props) {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="max-w-3xl space-y-8"
             >
-              <div className="flex items-center gap-3">
-                <div className="h-[2px] w-8 bg-[#0087cb]" />
+              <div className="flex flex-col items-start gap-3">
                 <span className="text-[11px] font-black uppercase tracking-[0.3em] text-[#0087cb]">
                   {content.hero.kicker}
                 </span>
+                <div className="h-[2px] w-8 bg-[#0087cb]" />
+
               </div>
 
               <h1 className="text-4xl font-[1000] uppercase italic leading-[0.9] tracking-tighter md:text-6xl lg:text-[5rem] xl:text-[6rem]">
