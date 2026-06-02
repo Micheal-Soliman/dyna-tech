@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Award, CheckCircle2, MapPin } from "lucide-react";
 
@@ -248,16 +249,14 @@ export default function OurPartnersPage({ content, locale }: Props) {
                   </div>
                 </div>
 
-                <a
-                  href={partner.ctaHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/${locale}/accelerators/${partner.id === "cu" ? "composites-united" : "fft"}`}
                   className="flex w-full items-center justify-center gap-6 py-8 text-[11px] font-[1000] uppercase tracking-[0.5em] transition-all"
                   style={{ backgroundColor: partner.id === "cu" ? "white" : "transparent", color: partner.id === "cu" ? "black" : accent, border: `2px solid ${accent}4d` }}
                 >
                   {partner.ctaLabel}
                   <ArrowUpRight size={16} />
-                </a>
+                </Link>
               </div>
             </motion.article>
           );
