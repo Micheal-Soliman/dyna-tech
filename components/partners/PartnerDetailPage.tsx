@@ -37,10 +37,10 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center">
           <Link
             href={`/${locale}/accelerators`}
-            className="mb-16 inline-flex w-fit items-center gap-3 text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-white"
+            className="group mb-16 inline-flex w-fit items-center gap-3 text-[10px] font-black uppercase tracking-widest text-zinc-500 transition-colors hover:text-white"
           >
-            <ArrowLeft size={14} />
-            {shortLabel}
+            <ArrowLeft size={14} className="transition-transform duration-300 group-hover:-translate-x-1" />
+            {partner.name}
           </Link>
 
           <motion.div
@@ -83,15 +83,44 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
             </div>
 
             <div className="space-y-6 lg:pt-8">
-              <div className="relative overflow-hidden border border-white/10 bg-zinc-950 p-8">
-                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-25 blur-[100px]" style={{ backgroundColor: accent }} />
+              <motion.div
+                whileHover={{ scale: 1.012, borderColor: `${accent}66` }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
+                className="group relative aspect-[4/3] overflow-hidden border-2 border-white/10 bg-zinc-950 transition-colors duration-500"
+              >
+                <div className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-white/20" />
+                <div className="absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-white/20" />
+                <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:42px_42px]" />
+                <div
+                  className="absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] opacity-0 blur-sm transition-all duration-700 group-hover:left-full group-hover:opacity-25"
+                  style={{ backgroundColor: accent }}
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <span className="text-6xl font-[1000] uppercase italic tracking-tighter text-white md:text-7xl">
+                      {shortLabel}
+                    </span>
+                    <div
+                      className="mx-auto mt-3 h-px w-28 shadow-[0_0_10px_currentColor]"
+                      style={{ backgroundColor: accent, color: accent }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ y: -4, borderColor: `${accent}55` }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="group relative overflow-hidden border border-white/10 bg-zinc-950 p-8 transition-colors duration-500"
+              >
+                <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-25 blur-[100px] transition-all duration-500 group-hover:h-52 group-hover:w-52" style={{ backgroundColor: accent }} />
                 <h2 className="relative z-10 mb-5 text-[10px] font-black uppercase italic tracking-[0.45em]" style={{ color: accent }}>
                   {partner.roleTitle}
                 </h2>
                 <p className="relative z-10 text-lg leading-relaxed text-zinc-300">
                   {partner.roleText}
                 </p>
-              </div>
+              </motion.div>
 
               <div className="grid gap-3">
                 {partner.scope.map((item, index) => (
@@ -99,13 +128,14 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
                     key={item}
                     initial={{ opacity: 0, x: isAr ? 24 : -24 }}
                     animate={{ opacity: 1, x: 0 }}
+                    whileHover={{ x: isAr ? -8 : 8, borderColor: `${accent}80` }}
                     transition={{ duration: 0.45, delay: 0.2 + index * 0.07 }}
-                    className="flex items-center gap-4 border border-white/5 bg-zinc-950/70 p-5"
+                    className="group flex items-center gap-4 border border-white/5 bg-zinc-950/70 p-5 transition-colors duration-300 hover:bg-white/[0.025]"
                   >
-                    <span className="text-xl font-[1000]" style={{ color: accent }}>
+                    <span className="text-xl font-[1000] transition-transform duration-300 group-hover:scale-110" style={{ color: accent }}>
                       0{index + 1}
                     </span>
-                    <span className="text-[11px] font-black uppercase tracking-[0.22em] text-zinc-300">
+                    <span className="text-[11px] font-black uppercase leading-relaxed tracking-[0.18em] text-zinc-300 md:tracking-[0.22em]">
                       {item}
                     </span>
                   </motion.div>
@@ -121,9 +151,10 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -6, borderColor: `${accent}55` }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="space-y-8"
+            className="space-y-8 rounded-none"
           >
             <div className="flex items-center gap-3 border-b border-white/10 pb-4">
               <Award size={18} style={{ color: accent }} />
@@ -131,7 +162,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
                 {partner.milestoneTitle}
               </span>
             </div>
-            <div className="relative overflow-hidden border border-white/5 bg-zinc-950 p-8">
+            <div className="relative overflow-hidden border border-white/5 bg-zinc-950 p-8 transition-colors duration-300">
               <div className="absolute right-0 top-0 p-4 text-[56px] font-black italic opacity-10" style={{ color: accent }}>
                 {partner.id === "fft" ? "2023" : "2022"}
               </div>
@@ -144,17 +175,18 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -6, borderColor: `${accent}66` }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="relative overflow-hidden border border-white/10 bg-zinc-950 p-10"
+            className="group relative overflow-hidden border border-white/10 bg-zinc-950 p-10 transition-colors duration-500"
           >
-            <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full blur-3xl" style={{ backgroundColor: `${accent}14` }} />
+            <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full blur-3xl transition-all duration-500 group-hover:h-36 group-hover:w-36" style={{ backgroundColor: `${accent}14` }} />
             <h2 className="text-2xl font-[1000] uppercase italic tracking-widest" style={{ color: accent }}>
               {ecosystemColumn.label} {ecosystemColumn.title}
             </h2>
             <ul className="mt-10 space-y-5">
               {ecosystemColumn.items.map((item) => (
-                <li key={item} className="flex items-center justify-between border-b border-white/5 pb-2 text-[10px] font-black uppercase italic tracking-widest text-zinc-400">
+                <li key={item} className="flex items-center justify-between gap-4 border-b border-white/5 pb-2 text-[10px] font-black uppercase italic tracking-widest text-zinc-400">
                   {item}
                   <CheckCircle2 size={12} style={{ color: accent }} />
                 </li>
@@ -167,11 +199,11 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
           href={partner.ctaHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="mx-auto flex max-w-2xl items-center justify-center gap-6 py-8 text-[12px] font-[1000] uppercase tracking-[0.45em] transition-all"
+          className="group mx-auto flex max-w-2xl flex-wrap items-center justify-center gap-4 px-6 py-8 text-center text-[12px] font-[1000] uppercase tracking-[0.32em] transition-all duration-300 hover:-translate-y-1 md:gap-6 md:tracking-[0.45em]"
           style={{ backgroundColor: accent, color: "black" }}
         >
           {partner.ctaLabel}
-          <ArrowUpRight size={18} />
+          <ArrowUpRight size={18} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
         </a>
       </section>
     </main>

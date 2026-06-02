@@ -14,6 +14,10 @@ type PartnersDictionary = {
   accelerators: OurPartnersContent;
 };
 
+export function generateStaticParams() {
+  return Object.keys(slugToPartnerId).map((slug) => ({ slug }));
+}
+
 export default async function Page({
   params,
 }: {
@@ -27,9 +31,7 @@ export default async function Page({
 
   const dict = (await getDictionary(locale)) as PartnersDictionary;
   const partner = dict.accelerators.partners.find((item) => item.id === partnerId);
-  const ecosystemColumn = dict.accelerators.ecosystem.columns.find(
-    (item) => item.label.toLowerCase() === partnerId || (partnerId === "cu" && item.label.toLowerCase() === "cu"),
-  );
+  const ecosystemColumn = dict.accelerators.ecosystem.columns.find((item) => item.label.toLowerCase() === partnerId);
 
   if (!partner || !ecosystemColumn) {
     notFound();

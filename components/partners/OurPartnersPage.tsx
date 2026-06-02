@@ -56,11 +56,15 @@ function PartnerMark({
     <motion.div
       whileHover={{ scale: 1.015 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative aspect-square overflow-hidden border-2 border-white/10 bg-zinc-950 shadow-[0_0_50px_rgba(0,0,0,1)]"
+      className="group relative aspect-square overflow-hidden border-2 border-white/10 bg-zinc-950 shadow-[0_0_50px_rgba(0,0,0,1)] transition-colors duration-500 hover:border-white/20"
     >
       <div className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-white/20" />
       <div className="absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-white/20" />
       <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:42px_42px]" />
+      <div
+        className="absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] opacity-0 blur-sm transition-all duration-700 group-hover:left-full group-hover:opacity-25"
+        style={{ backgroundColor: accent }}
+      />
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="text-center transition-transform duration-700 hover:scale-110">
           <span className="text-5xl font-[1000] uppercase italic tracking-tighter text-white">
@@ -125,9 +129,11 @@ export default function OurPartnersPage({ content, locale }: Props) {
               {content.ecosystem.columns.map((column, index) => {
                 const accent = index === 0 ? "#006db1" : "#0087cb";
                 return (
-                  <div
+                  <motion.div
                     key={column.label}
-                    className="flex items-center gap-4 border p-6"
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="group flex items-center gap-4 border p-6 transition-colors duration-500"
                     style={{
                       borderColor: `${accent}4d`,
                       backgroundColor: `${accent}1a`,
@@ -144,15 +150,15 @@ export default function OurPartnersPage({ content, locale }: Props) {
                         {column.label}
                       </span>
                     </div>
-                    <div>
+                    <div className="min-w-0">
                       <div className="text-[12px] font-[1000] uppercase tracking-widest text-white">
                         {column.title}
                       </div>
-                      <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600">
+                      <div className="mt-1 text-[9px] font-black uppercase tracking-widest text-zinc-600 transition-colors duration-300 group-hover:text-zinc-400">
                         {column.items[0]}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 );
               })}
             </motion.div>
@@ -219,12 +225,13 @@ export default function OurPartnersPage({ content, locale }: Props) {
                       key={item}
                       initial={{ opacity: 0, x: isAr ? 24 : -24 }}
                       whileInView={{ opacity: 1, x: 0 }}
+                      whileHover={{ x: isAr ? -8 : 8, borderColor: `${accent}80` }}
                       viewport={{ once: true, amount: 0.3 }}
-                      transition={{ duration: 0.45, delay: index * 0.05 }}
-                      className="group flex items-center gap-6 border border-white/5 bg-black p-6 transition-all"
+                      transition={{ duration: 0.45, delay: index * 0.05, ease: "easeOut" }}
+                      className="group flex items-center gap-6 border border-white/5 bg-black p-6 transition-colors duration-300 hover:bg-white/[0.025]"
                       style={{ borderColor: "rgba(255,255,255,0.05)" }}
                     >
-                      <div className="h-2 w-2" style={{ backgroundColor: accent }} />
+                      <div className="h-2 w-2 transition-transform duration-300 group-hover:scale-[1.8]" style={{ backgroundColor: accent }} />
                       <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-300">
                         {item}
                       </span>
@@ -251,11 +258,11 @@ export default function OurPartnersPage({ content, locale }: Props) {
 
                 <Link
                   href={`/${locale}/accelerators/${partner.id === "cu" ? "composites-united" : "fft"}`}
-                  className="flex w-full items-center justify-center gap-6 py-8 text-[11px] font-[1000] uppercase tracking-[0.5em] transition-all"
+                  className="group flex w-full flex-wrap items-center justify-center gap-4 px-6 py-8 text-center text-[11px] font-[1000] uppercase tracking-[0.35em] transition-all duration-300 hover:-translate-y-1 md:gap-6 md:tracking-[0.5em]"
                   style={{ backgroundColor: partner.id === "cu" ? "white" : "transparent", color: partner.id === "cu" ? "black" : accent, border: `2px solid ${accent}4d` }}
                 >
                   {partner.ctaLabel}
-                  <ArrowUpRight size={16} />
+                  <ArrowUpRight size={16} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </Link>
               </div>
             </motion.article>
@@ -271,7 +278,7 @@ export default function OurPartnersPage({ content, locale }: Props) {
               transition={{ duration: 0.7, ease: "easeOut" }}
               className="space-y-8 text-center"
             >
-              <h2 className="text-5xl font-[1000] uppercase italic leading-none tracking-tighter md:text-7xl">
+              <h2 className="text-4xl font-[1000] uppercase italic leading-none tracking-tighter md:text-7xl">
                 {content.ecosystem.title}
               </h2>
               <div className="mx-auto max-w-2xl space-y-4 text-[10px] font-black uppercase italic leading-loose tracking-[0.35em] text-zinc-500">
@@ -289,17 +296,18 @@ export default function OurPartnersPage({ content, locale }: Props) {
                     key={column.label}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ y: -8, borderColor: `${accent}66` }}
                     viewport={{ once: true, amount: 0.25 }}
                     transition={{ duration: 0.65, delay: index * 0.12 }}
-                    className="relative overflow-hidden border border-white/10 bg-zinc-950 p-12"
+                    className="group relative overflow-hidden border border-white/10 bg-zinc-950 p-12 transition-colors duration-500"
                   >
-                    <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full blur-3xl transition-all" style={{ backgroundColor: `${accent}14` }} />
-                    <h3 className="text-xl font-[1000] uppercase italic tracking-widest" style={{ color: accent }}>
+                    <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full blur-3xl transition-all duration-500 group-hover:h-36 group-hover:w-36" style={{ backgroundColor: `${accent}14` }} />
+                    <h3 className="text-lg font-[1000] uppercase italic tracking-widest md:text-xl" style={{ color: accent }}>
                       {column.label} {column.title}
                     </h3>
                     <ul className="mt-10 space-y-5">
                       {column.items.map((item) => (
-                        <li key={item} className="flex items-center justify-between border-b border-white/5 pb-2 text-[10px] font-black uppercase italic tracking-widest text-zinc-400">
+                        <li key={item} className="flex items-center justify-between gap-4 border-b border-white/5 pb-2 text-[10px] font-black uppercase italic tracking-widest text-zinc-400">
                           {item}
                           <CheckCircle2 size={12} style={{ color: accent }} />
                         </li>
