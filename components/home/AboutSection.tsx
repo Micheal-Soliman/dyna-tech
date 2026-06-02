@@ -20,17 +20,24 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
   return (
     <section ref={containerRef} className="relative h-[200vh] bg-[#121b43] font-['Montserrat',sans-serif]">
       {/* 0. Section Title Overlay (Filling the gap) */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="absolute top-4 left-0 w-full text-center z-50 pointer-events-none"
-      >
-        <span className="text-[#0087cb] font-black tracking-[0.5em] text-[10px] uppercase block mb-2">{copy.sectionKicker}</span>
-        <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight mb-12">
-          {copy.sectionTitleFirst} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-[#006db1]">{copy.sectionTitleHighlight}</span>
-        </h2>
-      </motion.div>
+      {(copy.sectionKicker || copy.sectionTitleFirst || copy.sectionTitleHighlight) && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="absolute top-4 left-0 w-full text-center z-50 pointer-events-none"
+        >
+          {copy.sectionKicker && (
+            <span className="text-[#0087cb] font-black tracking-[0.5em] text-[10px] uppercase block mb-2">{copy.sectionKicker}</span>
+          )}
+          {(copy.sectionTitleFirst || copy.sectionTitleHighlight) && (
+            <h2 className="text-white text-3xl md:text-5xl font-black uppercase tracking-tight mb-12">
+              {copy.sectionTitleFirst}{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-[#006db1]">{copy.sectionTitleHighlight}</span>
+            </h2>
+          )}
+        </motion.div>
+      )}
 
       {/* 1. Sticky Container */}
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden transform-gpu">
@@ -128,14 +135,16 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
               {copy.revealSuffix}
             </p>
 
-            <Link href={`/${locale}/about`}>
-              <motion.button
-                whileHover={{ scale: 1.05, backgroundColor: "#0087cb", color: "#121b43" }}
-                className="mt-14 px-8 py-3.5 rounded-full border-2 border-[#0087cb] text-[#0087cb] font-bold text-base transition-all cursor-pointer"
-              >
-                {copy.cta}
-              </motion.button>
-            </Link>
+            {copy.cta && (
+              <Link href={`/${locale}/about`}>
+                <motion.button
+                  whileHover={{ scale: 1.05, backgroundColor: "#0087cb", color: "#121b43" }}
+                  className="mt-14 px-8 py-3.5 rounded-full border-2 border-[#0087cb] text-[#0087cb] font-bold text-base transition-all cursor-pointer"
+                >
+                  {copy.cta}
+                </motion.button>
+              </Link>
+            )}
           </motion.div>
         </div>
       </div>

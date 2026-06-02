@@ -43,6 +43,8 @@ export function HomeSections({ locale, isAr, home, primaryCtaHref, secondaryCtaH
       <LogosLoop
         title={home.partnersTitle}
         heading={home.partnersHeading}
+        intro={home.partnersIntro}
+        capabilities={home.partnersCapabilities}
         partners={home.partners}
         ctaLabel={home.partnersCtaLabel}
         ctaHref={secondaryCtaHref}

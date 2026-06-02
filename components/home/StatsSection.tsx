@@ -7,15 +7,6 @@ import type { StatItem } from "@/components/home/types";
 function parseStatValue(raw: string) {
   const value = String(raw ?? "").trim();
 
-  if (value.includes("/")) {
-    const [left, ...rest] = value.split("/");
-    const right = rest.join("/");
-    const numeric = Number.parseFloat(left);
-    const safeNumeric = Number.isFinite(numeric) ? numeric : 0;
-    const precision = (left.split(".")[1] ?? "").length;
-    return { numericValue: safeNumeric, prefix: "", suffix: `/${right}`, precision };
-  }
-
   const match = value.match(/^([^0-9]*)(\d+(?:\.\d+)?)(.*)$/);
   if (!match) {
     return { numericValue: 0, prefix: "", suffix: value, precision: 0 };

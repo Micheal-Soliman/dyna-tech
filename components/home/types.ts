@@ -84,6 +84,8 @@ export type HomeContent = {
   hero: HomeHeroCopy;
   partnersTitle: string;
   partnersHeading: string;
+  partnersIntro: string;
+  partnersCapabilities: string[];
   partners: Partner[];
   partnersCtaLabel: string;
   about: HomeAboutCopy;

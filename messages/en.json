@@ -30,31 +30,38 @@
       "secondaryCtaLabel": "Contact Us",
       "ceoQuote": "Our mission is to create a sustainable industrial ecosystem in Egypt by integrating world-class technology with local expertise.",
       "ceoName": "Eng. Ahmed Sorour",
-      "ceoTitle": "CEO",
-      "ceoCtaLabel": "Read Full CEO Message",
-      "ceoSectionLabel": "A Message From Leadership",
+      "ceoTitle": "Founder & CEO",
+      "ceoCtaLabel": "Read More",
+      "ceoSectionLabel": "Message From The Founder",
       "ceoSubtitle": "Strategic Growth & Engineering Excellence",
       "heroImageAlt": "DYNATECH industrial technology ecosystem",
       "scrollLabel": "Scroll",
-      "brandOutroTagline": "The Future of Industry"
+      "brandOutroTagline": "Connecting Global Technology To Egypt’s Industrial Future"
     },
     "partnersTitle": "Industrial Technology Partnerships",
-    "partnersHeading": "Global Expertise, Local Excellence",
+    "partnersHeading": "Technology Advances Faster Through Partnership",
+    "partnersIntro": "DYNATECH serves as the exclusive gateway between Middle Eastern markets and two of Europe’s leading industrial technology organizations: FFT Produktionssysteme GmbH and Composites United. Through these partnerships, DYNATECH enables companies and institutions across the region to access advanced manufacturing systems, lightweight material technologies, automation solutions, and industrial development expertise directly from Europe.",
+    "partnersCapabilities": [
+      "Advanced Manufacturing Systems",
+      "Lightweight Material Technologies",
+      "Industrial Automation & Infrastructure",
+      "Technology Transfer & Localization"
+    ],
     "partners": [
       {
         "name": "FFT Produktionssysteme GmbH",
-        "oneLiner": "Exclusive German partner for intelligent manufacturing systems and automotive production infrastructure"
+        "oneLiner": "Exclusive technology partner with more than 50 years of global expertise in intelligent manufacturing systems and automotive production infrastructure."
       },
       {
         "name": "Composites United",
-        "oneLiner": "Exclusive representative partnership for advanced lightweight material technologies"
+        "oneLiner": "Exclusive representative partnership supporting advanced composite technologies and lightweight material innovation in Egypt."
       }
     ],
     "partnersCtaLabel": "Meet Our Partners",
     "about": {
-      "sectionKicker": "Discovery",
-      "sectionTitleFirst": "About",
-      "sectionTitleHighlight": "DYNATECH",
+      "sectionKicker": "",
+      "sectionTitleFirst": "",
+      "sectionTitleHighlight": "",
       "backdropText": "WHO WE ARE",
       "imageAlt": "Industrial technology partnership ecosystem",
       "cardPlumTitle": "Established 2017",
@@ -70,104 +77,88 @@
       "revealMiddle": "At the same time, the company is developing a fully integrated",
       "revealHighlight": "Automotive Hub",
       "revealSuffix": "designed to support electric mobility, automotive operations, technical services, and future industrial growth.",
-      "cta": "Explore Our Strategy"
+      "cta": ""
     },
     "statsTitle": "DYNATECH IN NUMBERS",
-    "statsKicker": "Growth & Infrastructure",
+    "statsKicker": "Industrial Technology Access",
     "stats": [
-      { "value": "2017", "label": "Industry Presence" },
-      { "value": "15M EGP", "label": "Paid Capital" },
-      { "value": "≥6000sqm", "label": "Automotive Hub" },
-      { "value": "35+Years", "label": "Leadership Expertise" },
-      { "value": "40Cars", "label": "Daily Work Capacity" }
+      { "value": "2", "label": "Exclusive European Partnerships" },
+      { "value": "6000+ sqm", "label": "Automotive Hub" },
+      { "value": "40 Cars / Day", "label": "Operational Capacity" }
     ],
     "sectors": {
       "kicker": "Automotive Hub",
       "titleLine1": "DYNATECH",
       "highlight": "Automotive Hub",
-      "titleLine2": "Integrated Operations",
-      "description": "A next-generation destination combining electric mobility, automotive services, technical operations, training, and infrastructure within one integrated environment.",
+      "titleLine2": "A Complete Automotive & Technical Ecosystem",
+      "description": "The DYNATECH Automotive Hub is a next-generation destination combining electric mobility, automotive services, technical operations, training, and infrastructure within one integrated environment. Designed as a fully operational ecosystem, the hub includes EV and ICE servicing, body shop operations, training facilities, administration spaces, technical workshops, vehicle storage, and showroom operations.",
       "ctaLabel": "Explore The Automotive Hub",
       "items": [
         {
-          "title": "E-Mobility",
-          "description": "Electric mobility services, charging readiness, and NEV-focused operational support."
+          "title": "EV Showroom",
+          "description": "A dedicated showroom environment for electric mobility presentation and customer engagement."
         },
         {
-          "title": "Automotive Services",
-          "description": "High-capacity service bays and maintenance workflows designed for modern vehicle operations."
+          "title": "ICE & EV Service Center",
+          "description": "Integrated service operations supporting both internal-combustion and electric vehicles."
         },
         {
-          "title": "Technical Operations",
-          "description": "Integrated diagnostics, repair, and workshop infrastructure for scalable automotive activity."
+          "title": "Body Shop & Smart Repair",
+          "description": "Smart repair and body shop capabilities for scalable automotive operations."
         },
         {
-          "title": "Training Academy",
-          "description": "Hands-on technical training programs supporting workforce development and localization."
+          "title": "Technical Training Center",
+          "description": "Hands-on technical training spaces supporting workforce development and localization."
         },
         {
-          "title": "Infrastructure",
-          "description": "A 6,000 sqm operational platform built to support mobility, service, and industrial growth."
+          "title": "Administrative Offices",
+          "description": "Operational and administrative spaces built into one connected automotive ecosystem."
         },
         {
-          "title": "Industrial Partnerships",
-          "description": "A regional gateway connecting global technology partners with practical market execution."
+          "title": "Fleet & Leasing Operations",
+          "description": "Fleet, leasing, and business operations designed for high-volume vehicle activity."
+        },
+        {
+          "title": "Vehicle Storage & Logistics",
+          "description": "Storage and logistics capacity supporting daily operations and future industrial growth."
         }
       ]
     },
     "visualsCarousel": {
-      "badge": "DYNATECH Projects",
-      "titlePrefix": "Industrial",
-      "titleHighlight": "Excellence",
+      "badge": "Current Projects & Investment",
+      "titlePrefix": "Industrial Development",
+      "titleHighlight": "Already In Motion",
       "ctaLabel": "View All Projects & Investment Opportunities",
       "slides": [
         {
           "url": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop",
-          "title": "Automotive Hub",
-          "status": "Operational",
-          "details": "6,000 sqm • 40+ Work Bays"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop",
-          "title": "E-Mobility RFP",
-          "status": "Open for RFP",
-          "details": "Electric Bus Assembly Line"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
-          "title": "Lightweight Materials",
+          "title": "DYNATECH Automotive Hub",
           "status": "In Development",
-          "details": "Carbon Fiber Parts Plant"
-        },
-        {
-          "url": "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?q=80&w=2070&auto=format&fit=crop",
-          "title": "Energy Storage",
-          "status": "Strategic RFP",
-          "details": "Battery Management Systems"
+          "details": "15 Million Paid Capital • Area: 6,000+ sqm • Capacity: 40 Cars / Day"
         }
       ]
     },
-    "announcementsTitle": "Events & Media",
-    "announcementsKicker": "Latest Updates",
-    "announcementsBlurb": "Explore our latest partnerships, facility expansions, and industry milestones.",
+    "announcementsTitle": "Latest Signals From DYNATECH",
+    "announcementsKicker": "Featured Updates",
+    "announcementsBlurb": "Follow DYNATECH’s latest partnerships, project developments, industry participation, and technology announcements.",
     "announcementsReadMoreLabel": "Read More",
     "announcementsReadMoreArrow": "→",
     "announcementsViewAllLabel": "View All News",
     "announcements": [
       {
-        "title": "Strategic Partnership with FFT Group",
+        "title": "Partnership Announcement",
         "date": "Nov 2023",
-        "description": "Dynatech officially becomes the exclusive technology partner for FFT in Egypt, bridging 50+ years of global automation expertise to the local market."
+        "description": "DYNATECH continues to expand its exclusive European technology partnerships across the region."
       },
       {
-        "title": "Composites United Expansion",
+        "title": "Technology Development Update",
         "date": "Oct 2023",
-        "description": "Representing the world leading network for fiber-based multi-material lightweight design as the exclusive Egyptian representative."
+        "description": "New development tracks connect advanced manufacturing, lightweight materials, and localization."
       },
       {
-        "title": "Automotive Hub Infrastructure Completion",
+        "title": "Industry Event Participation",
         "date": "Sept 2023",
-        "description": "Our 6,000 sqm state-of-the-art facility is now fully operational, supporting high-capacity automotive assembly and maintenance."
+        "description": "DYNATECH participates in industrial forums and events connecting global technology with Egypt’s future."
       }
     ]
   },

@@ -13,13 +13,15 @@ type Partner = {
 type LogosLoopProps = {
   title: string;
   heading: string;
+  intro?: string;
+  capabilities?: string[];
   partners: Partner[];
   ctaLabel?: string;
   ctaHref?: string;
   isAr?: boolean;
 };
 
-export function LogosLoop({ title, heading, partners, ctaLabel, ctaHref, isAr = false }: LogosLoopProps) {
+export function LogosLoop({ title, heading, intro, capabilities = [], partners, ctaLabel, ctaHref, isAr = false }: LogosLoopProps) {
   const reduceMotion = useReducedMotion();
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -52,7 +54,7 @@ export function LogosLoop({ title, heading, partners, ctaLabel, ctaHref, isAr = 
   return (
     <section className="bg-[#121b43] pt-24 pb-12 mt-20 md:mt-32 overflow-hidden" style={{ contain: 'layout paint' }}>
       {/* Section Header */}
-      <div className="mx-auto max-w-6xl px-6 mb-16 text-center">
+      <div className="mx-auto max-w-6xl px-6 mb-14 text-center">
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,6 +67,29 @@ export function LogosLoop({ title, heading, partners, ctaLabel, ctaHref, isAr = 
         <h2 className="text-white text-3xl md:text-5xl font-bold">
           {heading}
         </h2>
+        {intro && (
+          <p
+            dir="auto"
+            style={{ unicodeBidi: "plaintext" }}
+            className="mx-auto mt-6 max-w-3xl text-sm md:text-base leading-relaxed text-white/60"
+          >
+            {intro}
+          </p>
+        )}
+        {capabilities.length > 0 && (
+          <div className="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-3">
+            {capabilities.map((capability) => (
+              <span
+                key={capability}
+                dir="auto"
+                style={{ unicodeBidi: "plaintext" }}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.16em] text-white/55"
+              >
+                {capability}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Marquee Container - GPU Optimized */}
