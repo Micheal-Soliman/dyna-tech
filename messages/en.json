@@ -381,65 +381,165 @@
     }
   },
   "services": {
-    "header": {
-      "kicker": "DYNATECH EXPERTISE",
-      "titleLine1": "OUR",
-      "titleLine2": "",
-      "titleStroke": "SERVICES"
+    "hero": {
+      "kicker": "What We Do",
+      "title": "Two Platforms. One Industrial Ecosystem.",
+      "intro": "DYNATECH operates through a dual business model combining exclusive international industrial partnerships with a fully integrated automotive and technical infrastructure platform in Egypt.",
+      "supporting": "Together, these two platforms create a bridge between global technology providers and regional industrial growth opportunities."
     },
-    "services": [
+    "partnerships": {
+      "kicker": "Industrial Technology Partnerships",
+      "title": "Bringing European Industrial Expertise To The Region",
+      "paragraphs": [
+        "DYNATECH serves as the exclusive regional gateway for two of Europe’s leading industrial technology organizations: FFT Produktionssysteme GmbH and Composites United.",
+        "Through these partnerships, companies and institutions across the Middle East can access advanced manufacturing systems, lightweight material technologies, automation solutions, and industrial development expertise directly through DYNATECH."
+      ],
+      "includesTitle": "What This Includes",
+      "includes": [
+        "Turnkey Production Systems",
+        "Industrial Automation Solutions",
+        "Advanced Manufacturing Infrastructure",
+        "Lightweight Material Technologies",
+        "Technology Transfer & Localization",
+        "Training & Technical Support"
+      ],
+      "whyTitle": "Why It Matters",
+      "whyText": "As industries across the region accelerate toward electrification and advanced manufacturing, access to proven global technologies becomes increasingly critical. DYNATECH helps simplify that access by connecting regional opportunities with trusted industrial expertise from Europe.",
+      "ctaLabel": "Explore Our Partners"
+    },
+    "hub": {
+      "kicker": "Automotive Hub",
+      "title": "A Fully Integrated Automotive & Technical Destination",
+      "paragraphs": [
+        "The DYNATECH Automotive Hub is designed as a next-generation automotive ecosystem supporting both traditional and electric mobility operations.",
+        "Rather than functioning as a traditional service center, the hub combines technical operations, EV infrastructure, training, workshops, administration, logistics, and showroom capabilities into one integrated environment."
+      ],
+      "componentsTitle": "Hub Components",
+      "components": [
+        "EV Showroom",
+        "ICE & EV Service Center",
+        "Body Shop & Smart Repair",
+        "Technical Training Center",
+        "Electrical & Mechanical Workshops",
+        "Vehicle Storage & Logistics",
+        "Administrative Offices & Labs"
+      ],
+      "highlights": [
+        "6,000+ sqm Facility",
+        "40 Vehicles / Day Operational Capacity",
+        "Integrated Technical & Training Spaces"
+      ],
+      "ctaLabel": "Explore The Automotive Hub"
+    },
+    "egypt": {
+      "kicker": "Why Egypt?",
+      "title": "Why Egypt?",
+      "paragraphs": [
+        "The country is rapidly positioning itself as one of the region’s most important automotive and industrial investment destinations.",
+        "With growing government investment, infrastructure expansion, and future mobility initiatives, Egypt is creating significant opportunities for industrial localization and technology transfer.",
+        "DYNATECH was built to help connect these opportunities with the global expertise needed to support them."
+      ],
+      "statsTitle": "Statistics Bar",
+      "stats": [
+        {
+          "value": "27",
+          "label": "Major Automotive Projects Announced Across Egypt & MENA"
+        },
+        {
+          "value": "EGP 1.5B",
+          "label": "Government Investment Supporting Automotive Localization"
+        },
+        {
+          "value": "100,000",
+          "label": "Vehicles / Year Production Target By 2032"
+        }
+      ]
+    }
+  },
+  "accelerators": {
+    "hero": {
+      "kicker": "Our Partners",
+      "title": "Our Exclusive Technology Partners",
+      "paragraphs": [
+        "DYNATECH holds exclusive representation agreements with two of Europe’s most respected organizations in advanced manufacturing systems and lightweight material technologies.",
+        "These partnerships position DYNATECH as a direct bridge between global industrial expertise and Egypt’s future mobility and manufacturing ecosystem."
+      ]
+    },
+    "partners": [
       {
-        "id": "01",
-        "title": "Production Systems",
-        "desc": "Complete turnkey solutions for automotive assembly and manufacturing automation.",
-        "icon": "settings",
-        "color": "#43becc",
-        "tags": [
-          "AUTOMATION",
-          "ROBOTICS",
-          "ASSEMBLY"
-        ]
+        "id": "cu",
+        "name": "Composites United (CU)",
+        "title": "Composites United (CU)",
+        "paragraphs": [
+          "One of the world’s largest networks specializing in fiber-based multi-material lightweight construction, connecting manufacturers, research institutes, universities, and advanced technology organizations across Europe and globally.",
+          "With a network of approximately 350 member organizations, Composites United plays a major role in shaping the future of lightweight manufacturing and advanced material technologies."
+        ],
+        "roleTitle": "DYNATECH’S ROLE",
+        "roleText": "DYNATECH serves as the exclusive representative of Composites United in Egypt, supporting the transfer and localization of lightweight material technologies into customer-oriented industrial solutions within the Egyptian market.",
+        "scopeTitle": "Scope Of Agreement",
+        "scope": [
+          "Training & Education",
+          "Research & Development",
+          "Localization & Manufacturing of Lightweight Components"
+        ],
+        "milestoneTitle": "Partnership Milestone",
+        "milestoneText": "Strategic agreement officially announced during Hannover Messe 2022.",
+        "ctaLabel": "Learn About CU",
+        "ctaHref": "https://composites-united.com"
       },
       {
-        "id": "02",
-        "title": "Lightweight Materials",
-        "desc": "Advanced composites and fiber-based solutions for aerospace and automotive sectors.",
-        "icon": "layers",
-        "color": "#bcd647",
-        "tags": [
-          "COMPOSITES",
-          "CFRP",
-          "GFRP"
-        ]
-      },
-      {
-        "id": "03",
-        "title": "E-Mobility",
-        "desc": "Electric vehicle infrastructure, battery systems, and charging solutions.",
-        "icon": "zap",
-        "color": "#43becc",
-        "tags": [
-          "EV",
-          "BATTERY",
-          "CHARGING"
-        ]
-      },
-      {
-        "id": "04",
-        "title": "Energy Storage",
-        "desc": "Industrial-scale ESS solutions for grid stability and renewable integration.",
-        "icon": "battery",
-        "color": "#bcd647",
-        "tags": [
-          "BESS",
-          "GRID",
-          "RENEWABLES"
-        ]
+        "id": "fft",
+        "name": "FFT Produktionssysteme",
+        "location": "Fulda, Germany",
+        "title": "FFT Produktionssysteme",
+        "paragraphs": [
+          "Founded in 1974, FFT is one of the world’s leading providers of intelligent and flexible manufacturing systems, delivering complex turnkey production projects across five continents for more than 50 years.",
+          "FFT operates across automotive, aviation, and industrial manufacturing sectors, supporting globally recognized clients including BMW, Volkswagen Group, and Xiaomi Auto."
+        ],
+        "roleTitle": "DYNATECH’S ROLE",
+        "roleText": "DYNATECH serves as FFT’s exclusive agency partner in Egypt, supporting the introduction of advanced manufacturing systems, industrial solutions, and future mobility infrastructure into the local market.",
+        "scopeTitle": "Scope Of Agreement",
+        "scope": [
+          "Turnkey Production Systems",
+          "After Sales & Services",
+          "Digital Innovation & Development"
+        ],
+        "milestoneTitle": "Partnership Milestone",
+        "milestoneText": "Exclusive agency agreement signed at FFT Headquarters in Fulda, Germany — November 2023.",
+        "ctaLabel": "Learn About FFT",
+        "ctaHref": "https://fft.de"
       }
     ],
-    "footer": {
-      "status": "DYNATECH // Ready to Deliver",
-      "downloadLabel": "Download Company Profile [PDF]"
+    "ecosystem": {
+      "title": "Two Partnerships. One Industrial Ecosystem.",
+      "paragraphs": [
+        "Through its partnerships with FFT and Composites United, DYNATECH connects advanced manufacturing systems with next generation lightweight material technologies.",
+        "Together, these agreements bring more than 100 years of combined European industrial expertise directly into Egypt’s future automotive and industrial landscape."
+      ],
+      "columns": [
+        {
+          "label": "CU",
+          "title": "Lightweight Innovation",
+          "items": [
+            "Advanced Materials",
+            "Composite Technologies",
+            "Research & Development",
+            "Technology Transfer",
+            "Industrial Localization"
+          ]
+        },
+        {
+          "label": "FFT",
+          "title": "Manufacturing Systems",
+          "items": [
+            "Factory Automation",
+            "Turnkey Production Systems",
+            "Industrial Robotics",
+            "Digital Manufacturing",
+            "Automotive Production Infrastructure"
+          ]
+        }
+      ]
     }
   }
 }
