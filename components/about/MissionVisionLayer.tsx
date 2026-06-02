@@ -12,18 +12,9 @@ export default function MissionVisionLayer({ opacity, data }: Props) {
   return (
     <motion.div
       style={{ opacity }}
-      className="absolute inset-0 flex items-center justify-center z-20 px-4 md:px-6"
+      className="absolute inset-0 flex items-center justify-center z-20 px-4 md:px-6 pt-24 pb-8"
     >
       <div className="w-full max-w-6xl border-l-4 border-[#0087cb] bg-white/5 backdrop-blur-sm p-5 md:p-8">
-        <div className="mb-5 md:mb-8">
-          <span className="text-[#006db1] font-black text-[10px] md:text-xs uppercase tracking-[0.25em] block mb-2">
-            {data.established}
-          </span>
-          <span className="text-white/60 font-mono text-xs md:text-sm">
-            {data.capital}
-          </span>
-        </div>
-
         <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-12 items-start">
           <div>
             <h2 className="text-[#0087cb] text-xs md:text-sm font-bold tracking-widest mb-3 uppercase italic">

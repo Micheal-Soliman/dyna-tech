@@ -62,8 +62,6 @@ export type DynatechContent = {
     visionText: string;
     missionTitle: string;
     missionText: string;
-    established: string;
-    capital: string;
   };
   founder: {
     name: string;
