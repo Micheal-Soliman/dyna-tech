@@ -1,6 +1,7 @@
 "use client";
 
 import Lenis from "lenis";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 
@@ -11,6 +12,8 @@ export default function SmoothScroll({
 }) {
   const lenisRef = useRef<Lenis | null>(null);
   const rafIdRef = useRef<number | null>(null);
+  const pathname = usePathname();
+  const isHomePage = /^\/(en|ar)\/?$/.test(pathname);
 
   useEffect(() => {
     const media = window.matchMedia(
@@ -51,7 +54,7 @@ export default function SmoothScroll({
     }
 
     function apply() {
-      if (media.matches) stop();
+      if (isHomePage || media.matches) stop();
       else start();
     }
 
@@ -70,7 +73,7 @@ export default function SmoothScroll({
       media.removeListener(apply);
       stop();
     };
-  }, []);
+  }, [isHomePage]);
 
   return <>{children}</>;
 }
