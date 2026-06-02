@@ -12,13 +12,14 @@ type Partner = {
 
 type LogosLoopProps = {
   title: string;
+  heading: string;
   partners: Partner[];
   ctaLabel?: string;
   ctaHref?: string;
   isAr?: boolean;
 };
 
-export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: LogosLoopProps) {
+export function LogosLoop({ title, heading, partners, ctaLabel, ctaHref, isAr = false }: LogosLoopProps) {
   const reduceMotion = useReducedMotion();
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -40,7 +41,7 @@ export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: 
 
   // Reduced from 20 to 10 for better performance
   const minItems = 10;
-  let base: Partner[] = [];
+  const base: Partner[] = [];
   if (partners.length > 0) {
     while (base.length < minItems) base.push(...partners);
   }
@@ -62,7 +63,7 @@ export function LogosLoop({ title, partners, ctaLabel, ctaHref, isAr = false }: 
           {title}
         </motion.p>
         <h2 className="text-white text-3xl md:text-5xl font-bold">
-          Global Expertise, Local Excellence
+          {heading}
         </h2>
       </div>
 

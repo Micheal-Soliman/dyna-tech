@@ -1,4 +1,4 @@
-import type { AnnouncementItem, StatItem } from "@/components/home/types";
+import type { HomeContent } from "@/components/home/types";
 import { AnnouncementsSection } from "@/components/home/AnnouncementsSection";
 import { AboutSection } from "@/components/home/AboutSection";
 import { HeroSection } from "@/components/home/HeroSection";
@@ -7,125 +7,85 @@ import { SectorsGrid } from "@/components/home/SectorsGrid";
 import { StatsSection } from "@/components/home/StatsSection";
 import VisualsSection from "@/components/home/VisualsSection";
 
-type Partner = {
-  name: string;
-  oneLiner: string;
-  logoUrl?: string;
-};
-
 type HomeSectionsProps = {
   locale: string;
   isAr: boolean;
-  slogan: string;
-  subheading: string;
-  primaryCtaLabel: string;
+  home: HomeContent;
   primaryCtaHref: string;
-  secondaryCtaLabel: string;
   secondaryCtaHref: string;
-  heroBrandLeft: string;
-  heroBrandRight: string;
-  heroFollowLine1: string;
-  heroFollowLine2: string;
-  heroPrimaryCtaLabel: string;
-  heroSecondaryCtaLabel: string;
-  heroCeoQuote: string;
-  heroCeoName: string;
-  heroCeoTitle: string;
-  heroCeoCtaLabel: string;
-  heroCeoSectionLabel: string;
-  heroCeoSubtitle: string;
-  partnersTitle: string;
-  partners: Partner[];
-  partnersCtaLabel?: string;
-  partnersCtaHref?: string;
-  about: {
-    backdropText: string;
-    imageAlt: string;
-    cardPlumTitle: string;
-    cardPlumText: string;
-    cardCyanTitle: string;
-    cardCyanText: string;
-    centerHeadingLine1: string;
-    centerHeadingLine2: string;
-    edgeVision: string;
-    edgeStrategy: string;
-    revealPrefix: string;
-    brandName: string;
-    revealMiddle: string;
-    revealHighlight: string;
-    revealSuffix: string;
-    cta: string;
-  };
-  statsTitle: string;
-  statsKicker: string;
-  stats: StatItem[];
-  visualsCarouselBadge: string;
-  visualsCarouselTitlePrefix: string;
-  visualsCarouselTitleHighlight: string;
-  announcementsTitle: string;
-  announcementsKicker: string;
-  announcementsBlurb: string;
-  announcementsReadMoreLabel: string;
-  announcementsReadMoreArrow: string;
-  announcements: AnnouncementItem[];
 };
 
-export function HomeSections(props: HomeSectionsProps) {
-  const { locale, isAr } = props;
-
+export function HomeSections({ locale, isAr, home, primaryCtaHref, secondaryCtaHref }: HomeSectionsProps) {
   return (
     <>
       <HeroSection
         locale={locale}
         isAr={isAr}
-        slogan={props.slogan}
-        subheading={props.subheading}
-        primaryCtaLabel={props.heroPrimaryCtaLabel}
-        primaryCtaHref={props.primaryCtaHref}
-        secondaryCtaLabel={props.heroSecondaryCtaLabel}
-        secondaryCtaHref={props.secondaryCtaHref}
-        brandLeft={props.heroBrandLeft}
-        brandRight={props.heroBrandRight}
-        ceoQuote={props.heroCeoQuote}
-        ceoName={props.heroCeoName}
-        ceoTitle={props.heroCeoTitle}
-        ceoCtaLabel={props.heroCeoCtaLabel}
-        ceoSectionLabel={props.heroCeoSectionLabel}
-        ceoSubtitle={props.heroCeoSubtitle}
+        slogan={home.slogan}
+        subheading={home.subheading}
+        primaryCtaLabel={home.hero.primaryCtaLabel}
+        primaryCtaHref={primaryCtaHref}
+        secondaryCtaLabel={home.hero.secondaryCtaLabel}
+        secondaryCtaHref={secondaryCtaHref}
+        brandLeft={home.hero.brandLeft}
+        brandRight={home.hero.brandRight}
+        heroImageAlt={home.hero.heroImageAlt}
+        scrollLabel={home.hero.scrollLabel}
+        brandOutroTagline={home.hero.brandOutroTagline}
+        ceoQuote={home.hero.ceoQuote}
+        ceoName={home.hero.ceoName}
+        ceoTitle={home.hero.ceoTitle}
+        ceoCtaLabel={home.hero.ceoCtaLabel}
+        ceoSectionLabel={home.hero.ceoSectionLabel}
+        ceoSubtitle={home.hero.ceoSubtitle}
       />
 
       <LogosLoop
-        title={props.partnersTitle}
-        partners={props.partners}
-        ctaLabel={props.partnersCtaLabel}
-        ctaHref={props.partnersCtaHref}
+        title={home.partnersTitle}
+        heading={home.partnersHeading}
+        partners={home.partners}
+        ctaLabel={home.partnersCtaLabel}
+        ctaHref={secondaryCtaHref}
         isAr={isAr}
       />
 
-      <AboutSection copy={props.about} isAr={isAr} locale={locale} />
+      <AboutSection copy={home.about} isAr={isAr} locale={locale} />
 
-      <SectorsGrid isAr={isAr} locale={locale} />
+      <SectorsGrid
+        isAr={isAr}
+        locale={locale}
+        kicker={home.sectors.kicker}
+        titleLine1={home.sectors.titleLine1}
+        titleLine2={home.sectors.titleLine2}
+        highlight={home.sectors.highlight}
+        description={home.sectors.description}
+        ctaLabel={home.sectors.ctaLabel}
+        sectors={home.sectors.items}
+      />
 
-      <StatsSection title={props.statsTitle} kicker={props.statsKicker} stats={props.stats} isAr={isAr} />
+      <StatsSection title={home.statsTitle} kicker={home.statsKicker} stats={home.stats} isAr={isAr} />
 
       <VisualsSection
-        badge={props.visualsCarouselBadge}
-        titlePrefix={props.visualsCarouselTitlePrefix}
-        titleHighlight={props.visualsCarouselTitleHighlight}
-        slideTitles={[]}
+        badge={home.visualsCarousel.badge}
+        titlePrefix={home.visualsCarousel.titlePrefix}
+        titleHighlight={home.visualsCarousel.titleHighlight}
+        slides={home.visualsCarousel.slides}
+        ctaLabel={home.visualsCarousel.ctaLabel}
+        locale={locale}
         isAr={isAr}
       />
 
       <AnnouncementsSection
-        title={props.announcementsTitle}
-        kicker={props.announcementsKicker}
-        blurb={props.announcementsBlurb}
-        readMoreLabel={props.announcementsReadMoreLabel}
-        readMoreArrow={props.announcementsReadMoreArrow}
-        items={props.announcements}
+        title={home.announcementsTitle}
+        kicker={home.announcementsKicker}
+        blurb={home.announcementsBlurb}
+        readMoreLabel={home.announcementsReadMoreLabel}
+        readMoreArrow={home.announcementsReadMoreArrow}
+        viewAllLabel={home.announcementsViewAllLabel}
+        items={home.announcements}
+        locale={locale}
         isAr={isAr}
       />
-
     </>
   );
 }

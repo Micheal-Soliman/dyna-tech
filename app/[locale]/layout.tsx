@@ -15,8 +15,6 @@ export async function generateMetadata({
   const resolvedParams = await params;
   const locale = resolvedParams.locale as Locale;
   
-  const dict = await getDictionary(locale);
-
   return {
     title: {
       default: "DYNATECH | " + (locale === "ar" ? "رائدة الصناعة التكنولوجية" : "Leading Technology Industry"),

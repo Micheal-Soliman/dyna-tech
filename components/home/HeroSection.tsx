@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
 
 // ============================================
@@ -14,10 +14,12 @@ type HeroMainProps = {
   secondaryCtaLabel: string;
   secondaryCtaHref: string;
   heroImageUrl?: string;
-  imageScale: any;
-  imageRadius: any;
-  textY: any;
-  mainOpacity: any;
+  heroImageAlt: string;
+  scrollLabel: string;
+  imageScale: MotionValue<number>;
+  imageRadius: MotionValue<string>;
+  textY: MotionValue<number>;
+  mainOpacity: MotionValue<number>;
 };
 
 type CeoMessageProps = {
@@ -27,6 +29,8 @@ type CeoMessageProps = {
   ceoImageUrl?: string;
   heroImageUrl?: string;
   ceoQuote?: string;
+  ceoSectionLabel?: string;
+  ceoSubtitle?: string;
   locale?: string;
 };
 
@@ -34,7 +38,8 @@ type BrandOutroProps = {
   brandLeft: string;
   brandRight: string;
   heroImageUrl?: string;
-  progress: any;
+  brandOutroTagline: string;
+  progress: MotionValue<number>;
 };
 
 // ============================================
@@ -48,12 +53,13 @@ function HeroMainSection({
   secondaryCtaLabel,
   secondaryCtaHref,
   heroImageUrl,
+  heroImageAlt,
+  scrollLabel,
   imageScale,
   imageRadius,
   textY,
   mainOpacity,
-  isAr = false,
-}: HeroMainProps & { isAr?: boolean }) {
+}: HeroMainProps) {
   // Split slogan on em-dash or regular dash
   const sloganParts = slogan.includes(" — ") 
     ? slogan.split(" — ") 
@@ -71,7 +77,7 @@ function HeroMainSection({
         >
           <img
             src={heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
-            alt="DYNATECH Leadership"
+            alt={heroImageAlt}
             className="h-full w-full object-cover"
           />
           {/* Advanced Overlay for Text Readability */}
@@ -135,7 +141,7 @@ function HeroMainSection({
         <div className="absolute bottom-6 md:bottom-8 w-full flex justify-center z-[35] pointer-events-none">
           <div className="flex flex-col items-center gap-2">
             <span className="text-[10px] text-white/30 uppercase tracking-[0.5em] font-bold mb-1">
-              Scroll
+              {scrollLabel}
             </span>
             <div className="relative flex flex-col items-center">
               <motion.div
@@ -266,7 +272,7 @@ function CeoMessageSection({
               className={`group inline-flex items-center gap-6 text-white text-xs font-black uppercase tracking-[0.3em] border-b border-white/10 pb-4 transition-all cursor-pointer ${isAr ? 'flex-row-reverse' : ''}`}
             >
               {ceoCtaLabel || "Read Full CEO Message"}
-              <span className={`text-[#006db1] group-hover:${isAr ? '-translate-x-2' : 'translate-x-2'} transition-transform duration-300`}>{isAr ? '←' : '→'}</span>
+              <span className={`text-[#006db1] transition-transform duration-300 ${isAr ? 'group-hover:-translate-x-2' : 'group-hover:translate-x-2'}`}>{isAr ? '←' : '→'}</span>
             </motion.a>
           </motion.div>
         </div>
@@ -282,6 +288,7 @@ function BrandOutroSection({
   brandLeft,
   brandRight,
   heroImageUrl,
+  brandOutroTagline,
   progress,
 }: BrandOutroProps) {
   // Text converges from sides to center
@@ -310,7 +317,7 @@ function BrandOutroSection({
 
       {/* The Focused Brand Name */}
       <div className="relative z-20 flex flex-col items-center">
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center gap-[0.04em]">
           <motion.h2 
             style={{ x: xLeft }}
             className="text-white text-[15vw] font-black uppercase italic tracking-tighter drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
@@ -332,7 +339,7 @@ function BrandOutroSection({
           style={{ opacity: taglineOpacity }}
           className="text-white/40 text-xs md:text-sm uppercase tracking-[0.5em] mt-6 font-bold"
         >
-          The Future of Industry
+          {brandOutroTagline}
         </motion.p>
       </div>
     </motion.div>
@@ -352,6 +359,9 @@ export function HeroSection({
   secondaryCtaLabel,
   secondaryCtaHref,
   heroImageUrl,
+  heroImageAlt,
+  scrollLabel,
+  brandOutroTagline,
   ceoQuote,
   ceoName,
   ceoTitle,
@@ -371,6 +381,9 @@ export function HeroSection({
   secondaryCtaLabel: string;
   secondaryCtaHref: string;
   heroImageUrl?: string;
+  heroImageAlt: string;
+  scrollLabel: string;
+  brandOutroTagline: string;
   ceoQuote?: string;
   ceoName?: string;
   ceoTitle?: string;
@@ -411,11 +424,12 @@ export function HeroSection({
           secondaryCtaLabel={secondaryCtaLabel}
           secondaryCtaHref={secondaryCtaHref}
           heroImageUrl={heroImageUrl}
+          heroImageAlt={heroImageAlt}
+          scrollLabel={scrollLabel}
           imageScale={imageScale}
           imageRadius={imageRadius}
           textY={textY}
           mainOpacity={mainOpacity}
-          isAr={isAr}
         />
       </motion.div>
 
@@ -441,6 +455,7 @@ export function HeroSection({
           brandLeft={brandLeft}
           brandRight={brandRight}
           heroImageUrl={heroImageUrl}
+          brandOutroTagline={brandOutroTagline}
           progress={scrollYProgress}
         />
       </div>

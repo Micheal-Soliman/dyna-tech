@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { defaultLocale, locales, type Locale } from "@/i18n/config";
 
-function getPreferredLocale(request: NextRequest): Locale {
+function getPreferredLocale(): Locale {
   // Always default to English for new visitors
   return defaultLocale;
 }
@@ -39,7 +39,7 @@ export function middleware(request: NextRequest) {
   const cookieLocale = request.cookies.get("locale")?.value;
   const locale = locales.includes(cookieLocale as Locale)
     ? (cookieLocale as Locale)
-    : getPreferredLocale(request);
+    : getPreferredLocale();
 
   const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;

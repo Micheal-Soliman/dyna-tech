@@ -3,27 +3,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import type { HomeAboutCopy } from "@/components/home/types";
 
-type AboutSectionCopy = {
-  backdropText: string;
-  imageAlt: string;
-  cardPlumTitle: string;
-  cardPlumText: string;
-  cardCyanTitle: string;
-  cardCyanText: string;
-  centerHeadingLine1: string;
-  centerHeadingLine2: string;
-  edgeVision: string;
-  edgeStrategy: string;
-  revealPrefix: string;
-  brandName: string;
-  revealMiddle: string;
-  revealHighlight: string;
-  revealSuffix: string;
-  cta: string;
-};
-
-export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: AboutSectionCopy; isAr?: boolean; locale?: string }) {
+export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: HomeAboutCopy; isAr?: boolean; locale?: string }) {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -44,9 +26,9 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Abou
         viewport={{ once: true }}
         className="absolute top-4 left-0 w-full text-center z-50 pointer-events-none"
       >
-        <span className="text-[#0087cb] font-black tracking-[0.5em] text-[10px] uppercase block mb-2">Discovery</span>
+        <span className="text-[#0087cb] font-black tracking-[0.5em] text-[10px] uppercase block mb-2">{copy.sectionKicker}</span>
         <h2 className="text-white text-4xl md:text-6xl font-black uppercase tracking-tighter mb-12">
-          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-[#006db1]">DYNATECH</span>
+          {copy.sectionTitleFirst} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-[#006db1]">{copy.sectionTitleHighlight}</span>
         </h2>
       </motion.div>
 

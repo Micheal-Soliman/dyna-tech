@@ -11,7 +11,9 @@ import {
 } from "framer-motion";
 import type { MouseEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { VisualSlideItem } from "@/components/home/types";
 
 // بيانات المشاريع والمرافق الخاصة بـ DYNATECH
 const PROJECTS = [
@@ -45,13 +47,17 @@ export default function VisualsSection({
   badge,
   titlePrefix,
   titleHighlight,
-  slideTitles,
+  slides: providedSlides,
+  ctaLabel,
+  locale = "en",
   isAr = false,
 }: {
   badge: string;
   titlePrefix: string;
   titleHighlight: string;
-  slideTitles: string[];
+  slides: VisualSlideItem[];
+  ctaLabel: string;
+  locale?: string;
   isAr?: boolean;
 }) {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -76,14 +82,22 @@ export default function VisualsSection({
   }, []);
 
   const slides = useMemo(
-    () =>
-      PROJECTS.map((project) => ({
+    () => {
+      const fallbackSlides = PROJECTS.map((project) => ({
         url: project.url,
         title: project.title,
         status: project.status,
         details: project.details,
-      })),
-    []
+      }));
+
+      if (!providedSlides.length) return fallbackSlides;
+
+      return providedSlides.map((slide, i) => ({
+        ...slide,
+        url: slide.url || fallbackSlides[i % fallbackSlides.length].url,
+      }));
+    },
+    [providedSlides]
   );
 
   const particles = useMemo(() => {
@@ -348,16 +362,16 @@ export default function VisualsSection({
         viewport={{ once: true }}
         className="mt-20 z-10"
       >
-        <a href="/projects" className="group relative inline-block px-10 py-5 bg-transparent overflow-hidden border border-white/10 rounded-xl transition-all cursor-pointer">
+        <Link href={`/${locale}/case-study`} className={`group relative inline-block px-10 py-5 bg-transparent overflow-hidden border border-white/10 rounded-xl transition-all cursor-pointer ${isAr ? "text-right" : "text-left"}`}>
           <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#0a0f29] transition-colors duration-500">
-            View All Projects & Investment Opportunities
+            {ctaLabel}
           </span>
           <div className="absolute inset-0 bg-[#0087cb] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
           {/* أيقونة السهم */}
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all group-hover:right-6">
-            <ChevronRight className="text-[#0a0f29] w-5 h-5" />
+          <span className={`absolute top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all ${isAr ? "left-4 group-hover:left-6" : "right-4 group-hover:right-6"}`}>
+            <ChevronRight className={`text-[#0a0f29] w-5 h-5 ${isAr ? "rotate-180" : ""}`} />
           </span>
-        </a>
+        </Link>
       </motion.div>
     </section>
   );

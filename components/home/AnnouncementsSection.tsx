@@ -3,9 +3,22 @@
 import { motion, useMotionTemplate, useMotionValue, useReducedMotion } from "framer-motion";
 import type { AnnouncementItem } from "@/components/home/types";
 import { PointerEvent, useRef } from "react";
+import Link from "next/link";
 
 // مكون فرعي للكارت عشان نتحكم في حركة الماوس المنفصلة
-function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: AnnouncementItem; index: number; readMoreLabel: string; readMoreArrow: string }) {
+function AnnouncementCard({
+  a,
+  index,
+  readMoreLabel,
+  readMoreArrow,
+  href,
+}: {
+  a: AnnouncementItem;
+  index: number;
+  readMoreLabel: string;
+  readMoreArrow: string;
+  href: string;
+}) {
   const reduceMotion = useReducedMotion();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -114,20 +127,24 @@ function AnnouncementCard({ a, index, readMoreLabel, readMoreArrow }: { a: Annou
         </div>
 
         <div className="mt-12 flex items-center justify-between">
-          <motion.a
-            href="/knowledge"
+          <motion.div
             whileHover={{ gap: "15px" }}
-            className="inline-flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer"
+            className="inline-flex"
           >
-            {readMoreLabel}
-            <span
-              dir="ltr"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-2xl leading-none text-[#0087cb] translate-y-[-2px]"
+            <Link
+              href={href}
+              className="inline-flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer"
             >
-              {readMoreArrow}
-            </span>
-          </motion.a>
+              {readMoreLabel}
+              <span
+                dir="ltr"
+                style={{ unicodeBidi: "plaintext" }}
+                className="text-2xl leading-none text-[#0087cb] translate-y-[-2px]"
+              >
+                {readMoreArrow}
+              </span>
+            </Link>
+          </motion.div>
 
           {/* أيقونة ديكورية صغيرة تتفاعل مع الهوفر */}
           <div className="w-10 h-10 rounded-full border border-white/5 flex items-center justify-center group-hover:border-[#0087cb]/30 group-hover:bg-[#0087cb]/5 transition-all duration-500">
@@ -148,7 +165,9 @@ export function AnnouncementsSection({
   blurb,
   readMoreLabel,
   readMoreArrow,
+  viewAllLabel,
   items,
+  locale = "en",
   isAr = false,
 }: {
   title: string;
@@ -156,9 +175,13 @@ export function AnnouncementsSection({
   blurb: string;
   readMoreLabel: string;
   readMoreArrow: string;
+  viewAllLabel: string;
   items: AnnouncementItem[];
+  locale?: string;
   isAr?: boolean;
 }) {
+  const knowledgeHref = `/${locale}/knowledge`;
+
   return (
     <section className="py-32 bg-[#121b43] font-['Montserrat',sans-serif] relative overflow-hidden">
 
@@ -169,13 +192,14 @@ export function AnnouncementsSection({
       <div className="container mx-auto px-6 relative z-10">
 
         {/* Header بتصميم Minimalist فخم */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+        <div className={`flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8 ${isAr ? "md:flex-row-reverse" : ""}`}>
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: isAr ? 30 : -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
+            className={isAr ? "text-right" : "text-left"}
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className={`flex items-center gap-3 mb-4 ${isAr ? "flex-row-reverse" : ""}`}>
               <div className="w-12 h-[2px] bg-[#0087cb]" />
               <span className="text-[#0087cb] font-black tracking-[0.4em] text-[10px] uppercase">{kicker}</span>
             </div>
@@ -201,7 +225,7 @@ export function AnnouncementsSection({
               borderInlineStart: "1px solid rgba(255,255,255,0.1)",
               paddingInlineStart: "1.5rem",
             }}
-            className="text-zinc-500 text-sm max-w-xs font-medium"
+            className={`text-zinc-500 text-sm max-w-xs font-medium ${isAr ? "text-right" : "text-left"}`}
           >
             {blurb}
           </motion.p>
@@ -216,6 +240,7 @@ export function AnnouncementsSection({
               index={index}
               readMoreLabel={readMoreLabel}
               readMoreArrow={readMoreArrow}
+              href={knowledgeHref}
             />
           ))}
         </div>
@@ -227,13 +252,13 @@ export function AnnouncementsSection({
           transition={{ delay: 0.5 }}
           className="mt-20 flex justify-center"
         >
-          <a href="/knowledge" className="group relative inline-block px-8 py-4 bg-transparent overflow-hidden cursor-pointer">
+          <Link href={knowledgeHref} className="group relative inline-block px-8 py-4 bg-transparent overflow-hidden cursor-pointer">
             <span className="relative z-10 text-white font-black uppercase tracking-[0.3em] text-[11px] group-hover:text-[#121b43] transition-colors duration-300">
-              View All News
+              {viewAllLabel}
             </span>
             <div className="absolute inset-0 border border-white/20 group-hover:bg-[#0087cb] group-hover:border-[#0087cb] transition-all duration-300" />
             <div className="absolute bottom-0 right-0 w-2 h-2 bg-[#006db1]" />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

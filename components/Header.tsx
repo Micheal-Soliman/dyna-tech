@@ -9,19 +9,15 @@ import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuOpenPathname, setMenuOpenPathname] = useState<string | null>(null);
   const pathname = usePathname();
+  const isMenuOpen = menuOpenPathname === pathname;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // إغلاق المنيو عند تغيير الصفحة
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [pathname]);
 
   const { currentLocale, navItems, labels, isAr } = useMemo(() => {
     const parts = pathname.split("/").filter(Boolean);
@@ -113,7 +109,7 @@ export function Header() {
 
             {/* HAMBURGER BTN */}
             <button
-              onClick={() => setIsMenuOpen(true)}
+              onClick={() => setMenuOpenPathname(pathname)}
               className="lg:hidden p-2 text-white hover:bg-white/5 rounded-full transition-colors"
             >
               <Menu size={24} />
@@ -131,7 +127,7 @@ export function Header() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsMenuOpen(false)}
+              onClick={() => setMenuOpenPathname(null)}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[110] lg:hidden"
             />
 
@@ -141,11 +137,11 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: isAr ? "100%" : "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className={`fixed top-0 ${isAr ? 'right-0' : 'left-0'} bottom-0 w-[80%] max-w-[320px] bg-black border-${isAr ? 'l' : 'r'} border-white/10 z-[120] lg:hidden shadow-2xl flex flex-col`}
+              className={`fixed top-0 ${isAr ? 'right-0 border-l' : 'left-0 border-r'} bottom-0 w-[80%] max-w-[320px] bg-black border-white/10 z-[120] lg:hidden shadow-2xl flex flex-col`}
             >
               <div className="p-6 flex items-center justify-between border-b border-white/5">
                 <span className="text-[#0087cb] font-black text-sm uppercase tracking-tighter">Menu</span>
-                <button onClick={() => setIsMenuOpen(false)} className="text-white p-1">
+                <button onClick={() => setMenuOpenPathname(null)} className="text-white p-1">
                   <X size={24} />
                 </button>
               </div>
@@ -157,6 +153,7 @@ export function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
+                      onClick={() => setMenuOpenPathname(null)}
                       className={`block text-2xl font-black uppercase tracking-tighter transition-all ${
                         isActive ? "text-[#0087cb] translate-x-2" : "text-zinc-500 hover:text-white"
                       }`}
@@ -171,6 +168,7 @@ export function Header() {
                 <LocaleSwitcher className="justify-start p-0 text-white font-bold" />
                 <Link
                   href={`/${currentLocale}/contact`}
+                  onClick={() => setMenuOpenPathname(null)}
                   className="flex items-center justify-center w-full bg-[#0087cb] text-black py-4 rounded-xl font-black uppercase text-xs tracking-widest"
                 >
                   {labels.demo}
