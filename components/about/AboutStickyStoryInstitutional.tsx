@@ -10,8 +10,9 @@ export type { DynatechContent, StatItem, TimelineItem, ExperienceItem, LocationI
 // Layer Components
 import HeroLayer from "./HeroLayer";
 import MissionVisionLayer from "./MissionVisionLayer";
-import StatsLayer from "./StatsLayer";
+import StoryVisionLayer from "./StoryVisionLayer";
 import FounderLayer from "./FounderLayer";
+import FounderCareerLayer from "./FounderCareerLayer";
 import TimelineLayer from "./TimelineLayer";
 import LocationsLayer from "./LocationsLayer";
 
@@ -66,29 +67,32 @@ export default function AboutStickyStory({
     restDelta: 0.001,
   });
 
-  // Scroll transforms - 1200vh total - BALANCED TIMING
+  // Scroll transforms - 1400vh total - balanced timing for separated content layers
   // Hero: 0-15%
   const heroScale = useTransform(smoothProgress, [0, 0.10], [1, 1.3]);
   const heroOpacity = useTransform(smoothProgress, [0, 0.08, 0.12], [1, 1, 0]);
   
-  // Mission/Vision: 12-28% (16% duration)
-  const mvOpacity = useTransform(smoothProgress, [0.12, 0.17, 0.23, 0.28], [0, 1, 1, 0]);
+  // About platforms: 12-26%
+  const mvOpacity = useTransform(smoothProgress, [0.12, 0.16, 0.23, 0.26], [0, 1, 1, 0]);
+
+  // Story and mission: 25-40%
+  const storyOpacity = useTransform(smoothProgress, [0.25, 0.29, 0.37, 0.40], [0, 1, 1, 0]);
   
-  // Stats: 26-42% (16% duration)
-  const statsOpacity = useTransform(smoothProgress, [0.26, 0.31, 0.37, 0.42], [0, 1, 1, 0]);
+  // Founder profile: 39-53%
+  const founderScale = useTransform(smoothProgress, [0.39, 0.44], [0.95, 1]);
+  const founderY = useTransform(smoothProgress, [0.39, 0.53], [60, -60]);
+  const founderOpacity = useTransform(smoothProgress, [0.39, 0.43, 0.50, 0.53], [0, 1, 1, 0]);
+
+  // Founder career: 52-66%
+  const founderCareerOpacity = useTransform(smoothProgress, [0.52, 0.56, 0.63, 0.66], [0, 1, 1, 0]);
   
-  // Founder: 40-60% (20% duration - longest for reading)
-  const founderScale = useTransform(smoothProgress, [0.40, 0.48], [0.95, 1]);
-  const founderY = useTransform(smoothProgress, [0.40, 0.60], [60, -60]);
-  const founderOpacity = useTransform(smoothProgress, [0.40, 0.45, 0.55, 0.60], [0, 1, 1, 0]);
+  // Timeline: 64-92%
+  const timelineX = useTransform(smoothProgress, [0.64, 0.92], [500, -3700]);
+  const timelineScale = useTransform(smoothProgress, [0.64, 0.70, 0.87, 0.92], [0.9, 1, 1, 0.9]);
+  const timelineOpacity = useTransform(smoothProgress, [0.64, 0.70, 0.87, 0.92], [0, 1, 1, 0]);
   
-  // Timeline: 55-95% (40% duration - extended for all items visibility)
-  const timelineX = useTransform(smoothProgress, [0.55, 0.95], [400, -2800]);
-  const timelineScale = useTransform(smoothProgress, [0.55, 0.62, 0.88, 0.95], [0.9, 1, 1, 0.9]);
-  const timelineOpacity = useTransform(smoothProgress, [0.55, 0.62, 0.88, 0.95], [0, 1, 1, 0]);
-  
-  // Locations: 96-100% (after timeline completely finishes)
-  const locationsOpacity = useTransform(smoothProgress, [0.96, 0.97, 0.99, 1], [0, 1, 1, 0]);
+  // Locations: 93-100%
+  const locationsOpacity = useTransform(smoothProgress, [0.93, 0.95, 0.99, 1], [0, 1, 1, 0]);
 
   return (
     <section
@@ -96,7 +100,7 @@ export default function AboutStickyStory({
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
       className={`bg-[#050505] relative w-full ${isAr ? 'font-cairo' : ''}`}
-      style={{ height: "1200vh" }}
+      style={{ height: "1400vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         <HeroLayer
@@ -111,17 +115,23 @@ export default function AboutStickyStory({
           opacity={mvOpacity}
           data={content.missionVision}
         />
-        
-        <StatsLayer
-          opacity={statsOpacity}
-          items={content.stats}
+
+        <StoryVisionLayer
+          opacity={storyOpacity}
+          data={content.missionVision}
           isAr={isAr}
         />
-        
+
         <FounderLayer
           opacity={founderOpacity}
           scale={founderScale}
           y={founderY}
+          data={content.founder}
+          isAr={isAr}
+        />
+
+        <FounderCareerLayer
+          opacity={founderCareerOpacity}
           data={content.founder}
           isAr={isAr}
         />
@@ -130,13 +140,16 @@ export default function AboutStickyStory({
           x={timelineX}
           opacity={timelineOpacity}
           scale={timelineScale}
+          copy={content.timelineSection}
           items={content.timeline}
           isAr={isAr}
         />
         
         <LocationsLayer
           opacity={locationsOpacity}
+          copy={content.locationsSection}
           items={content.locations}
+          closing={content.closing}
           isAr={isAr}
         />
       </div>

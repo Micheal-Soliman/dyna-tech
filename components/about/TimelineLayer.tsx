@@ -1,17 +1,18 @@
 "use client";
 
 import { MotionValue, motion } from "framer-motion";
-import { TimelineItem } from "./types";
+import { TimelineItem, TimelineSectionCopy } from "./types";
 
 type Props = {
   x: MotionValue<number>;
   opacity: MotionValue<number>;
   scale: MotionValue<number>;
+  copy: TimelineSectionCopy;
   items: TimelineItem[];
   isAr?: boolean;
 };
 
-export default function TimelineLayer({ x, opacity, scale, items, isAr = false }: Props) {
+export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = false }: Props) {
   return (
     <motion.div 
       style={{ x, opacity, scale }} 
@@ -22,17 +23,17 @@ export default function TimelineLayer({ x, opacity, scale, items, isAr = false }
         <div className={`min-w-[200px] md:min-w-[280px] sticky left-0 ${isAr ? 'text-right' : ''}`}>
           <div className={`flex items-center gap-4 mb-6 ${isAr ? 'flex-row-reverse' : ''}`}>
             <div className="h-[2px] w-16 bg-[#006db1]" />
-            <span className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">History</span>
+            <span dir="auto" style={{ unicodeBidi: "plaintext" }} className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">{copy.kicker}</span>
           </div>
           <h2 className={`text-white text-5xl md:text-8xl font-black italic tracking-tighter leading-none ${isAr ? '[direction:rtl]' : ''}`}>
-            THE<br/>
-            <span className="text-[#0087cb]">JOURNEY</span>
+            {copy.titleLine1}<br/>
+            {copy.titleHighlight && <span className="text-[#0087cb]">{copy.titleHighlight}</span>}
           </h2>
         </div>
         
         {/* Timeline Items */}
         {items.map((item, i) => (
-          <div key={i} className={`min-w-[180px] md:min-w-[220px] relative pt-16 ${isAr ? 'text-right' : ''}`}>
+          <div key={i} className={`min-w-[220px] md:min-w-[320px] relative pt-16 ${isAr ? 'text-right' : ''}`}>
             {/* Background Year */}
             <div className={`text-[100px] md:text-[140px] font-black text-white/[0.03] absolute -top-10 ${isAr ? '-right-6' : '-left-6'} leading-none select-none`}>
               {item.year}
@@ -45,7 +46,7 @@ export default function TimelineLayer({ x, opacity, scale, items, isAr = false }
               <p 
                 dir="auto"
                 style={{ unicodeBidi: "plaintext" }}
-                className="text-zinc-400 text-sm md:text-base uppercase tracking-wider leading-relaxed max-w-[200px]"
+                className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-[280px]"
               >
                 {item.desc}
               </p>

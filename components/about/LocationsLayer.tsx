@@ -1,15 +1,20 @@
 "use client";
 
 import { MotionValue, motion } from "framer-motion";
-import { LocationItem } from "./types";
+import { LocationItem, LocationsSectionCopy } from "./types";
 
 type Props = {
   opacity: MotionValue<number>;
+  copy: LocationsSectionCopy;
   items: LocationItem[];
+  closing: {
+    title: string;
+    text: string;
+  };
   isAr?: boolean;
 };
 
-export default function LocationsLayer({ opacity, items, isAr = false }: Props) {
+export default function LocationsLayer({ opacity, copy, items, closing, isAr = false }: Props) {
   return (
     <motion.div 
       style={{ opacity }} 
@@ -19,14 +24,14 @@ export default function LocationsLayer({ opacity, items, isAr = false }: Props) 
       <div className={`mb-16 ${isAr ? 'text-right' : 'text-left'} w-full max-w-5xl`}>
         <div className={`flex items-center gap-4 mb-4 ${isAr ? 'flex-row-reverse' : ''}`}>
           <div className="h-[2px] w-16 bg-[#006db1]" />
-          <span className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">Operations</span>
+          <span dir="auto" style={{ unicodeBidi: "plaintext" }} className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">{copy.kicker}</span>
         </div>
         <h2 
           dir="auto"
           style={{ unicodeBidi: "plaintext" }}
           className="text-white text-5xl md:text-7xl font-black italic tracking-tighter"
         >
-          OUR <span className="text-[#0087cb]">PRESENCE</span>
+          {copy.titleLine1} <span className="text-[#0087cb]">{copy.titleHighlight}</span>
         </h2>
       </div>
       
@@ -62,23 +67,34 @@ export default function LocationsLayer({ opacity, items, isAr = false }: Props) 
             >
               {loc.detail}
             </p>
-            
-            {/* Hover Indicator */}
-            <div className={`mt-8 flex items-center gap-2 text-[10px] uppercase tracking-widest text-zinc-600 group-hover:text-[#006db1] transition-colors ${isAr ? 'flex-row-reverse' : ''}`}>
-              <span>View on Map</span>
-              <span>{isAr ? '←' : '→'}</span>
-            </div>
+            {loc.status && (
+              <p
+                dir="auto"
+                style={{ unicodeBidi: "plaintext" }}
+                className="mt-3 text-[#43becc] text-xs font-bold uppercase tracking-wider"
+              >
+                {loc.status}
+              </p>
+            )}
           </div>
         ))}
       </div>
-      
-      {/* HQ Badge */}
-      <div className={`mt-12 flex items-center gap-6 ${isAr ? 'flex-row-reverse' : ''}`}>
-        <div className="w-3 h-3 bg-[#006db1] rounded-full shadow-[0_0_15px_#006db1]" />
-        <div className={`text-center ${isAr ? 'text-right' : 'text-left'}`}>
-          <div className="text-white font-bold text-sm uppercase tracking-wider">CFC Business Park, New Cairo</div>
-          <div className="text-zinc-500 text-xs font-mono mt-1">Primary Headquarters • Building A3</div>
-        </div>
+
+      <div className={`mt-10 max-w-4xl text-center ${isAr ? 'font-cairo' : ''}`}>
+        <h3
+          dir="auto"
+          style={{ unicodeBidi: "plaintext" }}
+          className="text-white text-2xl md:text-4xl font-black uppercase tracking-tight"
+        >
+          {closing.title}
+        </h3>
+        <p
+          dir="auto"
+          style={{ unicodeBidi: "plaintext" }}
+          className="mt-4 text-zinc-400 text-sm md:text-base leading-relaxed"
+        >
+          {closing.text}
+        </p>
       </div>
     </motion.div>
   );
