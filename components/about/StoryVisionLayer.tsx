@@ -46,7 +46,7 @@ export default function StoryVisionLayer({ opacity, data, isAr = false }: Props)
         </div>
 
         <div className="grid gap-px bg-white/10 border border-white/10">
-          <div className="bg-[#050505] p-6 md:p-8">
+          <div className="bg-[#121b43] p-6 md:p-8">
             <h3
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
@@ -62,7 +62,7 @@ export default function StoryVisionLayer({ opacity, data, isAr = false }: Props)
               {data.visionText}
             </p>
           </div>
-          <div className="bg-[#050505] p-6 md:p-8">
+          <div className="bg-[#121b43] p-6 md:p-8">
             <h3
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}

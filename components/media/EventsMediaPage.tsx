@@ -68,7 +68,7 @@ function HeroMediaPanel({ content }: { content: EventsMediaContent }) {
       initial={{ opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
-      className="group relative overflow-hidden border border-white/10 bg-black/70 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#0087cb]/55 md:p-5"
+      className="group relative overflow-hidden border border-white/10 bg-[#121b43]/75 p-4 shadow-[0_30px_90px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#0087cb]/55 md:p-5"
     >
       <div className="absolute left-0 top-0 h-12 w-12 border-l border-t border-[#0087cb]/70" />
       <div className="absolute bottom-0 right-0 h-12 w-12 border-b border-r border-[#43becc]/60" />
@@ -95,12 +95,12 @@ function HeroMediaPanel({ content }: { content: EventsMediaContent }) {
           </div>
         </div>
 
-        <div className="relative mb-4 min-h-[210px] overflow-hidden border border-white/10 bg-[#050505]">
+        <div className="relative mb-4 min-h-[210px] overflow-hidden border border-white/10 bg-[#121b43]">
           <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#0087cb33_1px,transparent_1px),linear-gradient(90deg,#0087cb33_1px,transparent_1px)] [background-size:42px_42px]" />
           <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
           <div className="absolute inset-y-8 left-1/2 w-px bg-gradient-to-b from-transparent via-[#43becc] to-transparent" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex h-20 w-20 items-center justify-center border border-[#0087cb]/50 bg-black text-[#0087cb] shadow-[0_0_36px_rgba(0,135,203,0.18)] transition-transform duration-300 group-hover:scale-105">
+            <div className="flex h-20 w-20 items-center justify-center border border-[#0087cb]/50 bg-[#0a0f29] text-[#0087cb] shadow-[0_0_36px_rgba(0,135,203,0.18)] transition-transform duration-300 group-hover:scale-105">
               <Play size={30} />
             </div>
           </div>
@@ -156,7 +156,7 @@ function EventCard({
       className="group relative overflow-hidden border border-white/10 bg-white/[0.03] transition hover:-translate-y-1 hover:border-[#0087cb]/50 hover:bg-white/[0.05]"
     >
       <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
-      <div className="relative flex min-h-56 items-center justify-center border-b border-white/10 bg-[#050505]">
+      <div className="relative flex min-h-56 items-center justify-center border-b border-white/10 bg-[#121b43]">
         <div className="absolute inset-0 opacity-15 [background-image:linear-gradient(#0087cb33_1px,transparent_1px),linear-gradient(90deg,#0087cb33_1px,transparent_1px)] [background-size:34px_34px]" />
         <div className="absolute left-6 top-6 h-10 w-10 border-l border-t border-[#0087cb]/60" />
         <div className="absolute bottom-6 right-6 h-10 w-10 border-b border-r border-[#0087cb]/60" />
@@ -165,7 +165,7 @@ function EventCard({
           size={46}
         />
         {event.date && (
-          <span className="absolute right-5 top-5 border border-white/10 bg-black px-3 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300">
+          <span className="absolute right-5 top-5 border border-white/10 bg-[#0a0f29] px-3 py-2 text-[10px] font-black uppercase tracking-widest text-zinc-300">
             {event.date}
           </span>
         )}
@@ -195,16 +195,16 @@ function GalleryBlock({ content }: { content: EventsMediaContent }) {
     <div className="grid min-h-[680px] gap-4 md:grid-cols-4 md:grid-rows-2">
       <motion.div
         whileHover={{ y: -4 }}
-        className="group relative overflow-hidden border border-white/10 bg-[#050505] md:col-span-2 md:row-span-2"
+        className="group relative overflow-hidden border border-white/10 bg-[#121b43] md:col-span-2 md:row-span-2"
       >
         <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#0087cb33_1px,transparent_1px),linear-gradient(90deg,#0087cb33_1px,transparent_1px)] [background-size:42px_42px]" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex h-20 w-20 items-center justify-center border border-[#0087cb]/45 bg-black text-[#0087cb] transition-transform duration-300 group-hover:scale-105">
+          <div className="flex h-20 w-20 items-center justify-center border border-[#0087cb]/45 bg-[#0a0f29] text-[#0087cb] transition-transform duration-300 group-hover:scale-105">
             <Play size={34} />
           </div>
         </div>
         <div className="absolute left-6 top-6 h-10 w-10 border-l border-t border-[#0087cb]/60" />
-        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-black/80 p-6">
+        <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#0a0f29]/85 p-6">
           <p className="text-xs font-black uppercase tracking-widest text-white">
             {content.gallery.videoLabel}
           </p>
@@ -215,7 +215,7 @@ function GalleryBlock({ content }: { content: EventsMediaContent }) {
         <motion.div
           key={item}
           whileHover={{ y: -4 }}
-          className={`group relative overflow-hidden border border-white/10 bg-[#050505] p-6 transition hover:-translate-y-1 hover:border-[#0087cb]/50 ${
+          className={`group relative overflow-hidden border border-white/10 bg-[#121b43] p-6 transition hover:-translate-y-1 hover:border-[#0087cb]/50 ${
             index === 0 ? "md:col-span-2" : ""
           }`}
         >
@@ -238,7 +238,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#030303] text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
+      className={`min-h-screen bg-[#0a0f29] text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
     >
       <section className="relative h-[100svh] min-h-[680px] overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
@@ -261,7 +261,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
               {content.hero.description}
             </p>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              <div className="border border-white/10 bg-black/70 p-4">
+              <div className="border border-white/10 bg-[#121b43]/75 p-4">
                 <p className="text-2xl font-black text-white">
                   {content.featured.events.length}
                 </p>
@@ -269,7 +269,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
                   {content.featured.kicker}
                 </p>
               </div>
-              <div className="border border-white/10 bg-black/70 p-4">
+              <div className="border border-white/10 bg-[#121b43]/75 p-4">
                 <p className="text-2xl font-black text-white">
                   {content.press.years.length}
                 </p>
@@ -277,7 +277,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
                   {content.press.filterLabel}
                 </p>
               </div>
-              <div className="border border-white/10 bg-black/70 p-4">
+              <div className="border border-white/10 bg-[#121b43]/75 p-4">
                 <p className="text-2xl font-black text-white">
                   {content.gallery.items.length}
                 </p>
@@ -291,7 +291,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/45 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>
@@ -344,7 +344,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
               {content.press.years.map((year) => (
                 <button
                   key={year}
-                  className="border border-white/10 bg-[#050505] px-4 py-2 text-xs font-black uppercase tracking-widest text-zinc-400 transition hover:border-[#0087cb]/50 hover:text-white"
+                  className="border border-white/10 bg-[#121b43] px-4 py-2 text-xs font-black uppercase tracking-widest text-zinc-400 transition hover:border-[#0087cb]/50 hover:text-white"
                   type="button"
                 >
                   {year}
@@ -355,7 +355,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
               {content.featured.events.map((event) => (
                 <div
                   key={event.title}
-                  className="group flex items-center justify-between gap-6 bg-[#050505] p-6 transition hover:bg-black"
+                  className="group flex items-center justify-between gap-6 bg-[#121b43] p-6 transition hover:bg-[#0f1738]"
                 >
                   <div>
                     <p className="text-xs font-black uppercase tracking-widest text-[#0087cb]">
@@ -373,7 +373,7 @@ export default function EventsMediaPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/55 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/70 py-20">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div>

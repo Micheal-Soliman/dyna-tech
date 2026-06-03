@@ -62,7 +62,7 @@ function CityVisual() {
       initial={{ opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
-      className="group relative min-h-[430px] overflow-hidden border border-white/10 bg-black/70 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#0087cb]/55"
+      className="group relative min-h-[430px] overflow-hidden border border-white/10 bg-[#121b43]/75 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#0087cb]/55"
     >
       <div className="absolute left-0 top-0 h-12 w-12 border-l border-t border-[#0087cb]/70" />
       <div className="absolute bottom-0 right-0 h-12 w-12 border-b border-r border-[#43becc]/60" />
@@ -97,7 +97,7 @@ function CityVisual() {
           {[0, 1, 2, 3].map((node) => (
             <div
               key={node}
-              className="absolute h-4 w-4 border border-[#43becc] bg-black"
+              className="absolute h-4 w-4 border border-[#43becc] bg-[#0a0f29]"
               style={{
                 left: `${node * 28 + 6}%`,
                 top: `${node % 2 === 0 ? 42 : 62}%`,
@@ -139,7 +139,7 @@ function Field({
       </span>
       <input
         type={type}
-        className="w-full border border-white/10 bg-[#050505] px-4 py-4 text-sm text-white outline-none transition focus:border-[#0087cb]"
+        className="w-full border border-white/10 bg-[#121b43] px-4 py-4 text-sm text-white outline-none transition focus:border-[#0087cb]"
       />
     </label>
   );
@@ -152,7 +152,7 @@ export default function ContactPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#030303] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
+      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
@@ -197,7 +197,7 @@ export default function ContactPage({ content, locale }: Props) {
             {content.form.categories.map((category) => (
               <div
                 key={category}
-                className="bg-[#050505] p-4 text-sm font-bold uppercase tracking-wide text-zinc-300"
+                className="bg-[#121b43] p-4 text-sm font-bold uppercase tracking-wide text-zinc-300"
               >
                 {category}
               </div>
@@ -205,7 +205,7 @@ export default function ContactPage({ content, locale }: Props) {
           </div>
         </div>
 
-        <form className="relative border border-white/10 bg-black/50 p-6 md:p-8">
+        <form className="relative border border-white/10 bg-[#121b43]/75 p-6 md:p-8">
           <div className="absolute right-0 top-0 h-8 w-8 border-r border-t border-[#0087cb]/70" />
           <h3 className="mb-8 text-2xl font-black uppercase tracking-tight text-white">
             {content.form.title}
@@ -233,7 +233,7 @@ export default function ContactPage({ content, locale }: Props) {
                 <MessageSquare size={14} />
                 {content.form.fields.inquiryType}
               </span>
-              <select className="w-full border border-white/10 bg-[#050505] px-4 py-4 text-sm text-zinc-400 outline-none transition focus:border-[#0087cb]">
+              <select className="w-full border border-white/10 bg-[#121b43] px-4 py-4 text-sm text-zinc-400 outline-none transition focus:border-[#0087cb]">
                 {content.form.categories.map((category) => (
                   <option key={category}>{category}</option>
                 ))}
@@ -245,7 +245,7 @@ export default function ContactPage({ content, locale }: Props) {
                 <MessageSquare size={14} />
                 {content.form.fields.message}
               </span>
-              <textarea className="min-h-36 w-full resize-none border border-white/10 bg-[#050505] px-4 py-4 text-sm text-white outline-none transition focus:border-[#0087cb]" />
+              <textarea className="min-h-36 w-full resize-none border border-white/10 bg-[#121b43] px-4 py-4 text-sm text-white outline-none transition focus:border-[#0087cb]" />
             </label>
 
             <label className="block md:col-span-2">
@@ -255,7 +255,7 @@ export default function ContactPage({ content, locale }: Props) {
               </span>
               <input
                 type="file"
-                className="w-full border border-dashed border-white/15 bg-[#050505] px-4 py-4 text-sm text-zinc-500 file:mr-4 file:border-0 file:bg-[#0087cb] file:px-4 file:py-2 file:text-xs file:font-black file:uppercase file:tracking-widest file:text-black"
+                className="w-full border border-dashed border-white/15 bg-[#121b43] px-4 py-4 text-sm text-zinc-500 file:mr-4 file:border-0 file:bg-[#0087cb] file:px-4 file:py-2 file:text-xs file:font-black file:uppercase file:tracking-widest file:text-black"
               />
             </label>
 

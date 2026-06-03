@@ -40,7 +40,7 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
         {items.map((loc, i) => (
           <div 
             key={i} 
-            className="p-10 md:p-12 bg-[#050505] group hover:bg-zinc-900/30 transition-all duration-500"
+            className="p-10 md:p-12 bg-[#121b43] group hover:bg-[#0f1738] transition-all duration-500"
           >
             {/* Location Number */}
             <div className="text-[#006db1] font-mono text-xs tracking-widest mb-6">

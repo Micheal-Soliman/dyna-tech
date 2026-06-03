@@ -118,7 +118,7 @@ export default function ArticleDetail() {
   const contactHref = `/${locale}/contact`;
   const article = ARTICLES[slug] || ARTICLES["modular-ev-platforms"];
   return (
-    <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#006db1] selection:text-black min-h-screen pb-24">
+    <div className="bg-[#0a0f29] text-zinc-300 font-mono selection:bg-[#006db1] selection:text-black min-h-screen pb-24">
       
       {/* --- 1. TOP NAVIGATION --- */}
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
@@ -187,7 +187,7 @@ export default function ArticleDetail() {
           {/* Author & Excerpt Row */}
           <div className="flex flex-col md:flex-row gap-8 md:gap-12">
             {/* Author Card */}
-            <div className="flex items-center gap-4 p-4 bg-zinc-950/30 border border-white/5 min-w-fit">
+            <div className="flex items-center gap-4 p-4 bg-[#121b43]/60 border border-white/5 min-w-fit">
               <div className="w-12 h-12 bg-[#006db1] rounded-full flex items-center justify-center">
                 <User size={20} className="text-black" />
               </div>
@@ -212,7 +212,7 @@ export default function ArticleDetail() {
         
         {/* LEFT SIDEBAR: TECH SPECS */}
         <aside className="lg:col-span-3 space-y-12 order-2 lg:order-1">
-          <div className="p-6 border border-white/5 bg-zinc-950/50 space-y-6">
+          <div className="p-6 border border-white/5 bg-[#121b43]/75 space-y-6">
             <h4 className="text-[10px] font-black text-[#006db1] uppercase tracking-[0.3em] border-b border-white/5 pb-4">Document_Metadata</h4>
             
             <div className="space-y-4">
@@ -255,7 +255,7 @@ export default function ArticleDetail() {
             </p>
 
             {/* DATA BLOCK INSET */}
-            <div className="my-12 p-8 bg-zinc-950 border-l-4 border-[#006db1] grid md:grid-cols-3 gap-8">
+            <div className="my-12 p-8 bg-[#121b43] border-l-4 border-[#006db1] grid md:grid-cols-3 gap-8">
               <div>
                 <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Weight_Reduction</p>
                 <p className="text-3xl font-black text-white italic">-120kg</p>
@@ -286,7 +286,7 @@ export default function ArticleDetail() {
           </blockquote>
 
           {/* CTA / CONTACT */}
-          <div className="p-12 bg-zinc-950 border-2 border-[#006db1]">
+          <div className="p-12 bg-[#121b43] border-2 border-[#006db1]">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
               <div className="space-y-2">
                 <h4 className="text-2xl font-[1000] uppercase tracking-tighter italic text-white">Discuss This Topic?</h4>
@@ -311,7 +311,7 @@ export default function ArticleDetail() {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="flex-1 bg-black border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#006db1] outline-none"
+                className="flex-1 bg-[#121b43] border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#006db1] outline-none"
               />
               <button className="flex items-center justify-center gap-4 bg-white text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#006db1] transition-colors">
                 Subscribe <Mail size={16} />
@@ -335,7 +335,7 @@ export default function ArticleDetail() {
               { title: "Grid Readiness in MENA 2026", cat: "Infrastructure" },
               { title: "The Impact of Recycled Aluminum", cat: "Materials" },
             ].map((rel, i) => (
-              <div key={i} className="p-8 bg-zinc-950/50 border border-white/5 hover:bg-zinc-900 transition-all cursor-pointer group">
+              <div key={i} className="p-8 bg-[#121b43]/75 border border-white/5 hover:bg-[#0f1738] transition-all cursor-pointer group">
                 <span className="text-[8px] font-black text-[#006db1] uppercase tracking-widest">{rel.cat}</span>
                 <h6 className="text-lg font-black text-white uppercase italic tracking-tighter mt-2 group-hover:underline">{rel.title}</h6>
               </div>

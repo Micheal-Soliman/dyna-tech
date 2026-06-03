@@ -27,7 +27,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-black pt-24 font-mono text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
+      className={`min-h-screen bg-[#0a0f29] pt-24 font-mono text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
       style={{ ["--accent-color" as string]: accent }}
     >
       <section className="relative flex min-h-[calc(100vh-6rem)] flex-col overflow-hidden border-b border-white/5 px-6 pb-20 pt-24 md:px-16 lg:px-32">
@@ -86,7 +86,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
               <motion.div
                 whileHover={{ scale: 1.012, borderColor: `${accent}66` }}
                 transition={{ duration: 0.45, ease: "easeOut" }}
-                className="group relative aspect-[4/3] overflow-hidden border-2 border-white/10 bg-zinc-950 transition-colors duration-500"
+                className="group relative aspect-[4/3] overflow-hidden border-2 border-white/10 bg-[#121b43] transition-colors duration-500"
               >
                 <div className="absolute left-0 top-0 h-8 w-8 border-l-2 border-t-2 border-white/20" />
                 <div className="absolute bottom-0 right-0 h-8 w-8 border-b-2 border-r-2 border-white/20" />
@@ -111,7 +111,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
               <motion.div
                 whileHover={{ y: -4, borderColor: `${accent}55` }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="group relative overflow-hidden border border-white/10 bg-zinc-950 p-8 transition-colors duration-500"
+                className="group relative overflow-hidden border border-white/10 bg-[#121b43] p-8 transition-colors duration-500"
               >
                 <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-25 blur-[100px] transition-all duration-500 group-hover:h-52 group-hover:w-52" style={{ backgroundColor: accent }} />
                 <h2 className="relative z-10 mb-5 text-[10px] font-black uppercase italic tracking-[0.45em]" style={{ color: accent }}>
@@ -130,7 +130,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
                     animate={{ opacity: 1, x: 0 }}
                     whileHover={{ x: isAr ? -8 : 8, borderColor: `${accent}80` }}
                     transition={{ duration: 0.45, delay: 0.2 + index * 0.07 }}
-                    className="group flex items-center gap-4 border border-white/5 bg-zinc-950/70 p-5 transition-colors duration-300 hover:bg-white/[0.025]"
+                    className="group flex items-center gap-4 border border-white/5 bg-[#121b43]/80 p-5 transition-colors duration-300 hover:bg-white/[0.025]"
                   >
                     <span className="text-xl font-[1000] transition-transform duration-300 group-hover:scale-110" style={{ color: accent }}>
                       0{index + 1}
@@ -162,7 +162,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
                 {partner.milestoneTitle}
               </span>
             </div>
-            <div className="relative overflow-hidden border border-white/5 bg-zinc-950 p-8 transition-colors duration-300">
+            <div className="relative overflow-hidden border border-white/5 bg-[#121b43] p-8 transition-colors duration-300">
               <div className="absolute right-0 top-0 p-4 text-[56px] font-black italic opacity-10" style={{ color: accent }}>
                 {partner.id === "fft" ? "2023" : "2022"}
               </div>
@@ -178,7 +178,7 @@ export default function PartnerDetailPage({ partner, ecosystemColumn, locale }: 
             whileHover={{ y: -6, borderColor: `${accent}66` }}
             viewport={{ once: true, amount: 0.25 }}
             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-            className="group relative overflow-hidden border border-white/10 bg-zinc-950 p-10 transition-colors duration-500"
+            className="group relative overflow-hidden border border-white/10 bg-[#121b43] p-10 transition-colors duration-500"
           >
             <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full blur-3xl transition-all duration-500 group-hover:h-36 group-hover:w-36" style={{ backgroundColor: `${accent}14` }} />
             <h2 className="text-2xl font-[1000] uppercase italic tracking-widest" style={{ color: accent }}>

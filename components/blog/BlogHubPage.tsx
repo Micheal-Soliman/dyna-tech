@@ -64,7 +64,7 @@ export default function BlogHubPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#030303] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
+      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
@@ -90,7 +90,7 @@ export default function BlogHubPage({ content, locale }: Props) {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="relative border border-white/10 border-l-[#0087cb] bg-black/50 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8"
+            className="relative border border-white/10 border-l-[#0087cb] bg-[#121b43]/75 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8"
           >
             <div className="absolute right-0 top-0 h-8 w-8 border-r border-t border-[#0087cb]/70" />
             <p className="text-lg font-semibold leading-relaxed text-[#43becc]">
@@ -122,7 +122,7 @@ export default function BlogHubPage({ content, locale }: Props) {
                   className={`inline-flex items-center gap-2 border px-4 py-3 text-xs font-black uppercase tracking-widest transition ${
                     isActive
                       ? "border-[#0087cb] bg-[#0087cb] text-black"
-                      : "border-white/10 bg-[#050505] text-zinc-400 hover:border-[#0087cb]/55 hover:text-white"
+                      : "border-white/10 bg-[#121b43] text-zinc-400 hover:border-[#0087cb]/55 hover:text-white"
                   }`}
                 >
                   <CategoryIcon id={category.id} />
@@ -147,7 +147,7 @@ export default function BlogHubPage({ content, locale }: Props) {
                 viewport={{ once: true, amount: 0.2 }}
                 variants={fadeUp}
                 transition={{ duration: 0.45, delay: index * 0.05 }}
-                className="group relative min-h-[320px] overflow-hidden bg-[#050505] p-6 transition hover:bg-black"
+                className="group relative min-h-[320px] overflow-hidden bg-[#121b43] p-6 transition hover:bg-[#0f1738]"
               >
                 <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
                 <div className="mb-8 flex items-start justify-between gap-5">

@@ -56,7 +56,7 @@ function HeroVisual() {
       initial={{ opacity: 0, y: 26 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
-      className="group relative min-h-[430px] overflow-hidden border border-white/10 bg-black/70 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#0087cb]/55"
+      className="group relative min-h-[430px] overflow-hidden border border-white/10 bg-[#121b43]/75 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.45)] transition-colors duration-300 hover:border-[#0087cb]/55"
     >
       <div className="absolute left-0 top-0 h-12 w-12 border-l border-t border-[#0087cb]/70" />
       <div className="absolute bottom-0 right-0 h-12 w-12 border-b border-r border-[#43becc]/60" />
@@ -76,7 +76,7 @@ function HeroVisual() {
           >
             <div className="absolute inset-x-3 top-4 h-px bg-[#43becc]/50" />
             <div className="absolute inset-x-3 top-10 h-px bg-[#43becc]/25" />
-            <div className="absolute bottom-4 left-1/2 h-8 w-8 -translate-x-1/2 border border-[#43becc]/50 bg-black" />
+            <div className="absolute bottom-4 left-1/2 h-8 w-8 -translate-x-1/2 border border-[#43becc]/50 bg-[#0a0f29]" />
           </motion.div>
         ))}
       </div>
@@ -85,7 +85,7 @@ function HeroVisual() {
         {[Zap, Factory, Wrench].map((Icon, index) => (
           <div
             key={index}
-            className="flex h-20 items-center justify-center border border-white/10 bg-black text-[#43becc]"
+            className="flex h-20 items-center justify-center border border-white/10 bg-[#0a0f29] text-[#43becc]"
           >
             <Icon size={26} strokeWidth={1.5} />
           </div>
@@ -121,7 +121,7 @@ export default function CareersPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#030303] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
+      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
@@ -172,7 +172,7 @@ export default function CareersPage({ content, locale }: Props) {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.45, delay: index * 0.05 }}
-              className="group relative min-h-[260px] overflow-hidden bg-[#050505] p-6 transition hover:bg-black"
+              className="group relative min-h-[260px] overflow-hidden bg-[#121b43] p-6 transition hover:bg-[#0f1738]"
             >
               <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
               <div className="mb-6 flex h-12 w-12 items-center justify-center border border-[#0087cb]/35 bg-[#0087cb]/10 text-[#43becc]">
@@ -189,7 +189,7 @@ export default function CareersPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/55 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/70 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
             <SectionKicker>{content.positions.title}</SectionKicker>
@@ -206,7 +206,7 @@ export default function CareersPage({ content, locale }: Props) {
               <motion.div
                 key={area}
                 whileHover={{ y: -3 }}
-                className="group flex items-center justify-between gap-6 bg-[#050505] p-6 transition hover:bg-black"
+                className="group flex items-center justify-between gap-6 bg-[#121b43] p-6 transition hover:bg-[#0f1738]"
               >
                 <div>
                   <p className="text-xs font-black uppercase tracking-widest text-[#0087cb]">

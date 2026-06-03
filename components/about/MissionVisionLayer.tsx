@@ -43,7 +43,7 @@ export default function MissionVisionLayer({ opacity, data }: Props) {
 
             <div className="grid md:grid-cols-2 gap-px bg-white/10 border border-white/10">
               {data.platforms.map((platform) => (
-                <div key={platform.title} className="bg-[#050505] p-6 md:p-8">
+                <div key={platform.title} className="bg-[#121b43] p-6 md:p-8">
                   <h5 className="text-[#0087cb] font-black text-base md:text-lg uppercase tracking-tight mb-4">
                     {platform.title}
                   </h5>

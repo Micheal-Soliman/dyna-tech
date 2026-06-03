@@ -99,7 +99,7 @@ export default function AboutStickyStory({
       ref={containerRef}
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`bg-[#050505] relative w-full ${isAr ? 'font-cairo' : ''}`}
+      className={`bg-[#0a0f29] relative w-full ${isAr ? 'font-cairo' : ''}`}
       style={{ height: "1400vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">

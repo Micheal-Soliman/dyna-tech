@@ -54,7 +54,7 @@ function VisualPanel({
   variant: "network" | "hub" | "egypt";
 }) {
   return (
-    <div className="relative min-h-[360px] overflow-hidden border border-white/10 bg-[#050505]">
+    <div className="relative min-h-[360px] overflow-hidden border border-white/10 bg-[#121b43]">
       <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#0087cb33_1px,transparent_1px),linear-gradient(90deg,#0087cb33_1px,transparent_1px)] [background-size:42px_42px]" />
       <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
       <div className="absolute inset-y-8 left-1/2 w-px bg-gradient-to-b from-transparent via-[#43becc] to-transparent" />
@@ -64,7 +64,7 @@ function VisualPanel({
           <div className="grid grid-cols-3 items-center gap-8">
             {["EU", "DYNATECH", "MENA"].map((item, index) => (
               <div key={item} className="relative">
-                <div className="flex h-24 w-24 items-center justify-center border border-[#0087cb]/40 bg-black text-xs font-black uppercase tracking-widest text-white">
+                <div className="flex h-24 w-24 items-center justify-center border border-[#0087cb]/40 bg-[#0a0f29] text-xs font-black uppercase tracking-widest text-white">
                   {item}
                 </div>
                 {index < 2 && <div className="absolute left-full top-1/2 h-px w-8 bg-[#0087cb]" />}
@@ -81,7 +81,7 @@ function VisualPanel({
             {["EV", "Service", "Training", "Logistics"].map((item, index) => (
               <div
                 key={item}
-                className="absolute flex h-14 w-24 items-center justify-center border border-white/10 bg-black text-[10px] font-bold uppercase tracking-wider text-zinc-300"
+                className="absolute flex h-14 w-24 items-center justify-center border border-white/10 bg-[#0a0f29] text-[10px] font-bold uppercase tracking-wider text-zinc-300"
                 style={{
                   left: index % 2 === 0 ? "-32px" : "auto",
                   right: index % 2 === 1 ? "-32px" : "auto",
@@ -100,7 +100,7 @@ function VisualPanel({
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="flex items-center gap-5">
             {[Factory, Gauge, Globe2].map((Icon, index) => (
-              <div key={index} className="flex h-24 w-24 items-center justify-center border border-[#0087cb]/35 bg-black text-[#43becc]">
+              <div key={index} className="flex h-24 w-24 items-center justify-center border border-[#0087cb]/35 bg-[#0a0f29] text-[#43becc]">
                 <Icon size={34} strokeWidth={1.5} />
               </div>
             ))}
@@ -124,7 +124,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#050505] pt-32 text-white ${isAr ? "font-cairo" : ""}`}
+      className={`min-h-screen bg-[#0a0f29] pt-32 text-white ${isAr ? "font-cairo" : ""}`}
     >
       <section className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
@@ -145,7 +145,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/40 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.95fr_1.05fr]">
           <VisualPanel label={content.partnerships.kicker} variant="network" />
           <div>
@@ -227,7 +227,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
               </div>
               <div className="grid gap-px border border-white/10 bg-white/10">
                 {content.hub.highlights.map((item) => (
-                  <div key={item} className="bg-[#050505] p-5 text-sm font-bold uppercase tracking-wide text-zinc-200">
+                  <div key={item} className="bg-[#121b43] p-5 text-sm font-bold uppercase tracking-wide text-zinc-200">
                     {item}
                   </div>
                 ))}
@@ -247,7 +247,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-t border-white/10 bg-black/50 py-20">
+      <section className="border-t border-white/10 bg-[#121b43]/70 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr]">
           <VisualPanel label={content.egypt.kicker} variant="egypt" />
           <div>
@@ -268,7 +268,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
             </h3>
             <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-3">
               {content.egypt.stats.map((stat) => (
-                <div key={stat.label} className="bg-[#050505] p-6">
+                <div key={stat.label} className="bg-[#121b43] p-6">
                   <div className="text-3xl font-black text-[#43becc] md:text-4xl">
                     {stat.value}
                   </div>

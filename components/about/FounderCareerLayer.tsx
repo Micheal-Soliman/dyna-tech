@@ -35,7 +35,7 @@ export default function FounderCareerLayer({ opacity, data, isAr = false }: Prop
 
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-px bg-white/10 border border-white/10">
           {data.experience.map((exp) => (
-            <div key={`${exp.period}-${exp.company}`} className={`bg-[#050505] p-6 md:p-7 min-h-[260px] ${isAr ? 'text-right' : ''}`}>
+            <div key={`${exp.period}-${exp.company}`} className={`bg-[#121b43] p-6 md:p-7 min-h-[260px] ${isAr ? 'text-right' : ''}`}>
               <div className="text-[#0087cb] font-black text-xl md:text-2xl mb-4">
                 {exp.period}
               </div>

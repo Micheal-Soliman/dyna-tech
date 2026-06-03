@@ -27,7 +27,7 @@ export default function SingularityContactClient({ content }: Props) {
   return (
     <main
       ref={containerRef}
-      className="bg-[#050505] text-white min-h-[1200vh] relative overflow-x-hidden font-['Montserrat',sans-serif]"
+      className="bg-[#0a0f29] text-white min-h-[1200vh] relative overflow-x-hidden font-['Montserrat',sans-serif]"
     >
       <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-10">
         <ContactCoreSingularity scale={coreScale} rotate={coreRotate} opacity={coreOpacity} />

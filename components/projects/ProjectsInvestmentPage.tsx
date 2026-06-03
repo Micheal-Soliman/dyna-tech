@@ -89,7 +89,7 @@ function IndustrialVisual({
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ duration: 0.35, ease: "easeOut" }}
-      className="group relative min-h-[360px] overflow-hidden border border-white/10 bg-[#050505] shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition-colors duration-300 hover:border-[#0087cb]/50"
+      className="group relative min-h-[360px] overflow-hidden border border-white/10 bg-[#121b43] shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition-colors duration-300 hover:border-[#0087cb]/50"
     >
       <div className="absolute left-0 top-0 h-10 w-10 border-l border-t border-[#0087cb]/60" />
       <div className="absolute bottom-0 right-0 h-10 w-10 border-b border-r border-[#0087cb]/60" />
@@ -109,7 +109,7 @@ function IndustrialVisual({
             ].map(({ icon: Icon, label: item }) => (
               <div
                 key={item}
-                className="flex h-24 w-24 flex-col items-center justify-center gap-3 border border-[#0087cb]/35 bg-black text-[#43becc] transition-all duration-300 group-hover:border-[#43becc]/70"
+                className="flex h-24 w-24 flex-col items-center justify-center gap-3 border border-[#0087cb]/35 bg-[#0a0f29] text-[#43becc] transition-all duration-300 group-hover:border-[#43becc]/70"
               >
                 <Icon size={26} strokeWidth={1.5} />
                 <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400">
@@ -130,7 +130,7 @@ function IndustrialVisual({
             {["EV", "ICE", "Training", "Service"].map((item, index) => (
               <div
                 key={item}
-                  className="absolute flex h-14 w-24 items-center justify-center border border-white/10 bg-black text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition-colors duration-300 group-hover:border-[#0087cb]/55"
+                  className="absolute flex h-14 w-24 items-center justify-center border border-white/10 bg-[#0a0f29] text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition-colors duration-300 group-hover:border-[#0087cb]/55"
                 style={{
                   left: index % 2 === 0 ? "-42px" : "auto",
                   right: index % 2 === 1 ? "-42px" : "auto",
@@ -154,13 +154,13 @@ function IndustrialVisual({
             </div>
             <div className="relative h-2 bg-white/10">
               <div className="absolute inset-y-0 left-0 w-[78%] bg-[#0087cb]" />
-              <div className="absolute left-[78%] top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 border border-[#43becc] bg-black" />
+              <div className="absolute left-[78%] top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 border border-[#43becc] bg-[#0a0f29]" />
             </div>
             <div className="grid grid-cols-3 gap-3">
               {["Quality", "Training", "R&D"].map((item) => (
                 <div
                   key={item}
-                  className="border border-white/10 bg-black p-4 text-center text-[10px] font-bold uppercase tracking-wider text-zinc-300"
+                  className="border border-white/10 bg-[#0a0f29] p-4 text-center text-[10px] font-bold uppercase tracking-wider text-zinc-300"
                 >
                   {item}
                 </div>
@@ -184,7 +184,7 @@ function KeyInfo({ content }: { content: ProjectsInvestmentContent }) {
     <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
       <motion.div
         whileHover={{ y: -3 }}
-        className="bg-[#050505] p-6 transition-colors hover:bg-black"
+        className="bg-[#121b43] p-6 transition-colors hover:bg-[#0f1738]"
       >
         <div className="mb-3 flex items-center gap-3 text-[#43becc]">
           <Clock3 size={18} />
@@ -198,7 +198,7 @@ function KeyInfo({ content }: { content: ProjectsInvestmentContent }) {
       </motion.div>
       <motion.div
         whileHover={{ y: -3 }}
-        className="bg-[#050505] p-6 transition-colors hover:bg-black"
+        className="bg-[#121b43] p-6 transition-colors hover:bg-[#0f1738]"
       >
         <div className="mb-3 flex items-center gap-3 text-[#43becc]">
           <MapPin size={18} />
@@ -225,7 +225,7 @@ function FiguresGrid({ content }: { content: ProjectsInvestmentContent }) {
           <motion.div
             key={figure.label}
             whileHover={{ y: -3 }}
-            className="group relative bg-[#050505] p-5 transition-colors hover:bg-black"
+            className="group relative bg-[#121b43] p-5 transition-colors hover:bg-[#0f1738]"
           >
             <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
             <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">
@@ -256,7 +256,7 @@ function BusinessUnits({ content }: { content: ProjectsInvestmentContent }) {
         >
           <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center border border-[#0087cb]/35 bg-black text-[#43becc]">
+            <div className="flex h-10 w-10 items-center justify-center border border-[#0087cb]/35 bg-[#0a0f29] text-[#43becc]">
               {index % 3 === 0 ? (
                 <Wrench size={18} />
               ) : index % 3 === 1 ? (
@@ -285,7 +285,7 @@ function TimelineList({ content }: { content: ProjectsInvestmentContent }) {
         <motion.div
           key={item}
           whileHover={{ x: 4 }}
-          className="group flex items-center gap-4 border border-white/10 bg-[#050505] p-4 transition hover:border-[#0087cb]/45 hover:bg-black"
+          className="group flex items-center gap-4 border border-white/10 bg-[#121b43] p-4 transition hover:border-[#0087cb]/45 hover:bg-[#0f1738]"
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#0087cb] text-xs font-black text-black transition-transform group-hover:scale-105">
             {index + 1}
@@ -304,7 +304,7 @@ export default function ProjectsInvestmentPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#030303] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
+      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
@@ -326,7 +326,7 @@ export default function ProjectsInvestmentPage({ content, locale }: Props) {
             animate="visible"
             variants={fadeUp}
             transition={{ duration: 0.6, delay: 0.12 }}
-            className="relative border border-white/10 border-l-[#0087cb] bg-black/50 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8"
+            className="relative border border-white/10 border-l-[#0087cb] bg-[#121b43]/75 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8"
           >
             <div className="absolute right-0 top-0 h-8 w-8 border-r border-t border-[#0087cb]/70" />
             <p className="text-lg font-semibold leading-relaxed text-[#43becc]">
@@ -336,7 +336,7 @@ export default function ProjectsInvestmentPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/45 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
           <IndustrialVisual label={content.hero.kicker} mode="pipeline" />
           <div>
@@ -387,7 +387,7 @@ export default function ProjectsInvestmentPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/55 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/70 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
           <IndustrialVisual label={content.market.kicker} mode="position" />
           <div>
@@ -462,7 +462,7 @@ export function ProjectsInvestmentDetailPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#030303] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
+      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
@@ -481,7 +481,7 @@ export function ProjectsInvestmentDetailPage({ content, locale }: Props) {
               {content.hub.title}
             </h1>
           </div>
-          <div className="relative border border-white/10 border-l-[#0087cb] bg-black/50 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8">
+          <div className="relative border border-white/10 border-l-[#0087cb] bg-[#121b43]/75 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8">
             <div className="absolute right-0 top-0 h-8 w-8 border-r border-t border-[#0087cb]/70" />
             <div className="space-y-4 text-base leading-relaxed text-zinc-400">
               {content.hub.paragraphs.map((paragraph) => (
@@ -492,7 +492,7 @@ export function ProjectsInvestmentDetailPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/45 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
           <IndustrialVisual label={content.hub.kicker} mode="hub" />
           <div className="space-y-10">
@@ -523,7 +523,7 @@ export function ProjectsInvestmentDetailPage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-black/55 py-20">
+      <section className="border-y border-white/10 bg-[#121b43]/70 py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2">
           <div>
             <SectionKicker>{content.market.kicker}</SectionKicker>
