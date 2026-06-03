@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import type { HomeAboutCopy } from "@/components/home/types";
 
 export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: HomeAboutCopy; isAr?: boolean; locale?: string }) {
@@ -60,10 +61,13 @@ export function AboutSection({ copy, isAr = false, locale = "en" }: { copy: Home
           style={{ scale, rotate, willChange: "transform" }}
           className="relative w-[85vw] md:w-[55vw] h-[50vh] md:h-[65vh] rounded-[40px] overflow-hidden z-20 shadow-2xl transform-gpu"
         >
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
-            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
             alt={copy.imageAlt}
+            fill
+            sizes="(min-width: 768px) 55vw, 85vw"
+            unoptimized
+            className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#121b43] via-transparent to-transparent opacity-60" />
         </motion.div>

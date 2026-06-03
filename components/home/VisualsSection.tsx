@@ -12,6 +12,7 @@ import {
 import type { MouseEvent } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import type { VisualSlideItem } from "@/components/home/types";
 
@@ -267,10 +268,13 @@ export default function VisualsSection({
                 >
                   {/* حاوية الصورة مع Error Handling */}
                   <div className="w-full h-full bg-[#121b43] relative">
-                    <img
+                    <Image
                       src={img.url}
-                      className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       alt={img.title}
+                      fill
+                      sizes="(min-width: 768px) 620px, 320px"
+                      unoptimized
+                      className="object-cover transition-transform duration-1000 group-hover:scale-110"
                       onError={(e) => {
                         e.currentTarget.src = "https://via.placeholder.com/800x600/121b43/0087cb?text=Raptors+Creative";
                       }}

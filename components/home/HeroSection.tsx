@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 // ============================================
 // TYPES
@@ -75,10 +76,14 @@ function HeroMainSection({
           style={{ scale: imageScale, borderRadius: imageRadius, willChange: "transform" }}
           className="absolute inset-0 z-10 overflow-hidden"
         >
-          <img
+          <Image
             src={heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
             alt={heroImageAlt}
-            className="h-full w-full object-cover"
+            fill
+            priority
+            sizes="100vw"
+            unoptimized
+            className="object-cover"
           />
           {/* Advanced Overlay for Text Readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-[#0a0f29]/20 to-[#0a0f29]/60" />
@@ -193,10 +198,13 @@ function CeoMessageSection({
           >
             <div className={`absolute inset-0 border-2 border-[#0087cb]/20 ${isAr ? '-translate-x-6' : 'translate-x-6'} translate-y-6 rounded-2xl`} />
             <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl">
-              <img 
+              <Image
                 src={ceoImageUrl || heroImageUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop"} 
                 alt={ceoName || "Eng. Ahmed Sorour"} 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
+                fill
+                sizes="(min-width: 1024px) 50vw, 90vw"
+                unoptimized
+                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-transparent to-transparent opacity-60" />
             </div>
@@ -307,10 +315,13 @@ function BrandOutroSection({
     >
       {/* Background Image with Parallax */}
       <motion.div style={{ scale }} className="absolute inset-0 z-10">
-        <img
+        <Image
           src={heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
           alt="DYNATECH Industrial"
-          className="h-full w-full object-cover opacity-40"
+          fill
+          sizes="100vw"
+          unoptimized
+          className="object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f29] via-transparent to-[#0a0f29]" />
       </motion.div>
