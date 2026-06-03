@@ -742,5 +742,45 @@
         "excerpt": "A closer look at Egypt’s positioning as a regional automotive and industrial investment destination."
       }
     ]
+  },
+  "careers": {
+    "hero": {
+      "kicker": "Careers",
+      "title": "Build Egypt’s Automotive Future With Us",
+      "description": "Join DYNATECH and become part of a new industrial generation working alongside Europe’s leading automotive and manufacturing technology partners."
+    },
+    "why": {
+      "title": "Why Join DYNATECH?",
+      "description": "DYNATECH is building more than an automotive facility — it is building an ecosystem designed around future mobility, industrial technology, and advanced infrastructure.",
+      "items": [
+        {
+          "title": "International Exposure",
+          "description": "Work alongside global technology partners and gain exposure to international industrial standards and future-focused technologies."
+        },
+        {
+          "title": "Industry-First Projects",
+          "description": "Participate in projects shaping the future of electric mobility, energy systems, and advanced automotive operations in Egypt."
+        },
+        {
+          "title": "Technical Growth",
+          "description": "Develop your skills through hands-on experience, operational training, and direct involvement in next generation technologies."
+        },
+        {
+          "title": "Real Industrial Impact",
+          "description": "Contribute directly to Egypt’s transition toward New Energy Vehicles (NEVs), smart infrastructure, and localized industrial development."
+        }
+      ]
+    },
+    "positions": {
+      "title": "Open Positions",
+      "description": "Explore opportunities across automotive operations, engineering, technical services, mobility infrastructure, and industrial development.",
+      "areas": [
+        "Automotive Operations",
+        "Engineering",
+        "Technical Services",
+        "Mobility Infrastructure",
+        "Industrial Development"
+      ]
+    }
   }
 }

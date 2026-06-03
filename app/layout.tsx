@@ -45,9 +45,9 @@ export default async function RootLayout({
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir}>
+    <html lang={locale} dir={dir} className="dark bg-[#0a0f29]">
       <body
-        className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${montserrat.variable} ${geistSans.variable} ${geistMono.variable} bg-[#0a0f29] text-white antialiased`}
       >
         {children}
       </body>

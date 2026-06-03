@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -61,11 +62,14 @@ export function Header() {
           
           {/* LOGO */}
           <Link href={`/${currentLocale}`} className="relative group flex items-center shrink-0">
-            <div className="h-10 md:h-12 w-[150px] md:w-[190px] overflow-hidden">
-              <img
-                src="/logo.png"
+            <div className="h-16 md:h-[84px] w-[80px] md:w-[150px]">
+              <Image
+                src="/logo-cropped.png"
                 alt="DYNATECH"
-                className="w-full h-full object-cover object-left object-bottom transition-opacity duration-300 group-hover:opacity-80"
+                width={340}
+                height={84}
+                priority
+                className="h-full w-full object-contain object-left transition-opacity duration-300 group-hover:opacity-80"
               />
             </div>
           </Link>
@@ -97,7 +101,7 @@ export function Header() {
 
           {/* ACTIONS */}
           <div className="flex items-center gap-3 shrink-0">
-            <LocaleSwitcher className="hidden md:flex text-white hover:text-[#0087cb] transition-colors text-[10px] font-black uppercase bg-transparent border-none px-2" />
+            <LocaleSwitcher className="hidden md:flex text-white hover:text-[#0087cb] hover:bg-white/5 hover:ring-1 hover:ring-[#0087cb]/40 transition-all text-[10px] font-black uppercase bg-transparent border-none px-3 py-2" />
             
             <Link
               href={`/${currentLocale}/contact`}
@@ -110,7 +114,7 @@ export function Header() {
             {/* HAMBURGER BTN */}
             <button
               onClick={() => setMenuOpenPathname(pathname)}
-              className="lg:hidden p-2 text-white hover:bg-white/5 rounded-full transition-colors"
+              className="lg:hidden cursor-pointer p-2 text-white hover:bg-white/5 rounded-full transition-colors"
             >
               <Menu size={24} />
             </button>

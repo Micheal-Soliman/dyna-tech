@@ -4,6 +4,8 @@ import type { ReactNode } from "react";
 import type { MotionValue } from "framer-motion";
 import { motion } from "framer-motion";
 import { Globe, Zap, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import Layer from "./Layer";
 import type { ContactPageContent } from "../ContactPage";
@@ -14,6 +16,9 @@ type Props = {
 };
 
 export default function FinalLinksLayer({ progress, content }: Props) {
+    const pathname = usePathname();
+    const locale = pathname?.split("/")[1] === "ar" ? "ar" : "en";
+
     return (
         <Layer progress={progress} range={[0.92, 1]}>
             <div className="relative flex flex-col items-center max-w-5xl w-full px-6">
@@ -28,12 +33,14 @@ export default function FinalLinksLayer({ progress, content }: Props) {
                         subtitle="Technical Resources"
                         icon={<Globe size={18} />}
                         color="#006db1"
+                        href={`/${locale}/knowledge`}
                     />
                     <QuickLinkCard
                         title="Career Portal"
                         subtitle="Join The Force"
                         icon={<Zap size={18} />}
                         color="#0087cb"
+                        href={`/${locale}/career`}
                     />
                 </div>
 
@@ -93,32 +100,38 @@ function QuickLinkCard({
     subtitle,
     icon,
     color,
+    href,
 }: {
     title: string;
     subtitle: string;
     icon: ReactNode;
     color: string;
+    href: string;
 }) {
     return (
-        <motion.div
-            whileHover={{ y: -5, borderColor: color }}
-            className="group cursor-pointer p-8 bg-white/[0.03] border border-white/10 rounded-[30px] backdrop-blur-xl transition-all duration-300 flex items-center justify-between"
+        <Link
+            href={href}
+            className="block"
         >
-
-            <div className="space-y-2 text-left">
-                <p className="text-zinc-500 font-mono text-[9px] uppercase tracking-widest italic group-hover:text-white transition-colors">
-                    {subtitle}
-                </p>
-                <h4 className="text-white text-xl font-black italic uppercase tracking-tight">
-                    {title}
-                </h4>
-            </div>
-            <div
-                className="w-12 h-12 rounded-full flex items-center justify-center text-black transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
-                style={{ backgroundColor: color }}
+            <motion.div
+                whileHover={{ y: -5, borderColor: color }}
+                className="group cursor-pointer p-8 bg-white/[0.03] border border-white/10 rounded-[30px] backdrop-blur-xl transition-all duration-300 flex items-center justify-between"
             >
-                {icon}
-            </div>
-        </motion.div>
+                <div className="space-y-2 text-left">
+                    <p className="text-zinc-500 font-mono text-[9px] uppercase tracking-widest italic group-hover:text-white transition-colors">
+                        {subtitle}
+                    </p>
+                    <h4 className="text-white text-xl font-black italic uppercase tracking-tight">
+                        {title}
+                    </h4>
+                </div>
+                <div
+                    className="w-12 h-12 rounded-full flex items-center justify-center text-black transition-all group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                    style={{ backgroundColor: color }}
+                >
+                    {icon}
+                </div>
+            </motion.div>
+        </Link>
     );
 }

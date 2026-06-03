@@ -1,10 +1,9 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
 import { 
   ArrowLeft, Share2, Printer, 
-  Clock, User, Calendar,
-  ChevronRight, Download, Mail, ArrowRight
+  Clock, User,
+  ChevronRight, Mail, ArrowRight
 } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -114,6 +113,9 @@ const ARTICLES: Record<string, {
 export default function ArticleDetail() {
   const params = useParams();
   const slug = params.slug as string;
+  const locale = params.locale === "ar" ? "ar" : "en";
+  const knowledgeHref = `/${locale}/knowledge`;
+  const contactHref = `/${locale}/contact`;
   const article = ARTICLES[slug] || ARTICLES["modular-ev-platforms"];
   return (
     <div className="bg-[#020202] text-zinc-300 font-mono selection:bg-[#006db1] selection:text-black min-h-screen pb-24">
@@ -121,7 +123,7 @@ export default function ArticleDetail() {
       {/* --- 1. TOP NAVIGATION --- */}
       <nav className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/knowledge" className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#006db1] transition-colors">
+          <Link href={knowledgeHref} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#006db1] transition-colors">
             <ArrowLeft size={14} /> Back_to_Archives
           </Link>
           <div className="flex gap-6">
@@ -293,7 +295,7 @@ export default function ArticleDetail() {
                 </p>
               </div>
               <Link 
-                href="/contact"
+                href={contactHref}
                 className="flex items-center gap-4 bg-[#006db1] text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-colors"
               >
                 Contact Us <ArrowRight size={16} />
@@ -324,7 +326,7 @@ export default function ArticleDetail() {
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="flex justify-between items-end">
             <h5 className="text-[10px] font-black uppercase tracking-[0.5em] text-zinc-600 italic">Continue_Reading //</h5>
-            <button className="text-[9px] font-black uppercase tracking-widest text-[#006db1] flex items-center gap-2">View_All <ChevronRight size={14}/></button>
+            <Link href={knowledgeHref} className="text-[9px] font-black uppercase tracking-widest text-[#006db1] flex items-center gap-2">View_All <ChevronRight size={14}/></Link>
           </div>
           
           <div className="grid md:grid-cols-3 gap-1">

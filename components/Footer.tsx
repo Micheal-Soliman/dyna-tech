@@ -3,22 +3,24 @@
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ArrowUpRight, Mail, Phone, MapPin, ArrowRight, Activity } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Activity } from "lucide-react";
 
 // مكون فرعي للأرقام المتحركة (Key Numbers)
-const StatItem = ({ label, value }: { label: string; value: string }) => (
+const _StatItem = ({ label, value }: { label: string; value: string }) => (
   <div className="flex flex-col">
     <span className="text-2xl md:text-3xl font-black text-white tracking-tighter">{value}</span>
     <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-[0.3em] mt-1">{label}</span>
   </div>
 );
+void _StatItem;
 
 export function Footer({
-  description,
-  navExpertise,
-  navVisuals,
-  navStats,
-  navAnnouncements,
+  description: _description,
+  navExpertise: _navExpertise,
+  navVisuals: _navVisuals,
+  navStats: _navStats,
+  navAnnouncements: _navAnnouncements,
 }: {
   description: string;
   navExpertise: string;
@@ -29,6 +31,11 @@ export function Footer({
   const pathname = usePathname();
   const currentYear = new Date().getFullYear();
   const locale = pathname?.split("/")[1] || "en";
+  void _description;
+  void _navExpertise;
+  void _navVisuals;
+  void _navStats;
+  void _navAnnouncements;
 
   return (
     <footer className="relative bg-[#0a0f29] text-white pt-16 pb-6 font-['Montserrat',sans-serif] overflow-hidden border-t border-white/5">
@@ -42,11 +49,13 @@ export function Footer({
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 mb-12">
           <div className="space-y-4">
             <Link href={`/${locale}`} className="block">
-              <div className="h-12 md:h-14 w-[190px] md:w-[230px] overflow-hidden">
-                <img
-                  src="/logo.png"
+              <div className="h-16 md:h-[84px] w-[80px] md:w-[300px]">
+                <Image
+                  src="/logo-cropped.png"
                   alt="DYNATECH"
-                  className="w-full h-full object-cover object-left object-bottom"
+                  width={430}
+                  height={108}
+                  className="h-full w-full object-contain object-left"
                 />
               </div>
             </Link>
@@ -56,7 +65,7 @@ export function Footer({
           <motion.a 
             href={`/${locale}/contact`}
             whileHover="hover"
-            className="relative group flex items-center gap-6 border border-white/10 pl-8 pr-2 py-2 rounded-full overflow-hidden transition-all duration-500"
+            className="relative group flex cursor-pointer items-center gap-6 border border-white/10 pl-8 pr-2 py-2 rounded-full overflow-hidden transition-all duration-500"
           >
             <span className="text-[10px] font-black uppercase tracking-[0.2em] group-hover:text-[#0a0f29] relative z-10 transition-colors duration-500">
               Start a Project
@@ -96,18 +105,20 @@ export function Footer({
             </div>
           </div>
 
-          {/* Column B: News & Events Teaser */}
+          {/* Column B: Featured Pages */}
           <div className="lg:col-span-4 space-y-6">
-            <h4 className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">Latest News</h4>
-            <div className="group cursor-pointer">
-              <span className="text-[10px] text-[#0087cb] font-bold">APR 2026</span>
-              <p className="text-sm font-bold mt-2 group-hover:text-[#0087cb] transition-colors uppercase italic text-white">New AI-Integrated Assembly Line in October Hub.</p>
-              <div className="h-[1px] w-0 group-hover:w-full bg-[#0087cb] mt-4 transition-all duration-500" />
-            </div>
-            <div className="group cursor-pointer">
-              <span className="text-[10px] text-[#0087cb] font-bold">MAR 2026</span>
-              <p className="text-sm font-bold mt-2 group-hover:text-[#0087cb] transition-colors uppercase italic text-white">Partnership with KUKA Robotics for MENA expansion.</p>
-            </div>
+            <h4 className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">Featured Pages</h4>
+            {[
+              { label: "Projects & Investment", meta: "Automotive Hub", href: `/${locale}/case-study` },
+              { label: "Events & Media", meta: "Partnership Milestones", href: `/${locale}/media` },
+              { label: "Business Scope", meta: "Industrial Ecosystem", href: `/${locale}/services` },
+            ].map((item) => (
+              <Link key={item.label} href={item.href} className="group block">
+                <span className="text-[10px] text-[#0087cb] font-bold uppercase">{item.meta}</span>
+                <p className="text-sm font-bold mt-2 group-hover:text-[#0087cb] transition-colors uppercase italic text-white">{item.label}</p>
+                <div className="h-[1px] w-0 group-hover:w-full bg-[#0087cb] mt-4 transition-all duration-500" />
+              </Link>
+            ))}
           </div>
 
           {/* Column C: Navigation & Connect */}
@@ -115,10 +126,11 @@ export function Footer({
             <div>
               <h4 className="text-[#006db1] text-[10px] font-black uppercase tracking-[0.4em] mb-3">Quick Links</h4>
               <div className="space-y-2">
-                <a href={`/${locale}/accelerators`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Our Partners</a>
-                <a href={`/${locale}/updates`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Tech Updates</a>
-                <a href={`/${locale}/knowledge`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Blog</a>
-                <a href={`/${locale}/contact`} className="block text-xs font-bold uppercase tracking-wider text-[#0087cb] hover:text-white hover:translate-x-1 transition-all">Contact Us</a>
+                <Link href={`/${locale}/accelerators`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Our Partners</Link>
+                <Link href={`/${locale}/case-study`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Projects</Link>
+                <Link href={`/${locale}/knowledge`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Blog</Link>
+                <Link href={`/${locale}/career`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Careers</Link>
+                <Link href={`/${locale}/contact`} className="block text-xs font-bold uppercase tracking-wider text-[#0087cb] hover:text-white hover:translate-x-1 transition-all">Contact Us</Link>
               </div>
             </div>
             <div className="pt-4 border-t border-white/5">
@@ -136,7 +148,7 @@ export function Footer({
 
         {/* 4. PARTNERS STRIP (Minimal & Chic) */}
         <div className="py-6 border-t border-white/5 flex flex-wrap justify-between items-center gap-6 opacity-20 grayscale transition-all duration-700 hover:opacity-100 hover:grayscale-0">
-          {['SIEMENS', 'ABB', 'SCHNEIDER', 'KUKA', 'FANUC'].map(p => (
+          {['FFT', 'Composites United', 'Automotive Hub', 'Business Scope', 'Media'].map(p => (
             <span key={p} className="text-lg font-black italic tracking-tighter text-white">{p}</span>
           ))}
         </div>

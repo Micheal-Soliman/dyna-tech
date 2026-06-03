@@ -109,12 +109,12 @@ export function LogosLoop({ title, heading, intro, capabilities = [], partners, 
           {duplicated.map((partner, index) => (
             <div
               key={`${partner.name}-${index}`}
-              className={`flex flex-col justify-center px-8 md:px-12 shrink-0 ${isAr ? 'items-end border-r border-white/10' : 'items-start border-l border-white/10'} group/item`}
+              className={`flex flex-col items-center justify-center px-8 md:px-12 shrink-0 text-center ${isAr ? 'border-r border-white/10' : 'border-l border-white/10'} group/item`}
             >
               <span className="text-white text-xl md:text-2xl font-bold tracking-tight mb-2 group-hover/item:text-[#0087cb] transition-colors">
                 {partner.name}
               </span>
-              <p className="text-white/50 text-xs md:text-sm max-w-[200px] whitespace-normal leading-relaxed">
+              <p className="text-white/50 text-xs md:text-sm max-w-[200px] whitespace-normal leading-relaxed text-center">
                 {partner.oneLiner}
               </p>
             </div>
@@ -154,6 +154,9 @@ export function LogosLoop({ title, heading, intro, capabilities = [], partners, 
         }
         .logos-marquee.rtl {
           animation-name: logos-marquee-rtl;
+        }
+        .group:hover .logos-marquee.animating {
+          animation-play-state: paused;
         }
         @media (prefers-reduced-motion: reduce) {
           .logos-marquee {

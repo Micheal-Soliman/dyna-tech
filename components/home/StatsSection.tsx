@@ -51,7 +51,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
   const progress = numericValue > 0 ? Math.min(count / numericValue, 1) : 0;
 
   return (
-    <div ref={ref} className="relative flex flex-col items-center justify-center group">
+    <div ref={ref} className="relative mx-auto flex h-56 w-56 flex-col items-center justify-center group md:h-60 md:w-60 lg:h-64 lg:w-64">
       
       <motion.div 
         animate={!reduceMotion && isActive ? { rotate: 360 } : { rotate: 0 }}
@@ -150,7 +150,7 @@ export function StatsSection({ title, kicker, stats, isAr = false }: { title: st
           </p>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-14">
           {stats.map((s) => (
             <NexusCircle key={s.label} value={s.value} label={s.label} />
           ))}
