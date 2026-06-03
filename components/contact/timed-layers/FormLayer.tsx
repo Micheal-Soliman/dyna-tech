@@ -1,76 +1,75 @@
 "use client";
 
 import type { MotionValue } from "framer-motion";
-import { Send, Terminal } from "lucide-react";
+import { FileUp, Send, Terminal } from "lucide-react";
 
+import type { ContactPageContent } from "../ContactPage";
 import Layer from "./Layer";
 
 type Props = {
   progress: MotionValue<number>;
+  content: ContactPageContent;
 };
 
-export default function FormLayer({ progress }: Props) {
+export default function FormLayer({ progress, content }: Props) {
   return (
     <Layer progress={progress} range={[0.65, 0.88]}>
-      <div className="w-full max-w-4xl bg-[#080808]/90 border border-white/10 backdrop-blur-3xl p-10 rounded-[40px]">
-        {/* DYNATECH Logo */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-[#006db1] rounded-full flex items-center justify-center mb-4 shadow-[0_0_30px_#006db1]/30">
-            <span className="text-black font-[1000] text-2xl italic">D</span>
+      <div className="w-full max-w-4xl rounded-[40px] border border-white/10 bg-[#080808]/90 p-10 backdrop-blur-3xl">
+        <div className="mb-8 flex flex-col items-center">
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#006db1] shadow-[0_0_30px_#006db1]/30">
+            <span className="text-2xl font-[1000] italic text-black">D</span>
           </div>
-          <h2 className="text-2xl font-[1000] uppercase italic tracking-tight text-white">DYNATECH</h2>
-          <p className="text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500 mt-1">Industrial Systems</p>
+          <h2 className="text-2xl font-[1000] uppercase italic tracking-tight text-white">
+            DYNATECH
+          </h2>
+          <p className="mt-1 text-[9px] font-black uppercase tracking-[0.4em] text-zinc-500">
+            {content.form.title}
+          </p>
         </div>
 
-        <div className="flex items-center gap-3 text-[#006db1] mb-8">
+        <div className="mb-8 flex items-center gap-3 text-[#006db1]">
           <Terminal size={16} />
-          <span className="font-mono text-[10px] uppercase italic">// ESTABLISH_CONNECTION</span>
+          <span className="font-mono text-[10px] uppercase italic">
+            {content.conversation.title}
+          </span>
         </div>
 
         <form className="grid grid-cols-2 gap-4 text-left">
-          {/* Name */}
           <input
-            placeholder="FULL_NAME"
-            className="bg-white/5 border border-white/10 p-5 rounded-xl text-[10px] outline-none focus:border-[#006db1]"
+            placeholder={content.form.fields.fullName}
+            className="rounded-xl border border-white/10 bg-white/5 p-5 text-[10px] outline-none focus:border-[#006db1]"
           />
-          {/* Organization */}
           <input
-            placeholder="ORGANIZATION"
-            className="bg-white/5 border border-white/10 p-5 rounded-xl text-[10px] outline-none focus:border-[#006db1]"
+            placeholder={content.form.fields.company}
+            className="rounded-xl border border-white/10 bg-white/5 p-5 text-[10px] outline-none focus:border-[#006db1]"
           />
-          {/* Title */}
           <input
-            placeholder="TITLE / POSITION"
-            className="bg-white/5 border border-white/10 p-5 rounded-xl text-[10px] outline-none focus:border-[#006db1]"
-          />
-          {/* Phone */}
-          <input
-            placeholder="PHONE_NUMBER"
-            type="tel"
-            className="bg-white/5 border border-white/10 p-5 rounded-xl text-[10px] outline-none focus:border-[#006db1]"
-          />
-          {/* Email */}
-          <input
-            placeholder="EMAIL_ADDRESS"
+            placeholder={content.form.fields.email}
             type="email"
-            className="col-span-2 bg-white/5 border border-white/10 p-5 rounded-xl text-[10px] outline-none focus:border-[#006db1]"
+            className="rounded-xl border border-white/10 bg-white/5 p-5 text-[10px] outline-none focus:border-[#006db1]"
           />
-          {/* Inquiry Type */}
-          <select className="col-span-2 bg-[#111] border border-white/10 p-5 rounded-xl text-[10px] text-zinc-500 uppercase">
-            <option>SELECT_INQUIRY_TYPE</option>
-            <option>Partnership</option>
-            <option>Investment</option>
-            <option>Media</option>
-            <option>General</option>
+          <input
+            placeholder={content.form.fields.phone}
+            type="tel"
+            className="rounded-xl border border-white/10 bg-white/5 p-5 text-[10px] outline-none focus:border-[#006db1]"
+          />
+          <select className="col-span-2 rounded-xl border border-white/10 bg-[#111] p-5 text-[10px] uppercase text-zinc-500">
+            <option>{content.form.fields.inquiryType}</option>
+            {content.form.categories.map((category) => (
+              <option key={category}>{category}</option>
+            ))}
           </select>
-          {/* Message */}
           <textarea
-            placeholder="MESSAGE"
-            className="col-span-2 bg-white/5 border border-white/10 p-5 rounded-xl text-[10px] h-28 outline-none resize-none"
+            placeholder={content.form.fields.message}
+            className="col-span-2 h-28 resize-none rounded-xl border border-white/10 bg-white/5 p-5 text-[10px] outline-none focus:border-[#006db1]"
           />
-          {/* Submit */}
-          <button className="col-span-2 py-6 bg-[#006db1] text-black font-black uppercase text-[11px] tracking-[0.3em] rounded-xl hover:bg-white transition-all flex items-center justify-center gap-3">
-            TRANSMIT <Send size={14} />
+          <label className="col-span-2 flex cursor-pointer items-center justify-between rounded-xl border border-dashed border-white/10 bg-white/5 p-5 text-[10px] uppercase text-zinc-500 transition hover:border-[#006db1]/40">
+            <span>{content.form.fields.fileUpload}</span>
+            <FileUp size={14} className="text-[#006db1]" />
+            <input type="file" className="hidden" />
+          </label>
+          <button className="col-span-2 flex items-center justify-center gap-3 rounded-xl bg-[#006db1] py-6 text-[11px] font-black uppercase tracking-[0.3em] text-black transition-all hover:bg-white">
+            {content.form.submitLabel} <Send size={14} />
           </button>
         </form>
       </div>

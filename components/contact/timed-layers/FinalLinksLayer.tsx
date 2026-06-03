@@ -6,12 +6,14 @@ import { motion } from "framer-motion";
 import { Globe, Zap, ArrowRight } from "lucide-react";
 
 import Layer from "./Layer";
+import type { ContactPageContent } from "../ContactPage";
 
 type Props = {
     progress: MotionValue<number>;
+    content: ContactPageContent;
 };
 
-export default function FinalLinksLayer({ progress }: Props) {
+export default function FinalLinksLayer({ progress, content }: Props) {
     return (
         <Layer progress={progress} range={[0.92, 1]}>
             <div className="relative flex flex-col items-center max-w-5xl w-full px-6">
@@ -50,7 +52,7 @@ export default function FinalLinksLayer({ progress }: Props) {
 
                             <span className="relative inline-block mt-2">
                                 <span className="relative z-10 text-[#006db1] px-4">
-                                    CONNECT?
+                                    {content.conversation.title}
                                 </span>
                                 <motion.div
                                     initial={{ width: 0 }}
@@ -69,7 +71,7 @@ export default function FinalLinksLayer({ progress }: Props) {
                     >
                         <div className="absolute inset-0 bg-[#006db1] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                         <span className="relative z-10 flex items-center gap-4 text-black font-black text-xl md:text-3xl italic uppercase tracking-tighter">
-                            Start Partnership
+                            {content.form.submitLabel}
                             <ArrowRight className="group-hover:translate-x-2 transition-transform duration-300" size={32} />
                         </span>
                     </motion.button>

@@ -318,66 +318,39 @@
     }
   },
   "contact": {
-    "kicker": "// GET IN TOUCH",
-    "titlePrefix": "START A",
-    "titleHighlight": "CONVERSATION",
+    "hero": {
+      "kicker": "Contact Us",
+      "title": "Let’s Build What Comes Next",
+      "description": "Whether you are an investor, technology partner, government entity, or industry stakeholder, DYNATECH is ready to explore the future of mobility, energy, and industrial development together."
+    },
+    "conversation": {
+      "title": "Start The Conversation",
+      "paragraphs": [
+        "DYNATECH works across automotive transformation, energy infrastructure, advanced manufacturing, and strategic industrial partnerships.",
+        "Our team is available to discuss investment opportunities, partnerships, technical collaboration, and future mobility initiatives."
+      ]
+    },
     "form": {
-      "nameLabel": "Full Name",
-      "namePlaceholder": "Your Name",
-      "emailLabel": "Email Address",
-      "emailPlaceholder": "your@email.com",
-      "subjectLabel": "Subject",
-      "subjectOptions": [
-        "Business Inquiry",
-        "Partnership",
-        "Careers",
-        "Other"
+      "title": "Form Fields",
+      "fields": {
+        "fullName": "Full Name",
+        "company": "Company / Organization",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "inquiryType": "Inquiry Type",
+        "message": "Message",
+        "fileUpload": "File Upload (Optional)"
+      },
+      "categoriesTitle": "Inquiry Categories",
+      "categories": [
+        "Partnership Inquiry",
+        "Investment Opportunity",
+        "Government Relations",
+        "Media & Press",
+        "Technical Collaboration",
+        "General Inquiry"
       ],
-      "messageLabel": "Message",
-      "messagePlaceholder": "Tell us about your project...",
-      "sendButton": "SEND MESSAGE",
-      "sendingButton": "SENDING...",
-      "sentToast": "Message sent successfully"
-    },
-    "info": {
-      "copiedToast": "Copied",
-      "items": [
-        {
-          "type": "email",
-          "label": "Email",
-          "value": "info@dynatech-eg.com",
-          "description": "For general inquiries"
-        },
-        {
-          "type": "phone",
-          "label": "Phone",
-          "value": "+20 2 2345 6789",
-          "description": "Sun-Thu | 9am - 6pm"
-        },
-        {
-          "type": "location",
-          "label": "Headquarters",
-          "value": "CFC Business Park, New Cairo",
-          "description": "Building A3, 1st Floor"
-        }
-      ]
-    },
-    "social": {
-      "title": "Connect With Us",
-      "items": [
-        {
-          "label": "LinkedIn",
-          "href": "#"
-        },
-        {
-          "label": "Twitter",
-          "href": "#"
-        },
-        {
-          "label": "Instagram",
-          "href": "#"
-        }
-      ]
+      "submitLabel": "Submit Inquiry"
     }
   },
   "services": {
@@ -541,5 +514,233 @@
         }
       ]
     }
+  },
+  "projects": {
+    "hero": {
+      "kicker": "Projects & Investment",
+      "title": "Turning Innovation Into Industrial Reality",
+      "description": "DYNATECH's current project pipeline spans automotive services, EV battery technologies, smart energy infrastructure, and future-focused industrial development initiatives across Egypt."
+    },
+    "hub": {
+      "kicker": "DYNATECH AUTOMOTIVE HUB",
+      "title": "Egypt's Next-Generation Automotive & Technical Hub",
+      "paragraphs": [
+        "The DYNATECH Automotive Hub is a fully integrated automotive and industrial facility designed to support ICE vehicles, electric mobility systems, technical services, training, and future automotive infrastructure under one roof.",
+        "The project is currently under construction and fully funded by DYNATECH as part of its long-term industrial expansion strategy."
+      ],
+      "infoTitle": "Project Information",
+      "statusLabel": "Status",
+      "status": "Under Construction - 100% Funded by DYNATECH",
+      "locationLabel": "Location",
+      "location": "Industrial Area, New Cairo",
+      "figuresTitle": "Key Figures",
+      "figures": [
+        {
+          "label": "Total Built-Up Area",
+          "value": "6,000+ sqm"
+        },
+        {
+          "label": "Operational Work Bays",
+          "value": "31"
+        },
+        {
+          "label": "Vehicle Stockyard Capacity",
+          "value": "35 Cars"
+        },
+        {
+          "label": "Spare Parts Storage",
+          "value": "600 sqm Across 2 Floors"
+        },
+        {
+          "label": "Operational Capacity",
+          "value": "Up To 40 Cars / Day"
+        },
+        {
+          "label": "Administration, Labs & Training Area",
+          "value": "2,000 sqm"
+        }
+      ]
+    },
+    "businessUnits": {
+      "kicker": "Strategic Business Units",
+      "title": "Built As A Complete Automotive Ecosystem",
+      "description": "The DYNATECH Automotive Hub combines advanced automotive services, technical operations, training, and infrastructure into one integrated operational environment.",
+      "units": [
+        {
+          "title": "Service Centre",
+          "description": "Dedicated service operations for both traditional ICE vehicles and Battery Electric Vehicles (BEV) with 13 operational work bays."
+        },
+        {
+          "title": "Body Shop",
+          "description": "Smart repair, paint protection film (PPF), and body operations supported by 22 specialized work bays."
+        },
+        {
+          "title": "Pre-Owned Vehicle Showroom",
+          "description": "Certified pre-owned vehicle operations supported with warranty programs and customer services."
+        },
+        {
+          "title": "Spare Parts & Stockyard",
+          "description": "Integrated spare parts storage and vehicle stockyard operations supporting scalable service capability."
+        },
+        {
+          "title": "Administration, Labs & Training",
+          "description": "Dedicated spaces for technical training, administration, diagnostics, and operational development."
+        },
+        {
+          "title": "Electrical & Mechanical Workshop",
+          "description": "Advanced workshop facilities supporting technical diagnostics and specialized automotive services."
+        },
+        {
+          "title": "Leasing & Fleet Management",
+          "description": "Fleet operation and vehicle management services designed for future mobility operations."
+        }
+      ]
+    },
+    "market": {
+      "kicker": "Market Positioning",
+      "title": "A Different Kind Of Automotive Facility",
+      "description": "The DYNATECH Automotive Hub is positioned as one of the few integrated 5S automotive facilities in Egypt combining ICE servicing, EV servicing, body shop operations, training, technical infrastructure, and R&D capabilities within a single ecosystem."
+    },
+    "timeline": {
+      "title": "Timeline",
+      "items": [
+        "Construction Phase",
+        "Facility Fit-Out & Technical Preparation",
+        "Operational Readiness",
+        "Soft Opening (SOP)"
+      ]
+    },
+    "partner": {
+      "title": "Partner With DYNATECH",
+      "description": "DYNATECH is actively seeking strategic investment partners, industrial collaborators, and technology stakeholders to support the next phase of its project pipeline and industrial expansion strategy.",
+      "ctaLabel": "Submit Partnership Inquiry"
+    },
+    "closing": {
+      "title": "Building The Infrastructure Behind The Next Industrial Era",
+      "description": "From automotive services and EV technologies to energy systems and industrial infrastructure, DYNATECH continues to transform strategic ideas into scalable industrial reality.",
+      "ctaLabel": "Contact Us"
+    }
+  },
+  "media": {
+    "hero": {
+      "kicker": "Events & Media",
+      "title": "Where Partnerships, Industry, And Innovation Meet",
+      "description": "DYNATECH continues to strengthen its international presence through strategic industry events, technology partnerships, global exhibitions, and ongoing participation in the future of mobility and industrial development."
+    },
+    "featured": {
+      "kicker": "Featured Events",
+      "ctaLabel": "View All Events",
+      "events": [
+        {
+          "title": "Hannover Messe 2022",
+          "description": "DYNATECH officially announced its strategic agreement with Composites United during Hannover Messe 2022, one of the world?s leading industrial technology exhibitions.",
+          "location": "Hannover, Germany",
+          "date": "2022"
+        },
+        {
+          "title": "FFT Partnership Signing",
+          "description": "DYNATECH signed its exclusive agency agreement with FFT Produktionssysteme GmbH at the company?s headquarters in Fulda, Germany.",
+          "location": "Fulda, Germany",
+          "date": "November 2023"
+        },
+        {
+          "title": "Global Automotive Lightweight Materials Summit",
+          "description": "Participation in international discussions focused on lightweight material innovation and the future of automotive manufacturing technologies.",
+          "location": "International",
+          "date": "Global Summit"
+        }
+      ]
+    },
+    "press": {
+      "title": "Press & Announcements",
+      "filterLabel": "Filter By Year",
+      "years": [
+        "All",
+        "2023",
+        "2022"
+      ]
+    },
+    "gallery": {
+      "title": "Media Gallery",
+      "photoLabel": "Photo Gallery",
+      "videoLabel": "Video Section",
+      "items": [
+        "Facility",
+        "Partner Meetings",
+        "Events",
+        "Team"
+      ]
+    }
+  },
+  "blog": {
+    "hero": {
+      "kicker": "Blog Hub",
+      "title": "Insights from Egypt's Automotive Technology Partner",
+      "description": "Technical perspectives on e-mobility, energy storage, lightweight materials, and industrial developments shaping Egypt and the wider region."
+    },
+    "filtersLabel": "Filter By Category",
+    "readMoreLabel": "Read More",
+    "categories": [
+      {
+        "id": "e-mobility",
+        "label": "E-Mobility"
+      },
+      {
+        "id": "energy-storage",
+        "label": "Energy Storage"
+      },
+      {
+        "id": "lightweight-materials",
+        "label": "Lightweight Materials"
+      },
+      {
+        "id": "industry-news",
+        "label": "Industry News"
+      }
+    ],
+    "articles": [
+      {
+        "slug": "ev-infrastructure-egypt-2026",
+        "title": "The State of EV Infrastructure in Egypt",
+        "category": "e-mobility",
+        "date": "January 15, 2026",
+        "excerpt": "A practical look at charging networks, operating readiness, and the infrastructure required to support electric mobility growth in Egypt."
+      },
+      {
+        "slug": "thermal-management-ev",
+        "title": "Advanced Thermal Management for Egyptian EVs",
+        "category": "e-mobility",
+        "date": "December 20, 2025",
+        "excerpt": "How climate conditions, cooling strategies, and service infrastructure influence electric vehicle reliability in regional markets."
+      },
+      {
+        "slug": "solid-state-batteries-mena",
+        "title": "Solid-State Batteries and Regional Storage Potential",
+        "category": "energy-storage",
+        "date": "January 10, 2026",
+        "excerpt": "Exploring how next-generation battery technologies could support grid storage, mobility, and industrial energy resilience across MENA."
+      },
+      {
+        "slug": "sodium-ion-grid-storage",
+        "title": "Sodium-Ion Batteries for Affordable Grid Storage",
+        "category": "energy-storage",
+        "date": "December 15, 2025",
+        "excerpt": "Why sodium-ion technology is gaining attention for stationary storage applications in cost-sensitive emerging markets."
+      },
+      {
+        "slug": "carbon-fiber-automotive",
+        "title": "Lightweight Materials in Modern Automotive Manufacturing",
+        "category": "lightweight-materials",
+        "date": "January 5, 2026",
+        "excerpt": "Why composite and lightweight material technologies are becoming central to efficiency, localization, and future mobility."
+      },
+      {
+        "slug": "egypt-automotive-strategy",
+        "title": "Egypt's Automotive Strategy and Industrial Localization",
+        "category": "industry-news",
+        "date": "December 28, 2025",
+        "excerpt": "A closer look at Egypt’s positioning as a regional automotive and industrial investment destination."
+      }
+    ]
   }
 }

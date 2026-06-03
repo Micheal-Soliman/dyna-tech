@@ -5,8 +5,13 @@ import { useScroll, useSpring, useTransform } from "framer-motion";
 
 import ContactCoreSingularity from "./components/ContactCoreSingularity";
 import ContactTimedLayers from "./ContactTimedLayers";
+import type { ContactPageContent } from "./ContactPage";
 
-export default function SingularityContactClient() {
+type Props = {
+  content: ContactPageContent;
+};
+
+export default function SingularityContactClient({ content }: Props) {
   const containerRef = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -28,7 +33,7 @@ export default function SingularityContactClient() {
         <ContactCoreSingularity scale={coreScale} rotate={coreRotate} opacity={coreOpacity} />
       </div>
 
-      <ContactTimedLayers progress={smoothProgress} />
+      <ContactTimedLayers progress={smoothProgress} content={content} />
 
       <div className="fixed inset-0 pointer-events-none opacity-20 z-0">
         <div
