@@ -27,7 +27,9 @@ export default function Layer({ progress, range, xOffset = 0, children }: Props)
     [xOffset, 0, 0, xOffset],
   );
   const pointerEvents = useTransform(progress, (v) =>
-    (v >= range[0] && v <= range[1] ? "auto" : "none") as "auto" | "none",
+    (v > range[0] + 0.02 && v < range[1] - 0.02 ? "auto" : "none") as
+      | "auto"
+      | "none",
   );
 
   return (
