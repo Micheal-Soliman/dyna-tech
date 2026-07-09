@@ -129,9 +129,31 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
   );
 }
 
-export function StatsSection({ title, kicker, stats, isAr = false }: { title: string; kicker: string; stats: StatItem[]; isAr?: boolean }) {
+export function StatsSection({
+  title,
+  kicker,
+  stats,
+  isAr = false,
+  animateOnScroll = true,
+}: {
+  title: string;
+  kicker: string;
+  stats: StatItem[];
+  isAr?: boolean;
+  animateOnScroll?: boolean;
+}) {
+  const reduceMotion = useReducedMotion();
+  const shouldAnimateSection = animateOnScroll && !reduceMotion;
+
   return (
-    <section className="py-32 md:py-40 bg-[#121b43] relative overflow-hidden font-['Montserrat',sans-serif]" dir={isAr ? "rtl" : "ltr"}>
+    <motion.section
+      initial={shouldAnimateSection ? { opacity: 0, y: 80 } : false}
+      whileInView={shouldAnimateSection ? { opacity: 1, y: 0 } : undefined}
+      viewport={{ once: false, amount: 0.18 }}
+      transition={shouldAnimateSection ? { duration: 0.85, ease: "easeOut" } : undefined}
+      className="flex min-h-screen items-center bg-[#121b43] py-20 md:py-24 relative overflow-hidden font-['Montserrat',sans-serif]"
+      dir={isAr ? "rtl" : "ltr"}
+    >
       
       <div className="absolute inset-0 opacity-20" 
            style={{ backgroundImage: 'radial-gradient(circle, #0087cb 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
@@ -156,6 +178,6 @@ export function StatsSection({ title, kicker, stats, isAr = false }: { title: st
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

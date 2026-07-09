@@ -20,6 +20,17 @@ export type BusinessScopeContent = {
     whyText: string;
     ctaLabel: string;
   };
+  technologyPartners: {
+    kicker: string;
+    title: string;
+    partners: {
+      name: string;
+      heading: string;
+      paragraphs: string[];
+      ctaLabel: string;
+      ctaHref: string;
+    }[];
+  };
   hub: {
     kicker: string;
     title: string;
@@ -117,6 +128,72 @@ function VisualPanel({
   );
 }
 
+function TechnologyPartners({
+  content,
+}: {
+  content: BusinessScopeContent["technologyPartners"];
+}) {
+  return (
+    <section className="relative border-b border-white/10 bg-[#0a0f29] py-20">
+      <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mb-10 max-w-3xl">
+          <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
+            {content.kicker}
+          </p>
+          <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
+            {content.title}
+          </h2>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          {content.partners.map((partner, index) => (
+            <article
+              key={partner.name}
+              className="group relative overflow-hidden border border-white/10 bg-[#121b43]/85 p-6 transition duration-500 hover:-translate-y-1 hover:border-[#0087cb]/55 hover:bg-[#121b43] md:p-8"
+            >
+              <div className="absolute left-0 top-0 h-full w-px bg-[#0087cb]/60" />
+              <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#43becc] transition-transform duration-700 group-hover:scale-x-100" />
+              <div className="mb-8 flex items-start justify-between gap-5">
+                <div>
+                  <span className="font-mono text-xs tracking-[0.28em] text-[#0087cb]">
+                    0{index + 1}
+                  </span>
+                  <h3 className="mt-4 text-2xl font-black uppercase leading-tight tracking-tight text-white md:text-3xl">
+                    {partner.name}
+                  </h3>
+                </div>
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-[#0087cb]/35 bg-[#0a0f29] text-xs font-black uppercase text-[#43becc]">
+                  {partner.name.slice(0, 2)}
+                </div>
+              </div>
+
+              <h4 className="text-xl font-black leading-tight text-white/90">
+                {partner.heading}
+              </h4>
+              <div className="mt-5 space-y-4 text-sm leading-relaxed text-zinc-400 md:text-base">
+                {partner.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+
+              <a
+                href={partner.ctaHref}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 inline-flex items-center gap-3 bg-[#0087cb] px-5 py-3 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
+              >
+                {partner.ctaLabel}
+                <ArrowUpRight size={16} />
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function BusinessScopePage({ content, locale }: Props) {
   const isAr = locale === "ar";
 
@@ -195,6 +272,8 @@ export default function BusinessScopePage({ content, locale }: Props) {
           </div>
         </div>
       </section>
+
+      <TechnologyPartners content={content.technologyPartners} />
 
       <section className="py-20">
         <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr]">

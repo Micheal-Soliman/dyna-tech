@@ -26,6 +26,25 @@
     "hero": {
       "brandLeft": "DYNATECH",
       "brandRight": "CORP.",
+      "logoAlt": "DYNATECH Corporation",
+      "headlineLine1": "A New Driving Force In Egypt's",
+      "headlineLine2": "Automotive Industry",
+      "strategicPartnersLabel": "Strategic Partners",
+      "knowMoreLabel": "Know More",
+      "headOfficeTitle": "Head Office",
+      "headOfficeLines": [
+        "Cairo Festival City, The Podium, P6-109,",
+        "New Cairo, Egypt"
+      ],
+      "autoHubTitle": "Auto Hub",
+      "autoHubLines": [
+        "Industrial Area, Plot 7/17",
+        "New Cairo, Egypt"
+      ],
+      "contactLabel": "Contact us:",
+      "contactEmail": "info@dynatecheg.com",
+      "copyrightText": "Copyright 2026 DYNATECH AUTOMOTIVE EGYPT",
+      "privacyPolicyLabel": "Privacy Policy",
       "primaryCtaLabel": "Explore Our Ecosystem",
       "secondaryCtaLabel": "Contact Us",
       "ceoQuote": "Our mission is to create a sustainable industrial ecosystem in Egypt by integrating world-class technology with local expertise.",
@@ -240,8 +259,10 @@
             "achievement": "Founded DYNATECH with a vision focused on industrial modernization, advanced mobility infrastructure, and technology localization."
           }
         ],
-        "imageSrc": "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974",
+        "imageSrc": "/ceo.jpeg",
         "imageAlt": "Eng. Ahmed Sorour - CEO and Founder of DYNATECH",
+        "linkedinUrl": "https://www.linkedin.com/in/eng-ahmedsorour?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "linkedinLabel": "LinkedIn Profile",
         "careerTimelineTitle": "Career Timeline"
       },
       "timelineSection": {
@@ -379,6 +400,33 @@
       "whyTitle": "Why It Matters",
       "whyText": "As industries across the region accelerate toward electrification and advanced manufacturing, access to proven global technologies becomes increasingly critical. DYNATECH helps simplify that access by connecting regional opportunities with trusted industrial expertise from Europe.",
       "ctaLabel": "Explore Our Partners"
+    },
+    "technologyPartners": {
+      "kicker": "Technology Partners",
+      "title": "European Technology Partners",
+      "partners": [
+        {
+          "name": "FFT Company",
+          "heading": "We are production optimizers",
+          "paragraphs": [
+            "Since 1974, FFT has stood for dynamism, solidity, global presence and a claim to technological leadership.",
+            "As a leading global provider of innovative, flexible and complex manufacturing systems, FFT specializes in their development, project planning and implementation.",
+            "FFT assumes overall responsibility for turnkey solutions and carries out projects worldwide, including for the automotive and aviation industries."
+          ],
+          "ctaLabel": "Know More",
+          "ctaHref": "https://www.fft.de/en/"
+        },
+        {
+          "name": "CU Company",
+          "heading": "About Composites United",
+          "paragraphs": [
+            "Composites United e. V. (CU), one of the world's largest networks for fiber-based multi-material lightweight design, emerged from the two associations Carbon Composites e. V. and CFK Valley e. V.",
+            "About 350 members have joined to form this high-performance industry and research association to jointly develop lightweight design solutions for the future."
+          ],
+          "ctaLabel": "Know More",
+          "ctaHref": "https://composites-united.com/en/"
+        }
+      ]
     },
     "hub": {
       "kicker": "Automotive Hub",
@@ -533,31 +581,47 @@
       "status": "Under Construction - 100% Funded by DYNATECH",
       "locationLabel": "Location",
       "location": "Industrial Area, New Cairo",
-      "figuresTitle": "Key Figures",
+      "figuresTitle": "The Auto Hub — Key Project Figures",
       "figures": [
         {
-          "label": "Total Built-Up Area",
-          "value": "6,000+ sqm"
+          "label": "Built-Up Area (BUA)",
+          "value": "6,500 sqm",
+          "description": "State-of-the-art facility space designed for advanced automotive and technical operations."
         },
         {
-          "label": "Operational Work Bays",
-          "value": "31"
+          "label": "Service Capacity",
+          "value": "36",
+          "description": "Fully equipped work bays handling up to 40 vehicles daily."
         },
         {
-          "label": "Vehicle Stockyard Capacity",
-          "value": "35 Cars"
+          "label": "Strategic Infrastructure",
+          "value": "6",
+          "description": "Strategic Business Units (SBUs) structuring the hub as an integrated operating ecosystem."
         },
         {
-          "label": "Spare Parts Storage",
-          "value": "600 sqm Across 2 Floors"
+          "label": "Financial Investment",
+          "value": "250M EGP",
+          "description": "Projected initial investment supporting the launch and development of the Auto Hub."
         },
         {
-          "label": "Operational Capacity",
-          "value": "Up To 40 Cars / Day"
+          "label": "Profitability",
+          "value": "12%",
+          "description": "Expected Return on Investment (ROI)."
         },
         {
-          "label": "Administration, Labs & Training Area",
-          "value": "2,000 sqm"
+          "label": "Leadership Expertise",
+          "value": "30 years",
+          "description": "Automotive industry management experience backing the project leadership."
+        },
+        {
+          "label": "Project Timeline",
+          "value": "Q4 2027",
+          "description": "Soft opening projected for Q4 2027."
+        },
+        {
+          "label": "Market Innovation",
+          "value": "1st",
+          "description": "First service center in Egypt and the MENA region featuring real-time Battery Electric Vehicle (BEV) diagnostics powered by AI and Machine Learning."
         }
       ]
     },

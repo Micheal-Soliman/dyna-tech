@@ -21,10 +21,6 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
       <div className="flex gap-8 md:gap-12 items-start min-w-max">
         {/* Title Block */}
         <div className={`min-w-[200px] md:min-w-[280px] sticky left-0 ${isAr ? 'text-right' : ''}`}>
-          <div className={`flex items-center gap-4 mb-6 ${isAr ? 'flex-row-reverse' : ''}`}>
-            <div className="h-[2px] w-16 bg-[#006db1]" />
-            <span dir="auto" style={{ unicodeBidi: "plaintext" }} className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">{copy.kicker}</span>
-          </div>
           <h2 className={`text-white text-5xl md:text-8xl font-black italic tracking-tighter leading-none ${isAr ? '[direction:rtl]' : ''}`}>
             {copy.titleLine1}<br/>
             {copy.titleHighlight && <span className="text-[#0087cb]">{copy.titleHighlight}</span>}

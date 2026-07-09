@@ -18,18 +18,14 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
   return (
     <motion.div 
       style={{ opacity }} 
-      className="absolute inset-0 flex flex-col items-center justify-center z-[60] px-6"
+      className="absolute inset-0 z-[60] flex flex-col items-center justify-start px-4 pb-6 pt-[150px] sm:px-6 md:pt-[160px] lg:pt-[150px]"
     >
       {/* Section Header */}
-      <div className={`mb-16 ${isAr ? 'text-right' : 'text-left'} w-full max-w-5xl`}>
-        <div className={`flex items-center gap-4 mb-4 ${isAr ? 'flex-row-reverse' : ''}`}>
-          <div className="h-[2px] w-16 bg-[#006db1]" />
-          <span dir="auto" style={{ unicodeBidi: "plaintext" }} className="text-[#006db1] font-mono text-xs tracking-[0.3em] uppercase">{copy.kicker}</span>
-        </div>
+      <div className={`mb-8 w-full max-w-5xl md:mb-10 ${isAr ? 'text-right' : 'text-left'}`}>
         <h2 
           dir="auto"
           style={{ unicodeBidi: "plaintext" }}
-          className="text-white text-5xl md:text-7xl font-black italic tracking-tighter"
+          className="text-4xl font-black italic tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
         >
           {copy.titleLine1} <span className="text-[#0087cb]">{copy.titleHighlight}</span>
         </h2>
@@ -40,10 +36,10 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
         {items.map((loc, i) => (
           <div 
             key={i} 
-            className="p-10 md:p-12 bg-[#121b43] group hover:bg-[#0f1738] transition-all duration-500"
+            className="group bg-[#121b43] p-6 transition-all duration-500 hover:bg-[#0f1738] sm:p-8 md:p-9 lg:p-10"
           >
             {/* Location Number */}
-            <div className="text-[#006db1] font-mono text-xs tracking-widest mb-6">
+            <div className="mb-5 font-mono text-xs tracking-widest text-[#006db1]">
               0{i + 1}
             </div>
             
@@ -51,7 +47,7 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
             <h3 
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-white text-xl md:text-2xl font-black uppercase tracking-tight mb-3 group-hover:text-[#0087cb] transition-colors"
+              className="mb-3 text-xl font-black uppercase tracking-tight text-white transition-colors group-hover:text-[#0087cb] md:text-2xl"
             >
               {loc.name}
             </h3>
@@ -63,7 +59,7 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
             <p 
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-zinc-500 text-sm font-mono"
+              className="font-mono text-sm leading-relaxed text-zinc-400"
             >
               {loc.detail}
             </p>
@@ -80,11 +76,11 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
         ))}
       </div>
 
-      <div className={`mt-10 max-w-4xl text-center ${isAr ? 'font-cairo' : ''}`}>
+      <div className={`mt-8 max-w-4xl text-center md:mt-9 ${isAr ? 'font-cairo' : ''}`}>
         <h3
           dir="auto"
           style={{ unicodeBidi: "plaintext" }}
-          className="text-white text-2xl md:text-4xl font-black uppercase tracking-tight"
+          className="text-2xl font-black uppercase tracking-tight text-white md:text-4xl"
         >
           {closing.title}
         </h3>

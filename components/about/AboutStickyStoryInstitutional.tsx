@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useScroll, useSpring, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 
 // Types (re-exported from ./types.ts)
 import type { DynatechContent } from "./types";
@@ -12,7 +12,6 @@ import HeroLayer from "./HeroLayer";
 import MissionVisionLayer from "./MissionVisionLayer";
 import StoryVisionLayer from "./StoryVisionLayer";
 import FounderLayer from "./FounderLayer";
-import FounderCareerLayer from "./FounderCareerLayer";
 import TimelineLayer from "./TimelineLayer";
 import LocationsLayer from "./LocationsLayer";
 
@@ -22,7 +21,7 @@ import LocationsLayer from "./LocationsLayer";
 
 function BackgroundDecoration() {
   return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
       {/* Grid Pattern - absolute within sticky container */}
       <div 
         className="absolute inset-0 opacity-[0.15]"
@@ -38,6 +37,27 @@ function BackgroundDecoration() {
         <div className="absolute bottom-10 right-10 w-[250px] h-[250px] bg-[#006db1]/20 rounded-full blur-[70px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0087cb]/10 rounded-full blur-[120px]" />
       </div>
+    </div>
+  );
+}
+
+function VideoBackground() {
+  return (
+    <div className="absolute inset-0 z-0">
+      <video
+        className="h-full w-full object-cover object-center"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label="DYNATECH background video"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-[#050915]/65" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.92),rgba(10,15,41,0.56)_45%,rgba(10,15,41,0.92)),radial-gradient(circle_at_50%_45%,rgba(0,135,203,0.2),transparent_34%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0f29] to-transparent" />
     </div>
   );
 }
@@ -61,38 +81,29 @@ export default function AboutStickyStory({
     offset: ["start start", "end end"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
-  // Scroll transforms - 1400vh total - balanced timing for separated content layers
+  // Scroll transforms - balanced timing for separated content layers
   // Hero: 0-15%
-  const heroScale = useTransform(smoothProgress, [0, 0.10], [1, 1.3]);
-  const heroOpacity = useTransform(smoothProgress, [0, 0.08, 0.12], [1, 1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.10], [1, 1.2]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.07, 0.12], [1, 1, 0]);
   
   // About platforms: 12-26%
-  const mvOpacity = useTransform(smoothProgress, [0.12, 0.16, 0.23, 0.26], [0, 1, 1, 0]);
+  const mvOpacity = useTransform(scrollYProgress, [0.12, 0.16, 0.23, 0.26], [0, 1, 1, 0]);
 
   // Story and mission: 25-40%
-  const storyOpacity = useTransform(smoothProgress, [0.25, 0.29, 0.37, 0.40], [0, 1, 1, 0]);
+  const storyOpacity = useTransform(scrollYProgress, [0.25, 0.29, 0.37, 0.40], [0, 1, 1, 0]);
   
-  // Founder profile: 39-53%
-  const founderScale = useTransform(smoothProgress, [0.39, 0.44], [0.95, 1]);
-  const founderY = useTransform(smoothProgress, [0.39, 0.53], [60, -60]);
-  const founderOpacity = useTransform(smoothProgress, [0.39, 0.43, 0.50, 0.53], [0, 1, 1, 0]);
+  // Founder profile: 39-55%
+  const founderScale = useTransform(scrollYProgress, [0.39, 0.44], [0.96, 1]);
+  const founderY = useTransform(scrollYProgress, [0.39, 0.55], [44, -44]);
+  const founderOpacity = useTransform(scrollYProgress, [0.39, 0.43, 0.52, 0.55], [0, 1, 1, 0]);
 
-  // Founder career: 52-66%
-  const founderCareerOpacity = useTransform(smoothProgress, [0.52, 0.56, 0.63, 0.66], [0, 1, 1, 0]);
+  // Timeline: 54-84%
+  const timelineX = useTransform(scrollYProgress, [0.54, 0.84], [420, -3400]);
+  const timelineScale = useTransform(scrollYProgress, [0.54, 0.60, 0.79, 0.84], [0.94, 1, 1, 0.94]);
+  const timelineOpacity = useTransform(scrollYProgress, [0.54, 0.60, 0.79, 0.84], [0, 1, 1, 0]);
   
-  // Timeline: 64-92%
-  const timelineX = useTransform(smoothProgress, [0.64, 0.92], [500, -3700]);
-  const timelineScale = useTransform(smoothProgress, [0.64, 0.70, 0.87, 0.92], [0.9, 1, 1, 0.9]);
-  const timelineOpacity = useTransform(smoothProgress, [0.64, 0.70, 0.87, 0.92], [0, 1, 1, 0]);
-  
-  // Locations: 93-100%
-  const locationsOpacity = useTransform(smoothProgress, [0.93, 0.95, 0.99, 1], [0, 1, 1, 0]);
+  // Locations: 84-100%
+  const locationsOpacity = useTransform(scrollYProgress, [0.84, 0.88, 0.99, 1], [0, 1, 1, 0]);
 
   return (
     <section
@@ -100,9 +111,12 @@ export default function AboutStickyStory({
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
       className={`bg-[#0a0f29] relative w-full ${isAr ? 'font-cairo' : ''}`}
-      style={{ height: "1400vh" }}
+      style={{ height: "850vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        <VideoBackground />
+        <BackgroundDecoration />
+
         <HeroLayer
           opacity={heroOpacity}
           scale={heroScale}
@@ -130,12 +144,6 @@ export default function AboutStickyStory({
           isAr={isAr}
         />
 
-        <FounderCareerLayer
-          opacity={founderCareerOpacity}
-          data={content.founder}
-          isAr={isAr}
-        />
-        
         <TimelineLayer
           x={timelineX}
           opacity={timelineOpacity}
@@ -153,8 +161,6 @@ export default function AboutStickyStory({
           isAr={isAr}
         />
       </div>
-
-      <BackgroundDecoration />
     </section>
   );
 }

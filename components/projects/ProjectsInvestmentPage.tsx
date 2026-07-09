@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Building2,
@@ -28,7 +29,7 @@ export type ProjectsInvestmentContent = {
     locationLabel: string;
     location: string;
     figuresTitle: string;
-    figures: { label: string; value: string }[];
+    figures: { label: string; value: string; description: string }[];
   };
   businessUnits: {
     kicker: string;
@@ -214,27 +215,119 @@ function KeyInfo({ content }: { content: ProjectsInvestmentContent }) {
   );
 }
 
+function parseFigureValue(raw: string) {
+  const value = String(raw ?? "").trim();
+  const match = value.match(/^([^0-9]*)(\d+(?:[,.]\d+)?)(.*)$/);
+
+  if (!match) {
+    return { numericValue: 0, prefix: "", suffix: value, precision: 0, canCount: false };
+  }
+
+  const prefix = match[1] ?? "";
+  const numericText = (match[2] ?? "").replace(/,/g, "");
+  const suffix = match[3] ?? "";
+  const numericValue = Number.parseFloat(numericText);
+  const precision = (numericText.split(".")[1] ?? "").length;
+
+  return {
+    numericValue: Number.isFinite(numericValue) ? numericValue : 0,
+    prefix,
+    suffix,
+    precision,
+    canCount: Number.isFinite(numericValue),
+  };
+}
+
+function DynamicFigureCircle({
+  figure,
+  index,
+}: {
+  figure: ProjectsInvestmentContent["hub"]["figures"][number];
+  index: number;
+}) {
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const reduceMotion = useReducedMotion();
+  const { numericValue, prefix, suffix, precision, canCount } = parseFigureValue(figure.value);
+  const [count, setCount] = useState(canCount ? 0 : numericValue);
+
+  useEffect(() => {
+    if (!isInView || !canCount || reduceMotion) return;
+
+    const duration = 1200;
+    const start = performance.now();
+    let frame = 0;
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Number((numericValue * eased).toFixed(precision)));
+
+      if (progress < 1) {
+        frame = requestAnimationFrame(tick);
+      }
+    };
+
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [canCount, isInView, numericValue, precision, reduceMotion]);
+
+  const visibleCount = reduceMotion && isInView ? numericValue : count;
+  const displayValue = canCount
+    ? `${prefix}${visibleCount.toLocaleString("en-US", {
+        maximumFractionDigits: precision,
+        minimumFractionDigits: precision,
+      })}${suffix}`
+    : figure.value;
+
+  return (
+    <motion.article
+      ref={ref}
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.45, delay: index * 0.035 }}
+      className="group relative flex flex-col items-center text-center"
+    >
+      <div className="relative flex h-44 w-44 items-center justify-center rounded-full border border-[#0087cb]/30 bg-[#0a0f29] shadow-[0_0_40px_rgba(0,135,203,0.12)] transition duration-500 group-hover:-translate-y-1 group-hover:border-[#43becc]/70 group-hover:shadow-[0_0_60px_rgba(0,135,203,0.22)]">
+        <motion.div
+          className="absolute inset-3 rounded-full border border-dashed border-white/10"
+          animate={reduceMotion ? undefined : { rotate: 360 }}
+          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+        />
+        <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_130deg,#0087cb,rgba(67,190,204,0.1),#8e257a,#0087cb)] opacity-70 blur-[1px]" />
+        <div className="absolute inset-[3px] rounded-full bg-[#121b43]" />
+        <div className="absolute inset-8 rounded-full border border-white/10 bg-[#0a0f29]" />
+        <span className="relative z-10 max-w-[130px] text-center text-3xl font-black uppercase leading-none tracking-tight text-white">
+          {displayValue}
+        </span>
+      </div>
+
+      <div className="mt-5 max-w-[280px]">
+        <h4 className="text-sm font-black uppercase leading-tight tracking-wider text-[#43becc]">
+          {figure.label}
+        </h4>
+        <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+          {figure.description}
+        </p>
+      </div>
+    </motion.article>
+  );
+}
+
 function FiguresGrid({ content }: { content: ProjectsInvestmentContent }) {
   return (
     <div>
-      <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-white">
+      <h3 className="mb-8 text-center text-2xl font-black uppercase tracking-tight text-white md:text-4xl">
         {content.hub.figuresTitle}
       </h3>
-      <div className="grid gap-px border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
-        {content.hub.figures.map((figure) => (
-          <motion.div
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        {content.hub.figures.map((figure, index) => (
+          <DynamicFigureCircle
             key={figure.label}
-            whileHover={{ y: -3 }}
-            className="group relative bg-[#121b43] p-5 transition-colors hover:bg-[#0f1738]"
-          >
-            <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
-            <p className="text-[11px] font-bold uppercase tracking-wider text-zinc-500">
-              {figure.label}
-            </p>
-            <p className="mt-2 text-xl font-black text-white">
-              {figure.value}
-            </p>
-          </motion.div>
+            figure={figure}
+            index={index}
+          />
         ))}
       </div>
     </div>

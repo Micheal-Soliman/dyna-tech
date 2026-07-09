@@ -73,6 +73,8 @@ export type DynatechContent = {
     experience: ExperienceItem[];
     imageSrc: string;
     imageAlt: string;
+    linkedinUrl?: string;
+    linkedinLabel?: string;
   };
   timelineSection: TimelineSectionCopy;
   timeline: TimelineItem[];

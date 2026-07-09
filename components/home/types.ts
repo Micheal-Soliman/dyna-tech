@@ -15,6 +15,19 @@ export type Partner = {
 export type HomeHeroCopy = {
   brandLeft: string;
   brandRight: string;
+  logoAlt: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  strategicPartnersLabel: string;
+  knowMoreLabel: string;
+  headOfficeTitle: string;
+  headOfficeLines: string[];
+  autoHubTitle: string;
+  autoHubLines: string[];
+  contactLabel: string;
+  contactEmail: string;
+  copyrightText: string;
+  privacyPolicyLabel: string;
   heroImageAlt: string;
   scrollLabel: string;
   brandOutroTagline: string;

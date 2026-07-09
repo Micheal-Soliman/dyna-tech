@@ -2,6 +2,7 @@
 
 import { MotionValue, motion } from "framer-motion";
 import Image from "next/image";
+import { Linkedin } from "lucide-react";
 import { DynatechContent } from "./types";
 
 type Props = {
@@ -64,6 +65,18 @@ export default function FounderLayer({
           >
             {data.intro}
           </p>
+
+          {data.linkedinUrl && (
+            <a
+              href={data.linkedinUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={`inline-flex items-center gap-2 border border-[#0087cb]/40 bg-[#0087cb]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-[#43becc] transition hover:border-[#43becc] hover:bg-[#0087cb] hover:text-white ${isAr ? 'md:flex-row-reverse' : ''}`}
+            >
+              <Linkedin size={16} strokeWidth={2.4} />
+              <span>{data.linkedinLabel ?? "LinkedIn"}</span>
+            </a>
+          )}
           
           {/* Highlights - flex direction changes for RTL */}
           <div>

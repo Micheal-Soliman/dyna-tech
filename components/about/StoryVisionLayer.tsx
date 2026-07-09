@@ -13,31 +13,31 @@ export default function StoryVisionLayer({ opacity, data, isAr = false }: Props)
   return (
     <motion.div
       style={{ opacity }}
-      className="absolute inset-0 flex items-center justify-center z-30 px-4 md:px-6"
+      className="absolute inset-0 z-30 flex items-start justify-center px-4 pb-6 pt-[140px] sm:pt-[150px] md:px-6 md:pt-[155px] lg:pt-[150px]"
     >
-      <div className={`w-full max-w-6xl grid lg:grid-cols-[1.1fr_0.9fr] gap-8 md:gap-12 items-start ${isAr ? 'lg:[direction:rtl]' : ''}`}>
-        <div className={`border-l-4 border-[#0087cb] bg-white/5 backdrop-blur-sm p-6 md:p-9 ${isAr ? 'border-l-0 border-r-4 text-right' : ''}`}>
+      <div className={`grid w-full max-w-6xl items-start gap-6 md:gap-8 lg:grid-cols-[1.1fr_0.9fr] ${isAr ? 'lg:[direction:rtl]' : ''}`}>
+        <div className={`border-l-4 border-[#0087cb] bg-white/5 p-5 backdrop-blur-sm md:p-7 ${isAr ? 'border-l-0 border-r-4 text-right' : ''}`}>
           <h2
             dir="auto"
             style={{ unicodeBidi: "plaintext" }}
-            className="text-white font-black text-3xl md:text-5xl uppercase tracking-tight leading-none mb-4"
+            className="mb-4 text-3xl font-black uppercase leading-[1.05] tracking-tight text-white md:text-4xl xl:text-5xl"
           >
             {data.storyTitle}
           </h2>
           <p
             dir="auto"
             style={{ unicodeBidi: "plaintext" }}
-            className="text-[#43becc] text-base md:text-lg font-semibold mb-6"
+            className="mb-5 text-base font-semibold text-[#43becc] md:text-lg"
           >
             {data.storySubtitle}
           </p>
-          <div className="space-y-4">
+          <div className="space-y-3.5">
             {data.storyParagraphs.map((paragraph, index) => (
               <p
                 key={index}
                 dir="auto"
                 style={{ unicodeBidi: "plaintext" }}
-                className="text-zinc-300 text-sm md:text-base leading-relaxed"
+                className="text-sm leading-relaxed text-zinc-300 md:text-base"
               >
                 {paragraph}
               </p>
@@ -46,34 +46,34 @@ export default function StoryVisionLayer({ opacity, data, isAr = false }: Props)
         </div>
 
         <div className="grid gap-px bg-white/10 border border-white/10">
-          <div className="bg-[#121b43] p-6 md:p-8">
+          <div className="bg-[#121b43] p-5 md:p-6">
             <h3
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-white font-black text-2xl md:text-3xl uppercase tracking-tight mb-4"
+              className="mb-3 text-2xl font-black uppercase tracking-tight text-white md:text-3xl"
             >
               {data.visionTitle}
             </h3>
             <p
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-zinc-400 text-sm md:text-base leading-relaxed"
+              className="text-sm leading-relaxed text-zinc-400 md:text-base"
             >
               {data.visionText}
             </p>
           </div>
-          <div className="bg-[#121b43] p-6 md:p-8">
+          <div className="bg-[#121b43] p-5 md:p-6">
             <h3
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-white font-black text-2xl md:text-3xl uppercase tracking-tight mb-4"
+              className="mb-3 text-2xl font-black uppercase tracking-tight text-white md:text-3xl"
             >
               {data.missionTitle}
             </h3>
             <p
               dir="auto"
               style={{ unicodeBidi: "plaintext" }}
-              className="text-zinc-400 text-sm md:text-base leading-relaxed"
+              className="text-sm leading-relaxed text-zinc-400 md:text-base"
             >
               {data.missionText}
             </p>

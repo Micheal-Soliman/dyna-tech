@@ -1,388 +1,10 @@
-"use client";
+﻿"use client";
 
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
-import { useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
-// ============================================
-// TYPES
-// ============================================
-type HeroMainProps = {
-  slogan: string;
-  subheading: string;
-  primaryCtaLabel: string;
-  primaryCtaHref: string;
-  secondaryCtaLabel: string;
-  secondaryCtaHref: string;
-  heroImageUrl?: string;
-  heroImageAlt: string;
-  scrollLabel: string;
-  imageScale: MotionValue<number>;
-  imageRadius: MotionValue<string>;
-  textY: MotionValue<number>;
-  mainOpacity: MotionValue<number>;
-};
-
-type CeoMessageProps = {
-  ceoName?: string;
-  ceoTitle?: string;
-  ceoCtaLabel?: string;
-  ceoImageUrl?: string;
-  heroImageUrl?: string;
-  ceoQuote?: string;
-  ceoSectionLabel?: string;
-  ceoSubtitle?: string;
-  locale?: string;
-};
-
-type BrandOutroProps = {
-  brandLeft: string;
-  brandRight: string;
-  heroImageUrl?: string;
-  brandOutroTagline: string;
-  progress: MotionValue<number>;
-};
-
-// ============================================
-// SECTION 1: HERO MAIN (Sticky with parallax)
-// ============================================
-function HeroMainSection({
-  slogan,
-  subheading,
-  primaryCtaLabel,
-  primaryCtaHref,
-  secondaryCtaLabel,
-  secondaryCtaHref,
-  heroImageUrl,
-  heroImageAlt,
-  scrollLabel,
-  imageScale,
-  imageRadius,
-  textY,
-  mainOpacity,
-}: HeroMainProps) {
-  // Split slogan on em-dash or regular dash
-  const sloganParts = slogan.includes(" — ") 
-    ? slogan.split(" — ") 
-    : slogan.includes(" - ")
-    ? slogan.split(" - ")
-    : [slogan, ""];
-
-  return (
-    <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pt-12 md:pt-16 transform-gpu">
-        
-        {/* 1. High-Impact Background Image */}
-        <motion.div
-          style={{ scale: imageScale, borderRadius: imageRadius, willChange: "transform" }}
-          className="absolute inset-0 z-10 overflow-hidden"
-        >
-          <Image
-            src={heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
-            alt={heroImageAlt}
-            fill
-            priority
-            sizes="100vw"
-            unoptimized
-            className="object-cover"
-          />
-          {/* Advanced Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-[#0a0f29]/20 to-[#0a0f29]/60" />
-        </motion.div>
-
-        {/* 2. Primary Hero Content */}
-        <motion.div
-          style={{ y: textY, opacity: mainOpacity, willChange: "transform" }}
-          className="absolute z-30 inset-0 flex flex-col items-center justify-center text-center px-6"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <h1
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black text-white leading-tight uppercase italic tracking-tight max-w-4xl"
-            >
-              {sloganParts[0]}
-              {sloganParts[1] && (
-                <>
-                  <br />
-                  <span className="text-[#0087cb]">{sloganParts[1]}</span>
-                </>
-              )}
-            </h1>
-            
-            <p
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="mt-6 text-sm sm:text-base md:text-lg text-zinc-300 max-w-2xl mx-auto font-medium leading-relaxed tracking-wide px-4"
-            >
-              {subheading}
-            </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 items-center justify-center pointer-events-auto relative z-50">
-              <motion.a 
-                href={primaryCtaHref}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 bg-[#0087cb] text-[#0a0f29] font-black uppercase tracking-widest rounded-full shadow-lg text-xs sm:text-sm cursor-pointer relative"
-              >
-                {primaryCtaLabel}
-              </motion.a>
-              <motion.a 
-                href={secondaryCtaHref}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 border-2 border-[#006db1] text-[#006db1] font-black uppercase tracking-widest rounded-full hover:bg-[#006db1] hover:text-[#0a0f29] transition-all text-xs sm:text-sm cursor-pointer relative"
-              >
-                {secondaryCtaLabel}
-              </motion.a>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator - Lower position to avoid CTA overlap */}
-        <div className="absolute bottom-6 md:bottom-8 w-full flex justify-center z-[35] pointer-events-none">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] text-white/30 uppercase tracking-[0.5em] font-bold mb-1">
-              {scrollLabel}
-            </span>
-            <div className="relative flex flex-col items-center">
-              <motion.div
-                animate={{ height: [20, 40, 20], opacity: [0.3, 1, 0.3] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="w-[2px] bg-gradient-to-b from-[#0087cb] to-[#006db1]"
-              />
-              <motion.div
-                animate={{ y: [0, 5, 0], opacity: [0.3, 1, 0.3] }}
-                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                className="flex flex-col items-center -mt-1"
-              >
-                <div className="w-3 h-3 border-b-2 border-r-2 border-[#006db1] rotate-45 transform" />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </div>
-  );
-}
-
-// ============================================
-// SECTION 2: CEO MESSAGE (Editorial)
-// ============================================
-function CeoMessageSection({
-  ceoName,
-  ceoTitle,
-  ceoCtaLabel,
-  ceoImageUrl,
-  heroImageUrl,
-  ceoQuote,
-  ceoSectionLabel,
-  ceoSubtitle,
-  isAr = false,
-  locale = "en",
-}: CeoMessageProps & { ceoSectionLabel?: string; ceoSubtitle?: string; isAr?: boolean; locale?: string }) {
-  return (
-    <div className="relative z-40 bg-[#0a0f29] min-h-screen py-16 md:py-24 lg:py-32 overflow-hidden">
-      <div className="container mx-auto px-6 lg:px-20 relative z-10">
-        <div className={`flex flex-col lg:flex-row items-center gap-16 lg:gap-24 ${isAr ? 'lg:flex-row-reverse' : ''}`}>
-          
-          {/* Portrait with neon border */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, x: isAr ? 30 : -30 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "circOut" }}
-            className="relative w-full lg:w-1/2 aspect-[4/5] md:aspect-square lg:aspect-[3/4] max-w-md"
-          >
-            <div className={`absolute inset-0 border-2 border-[#0087cb]/20 ${isAr ? '-translate-x-6' : 'translate-x-6'} translate-y-6 rounded-2xl`} />
-            <div className="relative h-full w-full rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src={ceoImageUrl || heroImageUrl || "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1000&auto=format&fit=crop"} 
-                alt={ceoName || "Eng. Ahmed Sorour"} 
-                fill
-                sizes="(min-width: 1024px) 50vw, 90vw"
-                unoptimized
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f29] via-transparent to-transparent opacity-60" />
-            </div>
-            
-            {/* Title card - flip position for RTL */}
-            <div className={`absolute -bottom-6 ${isAr ? '-left-6' : '-right-6'} bg-[#0087cb] p-6 rounded-xl shadow-xl hidden md:block`}>
-              <p className="text-[#0a0f29] font-black text-xs uppercase tracking-widest">{ceoTitle || "Founder & CEO"}</p>
-              <div className="w-10 h-1 bg-[#0a0f29] mt-2" />
-            </div>
-          </motion.div>
-
-          {/* Content - align end for RTL */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className={`w-full lg:w-1/2 flex flex-col ${isAr ? 'items-end text-right' : 'items-start text-left'}`}
-          >
-            <span 
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-[#006db1] font-black tracking-[0.4em] text-[10px] uppercase mb-6 block"
-            >
-              {ceoSectionLabel || "A Message From Leadership"}
-            </span>
-            
-            <h2 
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-white text-3xl md:text-4xl lg:text-[2.75rem] font-black uppercase leading-[1.15] mb-6 md:mb-8 tracking-tight"
-            >
-              {(ceoName || "Eng. Ahmed Sorour").split(" ").slice(0, -1).join(" ")} <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#0087cb] to-white/60">
-                {(ceoName || "Eng. Ahmed Sorour").split(" ").slice(-1)}
-              </span>
-            </h2>
-
-            {/* Quote section - flip padding and quote position for RTL */}
-            <div className={`relative ${isAr ? 'pr-4 md:pr-6 pl-0' : 'pl-4 md:pl-6'}`}>
-              <span className={`absolute -top-4 ${isAr ? '-right-2 md:-right-4' : '-left-2 md:-left-4'} text-[60px] md:text-[80px] text-white/[0.08] font-serif leading-none select-none`}>&ldquo;</span>
-              
-              <p 
-                dir="auto"
-                style={{ unicodeBidi: "plaintext" }}
-                className="text-zinc-400 text-base md:text-lg leading-relaxed font-medium mb-6 relative z-10 italic"
-              >
-                {ceoQuote || "At DYNATECH, we don't just import technology; we architect local industrial ecosystems. Our commitment is to bridge the gap between global innovation and regional investment, creating a sustainable future for Egypt's high-tech sectors."}
-              </p>
-            </div>
-
-            <div className="mt-6 md:mt-8 mb-8 md:mb-10">
-              <p 
-                dir="auto"
-                style={{ unicodeBidi: "plaintext" }}
-                className="text-[#0087cb] text-2xl md:text-3xl opacity-80 italic font-serif"
-              >
-                {(ceoName || "Ahmed Sorour").split(" ").slice(-1)}
-              </p>
-              <p 
-                dir="auto"
-                style={{ unicodeBidi: "plaintext" }}
-                className={`text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold mt-2 ${isAr ? 'text-right' : 'text-left'}`}
-              >
-                {ceoSubtitle || "Strategic Growth & Engineering Excellence"}
-              </p>
-            </div>
-
-            {/* CTA - flip arrow direction for RTL */}
-            <motion.a
-              href={`/${locale}/about`}
-              whileHover={{ x: isAr ? -10 : 10 }}
-              className={`group inline-flex items-center gap-6 text-white text-xs font-black uppercase tracking-[0.3em] border-b border-white/10 pb-4 transition-all cursor-pointer ${isAr ? 'flex-row-reverse' : ''}`}
-            >
-              {ceoCtaLabel || "Read Full CEO Message"}
-              <span className={`text-[#006db1] transition-transform duration-300 ${isAr ? 'group-hover:-translate-x-2' : 'group-hover:translate-x-2'}`}>{isAr ? '←' : '→'}</span>
-            </motion.a>
-          </motion.div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// SECTION 3: BRAND OUTRO (DYNA TECH after CEO)
-// ============================================
-function BrandOutroSection({
-  brandLeft,
-  brandRight,
-  heroImageUrl,
-  brandOutroTagline,
-  progress,
-}: BrandOutroProps) {
-  // Text converges from sides to center
-  const opacity = useTransform(progress, [0.7, 0.85], [0, 1]);
-  const scale = useTransform(progress, [0.75, 1], [0.9, 1.1]);
-  
-  // Letters coming from far to center (Convergence)
-  const xLeft = useTransform(progress, [0.7, 0.9], ["-30%", "0%"]);
-  const xRight = useTransform(progress, [0.7, 0.9], ["30%", "0%"]);
-  const taglineOpacity = useTransform(progress, [0.9, 1], [0, 1]);
-
-  return (
-    <motion.div 
-      style={{ opacity }}
-      className="relative h-screen w-full overflow-hidden bg-[#0a0f29] flex items-center justify-center transform-gpu"
-    >
-      {/* Background Image with Parallax */}
-      <motion.div style={{ scale }} className="absolute inset-0 z-10">
-        <Image
-          src={heroImageUrl || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"}
-          alt="DYNATECH Industrial"
-          fill
-          sizes="100vw"
-          unoptimized
-          className="object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f29] via-transparent to-[#0a0f29]" />
-      </motion.div>
-
-      {/* The Focused Brand Name */}
-      <div className="relative z-20 flex flex-col items-center">
-        <div className="flex items-center justify-center gap-[0.04em]">
-          <motion.h2 
-            style={{ x: xLeft }}
-            className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem] font-black uppercase italic tracking-tight drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
-          >
-            {brandLeft}
-          </motion.h2>
-          <motion.h2 
-            style={{ x: xRight }}
-            className="text-[#0087cb] text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[6.5rem] font-black uppercase italic tracking-tight drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
-          >
-            {brandRight}
-          </motion.h2>
-        </div>
-
-        {/* Neon line under the name */}
-        <div className="h-[2px] bg-gradient-to-r from-transparent via-[#006db1] to-transparent mt-6 w-48" />
-        
-        <motion.p 
-          style={{ opacity: taglineOpacity }}
-          className="text-white/40 text-[10px] md:text-xs uppercase tracking-[0.35em] mt-6 font-bold"
-        >
-          {brandOutroTagline}
-        </motion.p>
-      </div>
-    </motion.div>
-  );
-}
-
-// ============================================
-// MAIN EXPORT: Combines all sections
-// ============================================
-export function HeroSection({
-  locale,
-  isAr,
-  slogan,
-  subheading,
-  primaryCtaLabel,
-  primaryCtaHref,
-  secondaryCtaLabel,
-  secondaryCtaHref,
-  heroImageUrl,
-  heroImageAlt,
-  scrollLabel,
-  brandOutroTagline,
-  ceoQuote,
-  ceoName,
-  ceoTitle,
-  ceoCtaLabel,
-  ceoSectionLabel,
-  ceoSubtitle,
-  ceoImageUrl,
-  brandLeft,
-  brandRight,
-}: {
+type HeroSectionProps = {
   locale: string;
   isAr: boolean;
   slogan: string;
@@ -393,6 +15,19 @@ export function HeroSection({
   secondaryCtaHref: string;
   heroImageUrl?: string;
   heroImageAlt: string;
+  logoAlt: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  strategicPartnersLabel: string;
+  knowMoreLabel: string;
+  headOfficeTitle: string;
+  headOfficeLines: string[];
+  autoHubTitle: string;
+  autoHubLines: string[];
+  contactLabel: string;
+  contactEmail: string;
+  copyrightText: string;
+  privacyPolicyLabel: string;
   scrollLabel: string;
   brandOutroTagline: string;
   ceoQuote?: string;
@@ -404,71 +39,152 @@ export function HeroSection({
   ceoImageUrl?: string;
   brandLeft: string;
   brandRight: string;
-}) {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+};
 
-  // Parallax and Scale Effects
-  const imageScale = useTransform(scrollYProgress, [0, 0.4], [1.1, 0.8]);
-  const imageRadius = useTransform(scrollYProgress, [0, 0.4], ["0px", "60px"]);
-  const textY = useTransform(scrollYProgress, [0, 0.3], [0, -150]);
-  const mainOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-
-  // Hide Hero section after 60% scroll to allow BrandOutro to show
-  const heroVisibility = useTransform(scrollYProgress, [0, 0.6, 0.65], [1, 1, 0]);
-
+function InfoCard({ title, lines }: { title: string; lines: string[] }) {
   return (
-    <section ref={containerRef} className="relative h-[300vh] bg-[#0a0f29] font-['Montserrat',sans-serif]">
-      {/* Section 1: Hero - with controlled visibility */}
-      <motion.div
-        style={{ opacity: heroVisibility, willChange: "transform" }}
-        className="sticky top-0 h-screen w-full z-10 transform-gpu"
-      >
-        <HeroMainSection
-          slogan={slogan}
-          subheading={subheading}
-          primaryCtaLabel={primaryCtaLabel}
-          primaryCtaHref={primaryCtaHref}
-          secondaryCtaLabel={secondaryCtaLabel}
-          secondaryCtaHref={secondaryCtaHref}
-          heroImageUrl={heroImageUrl}
-          heroImageAlt={heroImageAlt}
-          scrollLabel={scrollLabel}
-          imageScale={imageScale}
-          imageRadius={imageRadius}
-          textY={textY}
-          mainOpacity={mainOpacity}
-        />
-      </motion.div>
+    <div className="min-w-0 rounded-md border border-white/15 bg-[#0a0f29]/35 px-3 py-2 text-left shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:min-w-[226px] sm:px-4 sm:py-3">
+      <p className="mb-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#43becc] sm:mb-2 sm:text-[11px]">
+        {title}
+      </p>
+      {lines.map((line) => (
+        <p key={line} className="text-[9px] font-semibold leading-relaxed text-white/80 sm:text-[10px]">
+          {line}
+        </p>
+      ))}
+    </div>
+  );
+}
 
-      {/* Section 2: CEO - Natural scroll with higher z-index */}
-      <div className="relative z-30">
-        <CeoMessageSection
-          ceoName={ceoName}
-          ceoTitle={ceoTitle}
-          ceoCtaLabel={ceoCtaLabel}
-          ceoSectionLabel={ceoSectionLabel}
-          ceoSubtitle={ceoSubtitle}
-          ceoImageUrl={ceoImageUrl}
-          heroImageUrl={heroImageUrl}
-          ceoQuote={ceoQuote}
-          isAr={isAr}
-          locale={locale}
-        />
+export function HeroSection({
+  locale,
+  isAr,
+  heroImageAlt,
+  logoAlt,
+  headlineLine1,
+  headlineLine2,
+  strategicPartnersLabel,
+  knowMoreLabel,
+  headOfficeTitle,
+  headOfficeLines,
+  autoHubTitle,
+  autoHubLines,
+  contactLabel,
+  contactEmail,
+  copyrightText,
+  privacyPolicyLabel,
+}: HeroSectionProps) {
+  return (
+    <section dir={isAr ? "rtl" : "ltr"} className="relative h-screen min-h-[620px] overflow-hidden bg-[#0a0f29] font-['Montserrat',sans-serif] text-white [height:100svh]">
+      <div className="absolute inset-0">
+        <video
+          className="h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-label={heroImageAlt}
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#050915]/45" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_34%_42%,rgba(67,190,204,0.16),transparent_26%),linear-gradient(90deg,rgba(3,7,18,0.62),rgba(3,7,18,0.18)_45%,rgba(3,7,18,0.62))]" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#050915] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-[#43becc]/25" />
       </div>
 
-      {/* Section 3: Brand Outro - Highest z-index to appear on top */}
-      <div className="sticky bottom-0 h-screen w-full z-50 pointer-events-none transform-gpu">
-        <BrandOutroSection
-          brandLeft={brandLeft}
-          brandRight={brandRight}
-          heroImageUrl={heroImageUrl}
-          brandOutroTagline={brandOutroTagline}
-          progress={scrollYProgress}
-        />
+      <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:76px_76px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
+
+      <div className="relative z-10 flex h-full flex-col px-4 pb-4 pt-20 sm:px-6 md:px-9 md:pb-7 md:pt-24">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto flex flex-1 flex-col items-center justify-center text-center"
+        >
+          <div className="relative mb-4 h-[70px] w-[270px] max-w-[72vw] sm:mb-5 md:h-[94px] md:w-[360px] xl:h-[106px] xl:w-[410px]">
+            <Image
+              src="/logo-cropped.png"
+              alt={logoAlt}
+              fill
+              priority
+              sizes="420px"
+              className="object-contain"
+            />
+          </div>
+
+          <h1 className="max-w-4xl text-[clamp(1.3rem,3.45vw,3.55rem)] font-[1000] uppercase italic leading-[1.05] tracking-[0.04em] text-white drop-shadow-[0_12px_38px_rgba(0,0,0,0.65)]">
+            {headlineLine1}
+            <br />
+            <span className="text-[#43becc]">{headlineLine2}</span>
+          </h1>
+
+          <div className="mt-5 text-[10px] font-black uppercase tracking-[0.38em] text-white/55 md:mt-7 md:text-[11px]">
+            {strategicPartnersLabel}
+          </div>
+
+          <div className="mt-3 flex items-center justify-center gap-6 md:mt-4 md:gap-10">
+            <div className="text-[clamp(2.1rem,4vw,3.8rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
+              FFT
+            </div>
+            <div className="h-12 w-px bg-white/55 md:h-14" />
+            <div className="flex flex-col items-center leading-none">
+              <div className="text-[clamp(1.9rem,3.3vw,3rem)] font-[1000] tracking-[-0.12em]">
+                <span className="text-[#006db1]">C</span>
+                <span className="text-[#ef6a25]">U</span>
+              </div>
+              <span className="mt-1 text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
+                Composites
+              </span>
+              <span className="text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
+                United
+              </span>
+            </div>
+          </div>
+
+          <Link
+            href={`/${locale}/accelerators`}
+            className="pointer-events-auto mt-4 border-b border-[#43becc]/45 pb-1 text-[10px] font-black uppercase tracking-[0.32em] text-[#43becc] transition hover:border-white hover:text-white md:mt-5 md:text-[11px]"
+          >
+            {knowMoreLabel}
+          </Link>
+        </motion.div>
+
+        <div className="relative z-20 grid gap-3 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5">
+          <div>
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
+              <InfoCard
+                title={headOfficeTitle}
+                lines={headOfficeLines}
+              />
+              <InfoCard
+                title={autoHubTitle}
+                lines={autoHubLines}
+              />
+            </div>
+            <p className="mt-2 text-[10px] font-medium text-white/75 sm:mt-4 sm:text-[11px]">
+              {contactLabel}{" "}
+              <a
+                href={`mailto:${contactEmail}`}
+                className="pointer-events-auto text-[#43becc] transition hover:text-white"
+              >
+                {contactEmail}
+              </a>
+            </p>
+          </div>
+
+          <p className="hidden text-center text-[10px] font-bold uppercase tracking-[0.16em] text-white/18 md:block">
+            {copyrightText}
+          </p>
+
+          <Link
+            href={`/${locale}/contact`}
+            className="pointer-events-auto justify-self-start text-[10px] font-black uppercase tracking-[0.22em] text-white/45 transition hover:text-[#43becc] md:justify-self-end"
+          >
+            {privacyPolicyLabel}
+          </Link>
+        </div>
       </div>
     </section>
   );
