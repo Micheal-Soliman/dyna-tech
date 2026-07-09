@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Check, Factory, Gauge, Globe2 } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 export type BusinessScopeContent = {
   hero: {
@@ -9,16 +10,6 @@ export type BusinessScopeContent = {
     title: string;
     intro: string;
     supporting: string;
-  };
-  partnerships: {
-    kicker: string;
-    title: string;
-    paragraphs: string[];
-    includesTitle: string;
-    includes: string[];
-    whyTitle: string;
-    whyText: string;
-    ctaLabel: string;
   };
   technologyPartners: {
     kicker: string;
@@ -31,25 +22,6 @@ export type BusinessScopeContent = {
       ctaHref: string;
     }[];
   };
-  hub: {
-    kicker: string;
-    title: string;
-    paragraphs: string[];
-    componentsTitle: string;
-    components: string[];
-    highlights: string[];
-    ctaLabel: string;
-  };
-  egypt: {
-    kicker: string;
-    title: string;
-    paragraphs: string[];
-    statsTitle: string;
-    stats: {
-      value: string;
-      label: string;
-    }[];
-  };
 };
 
 type Props = {
@@ -57,306 +29,198 @@ type Props = {
   locale: string;
 };
 
-function VisualPanel({
-  label,
-  variant,
-}: {
-  label: string;
-  variant: "network" | "hub" | "egypt";
-}) {
-  return (
-    <div className="relative min-h-[360px] overflow-hidden border border-white/10 bg-[#121b43]">
-      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#0087cb33_1px,transparent_1px),linear-gradient(90deg,#0087cb33_1px,transparent_1px)] [background-size:42px_42px]" />
-      <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
-      <div className="absolute inset-y-8 left-1/2 w-px bg-gradient-to-b from-transparent via-[#43becc] to-transparent" />
-
-      {variant === "network" && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-3 items-center gap-8">
-            {["EU", "DYNATECH", "MENA"].map((item, index) => (
-              <div key={item} className="relative">
-                <div className="flex h-24 w-24 items-center justify-center border border-[#0087cb]/40 bg-[#0a0f29] text-xs font-black uppercase tracking-widest text-white">
-                  {item}
-                </div>
-                {index < 2 && <div className="absolute left-full top-1/2 h-px w-8 bg-[#0087cb]" />}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {variant === "hub" && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative h-48 w-48 border border-[#0087cb]/40">
-            <div className="absolute inset-12 border border-[#43becc]/50 bg-[#0087cb]/10" />
-            {["EV", "Service", "Training", "Logistics"].map((item, index) => (
-              <div
-                key={item}
-                className="absolute flex h-14 w-24 items-center justify-center border border-white/10 bg-[#0a0f29] text-[10px] font-bold uppercase tracking-wider text-zinc-300"
-                style={{
-                  left: index % 2 === 0 ? "-32px" : "auto",
-                  right: index % 2 === 1 ? "-32px" : "auto",
-                  top: index < 2 ? "-18px" : "auto",
-                  bottom: index >= 2 ? "-18px" : "auto",
-                }}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {variant === "egypt" && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex items-center gap-5">
-            {[Factory, Gauge, Globe2].map((Icon, index) => (
-              <div key={index} className="flex h-24 w-24 items-center justify-center border border-[#0087cb]/35 bg-[#0a0f29] text-[#43becc]">
-                <Icon size={34} strokeWidth={1.5} />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="absolute bottom-6 left-6 right-6 border-t border-white/10 pt-4">
-        <p className="text-[10px] font-black uppercase tracking-[0.32em] text-[#0087cb]">
-          {label}
-        </p>
-      </div>
-    </div>
-  );
+function partnerSlug(name: string) {
+  return name.toLowerCase().includes("cu") ? "composites-united" : "fft";
 }
 
-function TechnologyPartners({
-  content,
-}: {
-  content: BusinessScopeContent["technologyPartners"];
-}) {
-  return (
-    <section className="relative border-b border-white/10 bg-[#0a0f29] py-20">
-      <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
-      <div className="relative mx-auto max-w-7xl px-6">
-        <div className="mb-10 max-w-3xl">
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
-            {content.kicker}
-          </p>
-          <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-            {content.title}
-          </h2>
-        </div>
+function partnerLabel(name: string) {
+  return name.toLowerCase().includes("cu") ? "CU" : "FFT";
+}
 
-        <div className="grid gap-6 lg:grid-cols-2">
-          {content.partners.map((partner, index) => (
-            <article
-              key={partner.name}
-              className="group relative overflow-hidden border border-white/10 bg-[#121b43]/85 p-6 transition duration-500 hover:-translate-y-1 hover:border-[#0087cb]/55 hover:bg-[#121b43] md:p-8"
-            >
-              <div className="absolute left-0 top-0 h-full w-px bg-[#0087cb]/60" />
-              <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#43becc] transition-transform duration-700 group-hover:scale-x-100" />
-              <div className="mb-8 flex items-start justify-between gap-5">
-                <div>
-                  <span className="font-mono text-xs tracking-[0.28em] text-[#0087cb]">
-                    0{index + 1}
-                  </span>
-                  <h3 className="mt-4 text-2xl font-black uppercase leading-tight tracking-tight text-white md:text-3xl">
-                    {partner.name}
-                  </h3>
-                </div>
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-[#0087cb]/35 bg-[#0a0f29] text-xs font-black uppercase text-[#43becc]">
-                  {partner.name.slice(0, 2)}
-                </div>
-              </div>
+function partnerCardCopy(name: string) {
+  if (name.toLowerCase().includes("cu")) {
+    return {
+      name: "CU Company",
+      heading: "Composite Lightweight Technologies",
+      paragraphs: [
+        "Composites United e. V. (CU), one of the world's largest networks for fiber-based multi-material lightweight design, emerged by the two associations Carbon Composites e. V. and CFK Valley e. V. About 350 members have joined to form this high-performance industry and research association to jointly develop lightweight design solutions for the future.",
+      ],
+    };
+  }
 
-              <h4 className="text-xl font-black leading-tight text-white/90">
-                {partner.heading}
-              </h4>
-              <div className="mt-5 space-y-4 text-sm leading-relaxed text-zinc-400 md:text-base">
-                {partner.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
+  return {
+    name: "FFT Company",
+    heading: "Intelligent Manufacturing Systems",
+    paragraphs: [
+      "Since 1974, we have stood for dynamism, solidity, global presence and a claim to technological leadership.",
+      "As a leading global provider of innovative, flexible and complex manufacturing systems, we specialize in their development, project planning and implementation. We assume overall responsibility for turnkey solutions and carry out projects worldwide, including for the automotive and aviation industries.",
+    ],
+  };
+}
 
-              <a
-                href={partner.ctaHref}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-8 inline-flex items-center gap-3 bg-[#0087cb] px-5 py-3 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
-              >
-                {partner.ctaLabel}
-                <ArrowUpRight size={16} />
-              </a>
-            </article>
-          ))}
-        </div>
+function PartnerLogo({ id }: { id: "fft" | "cu" }) {
+  if (id === "fft") {
+    return (
+      <div className="text-[clamp(2.4rem,4vw,4.6rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
+        FFT
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-center leading-none">
+      <div className="text-[clamp(2.2rem,3.6vw,3.8rem)] font-[1000] tracking-[-0.12em]">
+        <span className="text-[#006db1]">C</span>
+        <span className="text-[#ef6a25]">U</span>
+      </div>
+      <span className="mt-1 text-[9px] font-black uppercase tracking-[0.08em] text-[#006db1]">
+        Composites
+      </span>
+      <span className="text-[9px] font-black uppercase tracking-[0.08em] text-[#006db1]">
+        United
+      </span>
+    </div>
   );
 }
 
 export default function BusinessScopePage({ content, locale }: Props) {
   const isAr = locale === "ar";
+  const reduceMotion = useReducedMotion();
+  const reveal = reduceMotion
+    ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
+    : { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0 } };
+  const revealTransition = { duration: 0.75, ease: "easeOut" as const };
 
   return (
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-32 text-white ${isAr ? "font-cairo" : ""}`}
+      className={`min-h-screen bg-[#080d20] text-white ${isAr ? "font-cairo" : ""}`}
     >
-      <section className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-        <div>
-          <p className="mb-5 text-xs font-black uppercase tracking-[0.35em] text-[#0087cb]">
-            {content.hero.kicker}
-          </p>
-          <h1 className="max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
-            {content.hero.title}
-          </h1>
-        </div>
-        <div className="border-l-4 border-[#0087cb] bg-white/[0.03] p-6 md:p-8">
-          <p className="text-lg font-semibold leading-relaxed text-[#43becc]">
-            {content.hero.intro}
-          </p>
-          <p className="mt-5 text-base leading-relaxed text-zinc-400">
-            {content.hero.supporting}
-          </p>
+      <section className="relative flex min-h-screen items-end overflow-hidden px-6 pb-14 pt-32 md:px-12 lg:px-20">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+        <div className="absolute inset-0 bg-[#080d20]/70" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.58)_48%,rgba(8,13,32,0.22)_100%)]" />
+
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={reveal}
+            transition={revealTransition}
+            className="max-w-4xl"
+          >
+            <p className="mb-5 text-xs font-black uppercase tracking-[0.34em] text-[#43becc]">
+              {content.hero.kicker}
+            </p>
+            <h1 className="text-5xl font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
+              {content.hero.title}
+            </h1>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={reveal}
+            transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.12 }}
+            className="max-w-2xl border border-white/12 bg-[#0a0f29]/70 p-6 backdrop-blur-md md:p-8"
+          >
+            <p className="text-lg font-semibold leading-relaxed text-white md:text-xl">
+              {content.hero.intro}
+            </p>
+            <p className="mt-5 text-sm leading-relaxed text-zinc-300 md:text-base">
+              {content.hero.supporting}
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <VisualPanel label={content.partnerships.kicker} variant="network" />
-          <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
-              {content.partnerships.kicker}
+      <section className="relative border-t border-white/10 bg-[#080d20] px-6 py-20 md:px-12 lg:px-20">
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:56px_56px]" />
+        <div className="relative mx-auto max-w-7xl">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.28 }}
+            variants={reveal}
+            transition={revealTransition}
+            className="mb-10 max-w-3xl"
+          >
+            <p className="mb-4 text-xs font-black uppercase tracking-[0.3em] text-[#0087cb]">
+              {content.technologyPartners.kicker}
             </p>
             <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.partnerships.title}
+              {content.technologyPartners.title}
             </h2>
-            <div className="mt-7 space-y-4 text-base leading-relaxed text-zinc-400">
-              {content.partnerships.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+          </motion.div>
 
-            <div className="mt-9 grid gap-8 md:grid-cols-2">
-              <div>
-                <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-white">
-                  {content.partnerships.includesTitle}
-                </h3>
-                <ul className="space-y-3">
-                  {content.partnerships.includes.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm text-zinc-300">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#43becc]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="border border-white/10 bg-white/[0.03] p-6">
-                <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-white">
-                  {content.partnerships.whyTitle}
-                </h3>
-                <p className="text-sm leading-relaxed text-zinc-400">
-                  {content.partnerships.whyText}
-                </p>
-              </div>
-            </div>
+          <div className="grid gap-5 lg:grid-cols-2">
+            {content.technologyPartners.partners.map((partner, index) => {
+              const label = partnerLabel(partner.name);
+              const logoId = label.toLowerCase() as "fft" | "cu";
+              const href = `/${locale}/services/${partnerSlug(partner.name)}`;
+              const card = partnerCardCopy(partner.name);
 
-            <Link
-              href={`/${locale}/accelerators`}
-              className="mt-9 inline-flex items-center gap-3 bg-[#0087cb] px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
-            >
-              {content.partnerships.ctaLabel}
-              <ArrowUpRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
+              return (
+                <motion.div
+                  key={partner.name}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, amount: 0.22 }}
+                  variants={reveal}
+                  transition={{ ...revealTransition, delay: reduceMotion ? 0 : index * 0.08 }}
+                >
+                  <Link
+                    href={href}
+                    className="group relative block min-h-[360px] overflow-hidden border border-white/10 bg-[#111936] p-7 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 hover:bg-[#121b43] md:p-9"
+                  >
+                    <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:44px_44px]" />
+                    <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#0087cb]/20 blur-3xl transition duration-500 group-hover:bg-[#43becc]/25" />
+                    <div className="relative z-10 flex h-full flex-col">
+                      <div className="flex items-start justify-between gap-6">
+                        <div>
+                          <span className="font-mono text-xs tracking-[0.3em] text-[#43becc]">
+                            0{index + 1}
+                          </span>
+                          <h3 className="mt-5 text-4xl font-black uppercase tracking-tight md:text-5xl">
+                            {card.name}
+                          </h3>
+                        </div>
+                        <div className="flex min-h-20 min-w-28 shrink-0 items-center justify-center border border-white/10 bg-[#080d20]/80 px-4 py-3">
+                          <PartnerLogo id={logoId} />
+                        </div>
+                      </div>
 
-      <TechnologyPartners content={content.technologyPartners} />
+                      <div className="mt-10">
+                        <p className="text-xl font-black leading-snug text-white/90">
+                          {card.heading}
+                        </p>
+                        <p className="mt-5 line-clamp-4 text-sm leading-relaxed text-zinc-400 md:text-base">
+                          {card.paragraphs.join(" ")}
+                        </p>
+                      </div>
 
-      <section className="py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
-              {content.hub.kicker}
-            </p>
-            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.hub.title}
-            </h2>
-            <div className="mt-7 space-y-4 text-base leading-relaxed text-zinc-400">
-              {content.hub.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-
-            <div className="mt-9 grid gap-8 md:grid-cols-[1fr_0.9fr]">
-              <div>
-                <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-white">
-                  {content.hub.componentsTitle}
-                </h3>
-                <ul className="grid gap-3 sm:grid-cols-2">
-                  {content.hub.components.map((item) => (
-                    <li key={item} className="flex gap-3 text-sm text-zinc-300">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#43becc]" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="grid gap-px border border-white/10 bg-white/10">
-                {content.hub.highlights.map((item) => (
-                  <div key={item} className="bg-[#121b43] p-5 text-sm font-bold uppercase tracking-wide text-zinc-200">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <Link
-              href={`/${locale}/case-study#automotive-hub`}
-              className="mt-9 inline-flex items-center gap-3 bg-white px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#0087cb]"
-            >
-              {content.hub.ctaLabel}
-              <ArrowUpRight size={16} />
-            </Link>
-          </div>
-
-          <VisualPanel label={content.hub.kicker} variant="hub" />
-        </div>
-      </section>
-
-      <section className="border-t border-white/10 bg-[#121b43]/70 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <VisualPanel label={content.egypt.kicker} variant="egypt" />
-          <div>
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
-              {content.egypt.kicker}
-            </p>
-            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.egypt.title}
-            </h2>
-            <div className="mt-7 space-y-4 text-base leading-relaxed text-zinc-400">
-              {content.egypt.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-
-            <h3 className="mt-10 mb-5 text-sm font-black uppercase tracking-widest text-white">
-              {content.egypt.statsTitle}
-            </h3>
-            <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-3">
-              {content.egypt.stats.map((stat) => (
-                <div key={stat.label} className="bg-[#121b43] p-6">
-                  <div className="text-3xl font-black text-[#43becc] md:text-4xl">
-                    {stat.value}
-                  </div>
-                  <p className="mt-3 text-xs font-bold uppercase leading-relaxed tracking-wide text-zinc-400">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+                      <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-7">
+                        <span className="text-[11px] font-black uppercase tracking-[0.28em] text-white">
+                          {label} Company
+                        </span>
+                        <span className="flex h-11 w-11 items-center justify-center bg-[#0087cb] text-black transition duration-300 group-hover:bg-white">
+                          <ArrowUpRight size={18} />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

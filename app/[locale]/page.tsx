@@ -23,7 +23,7 @@ export default async function Home({
         isAr={isAr}
         home={dict.home}
         primaryCtaHref={`/${locale}/about`}
-        secondaryCtaHref={`/${locale}/contact`}
+        secondaryCtaHref={`/${locale}/services`}
       />
     </div>
   );

@@ -24,14 +24,18 @@ function parseStatValue(raw: string) {
 function NexusCircle({ value, label }: { value: string; label: string }) {
   const ref = useRef<HTMLDivElement | null>(null);
   const isInViewOnce = useInView(ref, { once: true, margin: "-100px" });
-  const isActive = useInView(ref, { once: false, margin: "-100px" });
   const reduceMotion = useReducedMotion();
   const { numericValue, prefix, suffix, precision } = parseStatValue(value);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (isInViewOnce) {
-      const duration = 2500;
+      if (reduceMotion) {
+        setCount(numericValue);
+        return;
+      }
+
+      const duration = 850;
       const startTime = performance.now();
       let raf = 0;
 
@@ -46,16 +50,17 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
       raf = requestAnimationFrame(tick);
       return () => cancelAnimationFrame(raf);
     }
-  }, [isInViewOnce, numericValue, precision]);
+  }, [isInViewOnce, numericValue, precision, reduceMotion]);
 
   const progress = numericValue > 0 ? Math.min(count / numericValue, 1) : 0;
 
   return (
     <div ref={ref} className="relative mx-auto flex h-56 w-56 flex-col items-center justify-center group md:h-60 md:w-60 lg:h-64 lg:w-64">
       
-      <motion.div 
-        animate={!reduceMotion && isActive ? { rotate: 360 } : { rotate: 0 }}
-        transition={!reduceMotion && isActive ? { duration: 20, repeat: Infinity, ease: "linear" } : undefined}
+      <motion.div
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+        animate={isInViewOnce ? { opacity: 1, scale: 1 } : undefined}
+        transition={{ duration: 0.75, ease: "easeOut" }}
         className="absolute w-48 h-48 md:w-52 md:h-52 lg:w-56 lg:h-56 border border-dashed border-white/5 rounded-full"
       />
 
@@ -72,8 +77,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           strokeDasharray="100 100"
           initial={{ strokeDashoffset: 100 }}
           animate={isInViewOnce ? { strokeDashoffset: 100 - progress * 100 } : {}}
-          transition={{ duration: 2.5, ease: "circOut" }}
-          style={{ filter: "drop-shadow(0 0 10px #0087cb)" }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
         />
 
         <motion.circle
@@ -82,8 +86,8 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           strokeWidth="3"
           strokeDasharray="1 99"
           initial={{ strokeDashoffset: 100 }}
-          animate={!reduceMotion && isActive ? { strokeDashoffset: [100, 0] } : {}}
-          transition={!reduceMotion && isActive ? { duration: 2, repeat: Infinity, ease: "linear", delay: 1 } : undefined}
+          animate={!reduceMotion && isInViewOnce ? { strokeDashoffset: 0 } : {}}
+          transition={{ duration: 0.75, ease: "easeOut", delay: 0.15 }}
         />
       </svg>
 
@@ -117,14 +121,6 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
         </motion.div>
       </div>
 
-      <motion.div 
-        animate={!reduceMotion && isActive ? { rotate: -360 } : { rotate: 0 }}
-        transition={!reduceMotion && isActive ? { duration: 15, repeat: Infinity, ease: "linear" } : undefined}
-        className="absolute w-full h-full pointer-events-none"
-      >
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2 bg-[#8e257a] rounded-full shadow-[0_0_15px_#8e257a]" />
-      </motion.div>
-
     </div>
   );
 }
@@ -149,13 +145,13 @@ export function StatsSection({
     <motion.section
       initial={shouldAnimateSection ? { opacity: 0, y: 80 } : false}
       whileInView={shouldAnimateSection ? { opacity: 1, y: 0 } : undefined}
-      viewport={{ once: false, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.18 }}
       transition={shouldAnimateSection ? { duration: 0.85, ease: "easeOut" } : undefined}
       className="flex min-h-screen items-center bg-[#121b43] py-20 md:py-24 relative overflow-hidden font-['Montserrat',sans-serif]"
       dir={isAr ? "rtl" : "ltr"}
     >
       
-      <div className="absolute inset-0 opacity-20" 
+      <div className="absolute inset-0 opacity-10" 
            style={{ backgroundImage: 'radial-gradient(circle, #0087cb 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
       <div className="container mx-auto px-6 relative z-10">

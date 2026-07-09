@@ -746,6 +746,10 @@
     "readMoreLabel": "اقرأ المزيد",
     "categories": [
       {
+        "id": "tech-info",
+        "label": "Tech Info"
+      },
+      {
         "id": "e-mobility",
         "label": "التنقل الكهربائي"
       },
@@ -763,6 +767,13 @@
       }
     ],
     "articles": [
+      {
+        "slug": "tech-info-fft-dynatech-egypt",
+        "title": "FFT تدخل السوق المصري بالشراكة مع دايناتك",
+        "category": "tech-info",
+        "date": "26 مارس 2024",
+        "excerpt": "الأهرام أوتو يعرض الشراكة الاستراتيجية بين دايناتك كوربوريشن مصر و FFT الألمانية في أنظمة الإنتاج والتصنيع."
+      },
       {
         "slug": "ev-infrastructure-egypt-2026",
         "title": "حالة بنية الشحن الكهربائي في مصر",

@@ -83,7 +83,7 @@ export function HeroSection({
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-label={heroImageAlt}
         >
           <source src="/hero.mp4" type="video/mp4" />
@@ -94,7 +94,7 @@ export function HeroSection({
         <div className="absolute inset-x-0 bottom-0 h-px bg-[#43becc]/25" />
       </div>
 
-      <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:76px_76px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
+      <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:96px_96px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
 
       <div className="relative z-10 flex h-full flex-col px-4 pb-4 pt-20 sm:px-6 md:px-9 md:pb-7 md:pt-24">
         <motion.div
@@ -114,7 +114,7 @@ export function HeroSection({
             />
           </div>
 
-          <h1 className="max-w-4xl text-[clamp(1.3rem,3.45vw,3.55rem)] font-[1000] uppercase italic leading-[1.05] tracking-[0.04em] text-white drop-shadow-[0_12px_38px_rgba(0,0,0,0.65)]">
+          <h1 className="max-w-4xl text-[clamp(1.3rem,3.45vw,3.55rem)] font-[1000] uppercase italic leading-[1.05] tracking-[0.04em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)]">
             {headlineLine1}
             <br />
             <span className="text-[#43becc]">{headlineLine2}</span>
@@ -144,7 +144,7 @@ export function HeroSection({
           </div>
 
           <Link
-            href={`/${locale}/accelerators`}
+            href={`/${locale}/services`}
             className="pointer-events-auto mt-4 border-b border-[#43becc]/45 pb-1 text-[10px] font-black uppercase tracking-[0.32em] text-[#43becc] transition hover:border-white hover:text-white md:mt-5 md:text-[11px]"
           >
             {knowMoreLabel}
@@ -179,10 +179,10 @@ export function HeroSection({
           </p>
 
           <Link
-            href={`/${locale}/contact`}
+            href={`/${locale}/knowledge`}
             className="pointer-events-auto justify-self-start text-[10px] font-black uppercase tracking-[0.22em] text-white/45 transition hover:text-[#43becc] md:justify-self-end"
           >
-            {privacyPolicyLabel}
+            Knowledge
           </Link>
         </div>
       </div>

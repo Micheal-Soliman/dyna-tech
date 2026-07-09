@@ -746,6 +746,10 @@
     "readMoreLabel": "Read More",
     "categories": [
       {
+        "id": "tech-info",
+        "label": "Tech Info"
+      },
+      {
         "id": "e-mobility",
         "label": "E-Mobility"
       },
@@ -763,6 +767,13 @@
       }
     ],
     "articles": [
+      {
+        "slug": "tech-info-fft-dynatech-egypt",
+        "title": "FFT Enters the Egyptian Market with DYNATECH",
+        "category": "tech-info",
+        "date": "March 26, 2024",
+        "excerpt": "Al-Ahram Auto covers the strategic partnership between DYNATECH Corporation Egypt and Germany's FFT in production and manufacturing systems."
+      },
       {
         "slug": "ev-infrastructure-egypt-2026",
         "title": "The State of EV Infrastructure in Egypt",

@@ -19,7 +19,28 @@ const ARTICLES: Record<string, {
   reportId: string; 
   readTime: string;
   excerpt: string;
+  sourceUrl?: string;
+  highlights?: string[];
 } > = {
+  "tech-info-fft-dynatech-egypt": {
+    title: "FFT Enters the Egyptian Market:",
+    subtitle: "Strategic partnership with DYNATECH",
+    date: "March 26, 2024",
+    author: "Al-Ahram Auto",
+    category: "Tech Info",
+    categoryColor: "#0087cb",
+    reportId: "112235",
+    readTime: "4_Min_Read",
+    excerpt: "Al-Ahram Auto covers the strategic partnership between DYNATECH Corporation Egypt and Germany's FFT in production and manufacturing systems.",
+    sourceUrl: "https://auto.ahram.org.eg/News/112235.aspx",
+    highlights: [
+      "DYNATECH Corporation Egypt and FFT announced a strategic partnership in Fulda, Germany.",
+      "The partnership focuses on automotive assembly lines, component production, advanced manufacturing, EV battery assembly, e-mobility, welding, laser technologies, and lightweight materials.",
+      "FFT brings nearly 50 years of production systems experience, with a global footprint across Europe, Asia, and Latin America.",
+      "The article highlights FFT technologies including FFTplace, FFT BestFit, FFTpicAI, production conveyors, and autonomous IGV solutions.",
+      "DYNATECH is positioned as a bridge for advanced manufacturing systems, energy storage, and lightweight component technologies in Egypt and the region."
+    ]
+  },
   "ev-infrastructure-egypt-2026": {
     title: "The State of EV Infrastructure in Egypt:",
     subtitle: "2026 Outlook and Growth Trajectory",
@@ -115,7 +136,7 @@ export default function ArticleDetail() {
   const slug = params.slug as string;
   const locale = params.locale === "ar" ? "ar" : "en";
   const knowledgeHref = `/${locale}/knowledge`;
-  const contactHref = `/${locale}/contact`;
+  const partnersHref = `/${locale}/services`;
   const article = ARTICLES[slug] || ARTICLES["modular-ev-platforms"];
   return (
     <div className="bg-[#0a0f29] text-zinc-300 font-mono selection:bg-[#006db1] selection:text-black min-h-screen pb-24">
@@ -244,46 +265,80 @@ export default function ArticleDetail() {
         <article className="lg:col-span-9 order-1 lg:order-2 space-y-12">
           
           <section className="prose prose-invert max-w-none">
-            <p className="text-lg leading-relaxed text-zinc-400">
-              The evolution of electric vehicles has reached a critical inflection point. Traditional automotive manufacturing, long beholden to fixed internal combustion engine (ICE) footprints, is being replaced by 
-              <b className="text-white"> Modular Skateboard Architectures</b>. This paradigm shift allows manufacturers to decouple the body-shell from the propulsion system.
-            </p>
+            {article.highlights ? (
+              <>
+                <p className="text-lg leading-relaxed text-zinc-400">
+                  This Tech Info entry summarizes the published Al-Ahram Auto feature about FFT&apos;s entry into the Egyptian market through its strategic partnership with DYNATECH.
+                </p>
 
-            <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter mt-12 mb-6">01. Structural Integrity & Flexibility</h3>
-            <p className="leading-loose text-zinc-400">
-              Unlike traditional unibody designs, a modular platform integrates the battery pack, motors, and suspension into a single, low-profile unit. This not only lowers the center of gravity by <span className="text-[#006db1]">15-20%</span> but also provides a standardized interface for various body styles&mdash;from compact city cars to heavy-duty logistics vans.
-            </p>
+                <div className="my-12 grid gap-4 md:grid-cols-2">
+                  {article.highlights.map((highlight, index) => (
+                    <div key={highlight} className="border border-white/10 bg-[#121b43] p-6">
+                      <p className="mb-4 text-[10px] font-black uppercase tracking-[0.28em] text-[#006db1]">
+                        Point_{String(index + 1).padStart(2, "0")}
+                      </p>
+                      <p className="text-base font-semibold leading-relaxed text-zinc-300">
+                        {highlight}
+                      </p>
+                    </div>
+                  ))}
+                </div>
 
-            {/* DATA BLOCK INSET */}
-            <div className="my-12 p-8 bg-[#121b43] border-l-4 border-[#006db1] grid md:grid-cols-3 gap-8">
-              <div>
-                <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Weight_Reduction</p>
-                <p className="text-3xl font-black text-white italic">-120kg</p>
-              </div>
-              <div>
-                <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Assembly_Efficiency</p>
-                <p className="text-3xl font-black text-white italic">+40%</p>
-              </div>
-              <div>
-                <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Thermal_Stability</p>
-                <p className="text-3xl font-black text-white italic">Active</p>
-              </div>
-            </div>
+                {article.sourceUrl ? (
+                  <a
+                    href={article.sourceUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-4 bg-[#006db1] px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] text-black no-underline transition-colors hover:bg-white"
+                  >
+                    Open Original Article <ArrowRight size={16} />
+                  </a>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <p className="text-lg leading-relaxed text-zinc-400">
+                  The evolution of electric vehicles has reached a critical inflection point. Traditional automotive manufacturing, long beholden to fixed internal combustion engine (ICE) footprints, is being replaced by 
+                  <b className="text-white"> Modular Skateboard Architectures</b>. This paradigm shift allows manufacturers to decouple the body-shell from the propulsion system.
+                </p>
 
-            <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter mt-12 mb-6">02. Thermal Management at Scale</h3>
-            <p className="leading-loose text-zinc-400">
-              One of the primary challenges in modularity is consistent thermal regulation across different battery configurations. Dynatech&apos;s latest research indicates that a 
-              <b className="text-white"> Decentralized Cooling Loop</b> is essential for maintaining cell health in varying environmental conditions, particularly in the MENA region&apos;s high-ambient temperatures.
-            </p>
+                <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter mt-12 mb-6">01. Structural Integrity & Flexibility</h3>
+                <p className="leading-loose text-zinc-400">
+                  Unlike traditional unibody designs, a modular platform integrates the battery pack, motors, and suspension into a single, low-profile unit. This not only lowers the center of gravity by <span className="text-[#006db1]">15-20%</span> but also provides a standardized interface for various body styles&mdash;from compact city cars to heavy-duty logistics vans.
+                </p>
+
+                <div className="my-12 p-8 bg-[#121b43] border-l-4 border-[#006db1] grid md:grid-cols-3 gap-8">
+                  <div>
+                    <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Weight_Reduction</p>
+                    <p className="text-3xl font-black text-white italic">-120kg</p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Assembly_Efficiency</p>
+                    <p className="text-3xl font-black text-white italic">+40%</p>
+                  </div>
+                  <div>
+                    <p className="text-[9px] font-black text-zinc-600 uppercase mb-2">Thermal_Stability</p>
+                    <p className="text-3xl font-black text-white italic">Active</p>
+                  </div>
+                </div>
+
+                <h3 className="text-3xl font-black italic text-white uppercase tracking-tighter mt-12 mb-6">02. Thermal Management at Scale</h3>
+                <p className="leading-loose text-zinc-400">
+                  One of the primary challenges in modularity is consistent thermal regulation across different battery configurations. Dynatech&apos;s latest research indicates that a 
+                  <b className="text-white"> Decentralized Cooling Loop</b> is essential for maintaining cell health in varying environmental conditions, particularly in the MENA region&apos;s high-ambient temperatures.
+                </p>
+              </>
+            )}
           </section>
 
-          {/* QUOTE BLOCK */}
-          <blockquote className="border-y border-white/5 py-12">
-            <p className="text-3xl font-light italic text-white leading-snug">
-              &ldquo;Modularity is not just about cost-cutting; it&apos;s about the democratization of high-performance EV technology.&rdquo;
-            </p>
-            <footer className="mt-6 text-[10px] font-black text-[#006db1] uppercase tracking-widest">&mdash; Head of R&D, DYNATECH</footer>
-          </blockquote>
+          {!article.highlights ? (
+            <blockquote className="border-y border-white/5 py-12">
+              <p className="text-3xl font-light italic text-white leading-snug">
+                &ldquo;Modularity is not just about cost-cutting; it&apos;s about the democratization of high-performance EV technology.&rdquo;
+              </p>
+              <footer className="mt-6 text-[10px] font-black text-[#006db1] uppercase tracking-widest">&mdash; Head of R&D, DYNATECH</footer>
+            </blockquote>
+          ) : null}
 
           {/* CTA / CONTACT */}
           <div className="p-12 bg-[#121b43] border-2 border-[#006db1]">
@@ -295,10 +350,10 @@ export default function ArticleDetail() {
                 </p>
               </div>
               <Link 
-                href={contactHref}
+                href={partnersHref}
                 className="flex items-center gap-4 bg-[#006db1] text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-colors"
               >
-                Contact Us <ArrowRight size={16} />
+                Explore Partners <ArrowRight size={16} />
               </Link>
             </div>
           </div>

@@ -8,6 +8,7 @@ import {
   Calendar,
   Factory,
   Layers,
+  Newspaper,
   Zap,
 } from "lucide-react";
 import { useState } from "react";
@@ -44,6 +45,7 @@ const fadeUp = {
 };
 
 function CategoryIcon({ id }: { id: string }) {
+  if (id === "tech-info") return <Newspaper size={15} />;
   if (id === "e-mobility") return <Zap size={15} />;
   if (id === "energy-storage") return <Battery size={15} />;
   if (id === "lightweight-materials") return <Layers size={15} />;

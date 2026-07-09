@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
+  BrainCircuit,
   Building2,
   Clock3,
   Factory,
   Gauge,
-  MapPin,
   Wrench,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 export type ProjectsInvestmentContent = {
   hero: {
@@ -63,162 +63,60 @@ type Props = {
   locale: string;
 };
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-};
-
-function SectionKicker({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mb-4 flex items-center gap-4">
-      <span className="h-px w-12 bg-[#0087cb]" />
-      <p className="text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
-        {children}
-      </p>
-    </div>
-  );
-}
-
-function IndustrialVisual({
-  label,
-  mode,
-}: {
-  label: string;
-  mode: "pipeline" | "hub" | "position";
-}) {
-  return (
-    <motion.div
-      whileHover={{ y: -4 }}
-      transition={{ duration: 0.35, ease: "easeOut" }}
-      className="group relative min-h-[360px] overflow-hidden border border-white/10 bg-[#121b43] shadow-[0_0_0_1px_rgba(255,255,255,0.02)] transition-colors duration-300 hover:border-[#0087cb]/50"
-    >
-      <div className="absolute left-0 top-0 h-10 w-10 border-l border-t border-[#0087cb]/60" />
-      <div className="absolute bottom-0 right-0 h-10 w-10 border-b border-r border-[#0087cb]/60" />
-      <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(#0087cb33_1px,transparent_1px),linear-gradient(90deg,#0087cb33_1px,transparent_1px)] [background-size:42px_42px]" />
-      <div className="absolute inset-x-8 top-1/2 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
-      <div className="absolute inset-y-8 left-1/2 w-px bg-gradient-to-b from-transparent via-[#43becc] to-transparent" />
-      <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#43becc] transition-transform duration-700 group-hover:scale-x-100" />
-
-      {mode === "pipeline" && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-4">
-            {[
-              { icon: Factory, label: "Industrial" },
-              { icon: Wrench, label: "Automotive" },
-              { icon: Gauge, label: "Energy" },
-              { icon: Building2, label: "Infrastructure" },
-            ].map(({ icon: Icon, label: item }) => (
-              <div
-                key={item}
-                className="flex h-24 w-24 flex-col items-center justify-center gap-3 border border-[#0087cb]/35 bg-[#0a0f29] text-[#43becc] transition-all duration-300 group-hover:border-[#43becc]/70"
-              >
-                <Icon size={26} strokeWidth={1.5} />
-                <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400">
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {mode === "hub" && (
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative flex h-44 w-44 items-center justify-center border border-[#0087cb]/45 bg-[#0087cb]/10 shadow-[0_0_40px_rgba(0,135,203,0.12)]">
-            <span className="text-3xl font-black uppercase tracking-tight text-white">
-              Hub
-            </span>
-            {["EV", "ICE", "Training", "Service"].map((item, index) => (
-              <div
-                key={item}
-                  className="absolute flex h-14 w-24 items-center justify-center border border-white/10 bg-[#0a0f29] text-[10px] font-bold uppercase tracking-wider text-zinc-300 transition-colors duration-300 group-hover:border-[#0087cb]/55"
-                style={{
-                  left: index % 2 === 0 ? "-42px" : "auto",
-                  right: index % 2 === 1 ? "-42px" : "auto",
-                  top: index < 2 ? "-22px" : "auto",
-                  bottom: index >= 2 ? "-22px" : "auto",
-                }}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {mode === "position" && (
-        <div className="absolute inset-0 flex items-center justify-center px-10">
-          <div className="w-full max-w-md space-y-8">
-            <div className="flex items-center justify-between text-[10px] font-black uppercase tracking-widest text-zinc-500">
-              <span>Market</span>
-              <span>Integrated 5S</span>
-            </div>
-            <div className="relative h-2 bg-white/10">
-              <div className="absolute inset-y-0 left-0 w-[78%] bg-[#0087cb]" />
-              <div className="absolute left-[78%] top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 border border-[#43becc] bg-[#0a0f29]" />
-            </div>
-            <div className="grid grid-cols-3 gap-3">
-              {["Quality", "Training", "R&D"].map((item) => (
-                <div
-                  key={item}
-                  className="border border-white/10 bg-[#0a0f29] p-4 text-center text-[10px] font-bold uppercase tracking-wider text-zinc-300"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="absolute bottom-6 left-6 right-6 border-t border-white/10 pt-4">
-        <p className="text-[10px] font-black uppercase tracking-[0.32em] text-[#0087cb]">
-          {label}
-        </p>
-      </div>
-    </motion.div>
-  );
-}
-
-function KeyInfo({ content }: { content: ProjectsInvestmentContent }) {
-  return (
-    <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2">
-      <motion.div
-        whileHover={{ y: -3 }}
-        className="bg-[#121b43] p-6 transition-colors hover:bg-[#0f1738]"
-      >
-        <div className="mb-3 flex items-center gap-3 text-[#43becc]">
-          <Clock3 size={18} />
-          <span className="text-xs font-black uppercase tracking-widest">
-            {content.hub.statusLabel}
-          </span>
-        </div>
-        <p className="text-lg font-black leading-snug text-white">
-          {content.hub.status}
-        </p>
-      </motion.div>
-      <motion.div
-        whileHover={{ y: -3 }}
-        className="bg-[#121b43] p-6 transition-colors hover:bg-[#0f1738]"
-      >
-        <div className="mb-3 flex items-center gap-3 text-[#43becc]">
-          <MapPin size={18} />
-          <span className="text-xs font-black uppercase tracking-widest">
-            {content.hub.locationLabel}
-          </span>
-        </div>
-        <p className="text-lg font-black leading-snug text-white">
-          {content.hub.location}
-        </p>
-      </motion.div>
-    </div>
-  );
-}
+const projectVideoUrl = "https://drive.google.com/file/d/1e7T2TA76wLQKuOrvo1YQPdBcGADgrOqz/preview";
+const projectFolderUrl = "https://drive.google.com/drive/folders/1xfF2ZEhj_q8TFFb1XGgPMJgj6YUMAUbY?usp=sharing";
+const autoHubFigures = [
+  {
+    label: "Built-Up Area (BUA)",
+    value: "6,500 sqm",
+    description: "6,500 sqm of state-of-the-art facility space.",
+  },
+  {
+    label: "Service Capacity",
+    value: "36",
+    description: "36 fully equipped work bays handling up to 40 vehicles daily.",
+  },
+  {
+    label: "Strategic Infrastructure",
+    value: "6",
+    description: "Structured across 6 Strategic Business Units (SBUs).",
+  },
+  {
+    label: "Financial Investment",
+    value: "250M EGP",
+    description: "250M EGP projected initial investment.",
+  },
+  {
+    label: "Profitability",
+    value: "12%",
+    description: "12% expected Return on Investment (ROI).",
+  },
+  {
+    label: "Leadership Expertise",
+    value: "30 years",
+    description: "Backed by 30 years of automotive industry management experience.",
+  },
+  {
+    label: "Project Timeline",
+    value: "Q4 2027",
+    description: "Soft opening projected for Q4 2027.",
+  },
+  {
+    label: "Market Innovation",
+    value: "1st",
+    description: "First service center in Egypt & MENA region featuring real-time BEV diagnostics powered by AI and Machine Learning.",
+  },
+];
 
 function parseFigureValue(raw: string) {
   const value = String(raw ?? "").trim();
-  const match = value.match(/^([^0-9]*)(\d+(?:[,.]\d+)?)(.*)$/);
+  const numericMatches = value.match(/\d+(?:[,.]\d+)?/g) ?? [];
 
+  if (numericMatches.length !== 1) {
+    return { numericValue: 0, prefix: "", suffix: value, precision: 0, canCount: false };
+  }
+
+  const match = value.match(/^([^0-9]*)(\d+(?:[,.]\d+)?)(.*)$/);
   if (!match) {
     return { numericValue: 0, prefix: "", suffix: value, precision: 0, canCount: false };
   }
@@ -242,7 +140,7 @@ function DynamicFigureCircle({
   figure,
   index,
 }: {
-  figure: ProjectsInvestmentContent["hub"]["figures"][number];
+  figure: (typeof autoHubFigures)[number];
   index: number;
 }) {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -252,9 +150,13 @@ function DynamicFigureCircle({
   const [count, setCount] = useState(canCount ? 0 : numericValue);
 
   useEffect(() => {
-    if (!isInView || !canCount || reduceMotion) return;
+    if (!isInView || !canCount) return;
+    if (reduceMotion) {
+      setCount(numericValue);
+      return;
+    }
 
-    const duration = 1200;
+    const duration = 1250;
     const start = performance.now();
     let frame = 0;
 
@@ -272,9 +174,8 @@ function DynamicFigureCircle({
     return () => cancelAnimationFrame(frame);
   }, [canCount, isInView, numericValue, precision, reduceMotion]);
 
-  const visibleCount = reduceMotion && isInView ? numericValue : count;
   const displayValue = canCount
-    ? `${prefix}${visibleCount.toLocaleString("en-US", {
+    ? `${prefix}${count.toLocaleString("en-US", {
         maximumFractionDigits: precision,
         minimumFractionDigits: precision,
       })}${suffix}`
@@ -283,263 +184,262 @@ function DynamicFigureCircle({
   return (
     <motion.article
       ref={ref}
-      initial={{ opacity: 0, y: 22 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.45, delay: index * 0.035 }}
-      className="group relative flex flex-col items-center text-center"
+      transition={{ duration: 0.6, delay: index * 0.04, ease: "easeOut" }}
+      className="group flex flex-col items-center text-center"
     >
-      <div className="relative flex h-44 w-44 items-center justify-center rounded-full border border-[#0087cb]/30 bg-[#0a0f29] shadow-[0_0_40px_rgba(0,135,203,0.12)] transition duration-500 group-hover:-translate-y-1 group-hover:border-[#43becc]/70 group-hover:shadow-[0_0_60px_rgba(0,135,203,0.22)]">
-        <motion.div
-          className="absolute inset-3 rounded-full border border-dashed border-white/10"
-          animate={reduceMotion ? undefined : { rotate: 360 }}
-          transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-        />
-        <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_130deg,#0087cb,rgba(67,190,204,0.1),#8e257a,#0087cb)] opacity-70 blur-[1px]" />
+      <div className="relative flex h-44 w-44 items-center justify-center rounded-full border border-[#0087cb]/40 bg-[#0a0f29] shadow-[0_0_46px_rgba(0,135,203,0.14)] transition duration-500 group-hover:-translate-y-1 group-hover:border-[#43becc]/80">
+        <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_160deg,#0087cb,#43becc33,#8e257a,#0087cb)] opacity-75" />
         <div className="absolute inset-[3px] rounded-full bg-[#121b43]" />
-        <div className="absolute inset-8 rounded-full border border-white/10 bg-[#0a0f29]" />
-        <span className="relative z-10 max-w-[130px] text-center text-3xl font-black uppercase leading-none tracking-tight text-white">
+        <div className="absolute inset-5 rounded-full border border-dashed border-white/12" />
+        <div className="absolute inset-9 rounded-full bg-[#0a0f29]" />
+        <span className="relative z-10 max-w-[132px] text-3xl font-black uppercase leading-none tracking-tight text-white">
           {displayValue}
         </span>
       </div>
-
-      <div className="mt-5 max-w-[280px]">
-        <h4 className="text-sm font-black uppercase leading-tight tracking-wider text-[#43becc]">
-          {figure.label}
-        </h4>
-        <p className="mt-3 text-sm leading-relaxed text-zinc-400">
-          {figure.description}
-        </p>
-      </div>
+      <h3 className="mt-5 max-w-[280px] text-sm font-black uppercase leading-tight tracking-wider text-[#43becc]">
+        {figure.label}
+      </h3>
+      <p className="mt-3 max-w-[300px] text-sm leading-relaxed text-zinc-400">
+        {figure.description}
+      </p>
     </motion.article>
   );
 }
 
-function FiguresGrid({ content }: { content: ProjectsInvestmentContent }) {
+function SectionKicker({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <h3 className="mb-8 text-center text-2xl font-black uppercase tracking-tight text-white md:text-4xl">
-        {content.hub.figuresTitle}
-      </h3>
-      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {content.hub.figures.map((figure, index) => (
-          <DynamicFigureCircle
-            key={figure.label}
-            figure={figure}
-            index={index}
-          />
-        ))}
-      </div>
+    <div className="mb-4 flex items-center gap-4">
+      <span className="h-px w-12 bg-[#0087cb]" />
+      <p className="text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
+        {children}
+      </p>
     </div>
   );
 }
 
-function BusinessUnits({ content }: { content: ProjectsInvestmentContent }) {
-  return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {content.businessUnits.units.map((unit, index) => (
-        <motion.article
-          key={unit.title}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={fadeUp}
-          transition={{ duration: 0.45, delay: index * 0.04 }}
-          className="group relative overflow-hidden border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-1 hover:border-[#0087cb]/45 hover:bg-white/[0.05]"
-        >
-          <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#0087cb] transition-transform duration-500 group-hover:scale-x-100" />
-          <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center border border-[#0087cb]/35 bg-[#0a0f29] text-[#43becc]">
-              {index % 3 === 0 ? (
-                <Wrench size={18} />
-              ) : index % 3 === 1 ? (
-                <Factory size={18} />
-              ) : (
-                <Building2 size={18} />
-              )}
-            </div>
-            <h3 className="text-base font-black uppercase leading-tight text-white">
-              {unit.title}
-            </h3>
-          </div>
-          <p className="text-sm leading-relaxed text-zinc-400">
-            {unit.description}
-          </p>
-        </motion.article>
-      ))}
-    </div>
-  );
-}
-
-function TimelineList({ content }: { content: ProjectsInvestmentContent }) {
-  return (
-    <div className="space-y-3">
-      {content.timeline.items.map((item, index) => (
-        <motion.div
-          key={item}
-          whileHover={{ x: 4 }}
-          className="group flex items-center gap-4 border border-white/10 bg-[#121b43] p-4 transition hover:border-[#0087cb]/45 hover:bg-[#0f1738]"
-        >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#0087cb] text-xs font-black text-black transition-transform group-hover:scale-105">
-            {index + 1}
-          </span>
-          <span className="text-sm font-bold text-zinc-300">{item}</span>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-export default function ProjectsInvestmentPage({ content, locale }: Props) {
+function AutoHubPage({ content, locale }: Props) {
   const isAr = locale === "ar";
+  const units = content.businessUnits.units.slice(0, 6);
 
   return (
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
+      className={`min-h-screen bg-[#0a0f29] pt-24 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
     >
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+      <section className="relative flex min-h-[calc(100vh-6rem)] items-end overflow-hidden px-6 pb-16 pt-24 md:px-12 lg:px-20">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+        <div className="absolute inset-0 bg-[#0a0f29]/76" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,#0a0f29_0%,rgba(10,15,41,0.72)_52%,rgba(10,15,41,0.42)_100%)]" />
+
+        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
           <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: "easeOut" }}
           >
-            <SectionKicker>{content.hero.kicker}</SectionKicker>
-            <h1 className="max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
-              {content.hero.title}
-            </h1>
-          </motion.div>
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeUp}
-            transition={{ duration: 0.6, delay: 0.12 }}
-            className="relative border border-white/10 border-l-[#0087cb] bg-[#121b43]/75 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8"
-          >
-            <div className="absolute right-0 top-0 h-8 w-8 border-r border-t border-[#0087cb]/70" />
-            <p className="text-lg font-semibold leading-relaxed text-[#43becc]">
-              {content.hero.description}
+            <p className="mb-5 text-xs font-black uppercase tracking-[0.34em] text-[#43becc]">
+              The Auto Hub
             </p>
+            <h1 className="max-w-5xl text-5xl font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
+              The Auto Hub
+            </h1>
+            <p className="mt-7 max-w-3xl text-lg font-semibold leading-relaxed text-zinc-200 md:text-xl">
+              {content.hub.title}
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: "easeOut" }}
+            className="border border-white/10 bg-[#121b43]/78 p-6 backdrop-blur-md md:p-8"
+          >
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#43becc]">
+                  {content.hub.statusLabel}
+                </p>
+                <p className="mt-3 text-base font-black leading-snug text-white">
+                  {content.hub.status}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.28em] text-[#43becc]">
+                  {content.hub.locationLabel}
+                </p>
+                <p className="mt-3 text-base font-black leading-snug text-white">
+                  {content.hub.location}
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <IndustrialVisual label={content.hero.kicker} mode="pipeline" />
-          <div>
+      <section className="relative border-y border-white/10 bg-[#121b43]/70 px-6 py-20 md:px-12 lg:px-20">
+        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
+        <div className="relative mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="mx-auto mb-14 max-w-4xl text-center"
+          >
             <SectionKicker>{content.hub.kicker}</SectionKicker>
             <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.hub.title}
+              The Auto Hub - Key Project Figures
             </h2>
-            <div className="mt-7 space-y-4 text-base leading-relaxed text-zinc-400">
-              {content.hub.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+          </motion.div>
 
-            <div className="mt-9 space-y-8">
-              <KeyInfo content={content} />
-              <FiguresGrid content={content} />
-            </div>
-
-            <Link
-              href={`/${locale}/case-study/automotive-hub`}
-              className="mt-9 inline-flex items-center gap-3 bg-[#0087cb] px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
-            >
-              {content.hub.infoTitle}
-              <ArrowUpRight size={16} />
-            </Link>
+          <div className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+            {autoHubFigures.map((figure, index) => (
+              <DynamicFigureCircle key={figure.label} figure={figure} index={index} />
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="relative py-20">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div>
+      <section className="px-6 py-20 md:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             <SectionKicker>{content.businessUnits.kicker}</SectionKicker>
             <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
               {content.businessUnits.title}
             </h2>
-            <p className="mt-7 text-base leading-relaxed text-zinc-400">
+            <p className="mt-6 text-base leading-relaxed text-zinc-400">
               {content.businessUnits.description}
             </p>
-
-            <div className="mt-9">
-              <BusinessUnits content={content} />
-            </div>
-          </div>
-
-          <IndustrialVisual label={content.businessUnits.kicker} mode="hub" />
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-[#121b43]/70 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <IndustrialVisual label={content.market.kicker} mode="position" />
-          <div>
-            <SectionKicker>{content.market.kicker}</SectionKicker>
-            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.market.title}
-            </h2>
-            <p className="mt-7 text-base leading-relaxed text-zinc-400">
-              {content.market.description}
-            </p>
-
-            <div className="mt-10 grid gap-8 md:grid-cols-[0.95fr_1.05fr]">
-              <div>
-                <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-white">
-                  {content.timeline.title}
-                </h3>
-                <TimelineList content={content} />
+            <div className="mt-8 border border-white/10 bg-white/[0.03] p-6">
+              <div className="mb-4 flex items-center gap-3 text-[#43becc]">
+                <BrainCircuit size={20} />
+                <span className="text-xs font-black uppercase tracking-[0.24em]">
+                  Market Innovation
+                </span>
               </div>
-              <div className="relative border border-white/10 bg-white/[0.03] p-6">
-                <div className="absolute left-0 top-0 h-full w-px bg-[#0087cb]/50" />
-                <h3 className="mb-4 text-sm font-black uppercase tracking-widest text-white">
-                  {content.closing.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-zinc-400">
-                  {content.closing.description}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="group relative mx-auto max-w-7xl overflow-hidden border border-[#0087cb]/30 bg-[#0087cb]/10 p-8 transition-colors hover:border-[#43becc]/70 md:p-12">
-          <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#43becc] transition-transform duration-700 group-hover:scale-x-100" />
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-                {content.partner.title}
-              </h2>
-              <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-300">
-                {content.partner.description}
+              <p className="text-sm leading-relaxed text-zinc-300">
+                First service center in Egypt & MENA region featuring real-time Battery Electric Vehicle (BEV) diagnostics powered by AI and Machine Learning.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center gap-3 bg-white px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#0087cb]"
+          </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {units.map((unit, index) => {
+              const Icon = index % 3 === 0 ? Wrench : index % 3 === 1 ? Factory : Building2;
+              return (
+                <motion.article
+                  key={unit.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{ duration: 0.55, delay: index * 0.04, ease: "easeOut" }}
+                  className="border border-white/10 bg-[#121b43] p-6"
+                >
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center bg-[#0a0f29] text-[#43becc]">
+                    <Icon size={20} />
+                  </div>
+                  <h3 className="text-base font-black uppercase leading-tight text-white">
+                    {unit.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                    {unit.description}
+                  </p>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-white/10 bg-[#121b43]/70 px-6 py-20 md:px-12 lg:px-20">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <SectionKicker>Project Media</SectionKicker>
+            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
+              Auto Hub Reference Material
+            </h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
+              The shared Drive assets are linked here for the Auto Hub media and project reference folder.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="https://drive.google.com/file/d/1e7T2TA76wLQKuOrvo1YQPdBcGADgrOqz/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-white px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#43becc]"
               >
-                {content.partner.ctaLabel}
+                Open Video
                 <ArrowUpRight size={16} />
-              </Link>
-              <Link
-                href={`/${locale}/contact`}
-                className="inline-flex items-center gap-3 border border-white/15 px-6 py-4 text-xs font-black uppercase tracking-widest text-white transition hover:border-[#0087cb]"
+              </a>
+              <a
+                href={projectFolderUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 border border-white/15 px-6 py-4 text-xs font-black uppercase tracking-widest text-white transition hover:border-[#43becc] hover:text-[#43becc]"
               >
-                {content.closing.ctaLabel}
+                Open Folder
                 <ArrowUpRight size={16} />
-              </Link>
+              </a>
+            </div>
+          </div>
+
+          <div className="overflow-hidden border border-white/10 bg-[#0a0f29]">
+            <iframe
+              src={projectVideoUrl}
+              className="aspect-video w-full"
+              allow="autoplay"
+              title="The Auto Hub project video"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="px-6 py-20 md:px-12 lg:px-20">
+        <div className="mx-auto max-w-7xl border border-[#0087cb]/30 bg-[#0087cb]/10 p-8 md:p-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <div className="mb-4 flex items-center gap-3 text-[#43becc]">
+                <Gauge size={20} />
+                <span className="text-xs font-black uppercase tracking-[0.24em]">
+                  {content.market.kicker}
+                </span>
+              </div>
+              <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
+                {content.market.title}
+              </h2>
+              <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-300">
+                {content.market.description}
+              </p>
+            </div>
+            <div className="grid gap-3">
+              {content.timeline.items.map((item, index) => (
+                <div key={item} className="flex items-center gap-4 border border-white/10 bg-[#0a0f29] p-4">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-[#0087cb] text-xs font-black text-black">
+                    {index + 1}
+                  </div>
+                  <div className="flex items-center gap-3 text-sm font-bold text-zinc-300">
+                    <Clock3 size={15} className="text-[#43becc]" />
+                    {item}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -548,110 +448,10 @@ export default function ProjectsInvestmentPage({ content, locale }: Props) {
   );
 }
 
+export default function ProjectsInvestmentPage({ content, locale }: Props) {
+  return <AutoHubPage content={content} locale={locale} />;
+}
+
 export function ProjectsInvestmentDetailPage({ content, locale }: Props) {
-  const isAr = locale === "ar";
-
-  return (
-    <main
-      dir={isAr ? "rtl" : "ltr"}
-      lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
-    >
-      <section className="relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
-        <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-          <div>
-            <Link
-              href={`/${locale}/case-study`}
-              className="mb-8 inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-[#0087cb] transition hover:text-white"
-            >
-              <ArrowUpRight size={15} className="rotate-180" />
-              {content.hero.kicker}
-            </Link>
-            <SectionKicker>{content.hub.kicker}</SectionKicker>
-            <h1 className="max-w-4xl text-4xl font-black uppercase leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
-              {content.hub.title}
-            </h1>
-          </div>
-          <div className="relative border border-white/10 border-l-[#0087cb] bg-[#121b43]/75 p-6 shadow-[inset_4px_0_0_#0087cb] md:p-8">
-            <div className="absolute right-0 top-0 h-8 w-8 border-r border-t border-[#0087cb]/70" />
-            <div className="space-y-4 text-base leading-relaxed text-zinc-400">
-              {content.hub.paragraphs.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-[#121b43]/65 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <IndustrialVisual label={content.hub.kicker} mode="hub" />
-          <div className="space-y-10">
-            <div>
-              <SectionKicker>{content.hub.infoTitle}</SectionKicker>
-              <KeyInfo content={content} />
-            </div>
-            <FiguresGrid content={content} />
-          </div>
-        </div>
-      </section>
-
-      <section className="relative py-20">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        <div className="mx-auto max-w-7xl px-6">
-          <SectionKicker>{content.businessUnits.kicker}</SectionKicker>
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-            <div>
-              <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-                {content.businessUnits.title}
-              </h2>
-              <p className="mt-7 text-base leading-relaxed text-zinc-400">
-                {content.businessUnits.description}
-              </p>
-            </div>
-            <BusinessUnits content={content} />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-white/10 bg-[#121b43]/70 py-20">
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2">
-          <div>
-            <SectionKicker>{content.market.kicker}</SectionKicker>
-            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.market.title}
-            </h2>
-            <p className="mt-7 text-base leading-relaxed text-zinc-400">
-              {content.market.description}
-            </p>
-          </div>
-          <div>
-            <SectionKicker>{content.timeline.title}</SectionKicker>
-            <TimelineList content={content} />
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20">
-        <div className="group relative mx-auto max-w-7xl overflow-hidden border border-[#0087cb]/30 bg-[#0087cb]/10 p-8 transition-colors hover:border-[#43becc]/70 md:p-12">
-          <div className="absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[#43becc] transition-transform duration-700 group-hover:scale-x-100" />
-          <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-            {content.partner.title}
-          </h2>
-          <p className="mt-5 max-w-3xl text-base leading-relaxed text-zinc-300">
-            {content.partner.description}
-          </p>
-          <Link
-            href={`/${locale}/contact`}
-            className="mt-8 inline-flex items-center gap-3 bg-white px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#0087cb]"
-          >
-            {content.partner.ctaLabel}
-            <ArrowUpRight size={16} />
-          </Link>
-        </div>
-      </section>
-    </main>
-  );
+  return <AutoHubPage content={content} locale={locale} />;
 }
