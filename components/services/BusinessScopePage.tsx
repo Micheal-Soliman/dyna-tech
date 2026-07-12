@@ -97,7 +97,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
       lang={locale}
       className={`min-h-screen bg-[#080d20] text-white ${isAr ? "font-cairo" : ""}`}
     >
-      <section className="relative flex min-h-screen items-end overflow-hidden px-6 pb-14 pt-32 md:px-12 lg:px-20">
+      <section className="relative flex min-h-[760px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-screen md:px-12 lg:px-20">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/hero.mp4"
@@ -121,7 +121,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
             <p className="mb-5 text-xs font-black uppercase tracking-[0.34em] text-[#43becc]">
               {content.hero.kicker}
             </p>
-            <h1 className="text-5xl font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
+            <h1 className="text-[clamp(3rem,14vw,4.8rem)] font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
               {content.hero.title}
             </h1>
           </motion.div>
@@ -131,7 +131,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
             animate="show"
             variants={reveal}
             transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.12 }}
-            className="max-w-2xl border border-white/12 bg-[#0a0f29]/70 p-6 backdrop-blur-md md:p-8"
+            className="max-w-2xl border border-white/12 bg-[#0a0f29]/70 p-5 backdrop-blur-md md:p-8"
           >
             <p className="text-lg font-semibold leading-relaxed text-white md:text-xl">
               {content.hero.intro}
@@ -143,7 +143,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
         </div>
       </section>
 
-      <section className="relative border-t border-white/10 bg-[#080d20] px-6 py-20 md:px-12 lg:px-20">
+      <section className="relative border-t border-white/10 bg-[#080d20] px-5 py-16 sm:px-6 md:px-12 md:py-20 lg:px-20">
         <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="relative mx-auto max-w-7xl">
           <motion.div
@@ -180,17 +180,17 @@ export default function BusinessScopePage({ content, locale }: Props) {
                 >
                   <Link
                     href={href}
-                    className="group relative block min-h-[360px] overflow-hidden border border-white/10 bg-[#111936] p-7 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 hover:bg-[#121b43] md:p-9"
+                    className="group relative block min-h-[340px] overflow-hidden border border-white/10 bg-[#111936] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 hover:bg-[#121b43] sm:p-7 md:min-h-[360px] md:p-9"
                   >
                     <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:44px_44px]" />
                     <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#0087cb]/20 blur-3xl transition duration-500 group-hover:bg-[#43becc]/25" />
                     <div className="relative z-10 flex h-full flex-col">
-                      <div className="flex items-start justify-between gap-6">
+                      <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                         <div>
                           <span className="font-mono text-xs tracking-[0.3em] text-[#43becc]">
                             0{index + 1}
                           </span>
-                          <h3 className="mt-5 text-4xl font-black uppercase tracking-tight md:text-5xl">
+                          <h3 className="mt-4 text-3xl font-black uppercase tracking-tight md:mt-5 md:text-5xl">
                             {card.name}
                           </h3>
                         </div>

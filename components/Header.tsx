@@ -56,9 +56,9 @@ export function Header() {
             : "bg-transparent py-8"
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-8 px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:gap-8">
           <Link href={`/${currentLocale}`} className="group relative flex shrink-0 items-center">
-            <div className="h-16 w-[80px] md:h-[84px] md:w-[150px]">
+            <div className="h-12 w-[118px] sm:h-14 sm:w-[138px] md:h-[84px] md:w-[150px]">
               <Image
                 src="/logo-cropped.png"
                 alt="DYNATECH"
@@ -133,7 +133,7 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: isAr ? "100%" : "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className={`fixed bottom-0 top-0 z-[120] flex w-[80%] max-w-[320px] flex-col border-white/10 bg-black shadow-2xl lg:hidden ${
+              className={`fixed bottom-0 top-0 z-[120] flex w-[86%] max-w-[340px] flex-col border-white/10 bg-black shadow-2xl lg:hidden ${
                 isAr ? "right-0 border-l" : "left-0 border-r"
               }`}
             >
@@ -144,7 +144,7 @@ export function Header() {
                 </button>
               </div>
 
-              <nav className="flex-1 space-y-6 overflow-y-auto p-8">
+              <nav className="flex-1 space-y-5 overflow-y-auto p-7">
                 {navItems.map((item) => {
                   const isActive = isNavActive(item.href);
                   return (
@@ -152,7 +152,7 @@ export function Header() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMenuOpenPathname(null)}
-                      className={`block text-2xl font-black uppercase tracking-tighter transition-all ${
+                      className={`block text-xl font-black uppercase tracking-tighter transition-all sm:text-2xl ${
                         isActive ? "translate-x-2 text-[#0087cb]" : "text-zinc-500 hover:text-white"
                       }`}
                     >

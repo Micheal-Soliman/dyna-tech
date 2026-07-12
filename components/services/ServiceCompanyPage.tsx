@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon } from "lucide-react";
 
@@ -42,13 +43,73 @@ function accentFor(id: string) {
   return id === "fft" ? "#0087cb" : "#43becc";
 }
 
-function galleryItems(id: string) {
+type GalleryItem = {
+  label: string;
+  src?: string;
+  poster?: string;
+  type?: "image" | "video";
+};
+
+function galleryItems(id: string): GalleryItem[] {
+  if (id === "fft") {
+    return [
+      {
+        label: "FFT Technology",
+        src: "/fft/FFT/IMG-20260623-WA0015.jpg",
+        type: "image",
+      },
+      {
+        label: "FFT Partnership",
+        src: "/fft/FFT/IMG-20260623-WA0013.jpg",
+        type: "image",
+      },
+      {
+        label: "FFT Site Visit",
+        src: "/fft/FFT/IMG-20260623-WA0010.jpg",
+        type: "image",
+      },
+      {
+        label: "FFT Facilities",
+        src: "/fft/FFT/IMG-20260623-WA0009.jpg",
+        type: "image",
+      },
+      {
+        label: "FFT Video",
+        src: "/fft/FFT/VID-20260624-WA0031.mp4",
+        poster: "/fft/FFT/IMG-20260623-WA0015.jpg",
+        type: "video",
+      },
+      {
+        label: "FFT Walkthrough",
+        src: "/fft/FFT/VID-20260623-WA0008.mp4",
+        poster: "/fft/FFT/IMG-20260623-WA0013.jpg",
+        type: "video",
+      },
+    ];
+  }
+
+  if (id === "cu") {
+    return [
+      {
+        label: "CU Lightweight Technology",
+        src: "/cu/IMG-20260622-WA0005.jpg",
+        type: "image",
+      },
+      {
+        label: "CU Partnership Video",
+        src: "/cu/VID-20260624-WA0032.mp4",
+        poster: "/cu/IMG-20260622-WA0005.jpg",
+        type: "video",
+      },
+    ];
+  }
+
   const label = id === "fft" ? "FFT" : "CU";
 
   return [
-    `${label} Technology`,
-    `${label} Partnership`,
-    `${label} Gallery`,
+    { label: `${label} Technology` },
+    { label: `${label} Partnership` },
+    { label: `${label} Gallery` },
   ];
 }
 
@@ -119,15 +180,26 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
       style={{ ["--accent" as string]: accent }}
     >
       <section className="relative flex min-h-[calc(100vh-6rem)] items-end overflow-hidden px-6 pb-16 pt-20 md:px-12 lg:px-20">
-        <video
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
-          src="/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-        />
+        {partner.id === "fft" || partner.id === "cu" ? (
+          <Image
+            src={partner.id === "fft" ? "/fft/main.jpeg" : "/cu/IMG-20260622-WA0005.jpg"}
+            alt={partner.id === "fft" ? "FFT main visual" : "CU main visual"}
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 object-cover opacity-45"
+          />
+        ) : (
+          <video
+            className="absolute inset-0 h-full w-full object-cover opacity-35"
+            src="/hero.mp4"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        )}
         <div className="absolute inset-0 bg-[#080d20]/80" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.76)_54%,rgba(8,13,32,0.46)_100%)]" />
 
@@ -266,7 +338,7 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
         <div className="grid gap-4 md:grid-cols-3">
           {galleryItems(partner.id).map((item, index) => (
             <motion.div
-              key={item}
+              key={item.label}
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.22 }}
@@ -274,16 +346,40 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
               transition={{ ...revealTransition, delay: reduceMotion ? 0 : index * 0.07 }}
               className="group relative aspect-[4/3] overflow-hidden border border-white/10 bg-[#111936]"
             >
-              <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:38px_38px]" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ImageIcon size={34} className="text-white/30 transition group-hover:text-white/60" />
-              </div>
+              {item.src && item.type === "image" ? (
+                <Image
+                  src={item.src}
+                  alt={item.label}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+              ) : item.src && item.type === "video" ? (
+                <video
+                  src={item.src}
+                  poster={item.poster}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  controls
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:38px_38px]" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <ImageIcon size={34} className="text-white/30 transition group-hover:text-white/60" />
+                  </div>
+                </>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#080d20]/90 via-[#080d20]/10 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#080d20]/82 p-5 backdrop-blur">
                 <span className="text-xs font-black uppercase tracking-[0.22em]" style={{ color: accent }}>
                   0{index + 1}
                 </span>
                 <p className="mt-2 text-sm font-black uppercase tracking-wide text-white">
-                  {item}
+                  {item.label}
                 </p>
               </div>
             </motion.div>

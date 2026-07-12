@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type HeroSectionProps = {
   locale: string;
@@ -43,7 +43,7 @@ type HeroSectionProps = {
 
 function InfoCard({ title, lines }: { title: string; lines: string[] }) {
   return (
-    <div className="min-w-0 rounded-md border border-white/15 bg-[#0a0f29]/35 px-3 py-2 text-left shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:min-w-[226px] sm:px-4 sm:py-3">
+    <div className="min-w-0 max-w-full rounded-md border border-white/15 bg-[#0a0f29]/35 px-3 py-2 text-left shadow-[0_18px_50px_rgba(0,0,0,0.35)] backdrop-blur-md sm:min-w-[226px] sm:px-4 sm:py-3">
       <p className="mb-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#43becc] sm:mb-2 sm:text-[11px]">
         {title}
       </p>
@@ -72,10 +72,33 @@ export function HeroSection({
   contactLabel,
   contactEmail,
   copyrightText,
-  privacyPolicyLabel,
 }: HeroSectionProps) {
+  const reduceMotion = useReducedMotion();
+  const heroContainer = reduceMotion
+    ? { hidden: {}, show: {} }
+    : {
+        hidden: {},
+        show: {
+          transition: {
+            staggerChildren: 0.08,
+          },
+        },
+      };
+  const heroItem = reduceMotion
+    ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
+    : {
+        hidden: { opacity: 0, y: 18 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.58, ease: "easeOut" as const },
+        },
+      };
+  const mobileHeadlineLine1 = headlineLine1.replace(/\sforce\s/i, "\nForce ");
+  const mobileHeadlineLine2 = headlineLine2.replace(/\sindustry/i, "\nIndustry");
+
   return (
-    <section dir={isAr ? "rtl" : "ltr"} className="relative h-screen min-h-[620px] overflow-hidden bg-[#0a0f29] font-['Montserrat',sans-serif] text-white [height:100svh]">
+    <section dir={isAr ? "rtl" : "ltr"} className="relative h-screen min-h-[680px] overflow-hidden bg-[#0a0f29] font-['Montserrat',sans-serif] text-white [height:100svh] md:min-h-[620px]">
       <div className="absolute inset-0">
         <video
           className="h-full w-full object-cover object-center"
@@ -98,12 +121,15 @@ export function HeroSection({
 
       <div className="relative z-10 flex h-full flex-col px-4 pb-4 pt-20 sm:px-6 md:px-9 md:pb-7 md:pt-24">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          initial="hidden"
+          animate="show"
+          variants={heroContainer}
           className="mx-auto flex flex-1 flex-col items-center justify-center text-center"
         >
-          <div className="relative mb-4 h-[70px] w-[270px] max-w-[72vw] sm:mb-5 md:h-[94px] md:w-[360px] xl:h-[106px] xl:w-[410px]">
+          <motion.div
+            variants={heroItem}
+            className="relative mb-4 h-[64px] w-[245px] max-w-[72vw] sm:mb-5 sm:h-[70px] sm:w-[270px] md:h-[94px] md:w-[360px] xl:h-[106px] xl:w-[410px]"
+          >
             <Image
               src="/logo-cropped.png"
               alt={logoAlt}
@@ -112,19 +138,34 @@ export function HeroSection({
               sizes="420px"
               className="object-contain"
             />
-          </div>
+          </motion.div>
 
-          <h1 className="max-w-4xl text-[clamp(1.3rem,3.45vw,3.55rem)] font-[1000] uppercase italic leading-[1.05] tracking-[0.04em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)]">
-            {headlineLine1}
+          <motion.h1
+            variants={heroItem}
+            className="max-w-[86vw] text-[clamp(1.05rem,5.4vw,3.55rem)] font-[1000] uppercase italic leading-[1.14] tracking-[0.01em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)] lg:max-w-4xl lg:text-[clamp(1.3rem,3.45vw,3.55rem)] lg:leading-[1.05] lg:tracking-[0.04em]"
+          >
+            <span className="whitespace-pre-line lg:hidden">
+              {mobileHeadlineLine1}
+            </span>
+            <span className="hidden lg:inline">{headlineLine1}</span>
             <br />
-            <span className="text-[#43becc]">{headlineLine2}</span>
-          </h1>
+            <span className="whitespace-pre-line text-[#43becc] lg:hidden">
+              {mobileHeadlineLine2}
+            </span>
+            <span className="hidden text-[#43becc] lg:inline">{headlineLine2}</span>
+          </motion.h1>
 
-          <div className="mt-5 text-[10px] font-black uppercase tracking-[0.38em] text-white/55 md:mt-7 md:text-[11px]">
+          <motion.div
+            variants={heroItem}
+            className="mt-5 text-[10px] font-black uppercase tracking-[0.38em] text-white/55 md:mt-7 md:text-[11px]"
+          >
             {strategicPartnersLabel}
-          </div>
+          </motion.div>
 
-          <div className="mt-3 flex items-center justify-center gap-6 md:mt-4 md:gap-10">
+          <motion.div
+            variants={heroItem}
+            className="mt-3 flex items-center justify-center gap-6 md:mt-4 md:gap-10"
+          >
             <div className="text-[clamp(2.1rem,4vw,3.8rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
               FFT
             </div>
@@ -141,19 +182,26 @@ export function HeroSection({
                 United
               </span>
             </div>
-          </div>
+          </motion.div>
 
-          <Link
-            href={`/${locale}/services`}
-            className="pointer-events-auto mt-4 border-b border-[#43becc]/45 pb-1 text-[10px] font-black uppercase tracking-[0.32em] text-[#43becc] transition hover:border-white hover:text-white md:mt-5 md:text-[11px]"
-          >
-            {knowMoreLabel}
-          </Link>
+          <motion.div variants={heroItem}>
+            <Link
+              href={`/${locale}/services`}
+              className="pointer-events-auto mt-4 border-b border-[#43becc]/45 pb-1 text-[10px] font-black uppercase tracking-[0.32em] text-[#43becc] transition hover:border-white hover:text-white md:mt-5 md:text-[11px]"
+            >
+              {knowMoreLabel}
+            </Link>
+          </motion.div>
         </motion.div>
 
-        <div className="relative z-20 grid gap-3 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5">
+        <motion.div
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, delay: 0.45, ease: "easeOut" }}
+          className="relative z-20 grid gap-3 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
+        >
           <div>
-            <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
+            <div className="grid grid-cols-1 gap-2 sm:flex sm:gap-3">
               <InfoCard
                 title={headOfficeTitle}
                 lines={headOfficeLines}
@@ -184,7 +232,7 @@ export function HeroSection({
           >
             Knowledge
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

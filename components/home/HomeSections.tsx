@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import type { HomeContent } from "@/components/home/types";
 import { HeroSection } from "@/components/home/HeroSection";
 import { StatsSection } from "@/components/home/StatsSection";
@@ -14,12 +13,6 @@ type HomeSectionsProps = {
 };
 
 export function HomeSections({ locale, isAr, home, primaryCtaHref, secondaryCtaHref }: HomeSectionsProps) {
-  const reduceMotion = useReducedMotion();
-  const reveal = reduceMotion
-    ? { opacity: 1, y: 0 }
-    : { opacity: 1, y: 0 };
-  const hidden = reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 };
-
   return (
     <section className="relative bg-[#0a0f29]">
       <HeroSection
@@ -57,20 +50,13 @@ export function HomeSections({ locale, isAr, home, primaryCtaHref, secondaryCtaH
         ceoSubtitle={home.hero.ceoSubtitle}
       />
 
-      <motion.div
-        initial={hidden}
-        whileInView={reveal}
-        viewport={{ once: true, amount: 0.18 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <StatsSection
-          title={home.statsTitle}
-          kicker={home.statsKicker}
-          stats={home.stats}
-          isAr={isAr}
-          animateOnScroll={false}
-        />
-      </motion.div>
+      <StatsSection
+        title={home.statsTitle}
+        kicker={home.statsKicker}
+        stats={home.stats}
+        isAr={isAr}
+        animateOnScroll={false}
+      />
     </section>
   );
 }

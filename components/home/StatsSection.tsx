@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import type { StatItem } from "@/components/home/types";
 
 function parseStatValue(raw: string) {
@@ -26,36 +26,16 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
   const isInViewOnce = useInView(ref, { once: true, margin: "-100px" });
   const reduceMotion = useReducedMotion();
   const { numericValue, prefix, suffix, precision } = parseStatValue(value);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    if (isInViewOnce) {
-      if (reduceMotion) {
-        setCount(numericValue);
-        return;
-      }
-
-      const duration = 850;
-      const startTime = performance.now();
-      let raf = 0;
-
-      const tick = (now: number) => {
-        const t = Math.min((now - startTime) / duration, 1);
-        const next = numericValue * t;
-        const rounded = Number(next.toFixed(precision));
-        setCount(rounded);
-        if (t < 1) raf = requestAnimationFrame(tick);
-      };
-
-      raf = requestAnimationFrame(tick);
-      return () => cancelAnimationFrame(raf);
-    }
-  }, [isInViewOnce, numericValue, precision, reduceMotion]);
-
-  const progress = numericValue > 0 ? Math.min(count / numericValue, 1) : 0;
+  const displayValue = numericValue.toFixed(precision);
 
   return (
-    <div ref={ref} className="relative mx-auto flex h-56 w-56 flex-col items-center justify-center group md:h-60 md:w-60 lg:h-64 lg:w-64">
+    <motion.div
+      ref={ref}
+      initial={reduceMotion ? false : { opacity: 0, y: 22 }}
+      animate={isInViewOnce ? { opacity: 1, y: 0 } : undefined}
+      transition={{ duration: 0.48, ease: "easeOut" }}
+      className="relative mx-auto flex h-56 w-56 flex-col items-center justify-center group md:h-60 md:w-60 lg:h-64 lg:w-64"
+    >
       
       <motion.div
         initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
@@ -76,8 +56,8 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
           strokeWidth="2"
           strokeDasharray="100 100"
           initial={{ strokeDashoffset: 100 }}
-          animate={isInViewOnce ? { strokeDashoffset: 100 - progress * 100 } : {}}
-          transition={{ duration: 0.9, ease: "easeOut" }}
+          animate={isInViewOnce ? { strokeDashoffset: 0 } : {}}
+          transition={{ duration: 0.65, ease: "easeOut" }}
         />
 
         <motion.circle
@@ -93,8 +73,9 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
         <motion.div 
-          initial={{ opacity: 0, scale: 0.5 }}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.92 }}
           animate={isInViewOnce ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 0.42, ease: "easeOut" }}
           className="relative"
         >
 
@@ -104,7 +85,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
             className="text-4xl md:text-5xl font-black text-white tracking-tight"
           >
             {prefix && <span className="text-[#0087cb]">{prefix}</span>}
-            {count.toFixed(precision)}
+            {displayValue}
             <span className="text-base md:text-xl font-bold text-[#0087cb]">{suffix}</span>
           </span>
         </motion.div>
@@ -121,7 +102,7 @@ function NexusCircle({ value, label }: { value: string; label: string }) {
         </motion.div>
       </div>
 
-    </div>
+    </motion.div>
   );
 }
 

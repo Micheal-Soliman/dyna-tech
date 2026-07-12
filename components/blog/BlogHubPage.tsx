@@ -54,13 +54,21 @@ function CategoryIcon({ id }: { id: string }) {
 
 export default function BlogHubPage({ content, locale }: Props) {
   const isAr = locale === "ar";
-  const [activeCategory, setActiveCategory] = useState(content.categories[0]?.id);
-  const activeArticles = content.articles.filter(
+  const techInfoArticles = content.articles.filter(
+    (article) => article.slug === "tech-info-fft-dynatech-egypt",
+  );
+  const visibleCategories = content.categories.filter((category) =>
+    techInfoArticles.some((article) => article.category === category.id),
+  );
+  const [activeCategory, setActiveCategory] = useState(
+    visibleCategories[0]?.id ?? "tech-info",
+  );
+  const activeArticles = techInfoArticles.filter(
     (article) => article.category === activeCategory,
   );
   const activeCategoryLabel =
-    content.categories.find((category) => category.id === activeCategory)?.label ??
-    content.categories[0]?.label;
+    visibleCategories.find((category) => category.id === activeCategory)?.label ??
+    visibleCategories[0]?.label;
 
   return (
     <main
@@ -113,7 +121,7 @@ export default function BlogHubPage({ content, locale }: Props) {
             </h2>
           </div>
           <div className="flex flex-wrap gap-3">
-            {content.categories.map((category) => {
+            {visibleCategories.map((category) => {
               const isActive = activeCategory === category.id;
 
               return (
@@ -137,7 +145,7 @@ export default function BlogHubPage({ content, locale }: Props) {
 
         <div className="grid gap-px border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
           {activeArticles.map((article, index) => {
-            const category = content.categories.find(
+            const category = visibleCategories.find(
               (item) => item.id === article.category,
             );
 
