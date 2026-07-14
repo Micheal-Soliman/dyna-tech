@@ -52,6 +52,17 @@ function CategoryIcon({ id }: { id: string }) {
   return <Factory size={15} />;
 }
 
+function SectionKicker({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-5 inline-flex flex-col gap-3">
+      <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">
+        {children}
+      </p>
+      <span className="h-px w-16 bg-[#0087cb]" />
+    </div>
+  );
+}
+
 export default function BlogHubPage({ content, locale }: Props) {
   const isAr = locale === "ar";
   const techInfoArticles = content.articles.filter(
@@ -87,9 +98,7 @@ export default function BlogHubPage({ content, locale }: Props) {
             variants={fadeUp}
             transition={{ duration: 0.6 }}
           >
-            <p className="mb-5 inline-flex border border-[#0087cb]/35 bg-[#0087cb]/10 px-3 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">
-              {content.hero.kicker}
-            </p>
+            <SectionKicker>{content.hero.kicker}</SectionKicker>
             <h1 className="max-w-4xl text-5xl font-black uppercase leading-[0.94] tracking-tight md:text-7xl">
               {content.hero.title}
             </h1>
@@ -113,9 +122,12 @@ export default function BlogHubPage({ content, locale }: Props) {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-8 flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div>
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.24em] text-zinc-500">
-              {content.filtersLabel}
-            </p>
+            <div className="mb-3 inline-flex flex-col gap-2">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-zinc-500">
+                {content.filtersLabel}
+              </p>
+              <span className="h-px w-14 bg-zinc-600" />
+            </div>
             <h2 className="text-3xl font-black uppercase tracking-tight text-white md:text-4xl">
               {activeCategoryLabel}
             </h2>
@@ -179,7 +191,7 @@ export default function BlogHubPage({ content, locale }: Props) {
                 </p>
 
                 <Link
-                  href={`/${locale}/knowledge/${article.slug}`}
+                  href={`/${locale}/tech-info/${article.slug}`}
                   className="absolute bottom-6 left-6 inline-flex items-center gap-3 text-xs font-black uppercase tracking-widest text-zinc-500 transition hover:text-[#43becc]"
                 >
                   {content.readMoreLabel}

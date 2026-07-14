@@ -44,9 +44,12 @@ const fadeUp = {
 
 function SectionKicker({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-4 inline-flex border border-[#0087cb]/35 bg-[#0087cb]/10 px-3 py-2 text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">
-      {children}
-    </p>
+    <div className="mb-4 inline-flex flex-col gap-3">
+      <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">
+        {children}
+      </p>
+      <span className="h-px w-16 bg-[#0087cb]" />
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon, Play } from "lucide-react";
 
 export type ServicePartnersContent = {
   partners: {
@@ -48,11 +48,18 @@ type GalleryItem = {
   src?: string;
   poster?: string;
   type?: "image" | "video";
+  featured?: boolean;
 };
 
 function galleryItems(id: string): GalleryItem[] {
   if (id === "fft") {
     return [
+      {
+        label: "FFT Partnership Signing Day",
+        src: "/fft/main.jpeg",
+        type: "image",
+        featured: true,
+      },
       {
         label: "FFT Technology",
         src: "/fft/FFT/IMG-20260623-WA0015.jpg",
@@ -161,6 +168,33 @@ function PartnerLogo({ id }: { id: string }) {
   );
 }
 
+function mediaBadge(isAr: boolean, type?: "image" | "video") {
+  if (type === "video") {
+    return isAr ? "فيديو" : "Video";
+  }
+
+  return isAr ? "صورة" : "Image";
+}
+
+function SectionKicker({
+  children,
+  color,
+  className = "mb-4",
+}: {
+  children: React.ReactNode;
+  color: string;
+  className?: string;
+}) {
+  return (
+    <div className={`inline-flex flex-col gap-3 ${className}`}>
+      <p className="text-xs font-black uppercase tracking-[0.3em]" style={{ color }}>
+        {children}
+      </p>
+      <span className="h-px w-16" style={{ backgroundColor: color }} />
+    </div>
+  );
+}
+
 export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }: Props) {
   const isAr = locale === "ar";
   const accent = accentFor(partner.id);
@@ -211,7 +245,7 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
             transition={revealTransition}
           >
             <Link
-              href={`/${locale}/services`}
+              href={`/${locale}/technology-partners`}
               className="mb-12 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-400 transition hover:text-white"
             >
               <ArrowLeft size={16} />
@@ -229,9 +263,9 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
             <div className="mb-7 flex min-h-24 w-fit items-center justify-center border border-white/10 bg-[#080d20]/70 px-5 py-4 backdrop-blur">
               <PartnerLogo id={partner.id} />
             </div>
-            <p className="mb-5 text-xs font-black uppercase tracking-[0.34em]" style={{ color: accent }}>
+            <SectionKicker color={accent} className="mb-5">
               {hero.eyebrow}
-            </p>
+            </SectionKicker>
             <h1 className="text-4xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl">
               {hero.title}
             </h1>
@@ -263,9 +297,7 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
           transition={revealTransition}
           className="border border-white/10 bg-[#111936] p-7 md:p-9"
         >
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.3em]" style={{ color: accent }}>
-            {partner.roleTitle}
-          </p>
+          <SectionKicker color={accent}>{partner.roleTitle}</SectionKicker>
           <p className="text-lg leading-relaxed text-zinc-300 md:text-xl">
             {partner.roleText}
           </p>
@@ -291,9 +323,7 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
           transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.08 }}
           className="border border-white/10 bg-[#111936] p-7 md:p-9"
         >
-          <p className="mb-4 text-xs font-black uppercase tracking-[0.3em]" style={{ color: accent }}>
-            {ecosystemColumn.label}
-          </p>
+          <SectionKicker color={accent}>{ecosystemColumn.label}</SectionKicker>
           <h2 className="text-3xl font-black uppercase tracking-tight">
             {ecosystemColumn.title}
           </h2>
@@ -317,9 +347,9 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
           className="mb-8 flex flex-wrap items-end justify-between gap-5"
         >
           <div>
-            <p className="mb-3 text-xs font-black uppercase tracking-[0.3em]" style={{ color: accent }}>
+            <SectionKicker color={accent} className="mb-3">
               Gallery
-            </p>
+            </SectionKicker>
             <h2 className="text-3xl font-black uppercase tracking-tight md:text-5xl">
               {shortLabel} Visual Gallery
             </h2>
@@ -344,7 +374,11 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
               viewport={{ once: true, amount: 0.22 }}
               variants={reveal}
               transition={{ ...revealTransition, delay: reduceMotion ? 0 : index * 0.07 }}
-              className="group relative aspect-[4/3] overflow-hidden border border-white/10 bg-[#111936]"
+              className={`group relative overflow-hidden border border-white/10 bg-[#111936] ${
+                item.featured
+                  ? "aspect-[16/10] md:col-span-2 md:row-span-2 md:min-h-[520px]"
+                  : "aspect-[4/3]"
+              }`}
             >
               {item.src && item.type === "image" ? (
                 <Image
@@ -352,19 +386,21 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
                   alt={item.label}
                   fill
                   sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-105"
+                  className="bg-[#080d20] object-contain transition duration-700 group-hover:scale-[1.02]"
                 />
               ) : item.src && item.type === "video" ? (
-                <video
-                  src={item.src}
-                  poster={item.poster}
-                  className="absolute inset-0 h-full w-full object-cover"
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  controls
-                />
+                <div className="absolute inset-0 bg-black">
+                  <video
+                    poster={item.poster}
+                    className="h-full w-full object-contain"
+                    muted
+                    playsInline
+                    preload="metadata"
+                    controls
+                  >
+                    <source src={item.src} type="video/mp4" />
+                  </video>
+                </div>
               ) : (
                 <>
                   <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:38px_38px]" />
@@ -373,8 +409,25 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
                   </div>
                 </>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080d20]/90 via-[#080d20]/10 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#080d20]/82 p-5 backdrop-blur">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d20]/88 via-[#080d20]/5 to-transparent" />
+              {item.type === "video" && (
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-black/55 text-white shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-300 group-hover:scale-105 group-hover:bg-[#0087cb]">
+                    <Play size={26} fill="currentColor" className="translate-x-0.5" />
+                  </div>
+                </div>
+              )}
+              <div className="pointer-events-none absolute right-5 top-5 border border-white/20 bg-black/70 px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white backdrop-blur-sm">
+                {mediaBadge(isAr, item.type)}
+              </div>
+              {item.featured && (
+                <div className="pointer-events-none absolute left-5 top-5 border border-white/20 bg-[#0087cb] px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-black shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                  {isAr ? "مميزة" : "Featured"}
+                </div>
+              )}
+              <div className={`pointer-events-none absolute left-0 border-t border-white/10 bg-[#080d20]/82 p-5 backdrop-blur ${
+                item.type === "video" ? "top-0 max-w-[calc(100%-7.5rem)] border-b border-r border-t-0" : "bottom-0 right-0"
+              }`}>
                 <span className="text-xs font-black uppercase tracking-[0.22em]" style={{ color: accent }}>
                   0{index + 1}
                 </span>

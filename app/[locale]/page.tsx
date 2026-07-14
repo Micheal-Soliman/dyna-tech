@@ -22,8 +22,8 @@ export default async function Home({
         locale={locale}
         isAr={isAr}
         home={dict.home}
-        primaryCtaHref={`/${locale}/about`}
-        secondaryCtaHref={`/${locale}/services`}
+        primaryCtaHref={`/${locale}/about-us`}
+        secondaryCtaHref={`/${locale}/technology-partners`}
       />
     </div>
   );

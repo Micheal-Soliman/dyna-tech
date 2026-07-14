@@ -147,6 +147,7 @@ export function StatsSection({
           <p className="text-[#0087cb] mt-4 font-bold tracking-[0.3em] uppercase text-xs">
             {kicker}
           </p>
+          <span className="mx-auto mt-4 block h-px w-16 bg-[#0087cb]" />
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-10 lg:gap-14">

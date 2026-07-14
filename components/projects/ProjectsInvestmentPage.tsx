@@ -3,13 +3,17 @@
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
-  ArrowUpRight,
   BrainCircuit,
   Building2,
+  ChevronLeft,
+  ChevronRight,
   Clock3,
   Factory,
   Gauge,
+  Maximize2,
+  Play,
   Wrench,
+  X,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -63,19 +67,36 @@ type Props = {
   locale: string;
 };
 
-const projectFolderUrl = "https://drive.google.com/drive/folders/1xfF2ZEhj_q8TFFb1XGgPMJgj6YUMAUbY?usp=sharing";
+type GalleryMedia = {
+  src: string;
+  type: "image" | "video";
+  poster?: string;
+};
 
-const autoHubGallery = [
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0040.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0038.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0036.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0034.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0030.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0029.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0028.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0027.jpg",
-  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0026.jpg",
+const autoHubGallery: GalleryMedia[] = [
+  { src: "/autohub/main.jpeg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0017.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0019.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0021.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0027.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0028.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0023.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0022.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0024.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0024%281%29.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0025.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0026.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0029.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0030.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0034.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0036.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0038.jpg", type: "image" },
+  { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0040.jpg", type: "image" },
 ];
+
+function galleryNumber(index: number) {
+  return String(index + 1).padStart(2, "0");
+}
 
 const autoHubFigures = [
   {
@@ -187,9 +208,9 @@ function DynamicFigureCircle({
 
   const displayValue = canCount
     ? `${prefix}${count.toLocaleString("en-US", {
-        maximumFractionDigits: precision,
-        minimumFractionDigits: precision,
-      })}${suffix}`
+      maximumFractionDigits: precision,
+      minimumFractionDigits: precision,
+    })}${suffix}`
     : figure.value;
 
   return (
@@ -220,13 +241,22 @@ function DynamicFigureCircle({
   );
 }
 
-function SectionKicker({ children }: { children: React.ReactNode }) {
+function SectionKicker({
+  children,
+  tone = "blue",
+}: {
+  children: React.ReactNode;
+  tone?: "blue" | "cyan";
+}) {
+  const textColor = tone === "cyan" ? "text-[#43becc]" : "text-[#0087cb]";
+  const lineColor = tone === "cyan" ? "bg-[#43becc]" : "bg-[#0087cb]";
+
   return (
-    <div className="mb-4 flex items-center gap-4">
-      <span className="h-px w-12 bg-[#0087cb]" />
-      <p className="text-xs font-black uppercase tracking-[0.32em] text-[#0087cb]">
+    <div className="mb-4 inline-flex flex-col gap-3">
+      <p className={`text-xs font-black uppercase tracking-[0.32em] ${textColor}`}>
         {children}
       </p>
+      <span className={`h-px w-16 self-center ${lineColor}`} />
     </div>
   );
 }
@@ -234,6 +264,57 @@ function SectionKicker({ children }: { children: React.ReactNode }) {
 function AutoHubPage({ content, locale }: Props) {
   const isAr = locale === "ar";
   const units = content.businessUnits.units.slice(0, 6);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
+  const activeGalleryItem =
+    activeGalleryIndex === null ? null : autoHubGallery[activeGalleryIndex];
+
+  const showPreviousGalleryItem = () => {
+    setActiveGalleryIndex((current) =>
+      current === null
+        ? current
+        : (current - 1 + autoHubGallery.length) % autoHubGallery.length,
+    );
+  };
+
+  const showNextGalleryItem = () => {
+    setActiveGalleryIndex((current) =>
+      current === null ? current : (current + 1) % autoHubGallery.length,
+    );
+  };
+
+  useEffect(() => {
+    if (activeGalleryIndex === null) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveGalleryIndex(null);
+      }
+
+      if (event.key === "ArrowLeft") {
+        setActiveGalleryIndex((current) =>
+          current === null
+            ? current
+            : (current - 1 + autoHubGallery.length) % autoHubGallery.length,
+        );
+      }
+
+      if (event.key === "ArrowRight") {
+        setActiveGalleryIndex((current) =>
+          current === null ? current : (current + 1) % autoHubGallery.length,
+        );
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeGalleryIndex]);
 
   return (
     <main
@@ -242,22 +323,26 @@ function AutoHubPage({ content, locale }: Props) {
       className={`min-h-screen bg-[#0a0f29] pt-24 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
     >
       <section className="relative flex min-h-[720px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-[calc(100vh-6rem)] md:px-12 md:pb-16 lg:px-20">
-        <Image
-          src="/autohub/main.jpeg"
-          alt="The Auto Hub main visual"
-          fill
-          priority
-          sizes="100vw"
-          className="absolute inset-0 object-cover"
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="The Auto Hub hero video"
         />
         <div className="absolute inset-0 bg-[#0a0f29]/76" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,#0a0f29_0%,rgba(10,15,41,0.72)_52%,rgba(10,15,41,0.42)_100%)]" />
 
         <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-end">
           <div>
-            <p className="mb-5 text-xs font-black uppercase tracking-[0.34em] text-[#43becc]">
+            <div className="mb-5">
+              <SectionKicker tone="cyan">
               The Auto Hub
-            </p>
+              </SectionKicker>
+            </div>
             <h1 className="max-w-5xl text-[clamp(3rem,15vw,5rem)] font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
               The Auto Hub
             </h1>
@@ -373,72 +458,152 @@ function AutoHubPage({ content, locale }: Props) {
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
             <div>
-            <SectionKicker>Project Media</SectionKicker>
-            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              The Auto Hub Gallery
-            </h2>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
-              Visual references from The Auto Hub project site and development material.
-            </p>
-            </div>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="https://drive.google.com/file/d/1e7T2TA76wLQKuOrvo1YQPdBcGADgrOqz/view?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-white px-5 py-4 text-[11px] font-black uppercase tracking-widest text-black transition hover:bg-[#43becc] sm:px-6 sm:text-xs"
-              >
-                Open Video
-                <ArrowUpRight size={16} />
-              </a>
-              <a
-                href={projectFolderUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 border border-white/15 px-5 py-4 text-[11px] font-black uppercase tracking-widest text-white transition hover:border-[#43becc] hover:text-[#43becc] sm:px-6 sm:text-xs"
-              >
-                Open Folder
-                <ArrowUpRight size={16} />
-              </a>
+              <SectionKicker>Project Media</SectionKicker>
+              <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
+                The Auto Hub Gallery
+              </h2>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
+                Visual references from The Auto Hub project site and development material.
+              </p>
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {autoHubGallery.map((src, index) => (
+            {autoHubGallery.map((item, index) => (
               <motion.figure
-                key={src}
+                key={item.src}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.22 }}
                 transition={{ duration: 0.5, delay: index * 0.03, ease: "easeOut" }}
                 className="group relative aspect-[4/3] overflow-hidden border border-white/10 bg-white"
               >
-                <Image
-                  src={src}
-                  alt={`The Auto Hub gallery image ${index + 1}`}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f29]/72 via-transparent to-transparent opacity-80" />
-                <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#0a0f29]/80 p-4 text-xs font-black uppercase tracking-[0.22em] text-[#43becc] backdrop-blur">
-                  Auto Hub 0{index + 1}
-                </figcaption>
+                <button
+                  type="button"
+                  onClick={() => setActiveGalleryIndex(index)}
+                  className="absolute inset-0 cursor-pointer text-left"
+                  aria-label={`Open Auto Hub media ${galleryNumber(index)}`}
+                >
+                  {item.type === "image" ? (
+                    <Image
+                      src={item.src}
+                      alt={`The Auto Hub gallery image ${galleryNumber(index)}`}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="bg-white object-contain transition duration-700 group-hover:scale-[1.02]"
+                    />
+                  ) : (
+                    <video
+                      poster={item.poster}
+                      className="h-full w-full bg-black object-contain"
+                      muted
+                      playsInline
+                      preload="metadata"
+                    >
+                      <source src={item.src} type="video/mp4" />
+                    </video>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f29]/72 via-transparent to-transparent opacity-80" />
+                  {item.type === "video" ? (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-black/55 text-white backdrop-blur">
+                        <Play size={24} fill="currentColor" className="translate-x-0.5" />
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-white/20 bg-black/45 text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
+                      <Maximize2 size={17} />
+                    </div>
+                  )}
+                  <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#0a0f29]/80 p-4 text-xs font-black uppercase tracking-[0.22em] text-[#43becc] backdrop-blur">
+                    Auto Hub {galleryNumber(index)}
+                  </figcaption>
+                </button>
               </motion.figure>
             ))}
           </div>
         </div>
       </section>
 
+      {activeGalleryItem && activeGalleryIndex !== null && (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/92 px-4 py-5 backdrop-blur-md md:px-8"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Auto Hub media ${galleryNumber(activeGalleryIndex)}`}
+        >
+          <button
+            type="button"
+            onClick={() => setActiveGalleryIndex(null)}
+            className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center border border-white/15 bg-white text-black transition hover:bg-[#43becc] md:right-7 md:top-7"
+            aria-label="Close gallery"
+          >
+            <X size={20} />
+          </button>
+
+          <button
+            type="button"
+            onClick={showPreviousGalleryItem}
+            className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black md:left-7"
+            aria-label="Previous media"
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          <button
+            type="button"
+            onClick={showNextGalleryItem}
+            className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-white/10 text-white backdrop-blur transition hover:bg-white hover:text-black md:right-7"
+            aria-label="Next media"
+          >
+            <ChevronRight size={22} />
+          </button>
+
+          <div className="relative flex h-full max-h-[86vh] w-full max-w-6xl items-center justify-center overflow-hidden border border-white/10 bg-[#0a0f29] shadow-[0_30px_120px_rgba(0,0,0,0.65)]">
+            {activeGalleryItem.type === "image" ? (
+              <Image
+                src={activeGalleryItem.src}
+                alt={`The Auto Hub gallery image ${galleryNumber(activeGalleryIndex)}`}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            ) : (
+              <video
+                className="h-full w-full object-contain"
+                poster={activeGalleryItem.poster}
+                controls
+                autoPlay
+                playsInline
+              >
+                <source src={activeGalleryItem.src} type="video/mp4" />
+              </video>
+            )}
+          </div>
+
+          <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 border border-white/10 bg-[#0a0f29]/88 px-5 py-3 text-center backdrop-blur">
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-[#43becc]">
+              Auto Hub {galleryNumber(activeGalleryIndex)}
+            </p>
+            <p className="mt-1 text-[10px] font-bold uppercase tracking-[0.18em] text-white/45">
+              {activeGalleryIndex + 1} / {autoHubGallery.length}
+            </p>
+          </div>
+        </div>
+      )}
+
       <section className="px-5 py-16 sm:px-6 md:px-12 md:py-20 lg:px-20">
         <div className="mx-auto max-w-7xl border border-[#0087cb]/30 bg-[#0087cb]/10 p-6 md:p-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <div className="mb-4 flex items-center gap-3 text-[#43becc]">
+              <div className="mb-4 text-[#43becc]">
                 <Gauge size={20} />
-                <span className="text-xs font-black uppercase tracking-[0.24em]">
+                <div className="mt-3">
+                  <SectionKicker tone="cyan">
                   {content.market.kicker}
-                </span>
+                  </SectionKicker>
+                </div>
               </div>
               <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
                 {content.market.title}

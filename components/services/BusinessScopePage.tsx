@@ -83,6 +83,25 @@ function PartnerLogo({ id }: { id: "fft" | "cu" }) {
   );
 }
 
+function SectionKicker({
+  children,
+  tone = "cyan",
+}: {
+  children: React.ReactNode;
+  tone?: "cyan" | "blue";
+}) {
+  const color = tone === "cyan" ? "text-[#43becc]" : "text-[#0087cb]";
+
+  return (
+    <div className="mb-5 inline-flex flex-col gap-3">
+      <p className={`text-xs font-black uppercase tracking-[0.32em] ${color}`}>
+        {children}
+      </p>
+      <span className="h-px w-16 bg-[#0087cb]" />
+    </div>
+  );
+}
+
 export default function BusinessScopePage({ content, locale }: Props) {
   const isAr = locale === "ar";
   const reduceMotion = useReducedMotion();
@@ -118,9 +137,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
             transition={revealTransition}
             className="max-w-4xl"
           >
-            <p className="mb-5 text-xs font-black uppercase tracking-[0.34em] text-[#43becc]">
-              {content.hero.kicker}
-            </p>
+            <SectionKicker>{content.hero.kicker}</SectionKicker>
             <h1 className="text-[clamp(3rem,14vw,4.8rem)] font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
               {content.hero.title}
             </h1>
@@ -154,9 +171,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
             transition={revealTransition}
             className="mb-10 max-w-3xl"
           >
-            <p className="mb-4 text-xs font-black uppercase tracking-[0.3em] text-[#0087cb]">
-              {content.technologyPartners.kicker}
-            </p>
+            <SectionKicker tone="blue">{content.technologyPartners.kicker}</SectionKicker>
             <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
               {content.technologyPartners.title}
             </h2>
@@ -166,7 +181,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
             {content.technologyPartners.partners.map((partner, index) => {
               const label = partnerLabel(partner.name);
               const logoId = label.toLowerCase() as "fft" | "cu";
-              const href = `/${locale}/services/${partnerSlug(partner.name)}`;
+              const href = `/${locale}/technology-partners/${partnerSlug(partner.name)}`;
               const card = partnerCardCopy(partner.name);
 
               return (

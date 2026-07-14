@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 type HeroSectionProps = {
   locale: string;
@@ -53,6 +54,26 @@ function InfoCard({ title, lines }: { title: string; lines: string[] }) {
         </p>
       ))}
     </div>
+  );
+}
+
+function PartnerKnowMore({
+  href,
+  label,
+}: {
+  href: string;
+  label: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="pointer-events-auto mt-3 inline-flex items-center gap-1.5 border-b border-[#43becc]/45 pb-1 text-[9px] font-black uppercase tracking-[0.24em] text-[#43becc] transition hover:border-white hover:text-white sm:text-[10px]"
+    >
+      <span>{label}</span>
+      <ArrowUpRight size={13} strokeWidth={2.5} />
+    </a>
   );
 }
 
@@ -164,33 +185,32 @@ export function HeroSection({
 
           <motion.div
             variants={heroItem}
-            className="mt-3 flex items-center justify-center gap-6 md:mt-4 md:gap-10"
+            className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start justify-center gap-4 md:mt-4 md:gap-8"
           >
-            <div className="text-[clamp(2.1rem,4vw,3.8rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
-              FFT
-            </div>
-            <div className="h-12 w-px bg-white/55 md:h-14" />
-            <div className="flex flex-col items-center leading-none">
-              <div className="text-[clamp(1.9rem,3.3vw,3rem)] font-[1000] tracking-[-0.12em]">
-                <span className="text-[#006db1]">C</span>
-                <span className="text-[#ef6a25]">U</span>
+            <div className="flex min-w-0 flex-col items-center">
+              <div className="text-[clamp(2.1rem,4vw,3.8rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
+                FFT
               </div>
-              <span className="mt-1 text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-                Composites
-              </span>
-              <span className="text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-                United
-              </span>
+              <PartnerKnowMore href="https://www.fft.de/en/" label={knowMoreLabel} />
             </div>
-          </motion.div>
 
-          <motion.div variants={heroItem}>
-            <Link
-              href={`/${locale}/services`}
-              className="pointer-events-auto mt-4 border-b border-[#43becc]/45 pb-1 text-[10px] font-black uppercase tracking-[0.32em] text-[#43becc] transition hover:border-white hover:text-white md:mt-5 md:text-[11px]"
-            >
-              {knowMoreLabel}
-            </Link>
+            <div className="h-16 w-px bg-white/55 md:h-[74px]" />
+
+            <div className="flex min-w-0 flex-col items-center">
+              <div className="flex flex-col items-center leading-none">
+                <div className="text-[clamp(1.9rem,3.3vw,3rem)] font-[1000] tracking-[-0.12em]">
+                  <span className="text-[#006db1]">C</span>
+                  <span className="text-[#ef6a25]">U</span>
+                </div>
+                <span className="mt-1 text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
+                  Composites
+                </span>
+                <span className="text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
+                  United
+                </span>
+              </div>
+              <PartnerKnowMore href="https://composites-united.com/en/" label={knowMoreLabel} />
+            </div>
           </motion.div>
         </motion.div>
 
@@ -227,7 +247,7 @@ export function HeroSection({
           </p>
 
           <Link
-            href={`/${locale}/knowledge`}
+            href={`/${locale}/tech-info`}
             className="pointer-events-auto justify-self-start text-[10px] font-black uppercase tracking-[0.22em] text-white/45 transition hover:text-[#43becc] md:justify-self-end"
           >
             Knowledge

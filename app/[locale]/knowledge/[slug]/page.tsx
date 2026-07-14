@@ -47,8 +47,8 @@ export default function ArticleDetail() {
   const params = useParams();
   const slug = params.slug as string;
   const locale = params.locale === "ar" ? "ar" : "en";
-  const knowledgeHref = `/${locale}/knowledge`;
-  const partnersHref = `/${locale}/services`;
+  const knowledgeHref = `/${locale}/tech-info`;
+  const partnersHref = `/${locale}/technology-partners`;
   const article = ARTICLES[slug];
 
   if (!article) {

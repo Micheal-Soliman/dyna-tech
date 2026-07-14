@@ -63,7 +63,7 @@ export function Footer({
           </div>
 
           <motion.a 
-            href={`/${locale}/services`}
+            href={`/${locale}/technology-partners`}
             whileHover="hover"
             className="relative group flex cursor-pointer items-center gap-6 border border-white/10 pl-8 pr-2 py-2 rounded-full overflow-hidden transition-all duration-500"
           >
@@ -109,9 +109,9 @@ export function Footer({
           <div className="lg:col-span-4 space-y-6">
             <h4 className="text-white/30 text-[10px] font-black uppercase tracking-[0.4em]">Featured Pages</h4>
             {[
-              { label: "Partners", meta: "FFT & CU", href: `/${locale}/services` },
-              { label: "Auto Hub", meta: "Key Project Figures", href: `/${locale}/case-study` },
-              { label: "Knowledge", meta: "Tech Info", href: `/${locale}/knowledge` },
+              { label: "Partners", meta: "FFT & CU", href: `/${locale}/technology-partners` },
+              { label: "Auto Hub", meta: "Key Project Figures", href: `/${locale}/the-auto-hub` },
+              { label: "Knowledge", meta: "Tech Info", href: `/${locale}/tech-info` },
             ].map((item) => (
               <Link key={item.label} href={item.href} className="group block">
                 <span className="text-[10px] text-[#0087cb] font-bold uppercase">{item.meta}</span>
@@ -127,11 +127,11 @@ export function Footer({
               <h4 className="text-[#006db1] text-[10px] font-black uppercase tracking-[0.4em] mb-3">Quick Links</h4>
               <div className="space-y-2">
                 <Link href={`/${locale}`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Home</Link>
-                <Link href={`/${locale}/about`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">About</Link>
-                <Link href={`/${locale}/services`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Partners</Link>
-                <Link href={`/${locale}/case-study`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Auto Hub</Link>
-                <Link href={`/${locale}/knowledge`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Knowledge</Link>
-                <Link href={`/${locale}/career`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Careers</Link>
+                <Link href={`/${locale}/about-us`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">About</Link>
+                <Link href={`/${locale}/technology-partners`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Partners</Link>
+                <Link href={`/${locale}/the-auto-hub`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Auto Hub</Link>
+                <Link href={`/${locale}/tech-info`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Knowledge</Link>
+                <Link href={`/${locale}/careers`} className="block text-xs font-bold uppercase tracking-wider text-zinc-400 hover:text-white hover:translate-x-1 transition-all">Careers</Link>
               </div>
             </div>
             <div className="pt-4 border-t border-white/5">

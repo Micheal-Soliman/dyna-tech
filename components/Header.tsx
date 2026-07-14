@@ -30,11 +30,11 @@ export function Header() {
       isAr: _isAr,
       navItems: [
         { href: `/${locale}`, label: "Home" },
-        { href: `/${locale}/about`, label: "About Us" },
-        { href: `/${locale}/services`, label: "Technology Partners" },
-        { href: `/${locale}/case-study`, label: "The Auto Hub" },
-        { href: `/${locale}/knowledge`, label: "Tech Info" },
-        { href: `/${locale}/career`, label: "Careers" },
+        { href: `/${locale}/about-us`, label: "About Us" },
+        { href: `/${locale}/technology-partners`, label: "Technology Partners" },
+        { href: `/${locale}/the-auto-hub`, label: "The Auto Hub" },
+        { href: `/${locale}/tech-info`, label: "Tech Info" },
+        { href: `/${locale}/careers`, label: "Careers" },
       ],
     };
   }, [pathname]);
@@ -98,10 +98,10 @@ export function Header() {
             <LocaleSwitcher className="hidden border-none bg-transparent px-3 py-2 text-[10px] font-black uppercase text-white transition-all hover:bg-white/5 hover:text-[#0087cb] hover:ring-1 hover:ring-[#0087cb]/40 md:flex" />
 
             <Link
-              href={`/${currentLocale}/career`}
+              href={`/${currentLocale}/contact`}
               className="group relative hidden items-center gap-2 overflow-hidden rounded-full bg-white px-6 py-2.5 text-[10px] font-black uppercase tracking-widest text-black transition-all hover:bg-[#0087cb] hover:text-white md:flex"
             >
-              <span className="relative z-10">Careers</span>
+              <span className="relative z-10">Contact</span>
               <ArrowRight size={14} className="relative z-10" />
             </Link>
 
@@ -165,11 +165,11 @@ export function Header() {
               <div className="space-y-4 border-t border-white/5 bg-zinc-900/50 p-8">
                 <LocaleSwitcher className="justify-start p-0 font-bold text-white" />
                 <Link
-                  href={`/${currentLocale}/career`}
+                  href={`/${currentLocale}/contact`}
                   onClick={() => setMenuOpenPathname(null)}
                   className="flex w-full items-center justify-center rounded-xl bg-[#0087cb] py-4 text-xs font-black uppercase tracking-widest text-black"
                 >
-                  Careers
+                  Contact
                 </Link>
               </div>
             </motion.div>
