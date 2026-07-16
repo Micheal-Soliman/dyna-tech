@@ -199,9 +199,14 @@
       },
       "missionVision": {
         "kicker": "ABOUT DYNATECH",
-        "title": "Built To Connect Technology With Industrial Reality",
-        "subtitle": "DYNATECH was created to bridge global industrial expertise with real operational infrastructure across Egypt and the MENA region.",
-        "intro": "Through strategic partnerships and future-focused facilities, the company is helping support the next era of mobility, manufacturing, and industrial transformation.",
+        "title": "OUR STORY",
+        "subtitle": "From International Expertise To Regional Infrastructure",
+        "intro": "DYNATECH was established in 2017 with a vision centered around one clear objective: bringing advanced industrial technologies closer to the Egyptian and regional market.",
+        "overviewParagraphs": [
+          "DYNATECH was established in 2017 with a vision centered around one clear objective: bringing advanced industrial technologies closer to the Egyptian and regional market.",
+          "As the automotive and manufacturing sectors globally shifted toward electrification, automation, and lightweight technologies, DYNATECH positioned itself as a bridge connecting international expertise with local industrial opportunities.",
+          "Over time, the company expanded beyond partnerships into infrastructure development through the creation of the DYNATECH Automotive Hub - a fully integrated automotive and technical ecosystem currently under development in New Cairo."
+        ],
         "platformsTitle": "One Vision. Two Integrated Platforms.",
         "platformsIntro": "DYNATECH operates through two connected business platforms designed to support industrial transformation across the region.",
         "platforms": [

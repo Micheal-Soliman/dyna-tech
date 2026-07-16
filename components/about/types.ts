@@ -52,6 +52,7 @@ export type DynatechContent = {
     title: string;
     subtitle: string;
     intro: string;
+    overviewParagraphs?: string[];
     platformsTitle: string;
     platformsIntro: string;
     platforms: PlatformItem[];

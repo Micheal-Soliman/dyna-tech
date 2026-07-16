@@ -74,7 +74,6 @@ type GalleryMedia = {
 };
 
 const autoHubGallery: GalleryMedia[] = [
-  { src: "/autohub/main.jpeg", type: "image" },
   { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0017.jpg", type: "image" },
   { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0019.jpg", type: "image" },
   { src: "/autohub/The%20Auto%20Hub/IMG-20260623-WA0021.jpg", type: "image" },

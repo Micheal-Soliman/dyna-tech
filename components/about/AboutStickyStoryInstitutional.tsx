@@ -128,6 +128,7 @@ export default function AboutStickyStory({
         <MissionVisionLayer
           opacity={mvOpacity}
           data={content.missionVision}
+          isAr={isAr}
         />
 
         <StoryVisionLayer
