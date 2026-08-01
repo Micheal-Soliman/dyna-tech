@@ -1,11 +1,11 @@
 "use client";
 
 import { MotionValue, motion } from "framer-motion";
-import { DynatechContent } from "./types";
+import { LegacyStoryContent } from "./types";
 
 type Props = {
   opacity: MotionValue<number>;
-  data: DynatechContent["missionVision"];
+  data: LegacyStoryContent;
   isAr?: boolean;
 };
 

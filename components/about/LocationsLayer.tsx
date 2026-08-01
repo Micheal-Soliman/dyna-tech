@@ -7,14 +7,10 @@ type Props = {
   opacity: MotionValue<number>;
   copy: LocationsSectionCopy;
   items: LocationItem[];
-  closing: {
-    title: string;
-    text: string;
-  };
   isAr?: boolean;
 };
 
-export default function LocationsLayer({ opacity, copy, items, closing, isAr = false }: Props) {
+export default function LocationsLayer({ opacity, copy, items, isAr = false }: Props) {
   return (
     <motion.div 
       style={{ opacity }} 
@@ -32,7 +28,7 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
       </div>
       
       {/* Location Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-white/10 border border-white/10 max-w-5xl w-full">
+      <div className="grid w-full max-w-5xl grid-cols-1 gap-px border border-white/10 bg-white/10 md:grid-cols-2">
         {items.map((loc, i) => (
           <div 
             key={i} 
@@ -76,22 +72,6 @@ export default function LocationsLayer({ opacity, copy, items, closing, isAr = f
         ))}
       </div>
 
-      <div className={`mt-8 max-w-4xl text-center md:mt-9 ${isAr ? 'font-cairo' : ''}`}>
-        <h3
-          dir="auto"
-          style={{ unicodeBidi: "plaintext" }}
-          className="text-2xl font-black uppercase tracking-tight text-white md:text-4xl"
-        >
-          {closing.title}
-        </h3>
-        <p
-          dir="auto"
-          style={{ unicodeBidi: "plaintext" }}
-          className="mt-4 text-zinc-400 text-sm md:text-base leading-relaxed"
-        >
-          {closing.text}
-        </p>
-      </div>
     </motion.div>
   );
 }

@@ -5,12 +5,12 @@ import { DynatechContent } from "./types";
 
 type Props = {
   opacity: MotionValue<number>;
-  data: DynatechContent["missionVision"];
+  data: DynatechContent["company"];
   isAr?: boolean;
 };
 
 export default function MissionVisionLayer({ opacity, data, isAr = false }: Props) {
-  const paragraphs = data.overviewParagraphs ?? [data.intro];
+  const paragraphs = data.paragraphs;
 
   return (
     <motion.div
@@ -23,17 +23,17 @@ export default function MissionVisionLayer({ opacity, data, isAr = false }: Prop
         }`}
       >
         <div className="max-w-4xl">
-          <h2 className="text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          <h2 className="text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl">
             {data.title}
           </h2>
-          <p className="mt-6 text-base font-black leading-relaxed text-[#43becc] md:text-xl">
-            {data.subtitle}
+          <p className="mt-5 text-base font-black leading-relaxed text-[#43becc] md:text-lg">
+            {data.lead}
           </p>
-          <div className="mt-8 space-y-5">
+          <div className="mt-6 space-y-4">
             {paragraphs.map((paragraph) => (
               <p
                 key={paragraph}
-                className="max-w-3xl text-sm font-medium leading-relaxed text-zinc-300 md:text-base lg:text-lg"
+                className="max-w-3xl text-sm font-medium leading-relaxed text-zinc-300 md:text-base"
               >
                 {paragraph}
               </p>

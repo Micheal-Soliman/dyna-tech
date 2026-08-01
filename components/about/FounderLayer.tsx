@@ -35,17 +35,6 @@ export default function FounderLayer({
             className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />
-          
-          {/* Badge - Position flips for RTL */}
-          <div className={`absolute top-6 ${isAr ? 'right-6' : 'left-6'}`}>
-            <span 
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="bg-[#0087cb] text-black font-black text-xs px-4 py-2 uppercase tracking-widest"
-            >
-              {data.title}
-            </span>
-          </div>
         </div>
         
         {/* Content - Order changes for RTL */}
@@ -63,7 +52,7 @@ export default function FounderLayer({
             style={{ unicodeBidi: "plaintext" }}
             className={`text-zinc-300 text-sm md:text-base leading-relaxed max-w-2xl ${isAr ? 'md:mr-auto' : ''}`}
           >
-            {data.intro}
+            {data.description}
           </p>
 
           {data.linkedinUrl && (
@@ -78,28 +67,6 @@ export default function FounderLayer({
             </a>
           )}
           
-          {/* Highlights - flex direction changes for RTL */}
-          <div>
-            <div
-              dir="auto"
-              style={{ unicodeBidi: "plaintext" }}
-              className="text-[#0087cb] text-xs font-black uppercase tracking-[0.25em] mb-3"
-            >
-              {data.highlightsTitle}
-            </div>
-            <div className={`flex flex-wrap gap-2 ${isAr ? 'md:justify-end' : ''}`}>
-            {data.highlights.map((h, i) => (
-              <span 
-                key={i} 
-                dir="auto"
-                style={{ unicodeBidi: "plaintext" }}
-                className="text-[#43becc] border border-[#006db1]/30 px-3 py-2 text-[10px] md:text-xs font-bold uppercase tracking-wider"
-              >
-                {h}
-              </span>
-            ))}
-            </div>
-          </div>
         </div>
       </div>
     </motion.div>

@@ -1,41 +1,33 @@
 "use client";
 
 import { useRef } from "react";
-import { useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-// Types (re-exported from ./types.ts)
 import type { DynatechContent } from "./types";
-export type { DynatechContent, StatItem, TimelineItem, ExperienceItem, LocationItem } from "./types";
+export type { DynatechContent } from "./types";
 
-// Layer Components
-import HeroLayer from "./HeroLayer";
-import MissionVisionLayer from "./MissionVisionLayer";
-import StoryVisionLayer from "./StoryVisionLayer";
 import FounderLayer from "./FounderLayer";
-import TimelineLayer from "./TimelineLayer";
 import LocationsLayer from "./LocationsLayer";
+import MissionVisionLayer from "./MissionVisionLayer";
+import TimelineLayer from "./TimelineLayer";
 
-// ============================================
-// BACKGROUND DECORATION
-// ============================================
-
-function BackgroundGrid() {
+function BackgroundGrid({ fixed = false }: { fixed?: boolean }) {
   return (
-    <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
-      <div 
+    <div className={`pointer-events-none inset-0 z-[1] overflow-hidden ${fixed ? "fixed" : "absolute"}`}>
+      <div
         className="absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage: `linear-gradient(#0087cb22 1px, transparent 1px), linear-gradient(90deg, #0087cb22 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          backgroundSize: "60px 60px",
         }}
       />
     </div>
   );
 }
 
-function VideoBackground() {
+function VideoBackground({ fixed = false }: { fixed?: boolean }) {
   return (
-    <div className="absolute inset-0 z-0">
+    <div className={`inset-0 z-0 ${fixed ? "fixed" : "absolute"}`}>
       <video
         className="h-full w-full object-cover object-center"
         autoPlay
@@ -54,108 +46,85 @@ function VideoBackground() {
   );
 }
 
-// ============================================
-// MAIN COMPONENT - DYNATECH INSTITUTIONAL
-// ============================================
-
-export default function AboutPage({
-  content,
-  locale,
-}: {
-  content: DynatechContent;
-  locale: string;
-}) {
-  const isAr = locale === "ar";
-  const containerRef = useRef<HTMLElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Scroll transforms - balanced timing for separated content layers
-  // Hero: 0-15%
-  const heroScale = useTransform(scrollYProgress, [0, 0.10], [1, 1.2]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.07, 0.12], [1, 1, 0]);
-  
-  // About platforms: 12-26%
-  const mvOpacity = useTransform(scrollYProgress, [0.12, 0.16, 0.23, 0.26], [0, 1, 1, 0]);
-
-  // Story and mission: 25-40%
-  const storyOpacity = useTransform(scrollYProgress, [0.25, 0.29, 0.37, 0.40], [0, 1, 1, 0]);
-  
-  // Founder profile: 39-55%
-  const founderScale = useTransform(scrollYProgress, [0.39, 0.44], [0.96, 1]);
-  const founderY = useTransform(scrollYProgress, [0.39, 0.55], [44, -44]);
-  const founderOpacity = useTransform(scrollYProgress, [0.39, 0.43, 0.52, 0.55], [0, 1, 1, 0]);
-
-  // Timeline: 54-84%
-  const timelineX = useTransform(scrollYProgress, [0.54, 0.84], [420, -3400]);
-  const timelineScale = useTransform(scrollYProgress, [0.54, 0.60, 0.79, 0.84], [0.94, 1, 1, 0.94]);
-  const timelineOpacity = useTransform(scrollYProgress, [0.54, 0.60, 0.79, 0.84], [0, 1, 1, 0]);
-  
-  // Locations: 84-100%
-  const locationsOpacity = useTransform(scrollYProgress, [0.84, 0.88, 0.99, 1], [0, 1, 1, 0]);
-
+function CeoMessage({ content, isAr }: { content: DynatechContent["ceoMessage"]; isAr: boolean }) {
   return (
-    <section
-      ref={containerRef}
-      dir={isAr ? "rtl" : "ltr"}
-      lang={locale}
-      className="relative w-full bg-[#0a0f29]"
-      style={{ height: "850vh" }}
-    >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        <VideoBackground />
-        <BackgroundGrid />
-
-        <HeroLayer
-          opacity={heroOpacity}
-          scale={heroScale}
-          titleLeft={content.hero.titleLeft}
-          titleRight={content.hero.titleRight}
-          tagline={content.hero.tagline}
-        />
-        
-        <MissionVisionLayer
-          opacity={mvOpacity}
-          data={content.missionVision}
-          isAr={isAr}
-        />
-
-        <StoryVisionLayer
-          opacity={storyOpacity}
-          data={content.missionVision}
-          isAr={isAr}
-        />
-
-        <FounderLayer
-          opacity={founderOpacity}
-          scale={founderScale}
-          y={founderY}
-          data={content.founder}
-          isAr={isAr}
-        />
-
-        <TimelineLayer
-          x={timelineX}
-          opacity={timelineOpacity}
-          scale={timelineScale}
-          copy={content.timelineSection}
-          items={content.timeline}
-          isAr={isAr}
-        />
-        
-        <LocationsLayer
-          opacity={locationsOpacity}
-          copy={content.locationsSection}
-          items={content.locations}
-          closing={content.closing}
-          isAr={isAr}
-        />
+    <section className="relative z-10 overflow-hidden bg-[#0a0f29]/40 px-4 py-28 sm:px-6 md:py-36">
+      <div className={`relative z-10 mx-auto w-full max-w-5xl bg-[#111936]/82 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm md:p-8 lg:p-10 ${isAr ? "border-r-4 border-[#0087cb] text-right" : "border-l-4 border-[#0087cb]"}`}>
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">{content.kicker}</p>
+        <h2 className="mt-4 text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">{content.title}</h2>
+        <div className="mt-8 grid gap-x-10 gap-y-5 lg:grid-cols-2">
+          {content.paragraphs.map((paragraph, index) => (
+            <motion.p
+              key={paragraph}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.16) }}
+              className="text-sm font-medium leading-relaxed text-zinc-300 md:text-base"
+            >
+              {paragraph}
+            </motion.p>
+          ))}
+        </div>
+        <div className="mt-9 border-t border-white/10 pt-6">
+          <p className="font-black text-white">{content.signatureName}</p>
+          <p className="mt-1 text-xs font-bold uppercase tracking-wider text-[#43becc]">{content.signatureRole}</p>
+          <p className="mt-1 text-xs text-zinc-500">{content.signatureCompany}</p>
+        </div>
       </div>
     </section>
   );
 }
 
+export default function AboutPage({ content, locale }: { content: DynatechContent; locale: string }) {
+  const isAr = locale === "ar";
+  const introRef = useRef<HTMLElement>(null);
+  const historyRef = useRef<HTMLElement>(null);
 
+  const { scrollYProgress: introProgress } = useScroll({ target: introRef, offset: ["start start", "end end"] });
+  const companyOpacity = useTransform(introProgress, [0, 0.28, 0.38], [1, 1, 0]);
+  const founderScale = useTransform(introProgress, [0.3, 0.42], [0.97, 1]);
+  const founderY = useTransform(introProgress, [0.3, 0.96], [34, -30]);
+  const founderOpacity = useTransform(introProgress, [0.3, 0.4, 0.9, 0.98], [0, 1, 1, 0]);
+
+  const { scrollYProgress: historyProgress } = useScroll({ target: historyRef, offset: ["start start", "end end"] });
+  const timelineX = useTransform(historyProgress, [0, 0.66], [100, -3150]);
+  const timelineScale = useTransform(historyProgress, [0, 0.08, 0.6, 0.68], [0.97, 1, 1, 0.96]);
+  const timelineOpacity = useTransform(historyProgress, [0, 0.6, 0.68], [1, 1, 0]);
+  const locationsOpacity = useTransform(historyProgress, [0.64, 0.73, 0.98, 1], [0, 1, 1, 0]);
+
+  return (
+    <main dir={isAr ? "rtl" : "ltr"} lang={locale} className="relative isolate bg-[#0a0f29]">
+      <VideoBackground fixed />
+      <BackgroundGrid fixed />
+
+      <section ref={introRef} className="relative z-10 w-full" style={{ height: "250vh" }}>
+        <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+          <MissionVisionLayer opacity={companyOpacity} data={content.company} isAr={isAr} />
+          <FounderLayer opacity={founderOpacity} scale={founderScale} y={founderY} data={content.founder} isAr={isAr} />
+        </div>
+      </section>
+
+      <CeoMessage content={content.ceoMessage} isAr={isAr} />
+
+      <section ref={historyRef} className="relative z-10 w-full" style={{ height: "470vh" }}>
+        <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+          <TimelineLayer
+            x={timelineX}
+            opacity={timelineOpacity}
+            scale={timelineScale}
+            copy={{ kicker: content.timeline.kicker, titleLine1: content.timeline.title, titleHighlight: "" }}
+            items={content.timeline.items}
+            isAr={isAr}
+          />
+          <LocationsLayer
+            opacity={locationsOpacity}
+            copy={{ kicker: content.locations.kicker, titleLine1: content.locations.title, titleHighlight: "" }}
+            items={content.locations.items}
+            isAr={isAr}
+          />
+        </div>
+      </section>
+    </main>
+  );
+}
