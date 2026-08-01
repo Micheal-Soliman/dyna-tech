@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -7,7 +6,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-montserrat);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: var(--font-montserrat);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,6 +47,8 @@
 
 :root {
   --radius: 0.625rem;
+  --ambient-x: 50%;
+  --ambient-y: 50%;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -121,9 +122,223 @@
   }
   html {
     overflow-x: clip;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
     overflow-x: clip;
+  }
+}
+
+.ambient-motion {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  contain: strict;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.88;
+  mix-blend-mode: screen;
+}
+
+.site-shell {
+  position: relative;
+}
+
+.ambient-motion__grid,
+.ambient-motion__signal,
+.ambient-motion__cursor,
+.ambient-motion__scan,
+.ambient-motion__flow,
+.ambient-motion__frame {
+  position: absolute;
+  pointer-events: none;
+}
+
+.ambient-motion__grid {
+  inset: -96px;
+  background-image:
+    linear-gradient(rgba(67, 190, 204, 0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(67, 190, 204, 0.11) 1px, transparent 1px);
+  background-size: 84px 84px;
+  opacity: 0.52;
+  transform: translate3d(0, 0, 0);
+  animation: ambient-grid-slide 34s linear infinite;
+}
+
+.ambient-motion__signal {
+  inset: -16%;
+  opacity: 0.2;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 110px, rgba(67, 190, 204, 0.18) 111px, transparent 114px),
+    repeating-linear-gradient(0deg, transparent 0 160px, rgba(0, 135, 203, 0.14) 161px, transparent 164px);
+  mask-image: linear-gradient(90deg, transparent, black 16%, black 84%, transparent);
+  transform: translate3d(0, 0, 0);
+  animation: ambient-signal-slide 24s ease-in-out infinite alternate;
+}
+
+.ambient-motion__signal--two {
+  opacity: 0.14;
+  transform: rotate(180deg) translate3d(0, 0, 0);
+  animation-duration: 32s;
+  animation-delay: -8s;
+}
+
+.ambient-motion__cursor {
+  inset: 0;
+  opacity: 0.72;
+  background:
+    linear-gradient(90deg, transparent calc(var(--ambient-x) - 1px), rgba(67, 190, 204, 0.26) var(--ambient-x), transparent calc(var(--ambient-x) + 1px)),
+    linear-gradient(0deg, transparent calc(var(--ambient-y) - 1px), rgba(0, 135, 203, 0.22) var(--ambient-y), transparent calc(var(--ambient-y) + 1px)),
+    radial-gradient(circle at var(--ambient-x) var(--ambient-y), rgba(67, 190, 204, 0.18), rgba(0, 135, 203, 0.08) 18%, transparent 36%);
+  transition: background 160ms linear;
+}
+
+.ambient-motion__cursor::before {
+  content: "";
+  position: absolute;
+  left: var(--ambient-x);
+  top: var(--ambient-y);
+  width: clamp(120px, 17vw, 210px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(67, 190, 204, 0.22);
+  transform: translate(-50%, -50%);
+  opacity: 0.75;
+}
+
+.ambient-motion__scan {
+  inset: -22% 0 auto;
+  height: 34%;
+  opacity: 0.42;
+  background: linear-gradient(180deg, transparent, rgba(67, 190, 204, 0.18), transparent);
+  transform: translate3d(0, -110%, 0);
+  animation: ambient-scan-slide 15s ease-in-out infinite;
+}
+
+.ambient-motion__flow {
+  left: -25vw;
+  width: 72vw;
+  height: 2px;
+  opacity: 0.58;
+  background: linear-gradient(90deg, transparent, rgba(67, 190, 204, 0.64), rgba(255, 255, 255, 0.22), transparent);
+  transform: translate3d(0, 0, 0) rotate(-12deg);
+  animation: ambient-flow 13s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+
+.ambient-motion__flow--one {
+  top: 24%;
+}
+
+.ambient-motion__flow--two {
+  top: 53%;
+  opacity: 0.42;
+  animation-duration: 18s;
+  animation-delay: -6s;
+}
+
+.ambient-motion__flow--three {
+  top: 76%;
+  opacity: 0.34;
+  animation-duration: 21s;
+  animation-delay: -12s;
+}
+
+.ambient-motion__frame {
+  width: clamp(64px, 8vw, 120px);
+  aspect-ratio: 1;
+  opacity: 0.28;
+  border: 1px solid rgba(67, 190, 204, 0.28);
+  transform: translate3d(0, 0, 0);
+  animation: ambient-frame-float 18s ease-in-out infinite alternate;
+}
+
+.ambient-motion__frame--one {
+  left: 12%;
+  top: 31%;
+}
+
+.ambient-motion__frame--two {
+  right: 17%;
+  bottom: 22%;
+  opacity: 0.22;
+  animation-duration: 24s;
+  animation-delay: -9s;
+}
+
+@keyframes ambient-grid-slide {
+  to {
+    transform: translate3d(84px, 84px, 0);
+  }
+}
+
+@keyframes ambient-signal-slide {
+  to {
+    transform: translate3d(5vw, -3vh, 0);
+  }
+}
+
+@keyframes ambient-scan-slide {
+  0%,
+  16% {
+    transform: translate3d(0, -110%, 0);
+  }
+  62%,
+  100% {
+    transform: translate3d(0, 360%, 0);
+  }
+}
+
+@keyframes ambient-flow {
+  0% {
+    opacity: 0;
+    transform: translate3d(-10vw, 0, 0) rotate(-12deg);
+  }
+  18%,
+  76% {
+    opacity: 0.58;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(138vw, -18vh, 0) rotate(-12deg);
+  }
+}
+
+@keyframes ambient-frame-float {
+  to {
+    transform: translate3d(6vw, -4vh, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .ambient-motion {
+    opacity: 0.62;
+  }
+
+  .ambient-motion__cursor,
+  .ambient-motion__frame--two,
+  .ambient-motion__flow--three {
+    display: none;
+  }
+
+  .ambient-motion__grid {
+    background-size: 72px 72px;
+  }
+
+  .ambient-motion__flow {
+    animation-duration: 18s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-motion__grid,
+  .ambient-motion__signal,
+  .ambient-motion__scan,
+  .ambient-motion__flow,
+  .ambient-motion__frame {
+    animation: none;
+  }
+
+  .ambient-motion__cursor {
+    transition: none;
   }
 }

@@ -38,12 +38,10 @@
       ],
       "autoHubTitle": "Auto Hub",
       "autoHubLines": [
-        "Industrial Area, Plot 7/17",
+        "Industrial Zone",
         "New Cairo, Egypt"
       ],
       "contactLabel": "Contact us:",
-      "contactEmail": "info@dynatecheg.com",
-      "copyrightText": "Copyright 2026 DYNATECH AUTOMOTIVE EGYPT",
       "privacyPolicyLabel": "Privacy Policy",
       "primaryCtaLabel": "Explore Our Ecosystem",
       "secondaryCtaLabel": "Contact Us",
@@ -575,18 +573,18 @@
       "description": "DYNATECH's current project pipeline spans automotive services, EV battery technologies, smart energy infrastructure, and future-focused industrial development initiatives across Egypt."
     },
     "hub": {
-      "kicker": "DYNATECH AUTOMOTIVE HUB",
-      "title": "Egypt's Next-Generation Automotive & Technical Hub",
+      "kicker": "Auto Hub",
+      "title": "Egypt's Next-Generation Automotive & Technical Project",
       "paragraphs": [
-        "The DYNATECH Automotive Hub is a fully integrated automotive and industrial facility designed to support ICE vehicles, electric mobility systems, technical services, training, and future automotive infrastructure under one roof.",
+        "The Auto Hub is a fully integrated automotive and industrial facility designed to support ICE vehicles, electric mobility systems, technical services, training, and future automotive infrastructure under one roof.",
         "The project is currently under construction and fully funded by DYNATECH as part of its long-term industrial expansion strategy."
       ],
       "infoTitle": "Project Information",
       "statusLabel": "Status",
       "status": "Under Construction - 100% Funded by DYNATECH",
       "locationLabel": "Location",
-      "location": "Industrial Area, New Cairo",
-      "figuresTitle": "The Auto Hub — Key Project Figures",
+      "location": "Industrial Zone, New Cairo",
+      "figuresTitle": "Auto Hub — Key Project Figures",
       "figures": [
         {
           "label": "Built-Up Area (BUA)",
@@ -633,7 +631,7 @@
     "businessUnits": {
       "kicker": "Strategic Business Units",
       "title": "Built As A Complete Automotive Ecosystem",
-      "description": "The DYNATECH Automotive Hub combines advanced automotive services, technical operations, training, and infrastructure into one integrated operational environment.",
+      "description": "The Auto Hub combines advanced automotive services, technical operations, training, and infrastructure into one integrated operational environment.",
       "units": [
         {
           "title": "Service Centre",
@@ -668,7 +666,7 @@
     "market": {
       "kicker": "Market Positioning",
       "title": "A Different Kind Of Automotive Facility",
-      "description": "The DYNATECH Automotive Hub is positioned as one of the few integrated 5S automotive facilities in Egypt combining ICE servicing, EV servicing, body shop operations, training, technical infrastructure, and R&D capabilities within a single ecosystem."
+      "description": "The Auto Hub is positioned as one of the few integrated 5S automotive facilities in Egypt combining ICE servicing, EV servicing, body shop operations, training, technical infrastructure, and R&D capabilities within a single ecosystem."
     },
     "timeline": {
       "title": "Timeline",

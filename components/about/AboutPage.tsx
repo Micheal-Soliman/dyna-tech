@@ -19,10 +19,9 @@ import LocationsLayer from "./LocationsLayer";
 // BACKGROUND DECORATION
 // ============================================
 
-function BackgroundDecoration() {
+function BackgroundGrid() {
   return (
-    <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
-      {/* Grid Pattern - absolute within sticky container */}
+    <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden">
       <div 
         className="absolute inset-0 opacity-[0.15]"
         style={{
@@ -30,13 +29,6 @@ function BackgroundDecoration() {
           backgroundSize: '60px 60px',
         }}
       />
-      
-      {/* Gradient Orbs - positioned within viewport */}
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-10 left-10 w-[350px] h-[350px] bg-[#0087cb]/25 rounded-full blur-[90px]" />
-        <div className="absolute bottom-10 right-10 w-[250px] h-[250px] bg-[#006db1]/20 rounded-full blur-[70px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0087cb]/10 rounded-full blur-[120px]" />
-      </div>
     </div>
   );
 }
@@ -50,7 +42,7 @@ function VideoBackground() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-label="DYNATECH background video"
       >
         <source src="/hero.mp4" type="video/mp4" />
@@ -66,7 +58,7 @@ function VideoBackground() {
 // MAIN COMPONENT - DYNATECH INSTITUTIONAL
 // ============================================
 
-export default function AboutStickyStory({
+export default function AboutPage({
   content,
   locale,
 }: {
@@ -110,12 +102,12 @@ export default function AboutStickyStory({
       ref={containerRef}
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`bg-[#0a0f29] relative w-full ${isAr ? 'font-cairo' : ''}`}
+      className="relative w-full bg-[#0a0f29]"
       style={{ height: "850vh" }}
     >
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         <VideoBackground />
-        <BackgroundDecoration />
+        <BackgroundGrid />
 
         <HeroLayer
           opacity={heroOpacity}

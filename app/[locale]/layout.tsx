@@ -1,11 +1,19 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 
-import { Header } from "@/components/Header";
+import "../globals.css";
+
+import { AmbientMotion } from "@/components/AmbientMotion";
 import { Footer } from "@/components/Footer";
-import SmoothScroll from "@/components/SmoothScroll";
-import { getDictionary } from "@/i18n/get-dictionary";
+import { Header } from "@/components/Header";
 import { locales, type Locale } from "@/i18n/config";
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export async function generateMetadata({
   params,
@@ -53,30 +61,18 @@ export default async function LocaleLayout({
   }
 
   const locale = normalizedLocale as Locale;
-
-  const dict = (await getDictionary(locale)) as {
-    common: {
-      footer: {
-        description: string;
-        navExpertise: string;
-        navVisuals: string;
-        navStats: string;
-        navAnnouncements: string;
-      };
-    };
-  };
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <SmoothScroll>
-      <Header />
-      {children}
-      <Footer
-        description={dict.common.footer.description}
-        navExpertise={dict.common.footer.navExpertise}
-        navVisuals={dict.common.footer.navVisuals}
-        navStats={dict.common.footer.navStats}
-        navAnnouncements={dict.common.footer.navAnnouncements}
-      />
-    </SmoothScroll>
+    <html lang={locale} dir={dir} className="dark bg-[#0a0f29]">
+      <body className={`${montserrat.variable} bg-[#0a0f29] text-white antialiased`}>
+        <AmbientMotion />
+        <div className="site-shell">
+          <Header locale={locale} />
+          {children}
+          <Footer locale={locale} />
+        </div>
+      </body>
+    </html>
   );
 }

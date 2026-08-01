@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-export type ProjectsInvestmentContent = {
+export type AutoHubContent = {
   hero: {
     kicker: string;
     title: string;
@@ -63,7 +63,7 @@ export type ProjectsInvestmentContent = {
 };
 
 type Props = {
-  content: ProjectsInvestmentContent;
+  content: AutoHubContent;
   locale: string;
 };
 
@@ -260,7 +260,7 @@ function SectionKicker({
   );
 }
 
-function AutoHubPage({ content, locale }: Props) {
+function AutoHubContentView({ content, locale }: Props) {
   const isAr = locale === "ar";
   const units = content.businessUnits.units.slice(0, 6);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
@@ -319,7 +319,7 @@ function AutoHubPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-24 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : ""}`}
+      className="min-h-screen bg-[#0a0f29] pt-24 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative flex min-h-[720px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-[calc(100vh-6rem)] md:px-12 md:pb-16 lg:px-20">
         <video
@@ -330,7 +330,7 @@ function AutoHubPage({ content, locale }: Props) {
           loop
           playsInline
           preload="metadata"
-          aria-label="The Auto Hub hero video"
+          aria-label="Auto Hub hero video"
         />
         <div className="absolute inset-0 bg-[#0a0f29]/76" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,#0a0f29_0%,rgba(10,15,41,0.72)_52%,rgba(10,15,41,0.42)_100%)]" />
@@ -339,11 +339,11 @@ function AutoHubPage({ content, locale }: Props) {
           <div>
             <div className="mb-5">
               <SectionKicker tone="cyan">
-              The Auto Hub
+              Auto Hub
               </SectionKicker>
             </div>
             <h1 className="max-w-5xl text-[clamp(3rem,15vw,5rem)] font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
-              The Auto Hub
+              Auto Hub
             </h1>
             <p className="mt-7 max-w-3xl text-lg font-semibold leading-relaxed text-zinc-200 md:text-xl">
               {content.hub.title}
@@ -385,7 +385,7 @@ function AutoHubPage({ content, locale }: Props) {
           >
             <SectionKicker>{content.hub.kicker}</SectionKicker>
             <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              The Auto Hub - Key Project Figures
+              Auto Hub - Key Project Figures
             </h2>
           </motion.div>
 
@@ -459,10 +459,10 @@ function AutoHubPage({ content, locale }: Props) {
             <div>
               <SectionKicker>Project Media</SectionKicker>
               <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-                The Auto Hub Gallery
+                Auto Hub Gallery
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-400">
-                Visual references from The Auto Hub project site and development material.
+                Visual references from the Auto Hub site and development material.
               </p>
             </div>
           </div>
@@ -486,7 +486,7 @@ function AutoHubPage({ content, locale }: Props) {
                   {item.type === "image" ? (
                     <Image
                       src={item.src}
-                      alt={`The Auto Hub gallery image ${galleryNumber(index)}`}
+                      alt={`Auto Hub gallery image ${galleryNumber(index)}`}
                       fill
                       sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                       className="bg-white object-contain transition duration-700 group-hover:scale-[1.02]"
@@ -562,7 +562,7 @@ function AutoHubPage({ content, locale }: Props) {
             {activeGalleryItem.type === "image" ? (
               <Image
                 src={activeGalleryItem.src}
-                alt={`The Auto Hub gallery image ${galleryNumber(activeGalleryIndex)}`}
+                alt={`Auto Hub gallery image ${galleryNumber(activeGalleryIndex)}`}
                 fill
                 sizes="100vw"
                 className="object-contain"
@@ -631,6 +631,6 @@ function AutoHubPage({ content, locale }: Props) {
   );
 }
 
-export default function ProjectsInvestmentPage({ content, locale }: Props) {
-  return <AutoHubPage content={content} locale={locale} />;
+export default function AutoHubPage({ content, locale }: Props) {
+  return <AutoHubContentView content={content} locale={locale} />;
 }

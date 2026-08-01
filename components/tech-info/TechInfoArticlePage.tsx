@@ -1,12 +1,11 @@
-"use client";
-import React from "react";
 import { 
-  ArrowLeft, Share2, Printer, 
+  ArrowLeft,
   Clock, User,
-  ChevronRight, Mail, ArrowRight
+  ChevronRight, ArrowRight
 } from "lucide-react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+
+import type { Locale } from "@/i18n/config";
 
 // Article data map with full content
 const ARTICLES: Record<string, { 
@@ -43,10 +42,14 @@ const ARTICLES: Record<string, {
   }
 };
 
-export default function ArticleDetail() {
-  const params = useParams();
-  const slug = params.slug as string;
-  const locale = params.locale === "ar" ? "ar" : "en";
+export const techInfoArticleSlugs = Object.keys(ARTICLES);
+
+type TechInfoArticlePageProps = {
+  locale: Locale;
+  slug: string;
+};
+
+export default function TechInfoArticlePage({ locale, slug }: TechInfoArticlePageProps) {
   const knowledgeHref = `/${locale}/tech-info`;
   const partnersHref = `/${locale}/technology-partners`;
   const article = ARTICLES[slug];
@@ -81,19 +84,11 @@ export default function ArticleDetail() {
           <Link href={knowledgeHref} className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#006db1] transition-colors">
             <ArrowLeft size={14} /> Back_to_Archives
           </Link>
-          <div className="flex gap-6">
-            <button className="text-zinc-500 hover:text-white transition-colors"><Share2 size={16} /></button>
-            <button className="text-zinc-500 hover:text-white transition-colors"><Printer size={16} /></button>
-            <button className="px-4 py-1 bg-[#006db1] text-black text-[9px] font-[1000] uppercase tracking-tighter">Download_PDF</button>
-          </div>
         </div>
       </nav>
 
       {/* --- ARTICLE HERO - Editorial Style --- */}
       <header className="pt-28 pb-20 px-6 md:px-16 lg:px-32 border-b-2 border-white/5 relative overflow-hidden">
-        {/* Subtle Background Accent */}
-        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#006db1]/5 blur-[100px] rounded-full pointer-events-none" />
-        
         <div className="max-w-4xl mx-auto relative z-10">
           {/* Top Meta Bar */}
           <div className="flex flex-wrap items-center gap-6 mb-8 pb-6 border-b border-white/10">
@@ -246,21 +241,6 @@ export default function ArticleDetail() {
             </div>
           </div>
 
-          {/* NEWSLETTER MINI */}
-          <div className="p-12 bg-zinc-900/50 border border-white/5">
-            <h4 className="text-xl font-[1000] uppercase tracking-tighter mb-4 italic text-white">Want More Technical Insights?</h4>
-            <p className="text-sm font-bold uppercase tracking-wide mb-8 text-zinc-500">Subscribe to receive the latest articles and research papers.</p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 bg-[#121b43] border border-white/10 p-4 text-[10px] font-black uppercase tracking-widest focus:border-[#006db1] outline-none"
-              />
-              <button className="flex items-center justify-center gap-4 bg-white text-black px-8 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-[#006db1] transition-colors">
-                Subscribe <Mail size={16} />
-              </button>
-            </div>
-          </div>
         </article>
       </main>
 

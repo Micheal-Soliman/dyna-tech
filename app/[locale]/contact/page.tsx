@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
+import { siteContact } from "@/lib/site-config";
 
 type ContactContent = {
   hero: {
@@ -68,9 +69,7 @@ export default async function Page({
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${
-        isAr ? "font-cairo" : ""
-      }`}
+      className="min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative overflow-hidden border-b border-white/10 px-5 pb-16 pt-8 sm:px-6 md:px-12 lg:px-20">
         <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:72px_72px]" />
@@ -111,10 +110,10 @@ export default async function Page({
           <div className="border border-white/10 bg-[#121b43] p-6">
             <SectionKicker tone="cyan" className="mb-3">Email</SectionKicker>
             <a
-              href="mailto:info@dynatecheg.com"
+              href={`mailto:${siteContact.email}`}
               className="mt-3 block text-2xl font-black tracking-tight text-white transition hover:text-[#43becc]"
             >
-              info@dynatecheg.com
+              {siteContact.email}
             </a>
           </div>
 
@@ -136,7 +135,7 @@ export default async function Page({
         </aside>
 
         <form
-          action="mailto:info@dynatecheg.com"
+          action={`mailto:${siteContact.email}`}
           method="post"
           encType="text/plain"
           className="grid gap-4 border border-white/10 bg-[#121b43]/80 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:p-8"

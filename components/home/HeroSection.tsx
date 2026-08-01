@@ -3,43 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import type { HomeHeroCopy } from "@/components/home/types";
+import type { Locale } from "@/i18n/config";
+import { localizedPath, siteRoutes } from "@/lib/routes";
+import { siteContact } from "@/lib/site-config";
 
 type HeroSectionProps = {
-  locale: string;
-  isAr: boolean;
-  slogan: string;
-  subheading: string;
-  primaryCtaLabel: string;
-  primaryCtaHref: string;
-  secondaryCtaLabel: string;
-  secondaryCtaHref: string;
-  heroImageUrl?: string;
-  heroImageAlt: string;
-  logoAlt: string;
-  headlineLine1: string;
-  headlineLine2: string;
-  strategicPartnersLabel: string;
-  knowMoreLabel: string;
-  headOfficeTitle: string;
-  headOfficeLines: string[];
-  autoHubTitle: string;
-  autoHubLines: string[];
-  contactLabel: string;
-  contactEmail: string;
-  copyrightText: string;
-  privacyPolicyLabel: string;
-  scrollLabel: string;
-  brandOutroTagline: string;
-  ceoQuote?: string;
-  ceoName?: string;
-  ceoTitle?: string;
-  ceoCtaLabel?: string;
-  ceoSectionLabel?: string;
-  ceoSubtitle?: string;
-  ceoImageUrl?: string;
-  brandLeft: string;
-  brandRight: string;
+  locale: Locale;
+  content: HomeHeroCopy;
 };
 
 function InfoCard({ title, lines }: { title: string; lines: string[] }) {
@@ -57,43 +31,82 @@ function InfoCard({ title, lines }: { title: string; lines: string[] }) {
   );
 }
 
-function PartnerKnowMore({
-  href,
+function PartnerAction({
   label,
+  ariaLabel,
+  onClick,
 }: {
-  href: string;
   label: string;
+  ariaLabel: string;
+  onClick: () => void;
 }) {
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="pointer-events-auto mt-3 inline-flex items-center gap-1.5 border-b border-[#43becc]/45 pb-1 text-[9px] font-black uppercase tracking-[0.24em] text-[#43becc] transition hover:border-white hover:text-white sm:text-[10px]"
+    <button
+      type="button"
+      aria-label={ariaLabel}
+      onClick={onClick}
+      className="pointer-events-auto inline-flex min-h-8 cursor-pointer items-center gap-1.5 border-b border-[#43becc]/45 pb-1 text-[8px] font-black uppercase tracking-[0.2em] text-[#43becc] transition hover:border-white hover:text-white sm:text-[9px]"
     >
       <span>{label}</span>
       <ArrowUpRight size={13} strokeWidth={2.5} />
-    </a>
+    </button>
+  );
+}
+
+function PartnerBlock({
+  logoSrc,
+  logoAlt,
+  logoClassName,
+  knowMoreLabel,
+  knowMoreAriaLabel,
+  onKnowMore,
+}: {
+  logoSrc: string;
+  logoAlt: string;
+  logoClassName: string;
+  knowMoreLabel: string;
+  knowMoreAriaLabel: string;
+  onKnowMore: () => void;
+}) {
+  return (
+    <div className="flex min-w-0 flex-col items-center">
+      <div className="relative flex h-16 w-[108px] items-center justify-center sm:w-[150px] md:h-20 md:w-[184px]">
+        <Image
+          src={logoSrc}
+          alt={logoAlt}
+          fill
+          sizes="(min-width: 768px) 190px, 150px"
+          className={logoClassName}
+        />
+      </div>
+      <div className="mt-2 flex min-h-8 items-center justify-center">
+        <PartnerAction
+          label={knowMoreLabel}
+          ariaLabel={knowMoreAriaLabel}
+          onClick={onKnowMore}
+        />
+      </div>
+    </div>
   );
 }
 
 export function HeroSection({
   locale,
-  isAr,
-  heroImageAlt,
-  logoAlt,
-  headlineLine1,
-  headlineLine2,
-  strategicPartnersLabel,
-  knowMoreLabel,
-  headOfficeTitle,
-  headOfficeLines,
-  autoHubTitle,
-  autoHubLines,
-  contactLabel,
-  contactEmail,
-  copyrightText,
+  content: {
+    heroImageAlt,
+    logoAlt,
+    headlineLine1,
+    headlineLine2,
+    strategicPartnersLabel,
+    knowMoreLabel,
+    headOfficeTitle,
+    headOfficeLines,
+    autoHubTitle,
+    autoHubLines,
+    contactLabel,
+  },
 }: HeroSectionProps) {
+  const isAr = locale === "ar";
   const reduceMotion = useReducedMotion();
   const heroContainer = reduceMotion
     ? { hidden: {}, show: {} }
@@ -117,9 +130,31 @@ export function HeroSection({
       };
   const mobileHeadlineLine1 = headlineLine1.replace(/\sforce\s/i, "\nForce ");
   const mobileHeadlineLine2 = headlineLine2.replace(/\sindustry/i, "\nIndustry");
+  const [activeVideo, setActiveVideo] = useState<{
+    src: string;
+    title: string;
+  } | null>(null);
+
+  useEffect(() => {
+    if (!activeVideo) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveVideo(null);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeVideo]);
 
   return (
-    <section dir={isAr ? "rtl" : "ltr"} className="relative h-screen min-h-[680px] overflow-hidden bg-[#0a0f29] font-['Montserrat',sans-serif] text-white [height:100svh] md:min-h-[620px]">
+    <section dir={isAr ? "rtl" : "ltr"} className="relative min-h-[920px] bg-[#0a0f29] text-white sm:min-h-[100svh]">
       <div className="absolute inset-0">
         <video
           className="h-full w-full object-cover object-center"
@@ -140,7 +175,7 @@ export function HeroSection({
 
       <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:96px_96px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
 
-      <div className="relative z-10 flex h-full flex-col px-4 pb-4 pt-20 sm:px-6 md:px-9 md:pb-7 md:pt-24">
+      <div className="relative z-10 flex min-h-[920px] flex-col px-4 pb-4 pt-[4.5rem] sm:min-h-[100svh] sm:px-6 md:px-9 md:pb-6 md:pt-[5.5rem]">
         <motion.div
           initial="hidden"
           animate="show"
@@ -149,7 +184,7 @@ export function HeroSection({
         >
           <motion.div
             variants={heroItem}
-            className="relative mb-4 h-[64px] w-[245px] max-w-[72vw] sm:mb-5 sm:h-[70px] sm:w-[270px] md:h-[94px] md:w-[360px] xl:h-[106px] xl:w-[410px]"
+            className="relative mb-3 h-[58px] w-[224px] max-w-[72vw] sm:mb-4 sm:h-[66px] sm:w-[254px] md:h-[86px] md:w-[330px] xl:h-[96px] xl:w-[372px]"
           >
             <Image
               src="/logo-cropped.png"
@@ -178,39 +213,44 @@ export function HeroSection({
 
           <motion.div
             variants={heroItem}
-            className="mt-5 text-[10px] font-black uppercase tracking-[0.38em] text-white/55 md:mt-7 md:text-[11px]"
+            className="mt-4 text-[10px] font-black uppercase tracking-[0.38em] text-white/55 md:mt-5 md:text-[11px]"
           >
             {strategicPartnersLabel}
           </motion.div>
 
           <motion.div
             variants={heroItem}
-            className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start justify-center gap-4 md:mt-4 md:gap-8"
+            className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start justify-center gap-2 sm:gap-4 md:mt-4 md:gap-8"
           >
-            <div className="flex min-w-0 flex-col items-center">
-              <div className="text-[clamp(2.1rem,4vw,3.8rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
-                FFT
-              </div>
-              <PartnerKnowMore href="https://www.fft.de/en/" label={knowMoreLabel} />
-            </div>
+            <PartnerBlock
+              logoSrc="/logo-fft.png"
+              logoAlt="FFT logo"
+              logoClassName="object-contain drop-shadow-[0_0_18px_rgba(69,245,202,0.22)]"
+              knowMoreLabel={knowMoreLabel}
+              knowMoreAriaLabel="Open FFT video"
+              onKnowMore={() =>
+                setActiveVideo({
+                  src: "/fft/FFT/VID-20260624-WA0031.mp4",
+                  title: "FFT",
+                })
+              }
+            />
 
-            <div className="h-16 w-px bg-white/55 md:h-[74px]" />
+            <div className="h-14 w-px bg-white/55 md:h-[4.5rem]" />
 
-            <div className="flex min-w-0 flex-col items-center">
-              <div className="flex flex-col items-center leading-none">
-                <div className="text-[clamp(1.9rem,3.3vw,3rem)] font-[1000] tracking-[-0.12em]">
-                  <span className="text-[#006db1]">C</span>
-                  <span className="text-[#ef6a25]">U</span>
-                </div>
-                <span className="mt-1 text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-                  Composites
-                </span>
-                <span className="text-[8px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-                  United
-                </span>
-              </div>
-              <PartnerKnowMore href="https://composites-united.com/en/" label={knowMoreLabel} />
-            </div>
+            <PartnerBlock
+              logoSrc="/logo-cu.png"
+              logoAlt="Composites United logo"
+              logoClassName="object-contain drop-shadow-[0_0_18px_rgba(239,106,37,0.18)]"
+              knowMoreLabel={knowMoreLabel}
+              knowMoreAriaLabel="Open Composites United video"
+              onKnowMore={() =>
+                setActiveVideo({
+                  src: "/cu/VID-20260624-WA0032.mp4",
+                  title: "Composites United",
+                })
+              }
+            />
           </motion.div>
         </motion.div>
 
@@ -221,7 +261,7 @@ export function HeroSection({
           className="relative z-20 grid gap-3 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
         >
           <div>
-            <div className="grid grid-cols-1 gap-2 sm:flex sm:gap-3">
+            <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
               <InfoCard
                 title={headOfficeTitle}
                 lines={headOfficeLines}
@@ -234,26 +274,58 @@ export function HeroSection({
             <p className="mt-2 text-[10px] font-medium text-white/75 sm:mt-4 sm:text-[11px]">
               {contactLabel}{" "}
               <a
-                href={`mailto:${contactEmail}`}
+                href={`mailto:${siteContact.email}`}
                 className="pointer-events-auto text-[#43becc] transition hover:text-white"
               >
-                {contactEmail}
+                {siteContact.email}
               </a>
             </p>
           </div>
 
-          <p className="hidden text-center text-[10px] font-bold uppercase tracking-[0.16em] text-white/18 md:block">
-            {copyrightText}
-          </p>
+          <div className="hidden md:block" />
 
           <Link
-            href={`/${locale}/tech-info`}
-            className="pointer-events-auto justify-self-start text-[10px] font-black uppercase tracking-[0.22em] text-white/45 transition hover:text-[#43becc] md:justify-self-end"
+            href={localizedPath(locale, siteRoutes.legalDisclaimer)}
+            className="pointer-events-auto justify-self-end text-right text-[10px] font-black uppercase tracking-[0.2em] text-white/45 transition hover:text-[#43becc]"
           >
-            Knowledge
+            Legal Disclaimer
           </Link>
         </motion.div>
       </div>
+
+      {activeVideo && (
+        <div
+          className="fixed inset-0 z-[220] flex items-center justify-center bg-black/88 px-4 py-6 backdrop-blur-md"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${activeVideo.title} video`}
+        >
+          <button
+            type="button"
+            onClick={() => setActiveVideo(null)}
+            className="absolute right-4 top-4 flex h-11 w-11 cursor-pointer items-center justify-center border border-white/20 bg-white text-black transition hover:bg-[#43becc] md:right-7 md:top-7"
+            aria-label="Close partner video"
+          >
+            <X size={20} />
+          </button>
+
+          <div className="w-full max-w-5xl overflow-hidden border border-white/15 bg-[#0a0f29] shadow-[0_28px_100px_rgba(0,0,0,0.68)]">
+            <div className="border-b border-white/10 px-4 py-3 text-[10px] font-black uppercase tracking-[0.28em] text-[#43becc] md:px-5">
+              {activeVideo.title}
+            </div>
+            <video
+              key={activeVideo.src}
+              className="aspect-video w-full bg-black object-contain"
+              controls
+              autoPlay
+              playsInline
+              preload="none"
+            >
+              <source src={activeVideo.src} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

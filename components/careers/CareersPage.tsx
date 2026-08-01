@@ -124,7 +124,7 @@ export default function CareersPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
+      className="min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />

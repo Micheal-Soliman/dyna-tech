@@ -4,7 +4,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-export type BusinessScopeContent = {
+export type TechnologyPartnersContent = {
   hero: {
     kicker: string;
     title: string;
@@ -25,7 +25,7 @@ export type BusinessScopeContent = {
 };
 
 type Props = {
-  content: BusinessScopeContent;
+  content: TechnologyPartnersContent;
   locale: string;
 };
 
@@ -61,7 +61,7 @@ function partnerCardCopy(name: string) {
 function PartnerLogo({ id }: { id: "fft" | "cu" }) {
   if (id === "fft") {
     return (
-      <div className="text-[clamp(2.4rem,4vw,4.6rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
+      <div className="text-[clamp(2.4rem,4vw,4.6rem)] font-[1000] italic leading-none text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
         FFT
       </div>
     );
@@ -69,7 +69,7 @@ function PartnerLogo({ id }: { id: "fft" | "cu" }) {
 
   return (
     <div className="flex flex-col items-center leading-none">
-      <div className="text-[clamp(2.2rem,3.6vw,3.8rem)] font-[1000] tracking-[-0.12em]">
+      <div className="text-[clamp(2.2rem,3.6vw,3.8rem)] font-[1000]">
         <span className="text-[#006db1]">C</span>
         <span className="text-[#ef6a25]">U</span>
       </div>
@@ -102,7 +102,7 @@ function SectionKicker({
   );
 }
 
-export default function BusinessScopePage({ content, locale }: Props) {
+export default function TechnologyPartnersPage({ content, locale }: Props) {
   const isAr = locale === "ar";
   const reduceMotion = useReducedMotion();
   const reveal = reduceMotion
@@ -114,7 +114,7 @@ export default function BusinessScopePage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#080d20] text-white ${isAr ? "font-cairo" : ""}`}
+      className="min-h-screen bg-[#080d20] text-white"
     >
       <section className="relative flex min-h-[760px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-screen md:px-12 lg:px-20">
         <video

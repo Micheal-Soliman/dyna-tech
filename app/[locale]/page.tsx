@@ -1,4 +1,4 @@
-import { HomeSections } from "@/components/home/HomeSections";
+import { HeroSection } from "@/components/home/HeroSection";
 import type { HomeContent } from "@/components/home/types";
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/config";
@@ -14,17 +14,5 @@ export default async function Home({
 }) {
   const { locale } = await Promise.resolve(params);
   const dict = (await getDictionary(locale)) as HomeDictionary;
-  const isAr = locale === "ar";
-
-  return (
-    <div className="min-h-screen bg-[#0a0f29] font-sans text-white" dir={isAr ? "rtl" : "ltr"}>
-      <HomeSections
-        locale={locale}
-        isAr={isAr}
-        home={dict.home}
-        primaryCtaHref={`/${locale}/about-us`}
-        secondaryCtaHref={`/${locale}/technology-partners`}
-      />
-    </div>
-  );
+  return <HeroSection locale={locale} content={dict.home.hero} />;
 }

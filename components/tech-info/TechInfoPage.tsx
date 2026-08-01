@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-export type BlogHubContent = {
+export type TechInfoContent = {
   hero: {
     kicker: string;
     title: string;
@@ -35,7 +35,7 @@ export type BlogHubContent = {
 };
 
 type Props = {
-  content: BlogHubContent;
+  content: TechInfoContent;
   locale: string;
 };
 
@@ -63,7 +63,7 @@ function SectionKicker({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function BlogHubPage({ content, locale }: Props) {
+export default function TechInfoPage({ content, locale }: Props) {
   const isAr = locale === "ar";
   const techInfoArticles = content.articles.filter(
     (article) => article.slug === "tech-info-fft-dynatech-egypt",
@@ -85,7 +85,7 @@ export default function BlogHubPage({ content, locale }: Props) {
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black ${isAr ? "font-cairo" : "font-mono"}`}
+      className="min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />

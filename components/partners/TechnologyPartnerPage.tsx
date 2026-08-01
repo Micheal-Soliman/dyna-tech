@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon, Play } from "lucide-react";
 
-export type ServicePartnersContent = {
+export type TechnologyPartnerContent = {
   partners: {
     id: string;
     name: string;
@@ -30,8 +30,8 @@ export type ServicePartnersContent = {
   };
 };
 
-type Partner = ServicePartnersContent["partners"][number];
-type EcosystemColumn = ServicePartnersContent["ecosystem"]["columns"][number];
+type Partner = TechnologyPartnerContent["partners"][number];
+type EcosystemColumn = TechnologyPartnerContent["ecosystem"]["columns"][number];
 
 type Props = {
   partner: Partner;
@@ -146,7 +146,7 @@ function companyHeroCopy(id: string) {
 function PartnerLogo({ id }: { id: string }) {
   if (id === "fft") {
     return (
-      <div className="text-[clamp(3rem,5vw,5.8rem)] font-[1000] italic leading-none tracking-[-0.08em] text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
+      <div className="text-[clamp(3rem,5vw,5.8rem)] font-[1000] italic leading-none text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
         FFT
       </div>
     );
@@ -154,7 +154,7 @@ function PartnerLogo({ id }: { id: string }) {
 
   return (
     <div className="flex flex-col items-center leading-none">
-      <div className="text-[clamp(2.8rem,4.4vw,5rem)] font-[1000] tracking-[-0.12em]">
+      <div className="text-[clamp(2.8rem,4.4vw,5rem)] font-[1000]">
         <span className="text-[#006db1]">C</span>
         <span className="text-[#ef6a25]">U</span>
       </div>
@@ -195,7 +195,7 @@ function SectionKicker({
   );
 }
 
-export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }: Props) {
+export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale }: Props) {
   const isAr = locale === "ar";
   const accent = accentFor(partner.id);
   const shortLabel = partner.id === "fft" ? "FFT" : "CU";
@@ -210,7 +210,7 @@ export default function ServiceCompanyPage({ partner, ecosystemColumn, locale }:
     <main
       dir={isAr ? "rtl" : "ltr"}
       lang={locale}
-      className={`min-h-screen bg-[#080d20] pt-24 text-white ${isAr ? "font-cairo" : ""}`}
+      className="min-h-screen bg-[#080d20] pt-24 text-white"
       style={{ ["--accent" as string]: accent }}
     >
       <section className="relative flex min-h-[calc(100vh-6rem)] items-end overflow-hidden px-6 pb-16 pt-20 md:px-12 lg:px-20">
