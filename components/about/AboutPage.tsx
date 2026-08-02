@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight, Linkedin } from "lucide-react";
+import Image from "next/image";
 
 import type { DynatechContent } from "./types";
 export type { DynatechContent } from "./types";
@@ -76,6 +78,70 @@ function CeoMessage({ content, isAr }: { content: DynatechContent["ceoMessage"];
   );
 }
 
+function MobileIntro({ content, isAr }: { content: DynatechContent; isAr: boolean }) {
+  return (
+    <section className="relative z-10 px-4 pb-20 pt-28 md:hidden">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className={`bg-[#111936]/82 p-5 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm ${
+          isAr ? "border-r-4 border-[#0087cb] text-right" : "border-l-4 border-[#0087cb]"
+        }`}
+      >
+        <h1 className="text-4xl font-black uppercase leading-none tracking-tight text-white">
+          {content.company.title}
+        </h1>
+        <p className="mt-5 text-sm font-black leading-6 text-[#43becc]">
+          {content.company.lead}
+        </p>
+        <div className="mt-5 space-y-4">
+          {content.company.paragraphs.map((paragraph) => (
+            <p key={paragraph} className="text-sm font-medium leading-6 text-zinc-300">
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.14 }}
+        transition={{ duration: 0.65, ease: "easeOut" }}
+        className="mt-16"
+      >
+        <h2 className="text-4xl font-black uppercase leading-none tracking-tight text-white">
+          {content.founder.name}
+        </h2>
+        <p className="mt-6 text-sm font-medium leading-6 text-zinc-300">
+          {content.founder.description}
+        </p>
+        <a
+          href={content.founder.linkedinUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-7 inline-flex items-center gap-2 border border-[#0087cb]/40 bg-[#0087cb]/10 px-4 py-3 text-xs font-black uppercase tracking-[0.16em] text-[#43becc]"
+        >
+          <Linkedin size={16} strokeWidth={2.4} />
+          <span>{content.founder.linkedinLabel}</span>
+          <ArrowUpRight size={15} />
+        </a>
+        <div className="relative mt-8 aspect-[4/5] w-full overflow-hidden border border-white/10 bg-[#111936]">
+          <Image
+            src={content.founder.imageSrc}
+            alt={content.founder.imageAlt}
+            fill
+            sizes="calc(100vw - 32px)"
+            className="object-contain object-bottom"
+          />
+          <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#050505] to-transparent" />
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
 export default function AboutPage({ content, locale }: { content: DynatechContent; locale: string }) {
   const isAr = locale === "ar";
   const introRef = useRef<HTMLElement>(null);
@@ -98,7 +164,9 @@ export default function AboutPage({ content, locale }: { content: DynatechConten
       <VideoBackground fixed />
       <BackgroundGrid fixed />
 
-      <section ref={introRef} className="relative z-10 w-full" style={{ height: "250vh" }}>
+      <MobileIntro content={content} isAr={isAr} />
+
+      <section ref={introRef} className="relative z-10 hidden w-full md:block" style={{ height: "250vh" }}>
         <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
           <MissionVisionLayer opacity={companyOpacity} data={content.company} isAr={isAr} />
           <FounderLayer opacity={founderOpacity} scale={founderScale} y={founderY} data={content.founder} isAr={isAr} />
