@@ -192,13 +192,13 @@
     "hero": {
       "kicker": "Contact Us",
       "title": "Let’s Build What Comes Next",
-      "description": "Whether you are an investor, technology partner, government entity, or industry stakeholder, DYNATECH is ready to explore the future of mobility, energy, and industrial development together."
+      "description": "DYNATECH invites investors, technology partners, government institutions, and industry stakeholders to collaborate in advancing the future of mobility, battery technologies, BESS, and industrial development. We look forward to building transformative and profitable opportunities together."
     },
     "conversation": {
       "title": "Start The Conversation",
       "paragraphs": [
-        "DYNATECH works across automotive transformation, energy infrastructure, advanced manufacturing, and strategic industrial partnerships.",
-        "Our team is available to discuss investment opportunities, partnerships, technical collaboration, and future mobility initiatives."
+        "DYNATECH works in the transformation of the automotive sector across all segments of new energy vehicles (NEV) and advanced manufacturing, supported by our global technology partners.",
+        "Our team is ready to engage in discussions on investment opportunities, strategic partnerships, technical collaboration, and future mobility initiatives."
       ]
     },
     "form": {
@@ -226,10 +226,10 @@
   },
   "services": {
     "hero": {
-      "kicker": "What We Do",
-      "title": "Two Platforms. One Industrial Ecosystem.",
+      "kicker": "",
+      "title": "Two German Partners. One Shared Industrial Vision.",
       "intro": "DYNATECH operates through a dual business model combining exclusive international industrial partnerships with a fully integrated automotive and technical infrastructure platform in Egypt.",
-      "supporting": "Together, these two platforms create a bridge between global technology providers and regional industrial growth opportunities."
+      "supporting": "Together, these two platforms connect global technology leadership with regional industrial growth opportunities."
     },
     "partnerships": {
       "kicker": "Industrial Technology Partnerships",
@@ -252,8 +252,8 @@
       "ctaLabel": "Explore Our Partners"
     },
     "technologyPartners": {
-      "kicker": "Technology Partners",
-      "title": "European Technology Partners",
+      "kicker": "",
+      "title": "",
       "partners": [
         {
           "name": "FFT Company",

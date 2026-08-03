@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Cairo, Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import "lenis/dist/lenis.css";
@@ -7,6 +7,7 @@ import "../globals.css";
 
 import { AmbientMotion } from "@/components/AmbientMotion";
 import { Footer } from "@/components/Footer";
+import { GlobalMediaLightbox } from "@/components/GlobalMediaLightbox";
 import { Header } from "@/components/Header";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { locales, type Locale } from "@/i18n/config";
@@ -14,6 +15,12 @@ import { locales, type Locale } from "@/i18n/config";
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
   display: "swap",
 });
 
@@ -67,7 +74,11 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={dir} className="dark bg-[#0a0f29]">
-      <body className={`${montserrat.variable} bg-[#0a0f29] text-white antialiased`}>
+      <body
+        className={`${montserrat.variable} ${cairo.variable} ${
+          locale === "ar" ? cairo.className : montserrat.className
+        } bg-[#0a0f29] text-white antialiased`}
+      >
         <SmoothScroll />
         <AmbientMotion />
         <div className="site-shell">
@@ -75,6 +86,7 @@ export default async function LocaleLayout({
           {children}
           <Footer locale={locale} />
         </div>
+        <GlobalMediaLightbox />
       </body>
     </html>
   );

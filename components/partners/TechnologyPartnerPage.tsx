@@ -51,46 +51,46 @@ type GalleryItem = {
   featured?: boolean;
 };
 
-function galleryItems(id: string): GalleryItem[] {
+function galleryItems(id: string, isAr: boolean): GalleryItem[] {
   if (id === "fft") {
     return [
       {
-        label: "FFT Partnership Signing Day",
+        label: isAr ? "يوم توقيع اتفاقية الشراكة مع FFT" : "FFT Partnership Agreement Signing Day",
         src: "/fft/main.jpeg",
         type: "image",
         featured: true,
       },
       {
-        label: "FFT Technology",
-        src: "/fft/FFT/IMG-20260623-WA0015.jpg",
-        type: "image",
+        label: isAr ? "مقابلة الرئيس التنفيذي لـFFT - مترجمة إلى العربية" : "FFT CEO Interview - Arabic Subtitles",
+        src: "/fft/FFT/VID-20260624-WA0031.mp4",
+        poster: "/fft/main.jpeg",
+        type: "video",
       },
       {
-        label: "FFT Partnership",
-        src: "/fft/FFT/IMG-20260623-WA0013.jpg",
-        type: "image",
-      },
-      {
-        label: "FFT Site Visit",
+        label: isAr ? "الإنتاج الذكي لدى FFT" : "FFT Intelligent Production",
         src: "/fft/FFT/IMG-20260623-WA0010.jpg",
         type: "image",
       },
       {
-        label: "FFT Facilities",
-        src: "/fft/FFT/IMG-20260623-WA0009.jpg",
+        label: isAr ? "خمسون عاما من FFT" : "50 Years of FFT",
+        src: "/fft/FFT/IMG-20260623-WA0013.jpg",
         type: "image",
       },
       {
-        label: "FFT Video",
-        src: "/fft/FFT/VID-20260624-WA0031.mp4",
-        poster: "/fft/FFT/IMG-20260623-WA0015.jpg",
+        label: isAr ? "الهوية الرسمية لـFFT" : "FFT Official Identity",
+        src: "/fft/FFT/IMG-20260623-WA0015.jpg",
+        type: "image",
+      },
+      {
+        label: isAr ? "جولة داخل أنظمة إنتاج FFT" : "Inside FFT Production Systems",
+        src: "/fft/FFT/VID-20260623-WA0008.mp4",
+        poster: "/fft/FFT/IMG-20260623-WA0010.jpg",
         type: "video",
       },
       {
-        label: "FFT Walkthrough",
-        src: "/fft/FFT/VID-20260623-WA0008.mp4",
-        poster: "/fft/FFT/IMG-20260623-WA0013.jpg",
-        type: "video",
+        label: isAr ? "خمسون عاما من الابتكار" : "50 Years of Innovation",
+        src: "/fft/FFT/IMG-20260623-WA0009.jpg",
+        type: "image",
       },
     ];
   }
@@ -98,12 +98,13 @@ function galleryItems(id: string): GalleryItem[] {
   if (id === "cu") {
     return [
       {
-        label: "CU Lightweight Technology",
+        label: isAr ? "اتفاقية الشراكة مع CU في Hannover Messe" : "CU Partnership at Hannover Messe",
         src: "/cu/IMG-20260622-WA0005.jpg",
         type: "image",
+        featured: true,
       },
       {
-        label: "CU Partnership Video",
+        label: isAr ? "كلمة م. أحمد سرور في Hannover Messe" : "Eng. Ahmed Sorour's Speech at Hannover Messe",
         src: "/cu/VID-20260624-WA0032.mp4",
         poster: "/cu/IMG-20260622-WA0005.jpg",
         type: "video",
@@ -120,52 +121,52 @@ function galleryItems(id: string): GalleryItem[] {
   ];
 }
 
-function companyHeroCopy(id: string) {
+function companyHeroCopy(id: string, isAr: boolean) {
   if (id === "fft") {
     return {
-      eyebrow: "FFT Company",
-      title: "Intelligent Manufacturing Systems",
+      eyebrow: "FFT production systems",
+      title: "one step ahead in INTELLIGENT production",
       paragraphs: [
-        "Since 1974, we have stood for dynamism, solidity, global presence and a claim to technological leadership.",
-        "As a leading global provider of innovative, flexible and complex manufacturing systems, we specialize in their development, project planning and implementation. We assume overall responsibility for turnkey solutions and carry out projects worldwide, including for the automotive and aviation industries.",
+        "We Are Production Optimizers",
       ],
       href: "https://www.fft.de/en/",
     };
   }
 
   return {
-    eyebrow: "CU Company",
-    title: "Composite Lightweight Technologies",
+    eyebrow: isAr ? "شبكة Composites United" : "Composites United Network",
+    title: "Composites United e. V. (CU)",
     paragraphs: [
-      "Composites United e. V. (CU), one of the world's largest networks for fiber-based multi-material lightweight design, emerged by the two associations Carbon Composites e. V. and CFK Valley e. V. About 350 members have joined to form this high-performance industry and research association to jointly develop lightweight design solutions for the future.",
+      isAr
+        ? "تعد Composites United e. V. شبكة من الشركات والمؤسسات البحثية تغطي، من خلال تجمعاتها وشبكاتها في ألمانيا والنمسا وسويسرا، سلسلة القيمة الكاملة للإنشاءات خفيفة الوزن متعددة المواد القائمة على الألياف."
+        : "Composites United e. V. is a network of companies and research institutions that covers the entire value chain for fiber-based multi-material lightweight construction with its clusters and networks in Germany, Austria, and Switzerland.",
     ],
     href: "https://composites-united.com/en/",
   };
 }
 
 function PartnerLogo({ id }: { id: string }) {
+  return (
+    <Image
+      src={id === "fft" ? "/logo-fft.png" : "/logo-cu.png"}
+      alt={id === "fft" ? "FFT Produktionssysteme official logo" : "Composites United official logo"}
+      width={id === "fft" ? 952 : 959}
+      height={id === "fft" ? 376 : 729}
+      className={id === "fft" ? "h-16 w-auto md:h-20" : "h-20 w-auto md:h-24"}
+    />
+  );
+}
+
+function mediaSectionCopy(id: string, isAr: boolean) {
   if (id === "fft") {
-    return (
-      <div className="text-[clamp(3rem,5vw,5.8rem)] font-[1000] italic leading-none text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
-        FFT
-      </div>
-    );
+    return isAr
+      ? { kicker: "الشراكة والإنتاج", title: "FFT: اتفاقية وشراكة وإنتاج ذكي" }
+      : { kicker: "Partnership & Production", title: "FFT Partnership And Intelligent Production" };
   }
 
-  return (
-    <div className="flex flex-col items-center leading-none">
-      <div className="text-[clamp(2.8rem,4.4vw,5rem)] font-[1000]">
-        <span className="text-[#006db1]">C</span>
-        <span className="text-[#ef6a25]">U</span>
-      </div>
-      <span className="mt-1 text-[10px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-        Composites
-      </span>
-      <span className="text-[10px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-        United
-      </span>
-    </div>
-  );
+  return isAr
+    ? { kicker: "الشراكة في Hannover Messe", title: "CU: اتفاقية الشراكة والكلمة الرئيسية" }
+    : { kicker: "Partnership At Hannover Messe", title: "CU Partnership And Hannover Messe Speech" };
 }
 
 function mediaBadge(isAr: boolean, type?: "image" | "video") {
@@ -198,8 +199,8 @@ function SectionKicker({
 export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale }: Props) {
   const isAr = locale === "ar";
   const accent = accentFor(partner.id);
-  const shortLabel = partner.id === "fft" ? "FFT" : "CU";
-  const hero = companyHeroCopy(partner.id);
+  const hero = companyHeroCopy(partner.id, isAr);
+  const mediaCopy = mediaSectionCopy(partner.id, isAr);
   const reduceMotion = useReducedMotion();
   const reveal = reduceMotion
     ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
@@ -213,31 +214,37 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
       className="min-h-screen bg-[#080d20] pt-24 text-white"
       style={{ ["--accent" as string]: accent }}
     >
-      <section className="relative flex min-h-[calc(100vh-6rem)] items-end overflow-hidden px-6 pb-16 pt-20 md:px-12 lg:px-20">
-        {partner.id === "fft" || partner.id === "cu" ? (
-          <Image
-            src={partner.id === "fft" ? "/fft/main.jpeg" : "/cu/IMG-20260622-WA0005.jpg"}
-            alt={partner.id === "fft" ? "FFT main visual" : "CU main visual"}
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 object-cover opacity-45"
+      <section className="relative flex min-h-[540px] items-center overflow-hidden px-6 py-12 md:px-12 md:py-10 lg:min-h-[560px] lg:px-20">
+        <video
+          className="absolute inset-0 h-full w-full object-cover object-center"
+          poster={partner.id === "fft" ? "/fft/main.jpeg" : "/cu/IMG-20260622-WA0005.jpg"}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={partner.id === "fft" ? "FFT partnership video" : "CU partnership video"}
+        >
+          <source
+            src={
+              partner.id === "fft"
+                ? "/fft/FFT/VID-20260624-WA0031.mp4"
+                : "/cu/VID-20260624-WA0032.mp4"
+            }
+            type="video/mp4"
           />
-        ) : (
-          <video
-            className="absolute inset-0 h-full w-full object-cover opacity-35"
-            src="/hero.mp4"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-          />
-        )}
-        <div className="absolute inset-0 bg-[#080d20]/80" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.76)_54%,rgba(8,13,32,0.46)_100%)]" />
+        </video>
+        <div className="absolute inset-0 bg-[#080d20]/20" />
+        <div
+          className={`absolute inset-0 ${
+            isAr
+              ? "bg-[linear-gradient(270deg,rgba(8,13,32,0.76)_0%,rgba(8,13,32,0.56)_48%,rgba(8,13,32,0.08)_100%)]"
+              : "bg-[linear-gradient(90deg,rgba(8,13,32,0.76)_0%,rgba(8,13,32,0.56)_48%,rgba(8,13,32,0.08)_100%)]"
+          }`}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.7)_0%,transparent_32%,rgba(8,13,32,0.12)_100%)]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl">
+        <div className="relative z-10 mx-auto w-full max-w-[1440px]">
           <motion.div
             initial="hidden"
             animate="show"
@@ -246,10 +253,10 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
           >
             <Link
               href={`/${locale}/technology-partners`}
-              className="mb-12 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-400 transition hover:text-white"
+              className="mb-5 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-300 transition hover:text-white"
             >
               <ArrowLeft size={16} />
-              Partners
+              {isAr ? "الشركاء" : "Partners"}
             </Link>
           </motion.div>
 
@@ -258,18 +265,20 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             animate="show"
             variants={reveal}
             transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.1 }}
-            className="max-w-3xl"
+            className="max-w-5xl"
           >
-            <div className="mb-7 flex min-h-24 w-fit items-center justify-center border border-white/10 bg-[#080d20]/70 px-5 py-4 backdrop-blur">
-              <PartnerLogo id={partner.id} />
+            <div className="mb-4 flex flex-col items-start">
+              <SectionKicker color={accent} className="mb-0">
+                {hero.eyebrow}
+              </SectionKicker>
+              <div className="mt-4 flex min-h-20 w-fit items-center justify-center border border-white/20 bg-white/95 px-5 py-3 backdrop-blur">
+                <PartnerLogo id={partner.id} />
+              </div>
             </div>
-            <SectionKicker color={accent} className="mb-5">
-              {hero.eyebrow}
-            </SectionKicker>
-            <h1 className="text-4xl font-black leading-tight tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-normal md:text-6xl xl:text-[4rem]">
               {hero.title}
             </h1>
-            <div className="mt-8 space-y-5 text-base leading-relaxed text-zinc-300 md:text-lg">
+            <div className="mt-4 max-w-3xl space-y-3 text-base leading-relaxed text-zinc-200 md:text-lg">
               {hero.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
@@ -278,10 +287,10 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               href={hero.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-9 inline-flex items-center gap-3 px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
+              className="mt-5 inline-flex items-center gap-3 px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
               style={{ backgroundColor: accent }}
             >
-              Know more
+              {isAr ? "اعرف المزيد" : "Know more"}
               <ArrowUpRight size={16} />
             </a>
           </motion.div>
@@ -348,10 +357,10 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
         >
           <div>
             <SectionKicker color={accent} className="mb-3">
-              Gallery
+              {mediaCopy.kicker}
             </SectionKicker>
             <h2 className="text-3xl font-black uppercase tracking-tight md:text-5xl">
-              {shortLabel} Visual Gallery
+              {mediaCopy.title}
             </h2>
           </div>
           <a
@@ -360,13 +369,13 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-white px-5 py-3 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#43becc]"
           >
-            Know more
+            {isAr ? "اعرف المزيد" : "Know more"}
             <ArrowUpRight size={16} />
           </a>
         </motion.div>
 
-        <div className="grid gap-4 md:grid-cols-3">
-          {galleryItems(partner.id).map((item, index) => (
+        <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {galleryItems(partner.id, isAr).map((item, index) => (
             <motion.div
               key={item.label}
               initial="hidden"
@@ -374,25 +383,21 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               viewport={{ once: true, amount: 0.22 }}
               variants={reveal}
               transition={{ ...revealTransition, delay: reduceMotion ? 0 : index * 0.07 }}
-              className={`group relative overflow-hidden border border-white/10 bg-[#111936] ${
-                item.featured
-                  ? "aspect-[16/10] md:col-span-2 md:row-span-2 md:min-h-[520px]"
-                  : "aspect-[4/3]"
-              }`}
+              className="group relative aspect-[4/3] w-full overflow-hidden border border-white/10 bg-[#111936]"
             >
               {item.src && item.type === "image" ? (
                 <Image
                   src={item.src}
                   alt={item.label}
                   fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
-                  className="bg-[#080d20] object-contain transition duration-700 group-hover:scale-[1.02]"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  className="bg-[#080d20] object-contain object-center transition duration-500 group-hover:brightness-110"
                 />
               ) : item.src && item.type === "video" ? (
                 <div className="absolute inset-0 bg-black">
                   <video
                     poster={item.poster}
-                    className="h-full w-full object-contain"
+                    className="h-full w-full object-contain object-center"
                     muted
                     playsInline
                     preload="metadata"

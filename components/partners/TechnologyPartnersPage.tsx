@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -37,49 +38,15 @@ function partnerLabel(name: string) {
   return name.toLowerCase().includes("cu") ? "CU" : "FFT";
 }
 
-function partnerCardCopy(name: string) {
-  if (name.toLowerCase().includes("cu")) {
-    return {
-      name: "CU Company",
-      heading: "Composite Lightweight Technologies",
-      paragraphs: [
-        "Composites United e. V. (CU), one of the world's largest networks for fiber-based multi-material lightweight design, emerged by the two associations Carbon Composites e. V. and CFK Valley e. V. About 350 members have joined to form this high-performance industry and research association to jointly develop lightweight design solutions for the future.",
-      ],
-    };
-  }
-
-  return {
-    name: "FFT Company",
-    heading: "Intelligent Manufacturing Systems",
-    paragraphs: [
-      "Since 1974, we have stood for dynamism, solidity, global presence and a claim to technological leadership.",
-      "As a leading global provider of innovative, flexible and complex manufacturing systems, we specialize in their development, project planning and implementation. We assume overall responsibility for turnkey solutions and carry out projects worldwide, including for the automotive and aviation industries.",
-    ],
-  };
-}
-
 function PartnerLogo({ id }: { id: "fft" | "cu" }) {
-  if (id === "fft") {
-    return (
-      <div className="text-[clamp(2.4rem,4vw,4.6rem)] font-[1000] italic leading-none text-[#45f5ca] drop-shadow-[0_0_18px_rgba(69,245,202,0.28)]">
-        FFT
-      </div>
-    );
-  }
-
   return (
-    <div className="flex flex-col items-center leading-none">
-      <div className="text-[clamp(2.2rem,3.6vw,3.8rem)] font-[1000]">
-        <span className="text-[#006db1]">C</span>
-        <span className="text-[#ef6a25]">U</span>
-      </div>
-      <span className="mt-1 text-[9px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-        Composites
-      </span>
-      <span className="text-[9px] font-black uppercase tracking-[0.08em] text-[#006db1]">
-        United
-      </span>
-    </div>
+    <Image
+      src={id === "fft" ? "/logo-fft.png" : "/logo-cu.png"}
+      alt={id === "fft" ? "FFT Produktionssysteme official logo" : "Composites United official logo"}
+      width={id === "fft" ? 952 : 959}
+      height={id === "fft" ? 376 : 729}
+      className={id === "fft" ? "h-14 w-auto" : "h-20 w-auto"}
+    />
   );
 }
 
@@ -116,7 +83,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
       lang={locale}
       className="min-h-screen bg-[#080d20] text-white"
     >
-      <section className="relative flex min-h-[760px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-screen md:px-12 lg:px-20">
+      <section className="relative flex min-h-[760px] items-center overflow-hidden px-5 pb-14 pt-32 sm:px-6 md:min-h-screen md:px-12 md:pb-16 md:pt-36 lg:px-20">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/hero.mp4"
@@ -129,16 +96,16 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
         <div className="absolute inset-0 bg-[#080d20]/70" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.58)_48%,rgba(8,13,32,0.22)_100%)]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(380px,0.8fr)] lg:items-center lg:gap-14 xl:gap-20">
           <motion.div
             initial="hidden"
             animate="show"
             variants={reveal}
             transition={revealTransition}
-            className="max-w-4xl"
+            className="max-w-5xl"
           >
-            <SectionKicker>{content.hero.kicker}</SectionKicker>
-            <h1 className="text-[clamp(3rem,14vw,4.8rem)] font-black uppercase leading-[0.92] tracking-tight md:text-7xl lg:text-8xl">
+            {content.hero.kicker ? <SectionKicker>{content.hero.kicker}</SectionKicker> : null}
+            <h1 className="text-[2.9rem] font-black uppercase leading-[0.94] tracking-normal sm:text-6xl md:text-7xl xl:text-[5.5rem]">
               {content.hero.title}
             </h1>
           </motion.div>
@@ -148,7 +115,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
             animate="show"
             variants={reveal}
             transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.12 }}
-            className="max-w-2xl border border-white/12 bg-[#0a0f29]/70 p-5 backdrop-blur-md md:p-8"
+            className="w-full max-w-2xl border border-white/15 bg-[#0a0f29]/82 p-5 backdrop-blur-md md:p-7 lg:justify-self-end xl:p-8"
           >
             <p className="text-lg font-semibold leading-relaxed text-white md:text-xl">
               {content.hero.intro}
@@ -163,26 +130,14 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
       <section className="relative border-t border-white/10 bg-[#080d20] px-5 py-16 sm:px-6 md:px-12 md:py-20 lg:px-20">
         <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:56px_56px]" />
         <div className="relative mx-auto max-w-7xl">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.28 }}
-            variants={reveal}
-            transition={revealTransition}
-            className="mb-10 max-w-3xl"
-          >
-            <SectionKicker tone="blue">{content.technologyPartners.kicker}</SectionKicker>
-            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight md:text-5xl">
-              {content.technologyPartners.title}
-            </h2>
-          </motion.div>
-
           <div className="grid gap-5 lg:grid-cols-2">
             {content.technologyPartners.partners.map((partner, index) => {
               const label = partnerLabel(partner.name);
               const logoId = label.toLowerCase() as "fft" | "cu";
               const href = `/${locale}/technology-partners/${partnerSlug(partner.name)}`;
-              const card = partnerCardCopy(partner.name);
+              const background = logoId === "fft"
+                ? "/fft/FFT/IMG-20260623-WA0010.jpg"
+                : "/cu/IMG-20260622-WA0005.jpg";
 
               return (
                 <motion.div
@@ -195,10 +150,16 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                 >
                   <Link
                     href={href}
-                    className="group relative block min-h-[340px] overflow-hidden border border-white/10 bg-[#111936] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 hover:bg-[#121b43] sm:p-7 md:min-h-[360px] md:p-9"
+                    className="group relative block min-h-[430px] overflow-hidden border border-white/10 bg-[#111936] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 sm:p-7 md:min-h-[470px] md:p-9"
                   >
-                    <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:44px_44px]" />
-                    <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#0087cb]/20 blur-3xl transition duration-500 group-hover:bg-[#43becc]/25" />
+                    <Image
+                      src={background}
+                      alt={`${label} partnership background`}
+                      fill
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                      className="object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,32,0.42),rgba(8,13,32,0.97))]" />
                     <div className="relative z-10 flex h-full flex-col">
                       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                         <div>
@@ -206,26 +167,26 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                             0{index + 1}
                           </span>
                           <h3 className="mt-4 text-3xl font-black uppercase tracking-tight md:mt-5 md:text-5xl">
-                            {card.name}
+                            {partner.name}
                           </h3>
                         </div>
-                        <div className="flex min-h-20 min-w-28 shrink-0 items-center justify-center border border-white/10 bg-[#080d20]/80 px-4 py-3">
+                        <div className="flex min-h-20 min-w-28 shrink-0 items-center justify-center border border-white/20 bg-white/95 px-4 py-3">
                           <PartnerLogo id={logoId} />
                         </div>
                       </div>
 
                       <div className="mt-10">
                         <p className="text-xl font-black leading-snug text-white/90">
-                          {card.heading}
+                          {partner.heading}
                         </p>
                         <p className="mt-5 line-clamp-4 text-sm leading-relaxed text-zinc-400 md:text-base">
-                          {card.paragraphs.join(" ")}
+                          {partner.paragraphs.join(" ")}
                         </p>
                       </div>
 
                       <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-7">
                         <span className="text-[11px] font-black uppercase tracking-[0.28em] text-white">
-                          {label} Company
+                          {partner.ctaLabel}
                         </span>
                         <span className="flex h-11 w-11 items-center justify-center bg-[#0087cb] text-black transition duration-300 group-hover:bg-white">
                           <ArrowUpRight size={18} />
