@@ -215,25 +215,29 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
       style={{ ["--accent" as string]: accent }}
     >
       <section className="relative flex min-h-[540px] items-center overflow-hidden px-6 py-12 md:px-12 md:py-10 lg:min-h-[560px] lg:px-20">
-        <video
-          className="absolute inset-0 h-full w-full object-cover object-center"
-          poster={partner.id === "fft" ? "/fft/main.jpeg" : "/cu/IMG-20260622-WA0005.jpg"}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label={partner.id === "fft" ? "FFT partnership video" : "CU partnership video"}
-        >
-          <source
-            src={
-              partner.id === "fft"
-                ? "/fft/FFT/VID-20260624-WA0031.mp4"
-                : "/cu/VID-20260624-WA0032.mp4"
-            }
-            type="video/mp4"
+        {partner.id === "fft" ? (
+          <Image
+            src="/fft/FFT/IMG-20260623-WA0013.jpg"
+            alt="50 Years of FFT"
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 object-cover object-center"
           />
-        </video>
+        ) : (
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            poster="/cu/IMG-20260622-WA0005.jpg"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="CU partnership video"
+          >
+            <source src="/cu/VID-20260624-WA0032.mp4" type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-[#080d20]/20" />
         <div
           className={`absolute inset-0 ${
