@@ -45,7 +45,7 @@ function PartnerLogo({ id }: { id: "fft" | "cu" }) {
       alt={id === "fft" ? "FFT Produktionssysteme official logo" : "Composites United official logo"}
       width={id === "fft" ? 952 : 959}
       height={id === "fft" ? 376 : 729}
-      className={id === "fft" ? "h-14 w-auto" : "h-20 w-auto"}
+      className={id === "fft" ? "h-14 w-auto" : "h-[5.25rem] w-auto object-contain"}
     />
   );
 }
@@ -144,7 +144,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
               const href = `/${locale}/technology-partners/${partnerSlug(partner.name)}`;
               const background = logoId === "fft"
                 ? "/fft/FFT/IMG-20260623-WA0009.jpg"
-                : "/cu/IMG-20260622-WA0005.jpg";
+                : "/logo-cu.png";
 
               return (
                 <motion.div
@@ -159,26 +159,26 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                     href={href}
                     className="group relative block min-h-[430px] overflow-hidden border border-white/10 bg-[#111936] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 sm:p-7 md:min-h-[470px] md:p-9"
                   >
-                    <Image
-                      src={background}
-                      alt={`${label} partnership background`}
-                      fill
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                      style={
-                        logoId === "cu"
-                          ? {
-                              transform: "translateX(-22%) scale(1)",
-                              transformOrigin: "center",
-                            }
-                          : undefined
-                      }
-                      className={`transition duration-700 ${
-                        logoId === "cu"
-                          ? "object-cover"
-                          : "object-contain object-center group-hover:scale-[1.02]"
-                      }`}
-                    />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,32,0.24),rgba(8,13,32,0.9))]" />
+                    {logoId === "fft" ? (
+                      <Image
+                        src={background}
+                        alt={`${label} partnership background`}
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-contain object-center transition duration-700 group-hover:scale-[1.02]"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-[#111936] [background-image:linear-gradient(#43becc12_1px,transparent_1px),linear-gradient(90deg,#43becc12_1px,transparent_1px)] [background-size:48px_48px]">
+                        <Image
+                          src="/logo-cu.png"
+                          alt=""
+                          fill
+                          sizes="(min-width: 1024px) 50vw, 100vw"
+                          className="object-contain object-center p-16 opacity-30 sm:p-20"
+                        />
+                      </div>
+                    )}
+                    <div className={`absolute inset-0 ${logoId === "cu" ? "bg-[linear-gradient(180deg,rgba(8,13,32,0.18),rgba(8,13,32,0.96))]" : "bg-[linear-gradient(180deg,rgba(8,13,32,0.24),rgba(8,13,32,0.9))]"}`} />
                     <div className="relative z-10 flex h-full flex-col">
                       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                         <div>
@@ -189,7 +189,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                             {partner.name}
                           </h3>
                         </div>
-                        <div className="flex min-h-20 min-w-28 shrink-0 items-center justify-center border border-white/20 bg-white/95 px-4 py-3">
+                        <div className={`relative z-20 flex shrink-0 items-center justify-center border border-white/20 bg-white px-4 py-3 shadow-[0_12px_34px_rgba(0,0,0,0.22)] ${logoId === "cu" ? "min-h-24 min-w-32" : "min-h-20 min-w-28"}`}>
                           <PartnerLogo id={logoId} />
                         </div>
                       </div>

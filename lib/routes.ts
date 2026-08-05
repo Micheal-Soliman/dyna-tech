@@ -15,7 +15,7 @@ export const primaryNavigation = [
   { label: "Home", labelAr: "الرئيسية", path: siteRoutes.home },
   { label: "About Us", labelAr: "من نحن", path: siteRoutes.about },
   { label: "Technology Partners", labelAr: "شركاء التكنولوجيا", path: siteRoutes.partners },
-  { label: "Auto Hub", labelAr: "أوتو هب", path: siteRoutes.autoHub },
+  { label: "The Auto Hub", labelAr: "أوتو هب", path: siteRoutes.autoHub },
   { label: "Tech Info", labelAr: "معلومات تقنية", path: siteRoutes.techInfo },
   { label: "Careers", labelAr: "الوظائف", path: siteRoutes.careers },
 ] as const;

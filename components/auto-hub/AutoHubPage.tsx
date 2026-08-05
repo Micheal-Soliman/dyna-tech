@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type AutoHubContent = {
@@ -31,6 +32,15 @@ export type AutoHubContent = {
 };
 
 type Props = { content: AutoHubContent; locale: string };
+
+const autoHubGallery = [
+  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0017.jpg",
+  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0019.jpg",
+  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0021.jpg",
+  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0027.jpg",
+  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0028.jpg",
+  "/autohub/The%20Auto%20Hub/IMG-20260623-WA0038.jpg",
+];
 
 type TeamMember = {
   category: string;
@@ -222,9 +232,32 @@ export default function AutoHubPage({ locale }: Props) {
   const figures = projectFigures(isAr);
   const reduceMotion = useReducedMotion();
   const [activeTeamIndex, setActiveTeamIndex] = useState<number | null>(null);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
   const reveal = reduceMotion
     ? { initial: { opacity: 1, y: 0 }, whileInView: { opacity: 1, y: 0 } }
     : { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 } };
+
+  useEffect(() => {
+    if (activeGalleryIndex === null) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActiveGalleryIndex(null);
+      if (event.key === "ArrowLeft") {
+        setActiveGalleryIndex((current) => current === null ? current : (current - 1 + autoHubGallery.length) % autoHubGallery.length);
+      }
+      if (event.key === "ArrowRight") {
+        setActiveGalleryIndex((current) => current === null ? current : (current + 1) % autoHubGallery.length);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeGalleryIndex]);
 
   return (
     <main dir={isAr ? "rtl" : "ltr"} lang={locale} className="min-h-screen bg-[#080d20] pt-24 text-white">
@@ -258,6 +291,25 @@ export default function AutoHubPage({ locale }: Props) {
           <motion.p {...reveal} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.65, delay: 0.06 }} className="text-base leading-[1.9] text-zinc-300 md:text-lg">
             {copy.introduction}
           </motion.p>
+        </div>
+        <div className="relative mx-auto mt-14 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {autoHubGallery.map((src, index) => (
+            <motion.button
+              key={src}
+              type="button"
+              {...reveal}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.45, delay: Math.min(index * 0.03, 0.15) }}
+              onClick={() => setActiveGalleryIndex(index)}
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden border border-white/10 bg-white"
+              aria-label={isAr ? "فتح صورة المشروع" : "Open project image"}
+            >
+              <Image src={src} alt="" fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-contain transition duration-500 group-hover:brightness-105" />
+              <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-white/20 bg-black/55 text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
+                <Maximize2 size={17} />
+              </span>
+            </motion.button>
+          ))}
         </div>
       </section>
 
@@ -306,6 +358,17 @@ export default function AutoHubPage({ locale }: Props) {
           </div>
         </div>
       </section>
+
+      {activeGalleryIndex !== null ? (
+        <div className="fixed inset-0 z-[310] flex items-center justify-center bg-black/92 px-4 py-5 backdrop-blur-md md:px-8" role="dialog" aria-modal="true" aria-label={isAr ? "صورة المشروع" : "Project image"}>
+          <button type="button" onClick={() => setActiveGalleryIndex(null)} className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center bg-white text-black transition hover:bg-[#43becc] md:right-7 md:top-7" aria-label={isAr ? "إغلاق" : "Close"}><X size={20} /></button>
+          <button type="button" onClick={() => setActiveGalleryIndex((current) => current === null ? current : (current - 1 + autoHubGallery.length) % autoHubGallery.length)} className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-black/55 text-white transition hover:bg-white hover:text-black md:left-7" aria-label={isAr ? "السابق" : "Previous"}><ChevronLeft size={22} /></button>
+          <button type="button" onClick={() => setActiveGalleryIndex((current) => current === null ? current : (current + 1) % autoHubGallery.length)} className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-black/55 text-white transition hover:bg-white hover:text-black md:right-7" aria-label={isAr ? "التالي" : "Next"}><ChevronRight size={22} /></button>
+          <div className="relative h-full max-h-[86vh] w-full max-w-6xl overflow-hidden border border-white/10 bg-[#080d20]">
+            <Image src={autoHubGallery[activeGalleryIndex]} alt="" fill sizes="100vw" className="object-contain" priority />
+          </div>
+        </div>
+      ) : null}
     </main>
   );
 }
