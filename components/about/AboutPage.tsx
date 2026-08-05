@@ -1,35 +1,37 @@
-"use client";
+'use client'
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Linkedin } from "lucide-react";
-import Image from "next/image";
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { ArrowUpRight, Linkedin } from 'lucide-react'
+import Image from 'next/image'
 
-import type { DynatechContent } from "./types";
-export type { DynatechContent } from "./types";
+import type { DynatechContent } from './types'
+export type { DynatechContent } from './types'
 
-import FounderLayer from "./FounderLayer";
-import LocationsLayer from "./LocationsLayer";
-import MissionVisionLayer from "./MissionVisionLayer";
-import TimelineLayer from "./TimelineLayer";
+import FounderLayer from './FounderLayer'
+import LocationsLayer from './LocationsLayer'
+import MissionVisionLayer from './MissionVisionLayer'
+import TimelineLayer from './TimelineLayer'
 
 function BackgroundGrid({ fixed = false }: { fixed?: boolean }) {
   return (
-    <div className={`pointer-events-none inset-0 z-[1] overflow-hidden ${fixed ? "fixed" : "absolute"}`}>
+    <div
+      className={`pointer-events-none inset-0 z-[1] overflow-hidden ${fixed ? 'fixed' : 'absolute'}`}
+    >
       <div
         className="absolute inset-0 opacity-[0.15]"
         style={{
           backgroundImage: `linear-gradient(#0087cb22 1px, transparent 1px), linear-gradient(90deg, #0087cb22 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
+          backgroundSize: '60px 60px',
         }}
       />
     </div>
-  );
+  )
 }
 
 function VideoBackground({ fixed = false }: { fixed?: boolean }) {
   return (
-    <div className={`inset-0 z-0 ${fixed ? "fixed" : "absolute"}`}>
+    <div className={`inset-0 z-0 ${fixed ? 'fixed' : 'absolute'}`}>
       <video
         className="h-full w-full object-cover object-center"
         autoPlay
@@ -39,58 +41,90 @@ function VideoBackground({ fixed = false }: { fixed?: boolean }) {
         preload="auto"
         aria-label="DYNATECH background video"
       >
-        <source src="/Dyna Tech - 02.mp4" type="video/mp4" />
+        <source src="/Dyna Tech - 01.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-[#050915]/35" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.72),rgba(10,15,41,0.34)_45%,rgba(10,15,41,0.72)),radial-gradient(circle_at_50%_45%,rgba(0,135,203,0.12),transparent_34%)]" />
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0f29]/80 to-transparent" />
     </div>
-  );
+  )
 }
 
-function CeoMessage({ content, isAr }: { content: DynatechContent["ceoMessage"]; isAr: boolean }) {
+function CeoMessage({
+  content,
+  isAr,
+}: {
+  content: DynatechContent['ceoMessage']
+  isAr: boolean
+}) {
   return (
     <section className="relative z-10 overflow-hidden bg-[#0a0f29]/40 px-4 py-28 sm:px-6 md:py-36">
-      <div className={`relative z-10 mx-auto w-full max-w-5xl bg-[#111936]/82 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm md:p-8 lg:p-10 ${isAr ? "border-r-4 border-[#0087cb] text-right" : "border-l-4 border-[#0087cb]"}`}>
-        <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">{content.kicker}</p>
-        <h2 className="mt-4 text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">{content.title}</h2>
+      <div
+        className={`relative z-10 mx-auto w-full max-w-5xl bg-[#111936]/82 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm md:p-8 lg:p-10 ${isAr ? 'border-r-4 border-[#0087cb] text-right' : 'border-l-4 border-[#0087cb]'}`}
+      >
+        <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">
+          {content.kicker}
+        </p>
+        <h2 className="mt-4 text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+          {content.title}
+        </h2>
         <div className="mt-8 grid gap-x-12 gap-y-8 lg:grid-cols-2">
-          {[content.paragraphs.slice(0, 3), content.paragraphs.slice(3)].map((column, columnIndex) => (
-            <div key={columnIndex} className="space-y-5">
-              {column.map((paragraph, paragraphIndex) => (
-                <motion.p
-                  key={paragraph}
-                  initial={{ opacity: 0, y: 22 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.55, delay: Math.min((columnIndex * 3 + paragraphIndex) * 0.04, 0.16) }}
-                  className="text-sm font-medium leading-relaxed text-zinc-300 md:text-base"
-                >
-                  {paragraph}
-                </motion.p>
-              ))}
-            </div>
-          ))}
+          {[content.paragraphs.slice(0, 3), content.paragraphs.slice(3)].map(
+            (column, columnIndex) => (
+              <div key={columnIndex} className="space-y-5">
+                {column.map((paragraph, paragraphIndex) => (
+                  <motion.p
+                    key={paragraph}
+                    initial={{ opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{
+                      duration: 0.55,
+                      delay: Math.min(
+                        (columnIndex * 3 + paragraphIndex) * 0.04,
+                        0.16,
+                      ),
+                    }}
+                    className="text-sm font-medium leading-relaxed text-zinc-300 md:text-base"
+                  >
+                    {paragraph}
+                  </motion.p>
+                ))}
+              </div>
+            ),
+          )}
         </div>
         <div className="mt-9 border-t border-white/10 pt-6">
           <p className="font-black text-white">{content.signatureName}</p>
-          <p className="mt-1 text-xs font-bold uppercase tracking-wider text-[#43becc]">{content.signatureRole}</p>
-          <p className="mt-1 text-xs text-zinc-500">{content.signatureCompany}</p>
+          <p className="mt-1 text-xs font-bold uppercase tracking-wider text-[#43becc]">
+            {content.signatureRole}
+          </p>
+          <p className="mt-1 text-xs text-zinc-500">
+            {content.signatureCompany}
+          </p>
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-function MobileIntro({ content, isAr }: { content: DynatechContent; isAr: boolean }) {
+function MobileIntro({
+  content,
+  isAr,
+}: {
+  content: DynatechContent
+  isAr: boolean
+}) {
   return (
     <section className="relative z-10 px-4 pb-20 pt-28 md:hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
         className={`bg-[#111936]/82 p-5 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm ${
-          isAr ? "border-r-4 border-[#0087cb] text-right" : "border-l-4 border-[#0087cb]"
+          isAr
+            ? 'border-r-4 border-[#0087cb] text-right'
+            : 'border-l-4 border-[#0087cb]'
         }`}
       >
         <h1 className="text-4xl font-black uppercase leading-none tracking-tight text-white">
@@ -98,7 +132,10 @@ function MobileIntro({ content, isAr }: { content: DynatechContent; isAr: boolea
         </h1>
         <div className="mt-6 space-y-5">
           {content.company.paragraphs.map((paragraph) => (
-            <p key={paragraph} className="text-sm font-medium leading-6 text-zinc-300">
+            <p
+              key={paragraph}
+              className="text-sm font-medium leading-6 text-zinc-300"
+            >
               {paragraph}
             </p>
           ))}
@@ -109,7 +146,7 @@ function MobileIntro({ content, isAr }: { content: DynatechContent; isAr: boolea
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.14 }}
-        transition={{ duration: 0.65, ease: "easeOut" }}
+        transition={{ duration: 0.65, ease: 'easeOut' }}
         className="mt-16"
       >
         <h2 className="text-4xl font-black uppercase leading-none tracking-tight text-white">
@@ -140,62 +177,120 @@ function MobileIntro({ content, isAr }: { content: DynatechContent; isAr: boolea
         </div>
       </motion.div>
     </section>
-  );
+  )
 }
 
-export default function AboutPage({ content, locale }: { content: DynatechContent; locale: string }) {
-  const isAr = locale === "ar";
-  const introRef = useRef<HTMLElement>(null);
-  const historyRef = useRef<HTMLElement>(null);
+export default function AboutPage({
+  content,
+  locale,
+}: {
+  content: DynatechContent
+  locale: string
+}) {
+  const isAr = locale === 'ar'
+  const introRef = useRef<HTMLElement>(null)
+  const historyRef = useRef<HTMLElement>(null)
 
-  const { scrollYProgress: introProgress } = useScroll({ target: introRef, offset: ["start start", "end end"] });
-  const companyOpacity = useTransform(introProgress, [0, 0.28, 0.38], [1, 1, 0]);
-  const founderScale = useTransform(introProgress, [0.3, 0.42], [0.97, 1]);
-  const founderY = useTransform(introProgress, [0.3, 0.96], [34, -30]);
-  const founderOpacity = useTransform(introProgress, [0.3, 0.4, 0.9, 0.98], [0, 1, 1, 0]);
+  const { scrollYProgress: introProgress } = useScroll({
+    target: introRef,
+    offset: ['start start', 'end end'],
+  })
+  const companyOpacity = useTransform(introProgress, [0, 0.28, 0.38], [1, 1, 0])
+  const founderScale = useTransform(introProgress, [0.3, 0.42], [0.97, 1])
+  const founderY = useTransform(introProgress, [0.3, 0.96], [34, -30])
+  const founderOpacity = useTransform(
+    introProgress,
+    [0.3, 0.4, 0.9, 0.98],
+    [0, 1, 1, 0],
+  )
 
-  const { scrollYProgress: historyProgress } = useScroll({ target: historyRef, offset: ["start start", "end end"] });
-  const timelineXEn = useTransform(historyProgress, [0, 0.62], [80, -3100]);
-  const timelineXAr = useTransform(historyProgress, [0, 0.62], [-80, 3100]);
-  const timelineX = isAr ? timelineXAr : timelineXEn;
-  const timelineScale = useTransform(historyProgress, [0, 0.08, 0.64, 0.72], [0.97, 1, 1, 0.96]);
-  const timelineOpacity = useTransform(historyProgress, [0, 0.64, 0.72], [1, 1, 0]);
-  const locationsOpacity = useTransform(historyProgress, [0.68, 0.76, 0.98, 1], [0, 1, 1, 0]);
+  const { scrollYProgress: historyProgress } = useScroll({
+    target: historyRef,
+    offset: ['start start', 'end end'],
+  })
+  const timelineXEn = useTransform(historyProgress, [0, 0.62], [80, -3100])
+  const timelineXAr = useTransform(historyProgress, [0, 0.62], [-80, 3100])
+  const timelineX = isAr ? timelineXAr : timelineXEn
+  const timelineScale = useTransform(
+    historyProgress,
+    [0, 0.08, 0.64, 0.72],
+    [0.97, 1, 1, 0.96],
+  )
+  const timelineOpacity = useTransform(
+    historyProgress,
+    [0, 0.64, 0.72],
+    [1, 1, 0],
+  )
+  const locationsOpacity = useTransform(
+    historyProgress,
+    [0.68, 0.76, 0.98, 1],
+    [0, 1, 1, 0],
+  )
 
   return (
-    <main dir={isAr ? "rtl" : "ltr"} lang={locale} className="relative isolate bg-[#0a0f29]">
+    <main
+      dir={isAr ? 'rtl' : 'ltr'}
+      lang={locale}
+      className="relative isolate bg-[#0a0f29]"
+    >
       <VideoBackground fixed />
       <BackgroundGrid fixed />
 
       <MobileIntro content={content} isAr={isAr} />
 
-      <section ref={introRef} className="relative z-10 hidden w-full md:block" style={{ height: "250vh" }}>
+      <section
+        ref={introRef}
+        className="relative z-10 hidden w-full md:block"
+        style={{ height: '250vh' }}
+      >
         <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
-          <MissionVisionLayer opacity={companyOpacity} data={content.company} isAr={isAr} />
-          <FounderLayer opacity={founderOpacity} scale={founderScale} y={founderY} data={content.founder} isAr={isAr} />
+          <MissionVisionLayer
+            opacity={companyOpacity}
+            data={content.company}
+            isAr={isAr}
+          />
+          <FounderLayer
+            opacity={founderOpacity}
+            scale={founderScale}
+            y={founderY}
+            data={content.founder}
+            isAr={isAr}
+          />
         </div>
       </section>
 
       <CeoMessage content={content.ceoMessage} isAr={isAr} />
 
-      <section ref={historyRef} className="relative z-10 w-full" style={{ height: "470vh" }}>
+      <section
+        ref={historyRef}
+        className="relative z-10 w-full"
+        style={{ height: '470vh' }}
+      >
         <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
           <TimelineLayer
             x={timelineX}
             opacity={timelineOpacity}
             scale={timelineScale}
-            copy={{ kicker: content.timeline.kicker, titleLine1: content.timeline.title, titleHighlight: "" }}
+            copy={{
+              kicker: content.timeline.kicker,
+              titleLine1: content.timeline.title,
+              titleHighlight: '',
+            }}
             items={content.timeline.items}
             isAr={isAr}
           />
           <LocationsLayer
             opacity={locationsOpacity}
-            copy={{ kicker: content.locations.kicker, titleLine1: content.locations.title, titleHighlight: "" }}
+            copy={{
+              kicker: content.locations.kicker,
+              titleLine1: content.locations.title,
+              titleHighlight: '',
+            }}
             items={content.locations.items}
             isAr={isAr}
           />
         </div>
       </section>
     </main>
-  );
+  )
 }

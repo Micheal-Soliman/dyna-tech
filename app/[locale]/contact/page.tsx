@@ -72,7 +72,17 @@ export default async function Page({
       className="min-h-screen bg-[#0a0f29] pt-32 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative overflow-hidden border-b border-white/10 px-5 pb-16 pt-8 sm:px-6 md:px-12 lg:px-20">
-        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:72px_72px]" />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/Dyna Tech - 02.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        />
+        <div className="absolute inset-0 bg-[#080d20]/55" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.82)_0%,rgba(8,13,32,0.4)_55%,rgba(8,13,32,0.2)_100%)]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#43becc] to-transparent" />
         <div className="pointer-events-none absolute -right-8 top-10 text-[15vw] font-black uppercase leading-none tracking-tight text-white/[0.025]">
           {isAr ? "تواصل" : "Contact"}
