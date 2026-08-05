@@ -216,37 +216,39 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
     >
       <section className="relative flex min-h-[540px] items-center overflow-hidden px-6 py-12 md:px-12 md:py-10 lg:min-h-[560px] lg:px-20">
         {partner.id === "fft" ? (
-          <Image
-            src="/fft/FFT/IMG-20260623-WA0013.jpg"
-            alt={isAr ? "خمسون عاما من FFT" : "50 Years of FFT"}
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 object-cover object-center"
-          />
-        ) : (
           <video
             className="absolute inset-0 h-full w-full object-cover object-center"
-            poster="/cu/IMG-20260622-WA0005.jpg"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
+            aria-label={isAr ? "فيديو أنظمة إنتاج FFT" : "FFT production systems video"}
+          >
+            <source src="/fft/FFT/VID-20260623-WA0008.mp4" type="video/mp4" />
+          </video>
+        ) : (
+          <video
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
             aria-label={isAr ? "فيديو شراكة CU" : "CU partnership video"}
           >
             <source src="/cu/VID-20260624-WA0032.mp4" type="video/mp4" />
           </video>
         )}
-        <div className="absolute inset-0 bg-[#080d20]/20" />
+        <div className="absolute inset-0 bg-[#080d20]/10" />
         <div
           className={`absolute inset-0 ${
             isAr
-              ? "bg-[linear-gradient(270deg,rgba(8,13,32,0.76)_0%,rgba(8,13,32,0.56)_48%,rgba(8,13,32,0.08)_100%)]"
-              : "bg-[linear-gradient(90deg,rgba(8,13,32,0.76)_0%,rgba(8,13,32,0.56)_48%,rgba(8,13,32,0.08)_100%)]"
+              ? "bg-[linear-gradient(270deg,rgba(8,13,32,0.6)_0%,rgba(8,13,32,0.36)_48%,rgba(8,13,32,0.04)_100%)]"
+              : "bg-[linear-gradient(90deg,rgba(8,13,32,0.6)_0%,rgba(8,13,32,0.36)_48%,rgba(8,13,32,0.04)_100%)]"
           }`}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.7)_0%,transparent_32%,rgba(8,13,32,0.12)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.48)_0%,transparent_32%,rgba(8,13,32,0.06)_100%)]" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1440px]">
           <motion.div

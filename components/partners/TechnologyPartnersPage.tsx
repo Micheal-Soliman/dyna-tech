@@ -89,17 +89,17 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
       <section className="relative flex min-h-[760px] items-center overflow-hidden px-5 pb-14 pt-32 sm:px-6 md:min-h-screen md:px-12 md:pb-16 md:pt-36 lg:px-20">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/hero.mp4"
+          src="/Dyna Tech - 03.mp4"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
         />
-        <div className="absolute inset-0 bg-[#080d20]/70" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.58)_48%,rgba(8,13,32,0.22)_100%)]" />
+        <div className="absolute inset-0 bg-[#080d20]/38" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.78)_0%,rgba(8,13,32,0.36)_48%,rgba(8,13,32,0.1)_100%)]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.45fr)] lg:items-center lg:gap-12 xl:gap-16">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(460px,0.75fr)] lg:items-center lg:gap-10 xl:grid-cols-[minmax(0,1.15fr)_minmax(520px,0.85fr)] xl:gap-12">
           <motion.div
             initial="hidden"
             animate="show"
@@ -122,9 +122,9 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
             animate="show"
             variants={reveal}
             transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.12 }}
-            className="w-full max-w-2xl border border-white/15 bg-[#0a0f29]/82 p-5 backdrop-blur-md md:p-7 lg:justify-self-end xl:p-8"
+            className="w-full max-w-3xl border border-white/15 bg-[#0a0f29]/78 p-5 backdrop-blur-md md:p-6 lg:justify-self-end xl:p-7"
           >
-            <p className="text-lg font-semibold leading-relaxed text-white md:text-xl">
+            <p className="text-lg font-semibold leading-relaxed text-white">
               {content.hero.intro}
             </p>
             <p className="mt-5 text-sm leading-relaxed text-zinc-300 md:text-base">
@@ -143,7 +143,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
               const logoId = label.toLowerCase() as "fft" | "cu";
               const href = `/${locale}/technology-partners/${partnerSlug(partner.name)}`;
               const background = logoId === "fft"
-                ? "/fft/FFT/IMG-20260623-WA0010.jpg"
+                ? "/fft/FFT/IMG-20260623-WA0009.jpg"
                 : "/cu/IMG-20260622-WA0005.jpg";
 
               return (
@@ -164,9 +164,21 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                       alt={`${label} partnership background`}
                       fill
                       sizes="(min-width: 1024px) 50vw, 100vw"
-                      className="object-cover transition duration-700 group-hover:scale-105"
+                      style={
+                        logoId === "cu"
+                          ? {
+                              transform: "translateX(-22%) scale(1)",
+                              transformOrigin: "center",
+                            }
+                          : undefined
+                      }
+                      className={`transition duration-700 ${
+                        logoId === "cu"
+                          ? "object-cover"
+                          : "object-contain object-center group-hover:scale-[1.02]"
+                      }`}
                     />
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,32,0.42),rgba(8,13,32,0.97))]" />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,13,32,0.24),rgba(8,13,32,0.9))]" />
                     <div className="relative z-10 flex h-full flex-col">
                       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                         <div>
