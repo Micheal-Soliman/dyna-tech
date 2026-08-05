@@ -16,6 +16,7 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
   return (
     <motion.div 
       style={{ x, opacity, scale }} 
+      dir={isAr ? "rtl" : "ltr"}
       className="absolute inset-0 flex items-center z-50 px-10 md:px-20"
     >
       <div className="flex gap-8 md:gap-12 items-start min-w-max">
@@ -40,7 +41,7 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
               <div className={`w-3 h-3 bg-[#006db1] rounded-full mb-6 shadow-[0_0_10px_#006db1] ${isAr ? 'mr-auto' : ''}`} />
               <div className="text-white font-black text-2xl md:text-4xl mb-3 tracking-tighter">{item.year}</div>
               <p 
-                dir="auto"
+                dir={isAr ? "rtl" : "ltr"}
                 style={{ unicodeBidi: "plaintext" }}
                 className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-[280px]"
               >
@@ -50,7 +51,7 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
             
             {/* Connector Line */}
             {i < items.length - 1 && (
-              <div className={`absolute top-[70px] ${isAr ? 'right-[12px]' : 'left-[12px]'} w-[calc(100%+40px)] h-[1px] bg-gradient-to-r from-white/20 to-transparent`} />
+              <div className={`absolute top-[70px] ${isAr ? 'right-[12px] bg-gradient-to-l' : 'left-[12px] bg-gradient-to-r'} w-[calc(100%+40px)] h-[1px] from-white/20 to-transparent`} />
             )}
           </div>
         ))}

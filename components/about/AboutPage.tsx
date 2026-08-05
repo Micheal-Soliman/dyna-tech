@@ -54,18 +54,22 @@ function CeoMessage({ content, isAr }: { content: DynatechContent["ceoMessage"];
       <div className={`relative z-10 mx-auto w-full max-w-5xl bg-[#111936]/82 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm md:p-8 lg:p-10 ${isAr ? "border-r-4 border-[#0087cb] text-right" : "border-l-4 border-[#0087cb]"}`}>
         <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">{content.kicker}</p>
         <h2 className="mt-4 text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">{content.title}</h2>
-        <div className="mt-8 grid gap-x-10 gap-y-5 lg:grid-cols-2">
-          {content.paragraphs.map((paragraph, index) => (
-            <motion.p
-              key={paragraph}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.55, delay: Math.min(index * 0.04, 0.16) }}
-              className="text-sm font-medium leading-relaxed text-zinc-300 md:text-base"
-            >
-              {paragraph}
-            </motion.p>
+        <div className="mt-8 grid gap-x-12 gap-y-8 lg:grid-cols-2">
+          {[content.paragraphs.slice(0, 3), content.paragraphs.slice(3)].map((column, columnIndex) => (
+            <div key={columnIndex} className="space-y-5">
+              {column.map((paragraph, paragraphIndex) => (
+                <motion.p
+                  key={paragraph}
+                  initial={{ opacity: 0, y: 22 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.55, delay: Math.min((columnIndex * 3 + paragraphIndex) * 0.04, 0.16) }}
+                  className="text-sm font-medium leading-relaxed text-zinc-300 md:text-base"
+                >
+                  {paragraph}
+                </motion.p>
+              ))}
+            </div>
           ))}
         </div>
         <div className="mt-9 border-t border-white/10 pt-6">
@@ -92,10 +96,7 @@ function MobileIntro({ content, isAr }: { content: DynatechContent; isAr: boolea
         <h1 className="text-4xl font-black uppercase leading-none tracking-tight text-white">
           {content.company.title}
         </h1>
-        <p className="mt-5 text-sm font-black leading-6 text-[#43becc]">
-          {content.company.lead}
-        </p>
-        <div className="mt-5 space-y-4">
+        <div className="mt-6 space-y-5">
           {content.company.paragraphs.map((paragraph) => (
             <p key={paragraph} className="text-sm font-medium leading-6 text-zinc-300">
               {paragraph}
@@ -154,10 +155,12 @@ export default function AboutPage({ content, locale }: { content: DynatechConten
   const founderOpacity = useTransform(introProgress, [0.3, 0.4, 0.9, 0.98], [0, 1, 1, 0]);
 
   const { scrollYProgress: historyProgress } = useScroll({ target: historyRef, offset: ["start start", "end end"] });
-  const timelineX = useTransform(historyProgress, [0, 0.66], [100, -3150]);
-  const timelineScale = useTransform(historyProgress, [0, 0.08, 0.6, 0.68], [0.97, 1, 1, 0.96]);
-  const timelineOpacity = useTransform(historyProgress, [0, 0.6, 0.68], [1, 1, 0]);
-  const locationsOpacity = useTransform(historyProgress, [0.64, 0.73, 0.98, 1], [0, 1, 1, 0]);
+  const timelineXEn = useTransform(historyProgress, [0, 0.62], [80, -3100]);
+  const timelineXAr = useTransform(historyProgress, [0, 0.62], [-80, 3100]);
+  const timelineX = isAr ? timelineXAr : timelineXEn;
+  const timelineScale = useTransform(historyProgress, [0, 0.08, 0.64, 0.72], [0.97, 1, 1, 0.96]);
+  const timelineOpacity = useTransform(historyProgress, [0, 0.64, 0.72], [1, 1, 0]);
+  const locationsOpacity = useTransform(historyProgress, [0.68, 0.76, 0.98, 1], [0, 1, 1, 0]);
 
   return (
     <main dir={isAr ? "rtl" : "ltr"} lang={locale} className="relative isolate bg-[#0a0f29]">

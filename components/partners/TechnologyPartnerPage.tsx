@@ -124,10 +124,10 @@ function galleryItems(id: string, isAr: boolean): GalleryItem[] {
 function companyHeroCopy(id: string, isAr: boolean) {
   if (id === "fft") {
     return {
-      eyebrow: "FFT production systems",
-      title: "one step ahead in INTELLIGENT production",
+      eyebrow: isAr ? "أنظمة إنتاج FFT" : "FFT production systems",
+      title: isAr ? "خطوة للأمام في الإنتاج الذكي" : "one step ahead in INTELLIGENT production",
       paragraphs: [
-        "We Are Production Optimizers",
+        isAr ? "نحن خبراء تحسين الإنتاج" : "We Are Production Optimizers",
       ],
       href: "https://www.fft.de/en/",
     };
@@ -218,7 +218,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
         {partner.id === "fft" ? (
           <Image
             src="/fft/FFT/IMG-20260623-WA0013.jpg"
-            alt="50 Years of FFT"
+            alt={isAr ? "خمسون عاما من FFT" : "50 Years of FFT"}
             fill
             priority
             sizes="100vw"
@@ -233,7 +233,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             loop
             playsInline
             preload="metadata"
-            aria-label="CU partnership video"
+            aria-label={isAr ? "فيديو شراكة CU" : "CU partnership video"}
           >
             <source src="/cu/VID-20260624-WA0032.mp4" type="video/mp4" />
           </video>

@@ -26,10 +26,7 @@ export default function MissionVisionLayer({ opacity, data, isAr = false }: Prop
           <h2 className="text-4xl font-black uppercase leading-none tracking-tight text-white sm:text-5xl md:text-6xl">
             {data.title}
           </h2>
-          <p className="mt-5 text-base font-black leading-relaxed text-[#43becc] md:text-lg">
-            {data.lead}
-          </p>
-          <div className="mt-6 space-y-4">
+          <div className="mt-7 space-y-5">
             {paragraphs.map((paragraph) => (
               <p
                 key={paragraph}

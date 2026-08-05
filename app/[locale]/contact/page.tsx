@@ -75,7 +75,7 @@ export default async function Page({
         <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:72px_72px]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#43becc] to-transparent" />
         <div className="pointer-events-none absolute -right-8 top-10 text-[15vw] font-black uppercase leading-none tracking-tight text-white/[0.025]">
-          Contact
+          {isAr ? "تواصل" : "Contact"}
         </div>
 
         <div className="relative mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -108,7 +108,7 @@ export default async function Page({
           </div>
 
           <div className="border border-white/10 bg-[#121b43] p-6">
-            <SectionKicker tone="cyan" className="mb-3">Email</SectionKicker>
+            <SectionKicker tone="cyan" className="mb-3">{isAr ? "البريد الإلكتروني" : "Email"}</SectionKicker>
             <a
               href={`mailto:${siteContact.email}`}
               className="mt-3 block text-2xl font-black tracking-tight text-white transition hover:text-[#43becc]"

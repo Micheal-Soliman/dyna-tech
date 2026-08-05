@@ -166,7 +166,7 @@ function projectFigures(isAr: boolean): ProjectFigure[] {
         { label: "الاستثمار الأولي", value: "250 مليون", countTo: 250, suffix: " مليون", description: "جنيه مصري كاستثمار مبدئي متوقع لإطلاق المشروع." },
         { label: "العائد المتوقع", value: "12%", countTo: 12, suffix: "%", description: "العائد المتوقع على الاستثمار وفقا لتقديرات المشروع." },
         { label: "الخبرة القيادية", value: "30 عاما", countTo: 30, suffix: " عاما", description: "خبرات في قيادة قطاع السيارات وإدارة مراكز الخدمة." },
-        { label: "الافتتاح التجريبي", value: "Q4 2027", description: "الموعد المخطط للافتتاح التجريبي للمشروع." },
+        { label: "الافتتاح التجريبي", value: "الربع الرابع 2027", description: "الموعد المخطط للافتتاح التجريبي للمشروع." },
         { label: "الأول في مصر والمنطقة", value: "الأول", countTo: 1, prefix: "#", description: "تشخيص لحظي للمركبات الكهربائية بالذكاء الاصطناعي." },
       ]
     : [
@@ -288,7 +288,7 @@ export default function AutoHubPage({ locale }: Props) {
       <section className="relative flex min-h-[650px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-[calc(100svh-6rem)] md:px-12 md:pb-16 lg:px-20">
         <Image
           src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0021.jpg"
-          alt="DYNATECH Auto Hub architectural design"
+          alt={isAr ? "التصميم المعماري لمشروع دايناتك أوتو هب" : "DYNATECH Auto Hub architectural design"}
           fill
           priority
           sizes="100vw"
@@ -375,10 +375,10 @@ export default function AutoHubPage({ locale }: Props) {
               {autoHubGallery.map((item, index) => (
                 <motion.figure key={item.src} {...reveal} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.45, delay: Math.min(index * 0.025, 0.18) }} className="group relative aspect-[4/3] overflow-hidden border border-white/10 bg-white">
                   <button type="button" onClick={() => setActiveGalleryIndex(index)} className="absolute inset-0 cursor-pointer" aria-label={`${copy.labels.image} ${galleryNumber(index)}`}>
-                    <Image src={item.src} alt={`Auto Hub ${galleryNumber(index)}`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-contain transition duration-500 group-hover:brightness-105" />
+                    <Image src={item.src} alt={`${isAr ? "أوتو هب" : "Auto Hub"} ${galleryNumber(index)}`} fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-contain transition duration-500 group-hover:brightness-105" />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#080d20]/78 via-transparent to-transparent" />
                     <div className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-white/20 bg-black/55 text-white opacity-0 backdrop-blur transition group-hover:opacity-100"><Maximize2 size={17} /></div>
-                    <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#080d20]/82 p-4 text-start text-xs font-black uppercase text-[#43becc] backdrop-blur">Auto Hub {galleryNumber(index)}</figcaption>
+                    <figcaption className="absolute bottom-0 left-0 right-0 border-t border-white/10 bg-[#080d20]/82 p-4 text-start text-xs font-black uppercase text-[#43becc] backdrop-blur">{isAr ? "أوتو هب" : "Auto Hub"} {galleryNumber(index)}</figcaption>
                   </button>
                 </motion.figure>
               ))}
@@ -449,7 +449,7 @@ export default function AutoHubPage({ locale }: Props) {
           <button type="button" onClick={showPreviousGalleryItem} className="absolute left-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-black/55 text-white transition hover:bg-white hover:text-black md:left-7" aria-label={copy.labels.previous}><ChevronLeft size={22} /></button>
           <button type="button" onClick={showNextGalleryItem} className="absolute right-4 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-white/15 bg-black/55 text-white transition hover:bg-white hover:text-black md:right-7" aria-label={copy.labels.next}><ChevronRight size={22} /></button>
           <div className="relative h-full max-h-[86vh] w-full max-w-6xl overflow-hidden border border-white/10 bg-[#080d20]">
-            <Image src={activeGalleryItem.src} alt={`Auto Hub ${galleryNumber(activeGalleryIndex)}`} fill sizes="100vw" className="object-contain" priority />
+            <Image src={activeGalleryItem.src} alt={`${isAr ? "أوتو هب" : "Auto Hub"} ${galleryNumber(activeGalleryIndex)}`} fill sizes="100vw" className="object-contain" priority />
           </div>
           <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 bg-[#080d20]/90 px-5 py-3 text-center text-xs font-black text-[#43becc] backdrop-blur">{activeGalleryIndex + 1} / {autoHubGallery.length}</div>
         </div>

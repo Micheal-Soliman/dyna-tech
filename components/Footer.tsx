@@ -11,15 +11,16 @@ type FooterProps = {
 };
 
 const footerNavigation = [
-  { label: "Home", path: siteRoutes.home },
-  { label: "About", path: siteRoutes.about },
-  { label: "Partners", path: siteRoutes.partners },
-  { label: "Auto Hub", path: siteRoutes.autoHub },
-  { label: "Careers", path: siteRoutes.careers },
-  { label: "Contact", path: siteRoutes.contact },
+  { label: "Home", labelAr: "الرئيسية", path: siteRoutes.home },
+  { label: "About", labelAr: "من نحن", path: siteRoutes.about },
+  { label: "Partners", labelAr: "الشركاء", path: siteRoutes.partners },
+  { label: "Auto Hub", labelAr: "أوتو هب", path: siteRoutes.autoHub },
+  { label: "Careers", labelAr: "الوظائف", path: siteRoutes.careers },
+  { label: "Contact", labelAr: "تواصل معنا", path: siteRoutes.contact },
 ] as const;
 
 export function Footer({ locale }: FooterProps) {
+  const isAr = locale === "ar";
   const currentYear = new Date().getFullYear();
   const footerSlogan =
     locale === "ar"
@@ -52,7 +53,7 @@ export function Footer({ locale }: FooterProps) {
 
           <div>
             <h4 className="text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              Presence
+              {isAr ? "تواجدنا" : "Presence"}
             </h4>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
               <div className="border-l border-[#43becc]/45 pl-4">
@@ -60,10 +61,10 @@ export function Footer({ locale }: FooterProps) {
                   <MapPin size={17} />
                 </div>
                 <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white">
-                  CFC Main Office
+                  {isAr ? "المقر الرئيسي في CFC" : "CFC Main Office"}
                 </span>
                 <p className="mt-2 max-w-xs text-xs leading-relaxed text-zinc-400">
-                  {siteContact.locations.cfcOffice}
+                  {isAr ? siteContact.locations.cfcOfficeAr : siteContact.locations.cfcOffice}
                 </p>
               </div>
 
@@ -72,10 +73,10 @@ export function Footer({ locale }: FooterProps) {
                   <MapPin size={17} />
                 </div>
                 <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white">
-                  Auto Hub
+                  {isAr ? "أوتو هب" : "Auto Hub"}
                 </span>
                 <p className="mt-2 max-w-xs text-xs leading-relaxed text-zinc-400">
-                  {siteContact.locations.autoHub}
+                  {isAr ? siteContact.locations.autoHubAr : siteContact.locations.autoHub}
                 </p>
               </div>
             </div>
@@ -84,7 +85,7 @@ export function Footer({ locale }: FooterProps) {
           <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-1">
             <div>
               <h4 className="mb-4 text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-                Quick Links
+                {isAr ? "روابط سريعة" : "Quick Links"}
               </h4>
               <div className="grid grid-cols-2 gap-x-5 gap-y-2">
                 {footerNavigation.map((item) => (
@@ -93,7 +94,7 @@ export function Footer({ locale }: FooterProps) {
                     href={localizedPath(locale, item.path)}
                     className="text-xs font-black uppercase tracking-[0.12em] text-zinc-400 transition hover:text-white"
                   >
-                    {item.label}
+                    {isAr ? item.labelAr : item.label}
                   </Link>
                 ))}
               </div>
@@ -101,7 +102,7 @@ export function Footer({ locale }: FooterProps) {
 
             <div className="border-t border-white/10 pt-5">
               <h4 className="mb-4 text-[10px] font-black uppercase tracking-[0.36em] text-white/35">
-                Connect
+                {isAr ? "تواصل" : "Connect"}
               </h4>
               <div className="space-y-3">
                 <a
@@ -124,7 +125,7 @@ export function Footer({ locale }: FooterProps) {
         </div>
 
         <div className="mt-9 border-t border-white/10 pt-5 text-[9px] font-bold uppercase tracking-[0.34em] text-zinc-600">
-          &copy; {currentYear} DYNATECH CORP - ALL RIGHTS RESERVED
+          &copy; {currentYear} DYNATECH CORP - {isAr ? "جميع الحقوق محفوظة" : "ALL RIGHTS RESERVED"}
         </div>
       </div>
     </footer>

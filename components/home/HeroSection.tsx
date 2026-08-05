@@ -227,7 +227,7 @@ export function HeroSection({
               logoAlt="FFT logo"
               logoClassName="object-contain drop-shadow-[0_0_18px_rgba(69,245,202,0.22)]"
               knowMoreLabel={knowMoreLabel}
-              knowMoreAriaLabel="Open FFT video"
+              knowMoreAriaLabel={isAr ? "فتح فيديو FFT" : "Open FFT video"}
               onKnowMore={() =>
                 setActiveVideo({
                   src: "/fft/FFT/VID-20260624-WA0031.mp4",
@@ -243,7 +243,7 @@ export function HeroSection({
               logoAlt="Composites United logo"
               logoClassName="object-contain drop-shadow-[0_0_18px_rgba(239,106,37,0.18)]"
               knowMoreLabel={knowMoreLabel}
-              knowMoreAriaLabel="Open Composites United video"
+              knowMoreAriaLabel={isAr ? "فتح فيديو Composites United" : "Open Composites United video"}
               onKnowMore={() =>
                 setActiveVideo({
                   src: "/cu/VID-20260624-WA0032.mp4",
@@ -288,7 +288,7 @@ export function HeroSection({
             href={localizedPath(locale, siteRoutes.legalDisclaimer)}
             className="pointer-events-auto justify-self-end text-right text-[10px] font-black uppercase tracking-[0.2em] text-white/45 transition hover:text-[#43becc]"
           >
-            Legal Disclaimer
+            {isAr ? "إخلاء المسؤولية القانونية" : "Legal Disclaimer"}
           </Link>
         </motion.div>
       </div>
@@ -298,13 +298,13 @@ export function HeroSection({
           className="fixed inset-0 z-[220] flex items-center justify-center bg-black/88 px-4 py-6 backdrop-blur-md"
           role="dialog"
           aria-modal="true"
-          aria-label={`${activeVideo.title} video`}
+          aria-label={isAr ? `فيديو ${activeVideo.title}` : `${activeVideo.title} video`}
         >
           <button
             type="button"
             onClick={() => setActiveVideo(null)}
             className="absolute right-4 top-4 flex h-11 w-11 cursor-pointer items-center justify-center border border-white/20 bg-white text-black transition hover:bg-[#43becc] md:right-7 md:top-7"
-            aria-label="Close partner video"
+            aria-label={isAr ? "إغلاق فيديو الشريك" : "Close partner video"}
           >
             <X size={20} />
           </button>

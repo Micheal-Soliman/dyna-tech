@@ -1,6 +1,7 @@
 "use client";
 
 import { Maximize2, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type ActiveMedia = {
@@ -39,6 +40,8 @@ function imageSource(image: HTMLImageElement) {
 }
 
 export function GlobalMediaLightbox() {
+  const pathname = usePathname();
+  const isAr = pathname.startsWith("/ar");
   const [activeMedia, setActiveMedia] = useState<ActiveMedia | null>(null);
 
   useEffect(() => {
@@ -61,13 +64,13 @@ export function GlobalMediaLightbox() {
           ? {
               src: media.currentSrc || media.querySelector("source")?.src || "",
               type: "video",
-              alt: media.getAttribute("aria-label") || "Video preview",
+              alt: media.getAttribute("aria-label") || (isAr ? "معاينة فيديو" : "Video preview"),
               poster: media.poster || undefined,
             }
           : {
               src: imageSource(media),
               type: "image",
-              alt: media.alt || "Image preview",
+              alt: media.alt || (isAr ? "معاينة صورة" : "Image preview"),
             },
       );
     };
@@ -83,7 +86,7 @@ export function GlobalMediaLightbox() {
       window.removeEventListener("resize", updateMediaCursors);
       observer.disconnect();
     };
-  }, []);
+  }, [isAr]);
 
   useEffect(() => {
     if (!activeMedia) return;
@@ -116,7 +119,7 @@ export function GlobalMediaLightbox() {
         type="button"
         onClick={() => setActiveMedia(null)}
         className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center border border-white/20 bg-white text-black transition hover:bg-[#43becc] md:right-7 md:top-7"
-        aria-label="Close media preview"
+        aria-label={isAr ? "إغلاق معاينة الوسائط" : "Close media preview"}
       >
         <X size={20} />
       </button>
@@ -144,7 +147,7 @@ export function GlobalMediaLightbox() {
 
         <div className="pointer-events-none absolute bottom-4 left-4 flex items-center gap-2 border border-white/15 bg-black/65 px-3 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-white backdrop-blur">
           <Maximize2 size={14} />
-          {activeMedia.type === "video" ? "Video" : "Image"}
+          {activeMedia.type === "video" ? (isAr ? "فيديو" : "Video") : (isAr ? "صورة" : "Image")}
         </div>
       </div>
     </div>

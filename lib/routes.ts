@@ -12,12 +12,12 @@ export const siteRoutes = {
 } as const;
 
 export const primaryNavigation = [
-  { label: "Home", path: siteRoutes.home },
-  { label: "About Us", path: siteRoutes.about },
-  { label: "Technology Partners", path: siteRoutes.partners },
-  { label: "Auto Hub", path: siteRoutes.autoHub },
-  { label: "Tech Info", path: siteRoutes.techInfo },
-  { label: "Careers", path: siteRoutes.careers },
+  { label: "Home", labelAr: "الرئيسية", path: siteRoutes.home },
+  { label: "About Us", labelAr: "من نحن", path: siteRoutes.about },
+  { label: "Technology Partners", labelAr: "شركاء التكنولوجيا", path: siteRoutes.partners },
+  { label: "Auto Hub", labelAr: "أوتو هب", path: siteRoutes.autoHub },
+  { label: "Tech Info", labelAr: "معلومات تقنية", path: siteRoutes.techInfo },
+  { label: "Careers", labelAr: "الوظائف", path: siteRoutes.careers },
 ] as const;
 
 export function localizedPath(locale: Locale, path: string) {

@@ -71,6 +71,9 @@ function SectionKicker({
 
 export default function TechnologyPartnersPage({ content, locale }: Props) {
   const isAr = locale === "ar";
+  const heroTitleLines = content.hero.title.split(". ").map((line, index, lines) =>
+    index < lines.length - 1 ? `${line}.` : line
+  );
   const reduceMotion = useReducedMotion();
   const reveal = reduceMotion
     ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
@@ -96,7 +99,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
         <div className="absolute inset-0 bg-[#080d20]/70" />
         <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.58)_48%,rgba(8,13,32,0.22)_100%)]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(380px,0.8fr)] lg:items-center lg:gap-14 xl:gap-20">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1.55fr)_minmax(320px,0.45fr)] lg:items-center lg:gap-12 xl:gap-16">
           <motion.div
             initial="hidden"
             animate="show"
@@ -105,8 +108,12 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
             className="max-w-5xl"
           >
             {content.hero.kicker ? <SectionKicker>{content.hero.kicker}</SectionKicker> : null}
-            <h1 className="text-[2.9rem] font-black uppercase leading-[0.94] tracking-normal sm:text-6xl md:text-7xl xl:text-[5.5rem]">
-              {content.hero.title}
+            <h1 className="text-[2.75rem] font-black uppercase leading-[0.94] tracking-normal sm:text-6xl md:text-7xl lg:text-[clamp(1.9rem,2.4vw,3rem)]">
+              {heroTitleLines.map((line) => (
+                <span key={line} className="block lg:whitespace-nowrap">
+                  {line}
+                </span>
+              ))}
             </h1>
           </motion.div>
 

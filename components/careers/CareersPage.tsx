@@ -53,7 +53,7 @@ function SectionKicker({ children }: { children: React.ReactNode }) {
   );
 }
 
-function HeroVisual() {
+function HeroVisual({ isAr }: { isAr: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 26 }}
@@ -100,10 +100,10 @@ function HeroVisual() {
           EV
         </span>
         <span className="text-[10px] font-black uppercase tracking-widest text-[#43becc]">
-          Smart Manufacturing
+          {isAr ? "التصنيع الذكي" : "Smart Manufacturing"}
         </span>
         <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
-          Technical Systems
+          {isAr ? "الأنظمة التقنية" : "Technical Systems"}
         </span>
       </div>
     </motion.div>
@@ -130,7 +130,7 @@ export default function CareersPage({ content, locale }: Props) {
         <div className="absolute inset-0 opacity-[0.035] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
         <div className="pointer-events-none absolute -right-12 top-12 text-[15vw] font-black uppercase leading-none tracking-tight text-white/[0.025]">
-          Careers
+          {isAr ? "الوظائف" : "Careers"}
         </div>
 
         <div className="relative mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
@@ -149,7 +149,7 @@ export default function CareersPage({ content, locale }: Props) {
             </p>
           </motion.div>
 
-          <HeroVisual />
+          <HeroVisual isAr={isAr} />
         </div>
       </section>
 

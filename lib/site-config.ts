@@ -7,5 +7,7 @@ export const siteContact = {
   locations: {
     cfcOffice: "Cairo Festival City, The Podium, P6-109, New Cairo, Egypt.",
     autoHub: "Industrial Zone, New Cairo, Egypt.",
+    cfcOfficeAr: "كايرو فيستيفال سيتي، ذا بوديوم، P6-109، القاهرة الجديدة، مصر.",
+    autoHubAr: "المنطقة الصناعية، القاهرة الجديدة، مصر.",
   },
 } as const;

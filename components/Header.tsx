@@ -86,7 +86,7 @@ export function Header({ locale }: HeaderProps) {
                       : "text-zinc-400 hover:bg-white/5 hover:text-white"
                   }`}
                 >
-                  {item.label}
+                  {isAr ? item.labelAr : item.label}
                 </Link>
               );
             })}
@@ -101,14 +101,14 @@ export function Header({ locale }: HeaderProps) {
               href={localizedPath(locale, siteRoutes.contact)}
               className="group hidden items-center gap-2 rounded-full bg-white px-6 py-2.5 text-[10px] font-black uppercase tracking-widest text-black transition-all hover:bg-[#0087cb] hover:text-white md:flex"
             >
-              <span>Contact</span>
+              <span>{isAr ? "تواصل معنا" : "Contact"}</span>
               <ArrowRight size={14} />
             </Link>
 
             <button
               onClick={() => setIsMenuOpen(true)}
               className="cursor-pointer rounded-full p-2 text-white transition-colors hover:bg-white/5 lg:hidden"
-              aria-label="Open menu"
+              aria-label={isAr ? "فتح القائمة" : "Open menu"}
               aria-expanded={isMenuOpen}
               type="button"
             >
@@ -128,7 +128,7 @@ export function Header({ locale }: HeaderProps) {
           type="button"
           className="absolute inset-0 h-full w-full cursor-default"
           onClick={() => setIsMenuOpen(false)}
-          aria-label="Close menu"
+          aria-label={isAr ? "إغلاق القائمة" : "Close menu"}
           tabIndex={isMenuOpen ? 0 : -1}
         />
       </div>
@@ -136,7 +136,7 @@ export function Header({ locale }: HeaderProps) {
       <aside
         role="dialog"
         aria-modal="true"
-        aria-label="Navigation menu"
+        aria-label={isAr ? "قائمة التنقل" : "Navigation menu"}
         aria-hidden={!isMenuOpen}
         inert={!isMenuOpen}
         className={`fixed bottom-0 top-0 z-[120] flex w-[86%] max-w-[340px] flex-col border-white/10 bg-black shadow-2xl transition-transform duration-300 ease-out lg:hidden ${
@@ -144,11 +144,11 @@ export function Header({ locale }: HeaderProps) {
         } ${isMenuOpen ? "translate-x-0" : isAr ? "translate-x-full" : "-translate-x-full"}`}
       >
         <div className="flex items-center justify-between border-b border-white/5 p-6">
-          <span className="text-sm font-black uppercase tracking-tight text-[#0087cb]">Menu</span>
+          <span className="text-sm font-black uppercase tracking-tight text-[#0087cb]">{isAr ? "القائمة" : "Menu"}</span>
           <button
             onClick={() => setIsMenuOpen(false)}
             className="p-1 text-white"
-            aria-label="Close menu"
+            aria-label={isAr ? "إغلاق القائمة" : "Close menu"}
             type="button"
           >
             <X size={24} />
@@ -169,7 +169,7 @@ export function Header({ locale }: HeaderProps) {
                   isActive ? "translate-x-2 text-[#0087cb]" : "text-zinc-500 hover:text-white"
                 }`}
               >
-                {item.label}
+                {isAr ? item.labelAr : item.label}
               </Link>
             );
           })}
@@ -185,7 +185,7 @@ export function Header({ locale }: HeaderProps) {
             onClick={() => setIsMenuOpen(false)}
             className="flex w-full items-center justify-center rounded-md bg-[#0087cb] py-4 text-xs font-black uppercase tracking-widest text-black"
           >
-            Contact
+            {isAr ? "تواصل معنا" : "Contact"}
           </Link>
         </div>
       </aside>

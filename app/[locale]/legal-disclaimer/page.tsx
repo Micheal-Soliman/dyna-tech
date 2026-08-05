@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/config";
 
-const disclaimerSections = [
+const disclaimerSectionsEn = [
   {
     title: "1. Ownership of Content & Intellectual Property",
     body:
@@ -34,10 +34,39 @@ const disclaimerSections = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "Legal Disclaimer",
-  description: "DYNATECH privacy policy, website disclaimer, and terms of use.",
-};
+const disclaimerSectionsAr = [
+  {
+    title: "1. ملكية المحتوى وحقوق الملكية الفكرية",
+    body: "جميع المحتويات المنشورة والمتاحة على هذا الموقع، بما في ذلك على سبيل المثال لا الحصر النصوص والرسومات والشعارات والصور والمقاطع الصوتية والتنزيلات الرقمية وتجميعات البيانات والبرمجيات، هي ملك لشركة DYNATECH أو موردي محتواها أو شركائها أو الشركات التابعة لها، باستثناء المعلومات المنقولة عن مصادر رسمية أخرى معروفة. وتخضع جميع هذه المحتويات لقوانين حقوق النشر والملكية الفكرية الوطنية والدولية. ويُحظر تماما نسخ أي مادة من هذا الموقع أو إعادة إنتاجها أو توزيعها أو نشرها دون موافقة كتابية صريحة.",
+  },
+  {
+    title: "2. لأغراض معلوماتية فقط",
+    body: "المعلومات الواردة في هذا الموقع مقدمة لأغراض معلوماتية عامة فقط ولا تشكل مشورة مهنية. ورغم حرص DYNATECH على تحديث المعلومات وصحتها، فإنها لا تقدم أي تعهدات أو ضمانات، صريحة أو ضمنية، بشأن اكتمال الموقع أو دقته أو موثوقيته أو ملاءمته أو توافره، أو بشأن المعلومات أو المنتجات أو الخدمات أو الرسومات ذات الصلة الواردة فيه.",
+  },
+  {
+    title: "3. حدود المسؤولية",
+    body: "لا تتحمل DYNATECH أو شركاتها التابعة أو مديروها أو موظفوها أو شركاؤها، تحت أي ظرف، المسؤولية عن أي أضرار مباشرة أو غير مباشرة أو عرضية أو تبعية أو عقابية تنتج عن دخولك إلى هذا الموقع أو استخدامه أو عدم قدرتك على استخدامه، أو عن أي أخطاء أو سهو في محتواه.",
+  },
+  {
+    title: "4. إخلاء المسؤولية عن الروابط الخارجية",
+    body: "قد يحتوي هذا الموقع على روابط لمواقع خارجية لا توفرها DYNATECH ولا تديرها ولا ترتبط بها بأي شكل. وننوه إلى أننا لا نضمن دقة المعلومات الموجودة على هذه المواقع الخارجية أو مدى صلتها أو حداثتها أو اكتمالها.",
+  },
+  {
+    title: "5. الاحتفاظ بالحقوق",
+    body: "نحتفظ بالحق الكامل في إضافة محتوى هذا الموقع أو حذفه أو تعديله، وكذلك تحديث إخلاء المسؤولية القانونية هذا، في أي وقت ودون إشعار مسبق.",
+  },
+  {
+    title: "6. حقوق شركائنا",
+    body: "تخضع جميع المواد المرئية، بما في ذلك مقاطع الفيديو التشويقية والمسارات الصوتية، لقوانين الملكية الفكرية. ويحتفظ شركاؤنا، ومنهم FFT Produktionssysteme GmbH وComposites United (CU) والكيانات التابعة لهم، بجميع الحقوق المتعلقة بمعلوماتهم الفنية وغير الفنية وعلاماتهم التجارية وتصميماتهم الهندسية المذكورة في هذا الموقع.",
+  },
+];
+
+export async function generateMetadata({ params }: { params: { locale: Locale } | Promise<{ locale: Locale }> }): Promise<Metadata> {
+  const { locale } = await Promise.resolve(params);
+  return locale === "ar"
+    ? { title: "إخلاء المسؤولية القانونية", description: "سياسة الخصوصية وإخلاء مسؤولية موقع DYNATECH وشروط الاستخدام." }
+    : { title: "Legal Disclaimer", description: "DYNATECH privacy policy, website disclaimer, and terms of use." };
+}
 
 export default async function LegalDisclaimerPage({
   params,
@@ -46,6 +75,7 @@ export default async function LegalDisclaimerPage({
 }) {
   const { locale } = await Promise.resolve(params);
   const isAr = locale === "ar";
+  const disclaimerSections = isAr ? disclaimerSectionsAr : disclaimerSectionsEn;
 
   return (
     <main
@@ -53,16 +83,17 @@ export default async function LegalDisclaimerPage({
       className="min-h-screen bg-[#0a0f29] px-5 pb-20 pt-32 text-white sm:px-6 md:px-12 lg:px-20"
     >
       <section className="mx-auto max-w-5xl">
-        <div className="mb-10 border-l border-[#43becc] pl-5">
+        <div className={`mb-10 ${isAr ? "border-r pr-5" : "border-l pl-5"} border-[#43becc]`}>
           <p className="text-[10px] font-black uppercase tracking-[0.34em] text-[#43becc]">
-            Legal
+            {isAr ? "قانوني" : "Legal"}
           </p>
           <h1 className="mt-4 text-4xl font-black uppercase leading-tight tracking-tight md:text-6xl">
-            Privacy Policy / Website Disclaimer
+            {isAr ? "سياسة الخصوصية / إخلاء مسؤولية الموقع" : "Privacy Policy / Website Disclaimer"}
           </h1>
           <p className="mt-5 max-w-3xl text-sm font-semibold leading-relaxed text-zinc-400 md:text-base">
-            This page outlines the legal terms, content ownership, liability limitations,
-            and partner rights related to the use of the DYNATECH website.
+            {isAr
+              ? "توضح هذه الصفحة الشروط القانونية وملكية المحتوى وحدود المسؤولية وحقوق الشركاء المتعلقة باستخدام موقع DYNATECH."
+              : "This page outlines the legal terms, content ownership, liability limitations, and partner rights related to the use of the DYNATECH website."}
           </p>
         </div>
 
