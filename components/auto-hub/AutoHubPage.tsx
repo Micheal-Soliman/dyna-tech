@@ -292,25 +292,6 @@ export default function AutoHubPage({ locale }: Props) {
             {copy.introduction}
           </motion.p>
         </div>
-        <div className="relative mx-auto mt-14 grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {autoHubGallery.map((src, index) => (
-            <motion.button
-              key={src}
-              type="button"
-              {...reveal}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.45, delay: Math.min(index * 0.03, 0.15) }}
-              onClick={() => setActiveGalleryIndex(index)}
-              className="group relative aspect-[4/3] cursor-pointer overflow-hidden border border-white/10 bg-white"
-              aria-label={isAr ? "فتح صورة المشروع" : "Open project image"}
-            >
-              <Image src={src} alt="" fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-contain transition duration-500 group-hover:brightness-105" />
-              <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-white/20 bg-black/55 text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
-                <Maximize2 size={17} />
-              </span>
-            </motion.button>
-          ))}
-        </div>
       </section>
 
       <section className="border-b border-white/10 bg-[#111936] px-5 py-16 sm:px-6 md:px-12 md:py-24 lg:px-20">
@@ -356,6 +337,29 @@ export default function AutoHubPage({ locale }: Props) {
           <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {figures.map((figure, index) => <AnimatedFigure key={figure.label} figure={figure} index={index} />)}
           </div>
+        </div>
+      </section>
+
+      <section className="relative border-t border-white/10 bg-[#111936] px-5 py-16 sm:px-6 md:px-12 md:py-24 lg:px-20">
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
+        <div className="relative mx-auto grid max-w-7xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {autoHubGallery.map((src, index) => (
+            <motion.button
+              key={src}
+              type="button"
+              {...reveal}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.45, delay: Math.min(index * 0.03, 0.15) }}
+              onClick={() => setActiveGalleryIndex(index)}
+              className="group relative aspect-[4/3] cursor-pointer overflow-hidden border border-white/10 bg-white"
+              aria-label={isAr ? "فتح صورة المشروع" : "Open project image"}
+            >
+              <Image src={src} alt="" fill sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" className="object-contain transition duration-500 group-hover:brightness-105" />
+              <span className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center border border-white/20 bg-black/55 text-white opacity-0 backdrop-blur transition group-hover:opacity-100">
+                <Maximize2 size={17} />
+              </span>
+            </motion.button>
+          ))}
         </div>
       </section>
 

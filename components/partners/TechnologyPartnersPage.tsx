@@ -149,6 +149,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
               return (
                 <motion.div
                   key={partner.name}
+                  className="h-full"
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.22 }}
@@ -157,7 +158,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                 >
                   <Link
                     href={href}
-                    className="group relative block min-h-[430px] overflow-hidden border border-white/10 bg-[#111936] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 sm:p-7 md:min-h-[470px] md:p-9"
+                    className="group relative block h-full min-h-[500px] overflow-hidden border border-white/10 bg-[#111936] p-5 transition duration-500 hover:-translate-y-1 hover:border-[#43becc]/55 sm:p-7 md:p-9"
                   >
                     {logoId === "fft" ? (
                       <Image
@@ -179,31 +180,24 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                       </div>
                     )}
                     <div className={`absolute inset-0 ${logoId === "cu" ? "bg-[linear-gradient(180deg,rgba(8,13,32,0.18),rgba(8,13,32,0.96))]" : "bg-[linear-gradient(180deg,rgba(8,13,32,0.24),rgba(8,13,32,0.9))]"}`} />
-                    <div className="relative z-10 flex h-full flex-col">
+                    <div className="relative z-10 grid h-full grid-rows-[auto_auto_1fr_auto] sm:grid-rows-[7rem_4.5rem_1fr_auto]">
                       <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                        <div>
-                          <span className="font-mono text-xs tracking-[0.3em] text-[#43becc]">
-                            0{index + 1}
-                          </span>
-                          <h3 className="mt-4 text-3xl font-black uppercase tracking-tight md:mt-5 md:text-5xl">
-                            {partner.name}
-                          </h3>
-                        </div>
-                        <div className={`relative z-20 flex shrink-0 items-center justify-center border border-white/20 bg-white px-4 py-3 shadow-[0_12px_34px_rgba(0,0,0,0.22)] ${logoId === "cu" ? "min-h-24 min-w-32" : "min-h-20 min-w-28"}`}>
+                        <h3 className="text-3xl font-black uppercase leading-none tracking-tight md:text-5xl">
+                          {partner.name}
+                        </h3>
+                        <div className="relative z-20 flex h-24 w-36 shrink-0 items-center justify-center border border-white/20 bg-white px-4 py-3 shadow-[0_12px_34px_rgba(0,0,0,0.22)]">
                           <PartnerLogo id={logoId} />
                         </div>
                       </div>
 
-                      <div className="mt-10">
-                        <p className="text-xl font-black leading-snug text-white/90">
-                          {partner.heading}
-                        </p>
-                        <p className="mt-5 line-clamp-4 text-sm leading-relaxed text-zinc-400 md:text-base">
-                          {partner.paragraphs.join(" ")}
-                        </p>
-                      </div>
+                      <p className="mt-7 self-start text-xl font-black leading-snug text-white/90 sm:mt-0 sm:self-center">
+                        {partner.heading}
+                      </p>
+                      <p className="line-clamp-4 self-start pt-4 text-sm leading-relaxed text-zinc-400 md:text-base">
+                        {partner.paragraphs.join(" ")}
+                      </p>
 
-                      <div className="mt-auto flex items-center justify-between border-t border-white/10 pt-7">
+                      <div className="flex items-center justify-between border-t border-white/10 pt-7">
                         <span className="text-[11px] font-black uppercase tracking-[0.28em] text-white">
                           {partner.ctaLabel}
                         </span>
