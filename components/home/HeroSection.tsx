@@ -128,8 +128,12 @@ export function HeroSection({
           transition: { duration: 0.58, ease: "easeOut" as const },
         },
       };
-  const mobileHeadlineLine1 = headlineLine1.replace(/\sforce\s/i, "\nForce ");
-  const mobileHeadlineLine2 = headlineLine2.replace(/\sindustry/i, "\nIndustry");
+  const mobileHeadlineLine1 = isAr
+    ? headlineLine1
+    : headlineLine1.replace(/\sforce\s/i, "\nForce ");
+  const mobileHeadlineLine2 = isAr
+    ? headlineLine2
+    : headlineLine2.replace(/\sindustry/i, "\nIndustry");
   const [activeVideo, setActiveVideo] = useState<{
     src: string;
     title: string;
@@ -154,10 +158,10 @@ export function HeroSection({
   }, [activeVideo]);
 
   return (
-    <section dir={isAr ? "rtl" : "ltr"} className="relative bg-[#0a0f29] text-white sm:min-h-[100svh]">
+    <section dir={isAr ? "rtl" : "ltr"} className="relative min-h-[100svh] overflow-hidden bg-[#0a0f29] text-white">
       <div className="absolute inset-0">
         <video
-          className="h-full w-full object-cover object-center"
+          className="h-full w-full object-cover object-[52%_72%] sm:object-center"
           autoPlay
           muted
           loop
@@ -167,24 +171,24 @@ export function HeroSection({
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#050915]/45" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_34%_42%,rgba(67,190,204,0.16),transparent_26%),linear-gradient(90deg,rgba(3,7,18,0.62),rgba(3,7,18,0.18)_45%,rgba(3,7,18,0.62))]" />
+        <div className="absolute inset-0 bg-[#050915]/52 sm:bg-[#050915]/45" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,#050915_0%,rgba(5,9,21,0.94)_25%,rgba(5,9,21,0.28)_48%,rgba(5,9,21,0.48)_100%)] sm:bg-[radial-gradient(circle_at_34%_42%,rgba(67,190,204,0.16),transparent_26%),linear-gradient(90deg,rgba(3,7,18,0.62),rgba(3,7,18,0.18)_45%,rgba(3,7,18,0.62))]" />
         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#050915] to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-[#43becc]/25" />
       </div>
 
       <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:96px_96px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
 
-      <div className="relative z-10 flex flex-col px-4 pb-5 pt-28 sm:min-h-[100svh] sm:px-6 sm:pt-[5.5rem] md:px-9 md:pb-6">
+      <div className="relative z-10 flex min-h-[100svh] flex-col px-4 pb-5 pt-24 sm:px-6 sm:pt-[5.5rem] md:px-9 md:pb-6">
         <motion.div
           initial="hidden"
           animate="show"
           variants={heroContainer}
-          className="mx-auto flex flex-col items-center justify-center text-center sm:flex-1"
+          className="mx-auto flex flex-1 flex-col items-center justify-start pt-4 text-center sm:justify-center sm:pt-0"
         >
           <motion.div
             variants={heroItem}
-            className="relative mb-3 h-[58px] w-[224px] max-w-[72vw] sm:mb-4 sm:h-[66px] sm:w-[254px] md:h-[86px] md:w-[330px] xl:h-[96px] xl:w-[372px]"
+            className="relative mb-10 h-[48px] w-[190px] max-w-[68vw] sm:mb-4 sm:h-[66px] sm:w-[254px] md:h-[86px] md:w-[330px] xl:h-[96px] xl:w-[372px]"
           >
             <Image
               src="/logo-cropped.png"
@@ -198,29 +202,31 @@ export function HeroSection({
 
           <motion.h1
             variants={heroItem}
-            className="max-w-[86vw] text-[clamp(1.05rem,5.4vw,3.55rem)] font-[1000] uppercase italic leading-[1.14] tracking-[0.01em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)] lg:max-w-4xl lg:text-[clamp(1.3rem,3.45vw,3.55rem)] lg:leading-[1.05] lg:tracking-[0.04em]"
+            className="max-w-[88vw] text-[clamp(1.25rem,6.55vw,3.55rem)] font-[1000] uppercase italic leading-[1.2] tracking-[0.01em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)] sm:text-[clamp(1.05rem,5.4vw,3.55rem)] sm:leading-[1.14] lg:max-w-5xl lg:text-[clamp(1.3rem,3.45vw,3.55rem)] lg:leading-[1.12] lg:tracking-[0.04em]"
           >
-            <span className="whitespace-pre-line lg:hidden">
+            <span className="block whitespace-pre-line lg:hidden">
               {mobileHeadlineLine1}
             </span>
-            <span className="hidden lg:inline">{headlineLine1}</span>
-            <br />
-            <span className="whitespace-pre-line text-[#43becc] lg:hidden">
+            <span className="hidden lg:block">{headlineLine1}</span>
+            <span className="my-4 block h-px w-0 sm:my-2 lg:hidden" aria-hidden="true" />
+            <span className="block whitespace-pre-line text-[#43becc] lg:hidden">
               {mobileHeadlineLine2}
             </span>
-            <span className="hidden text-[#43becc] lg:inline">{headlineLine2}</span>
+            <span className="hidden text-[#43becc] lg:mt-4 lg:block">
+              {headlineLine2}
+            </span>
           </motion.h1>
 
           <motion.div
             variants={heroItem}
-            className="mt-4 text-[10px] font-black uppercase tracking-[0.38em] text-white/55 md:mt-5 md:text-[11px]"
+            className="mt-auto pt-[26svh] text-[9px] font-black uppercase tracking-[0.34em] text-white/58 sm:mt-4 sm:pt-0 sm:text-[10px] md:mt-5 md:text-[11px]"
           >
             {strategicPartnersLabel}
           </motion.div>
 
           <motion.div
             variants={heroItem}
-            className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start justify-center gap-2 sm:gap-4 md:mt-4 md:gap-8"
+            className="mt-3 grid w-full max-w-[340px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start justify-center gap-2 sm:w-auto sm:max-w-none sm:gap-4 md:mt-4 md:gap-8"
           >
             <PartnerBlock
               logoSrc="/logo-fft.png"
@@ -230,7 +236,7 @@ export function HeroSection({
               knowMoreAriaLabel={isAr ? "فتح فيديو FFT" : "Open FFT video"}
               onKnowMore={() =>
                 setActiveVideo({
-                  src: "/fft/FFT/VID-20260624-WA0031.mp4",
+                  src: "/hero/FFT STORY مترجم عربي.mp4",
                   title: "FFT",
                 })
               }
@@ -246,7 +252,7 @@ export function HeroSection({
               knowMoreAriaLabel={isAr ? "فتح فيديو Composites United" : "Open Composites United video"}
               onKnowMore={() =>
                 setActiveVideo({
-                  src: "/cu/VID-20260624-WA0032.mp4",
+                  src: "/hero/CARBON-CU مترجم بالعربية.mp4",
                   title: "Composites United",
                 })
               }
@@ -258,7 +264,7 @@ export function HeroSection({
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.45, ease: "easeOut" }}
-          className="relative z-20 mt-8 grid gap-3 sm:mt-4 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
+          className="relative z-20 mt-6 grid gap-3 sm:mt-4 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
         >
           <div>
             <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">

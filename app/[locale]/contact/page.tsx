@@ -81,8 +81,19 @@ export default async function Page({
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-[#080d20]/18" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.7)_0%,rgba(8,13,32,0.16)_58%,rgba(8,13,32,0.04)_100%)]" />
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/BACK GROUND-FOR CONTACT.mov" type="video/quicktime" />
+        </video>
+        <div className="absolute inset-0 bg-[#080d20]/12" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.58)_0%,rgba(8,13,32,0.12)_58%,rgba(8,13,32,0.02)_100%)]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#43becc] to-transparent" />
         <div className="pointer-events-none absolute -right-8 top-10 text-[15vw] font-black uppercase leading-none tracking-tight text-white/[0.025]">
           {isAr ? "تواصل" : "Contact"}

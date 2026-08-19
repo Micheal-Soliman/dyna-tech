@@ -46,6 +46,19 @@ export default function CareersPage({ content, locale }: Props) {
       className="min-h-screen bg-[#0a0f29] pt-24 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative flex min-h-[calc(100svh-6rem)] items-center overflow-hidden border-b border-white/10 px-6 py-20">
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/Dyna Tech - 02.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#0a0f29]/42" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.82),rgba(10,15,41,0.32)_56%,rgba(10,15,41,0.68))]" />
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div className="relative mx-auto w-full max-w-7xl">
         <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">

@@ -89,7 +89,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
       <section className="relative flex min-h-[760px] items-center overflow-hidden px-5 pb-14 pt-32 sm:px-6 md:min-h-screen md:px-12 md:pb-16 md:pt-36 lg:px-20">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/Dyna Tech - 03.mp4"
+          src="/BACK GROUND-FOR TECHNOLOGY PARTENER.mp4"
           autoPlay
           muted
           loop
@@ -135,12 +135,12 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
           >
             <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
               <Image
-                src="/fft/main.jpeg"
+                src="/fft page Videos/main.jpeg"
                 alt={isAr ? "توقيع اتفاقية الشراكة مع FFT" : "FFT partnership agreement signing"}
                 fill
                 priority
                 sizes="(min-width: 1024px) 40vw, 50vw"
-                className="object-cover object-top"
+                className="object-cover object-bottom"
               />
             </div>
             <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
@@ -166,7 +166,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
               const logoId = label.toLowerCase() as "fft" | "cu";
               const href = `/${locale}/technology-partners/${partnerSlug(partner.name)}`;
               const background = logoId === "fft"
-                ? "/fft/FFT/IMG-20260623-WA0009.jpg"
+                ? "/fft page Videos/FFT/IMG-20260623-WA0009.jpg"
                 : "/logo-cu.png";
 
               return (

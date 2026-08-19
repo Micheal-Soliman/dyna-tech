@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Play } from "lucide-react";
 
 export type TechInfoContent = {
   hero: {
@@ -33,6 +34,23 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
+const videoLibrary = [
+  {
+    title: "IEA Battery Report",
+    titleAr: "تقرير وكالة الطاقة الدولية عن البطاريات",
+    description: "A focused technical reference on global battery market direction, electric mobility, and energy storage growth.",
+    descriptionAr: "مرجع تقني مركز عن اتجاه سوق البطاريات عالميًا، والتنقل الكهربائي، ونمو حلول تخزين الطاقة.",
+    src: "/Tech info page Videos/IEA Battery Report.mp4",
+  },
+  {
+    title: "Interview With Robin Zeng, CATL CEO",
+    titleAr: "مقابلة روبن زينج، الرئيس التنفيذي لشركة CATL",
+    description: "An executive perspective on battery innovation, supply chains, and the technologies shaping next-generation mobility.",
+    descriptionAr: "رؤية تنفيذية حول ابتكار البطاريات وسلاسل الإمداد والتقنيات التي تشكل الجيل القادم من التنقل.",
+    src: "/Tech info page Videos/Interview Robin Zing , CATL CEO.mp4",
+  },
+];
+
 function SectionKicker({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-5 inline-flex flex-col gap-3">
@@ -54,6 +72,19 @@ export default function TechInfoPage({ content, locale }: Props) {
       className="min-h-screen bg-[#0a0f29] pt-24 text-white selection:bg-[#0087cb] selection:text-black"
     >
       <section className="relative flex min-h-[calc(100svh-6rem)] items-center overflow-hidden border-b border-white/10">
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/BACK GROUND-FOR TECH INFO.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#0a0f29]/32" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.82),rgba(10,15,41,0.36)_55%,rgba(10,15,41,0.62))]" />
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
 
@@ -82,6 +113,59 @@ export default function TechInfoPage({ content, locale }: Props) {
               {content.hero.description}
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      <section className="relative border-b border-white/10 bg-[#080d20] px-5 py-16 sm:px-6 md:px-12 md:py-20 lg:px-20">
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="mb-9 max-w-3xl">
+            <SectionKicker>{isAr ? "مكتبة الفيديو" : "Video Library"}</SectionKicker>
+            <h2 className="text-3xl font-black uppercase leading-tight tracking-tight text-white md:text-5xl">
+              {isAr ? "مراجع تقنية مختارة" : "Selected Technical References"}
+            </h2>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            {videoLibrary.map((item, index) => (
+              <motion.article
+                key={item.src}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={fadeUp}
+                transition={{ duration: 0.5, delay: index * 0.07 }}
+                className="group overflow-hidden border border-white/10 bg-[#121b43]"
+              >
+                <div className="relative aspect-video bg-black">
+                  <video
+                    className="h-full w-full object-contain"
+                    controls
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={item.src} type="video/mp4" />
+                  </video>
+                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-100 transition group-hover:opacity-0">
+                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-black/55 text-white backdrop-blur-sm">
+                      <Play size={25} fill="currentColor" className="translate-x-0.5" />
+                    </span>
+                  </div>
+                </div>
+                <div className="p-6 md:p-7">
+                  <p className="text-[11px] font-black uppercase tracking-[0.28em] text-[#43becc]">
+                    0{index + 1}
+                  </p>
+                  <h3 className="mt-3 text-2xl font-black uppercase leading-tight tracking-tight text-white">
+                    {isAr ? item.titleAr : item.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-zinc-400 md:text-base">
+                    {isAr ? item.descriptionAr : item.description}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
 

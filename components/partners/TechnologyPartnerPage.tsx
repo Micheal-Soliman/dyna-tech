@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon, Play } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon } from "lucide-react";
 
 export type TechnologyPartnerContent = {
   partners: {
@@ -55,8 +55,24 @@ function galleryItems(id: string, isAr: boolean): GalleryItem[] {
   if (id === "fft") {
     return [
       {
+        label: isAr ? "FFT في دقيقتين" : "FFT Services At A Glance In 2 Minutes",
+        src: "/fft page Videos/FFT Services @ Glance in 2min.mp4",
+        type: "video",
+        featured: true,
+      },
+      {
+        label: isAr ? "هندسة مصانع FFT" : "FFT Plant Engineering",
+        src: "/fft page Videos/FFT Plant Engineering مترجم عربي.mp4",
+        type: "video",
+      },
+      {
         label: isAr ? "تقنيات الإنتاج المرنة من FFT" : "FFT's Flexible Production Technologies",
-        src: "/fft/FFT/VID-20260623-WA0008.mp4",
+        src: "/fft page Videos/FFT/VID-20260623-WA0008.mp4",
+        type: "video",
+      },
+      {
+        label: isAr ? "قصة FFT مترجمة بالعربية" : "FFT Story Translated Into Arabic",
+        src: "/hero/FFT STORY مترجم عربي.mp4",
         type: "video",
       },
     ];
@@ -66,7 +82,13 @@ function galleryItems(id: string, isAr: boolean): GalleryItem[] {
     return [
       {
         label: isAr ? "كلمة م. أحمد سرور في Hannover Messe" : "Eng. Ahmed Sorour's Speech at Hannover Messe",
-        src: "/cu/VID-20260624-WA0032.mp4",
+        src: "/ahmedd.mp4",
+        type: "video",
+        featured: true,
+      },
+      {
+        label: isAr ? "فيديو الكربون مترجم بالعربية" : "Carbon Video Translated Into Arabic",
+        src: "/hero/CARBON-CU مترجم بالعربية.mp4",
         type: "video",
       },
     ];
@@ -120,13 +142,13 @@ function PartnerLogo({ id }: { id: string }) {
 function mediaSectionCopy(id: string, isAr: boolean) {
   if (id === "fft") {
     return isAr
-      ? { kicker: "الشراكة والإنتاج", title: "FFT: اتفاقية وشراكة وإنتاج ذكي" }
-      : { kicker: "Partnership & Production", title: "FFT Partnership And Intelligent Production" };
+      ? { kicker: "مكتبة الفيديو", title: "تقنيات وحلول FFT" }
+      : { kicker: "Video Library", title: "FFT Technologies And Solutions" };
   }
 
   return isAr
-    ? { kicker: "الشراكة في Hannover Messe", title: "CU: اتفاقية الشراكة والكلمة الرئيسية" }
-    : { kicker: "Partnership At Hannover Messe", title: "CU Partnership And Hannover Messe Speech" };
+    ? { kicker: "مكتبة الفيديو", title: "فيديوهات Composites United" }
+    : { kicker: "Video Library", title: "Composites United Videos" };
 }
 
 function mediaBadge(isAr: boolean, type?: "image" | "video") {
@@ -185,7 +207,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             preload="auto"
             aria-label={isAr ? "فيديو أنظمة إنتاج FFT" : "FFT production systems video"}
           >
-            <source src="/fft/FFT/VID-20260623-WA0008.mp4" type="video/mp4" />
+            <source src="/fft page Videos/FFT/VID-20260623-WA0008.mp4" type="video/mp4" />
           </video>
         ) : (
           <video
@@ -340,7 +362,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
           </a>
         </motion.div>
 
-        <div className="grid auto-rows-fr gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-2">
           {galleryItems(partner.id, isAr).map((item, index) => (
             <motion.div
               key={item.label}
@@ -349,7 +371,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               viewport={{ once: true, amount: 0.22 }}
               variants={reveal}
               transition={{ ...revealTransition, delay: reduceMotion ? 0 : index * 0.07 }}
-              className="group relative aspect-[4/3] w-full overflow-hidden border border-white/10 bg-[#111936]"
+              className="group relative min-h-[430px] w-full overflow-hidden border border-white/10 bg-[#111936] shadow-[0_22px_70px_rgba(0,0,0,0.22)] transition duration-500 hover:-translate-y-1 hover:border-[var(--accent)]"
             >
               {item.src && item.type === "image" ? (
                 <Image
@@ -360,7 +382,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
                   className="bg-[#080d20] object-contain object-center transition duration-500 group-hover:brightness-110"
                 />
               ) : item.src && item.type === "video" ? (
-                <div className="absolute inset-0 bg-black">
+                <div className="absolute inset-x-0 top-0 bottom-32 bg-black">
                   <video
                     className="h-full w-full object-contain object-center"
                     muted
@@ -379,14 +401,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
                   </div>
                 </>
               )}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080d20]/88 via-[#080d20]/5 to-transparent" />
-              {item.type === "video" && (
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/30 bg-black/55 text-white shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur-sm transition duration-300 group-hover:scale-105 group-hover:bg-[#0087cb]">
-                    <Play size={26} fill="currentColor" className="translate-x-0.5" />
-                  </div>
-                </div>
-              )}
+              <div className="pointer-events-none absolute inset-x-0 top-0 bottom-32 bg-gradient-to-t from-[#080d20]/38 via-[#080d20]/5 to-transparent" />
               <div className="pointer-events-none absolute right-5 top-5 border border-white/20 bg-black/70 px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white backdrop-blur-sm">
                 {mediaBadge(isAr, item.type)}
               </div>
@@ -396,7 +411,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
                 </div>
               )}
               <div className={`pointer-events-none absolute left-0 border-t border-white/10 bg-[#080d20]/82 p-5 backdrop-blur ${
-                item.type === "video" ? "top-0 max-w-[calc(100%-7.5rem)] border-b border-r border-t-0" : "bottom-0 right-0"
+                item.type === "video" ? "bottom-0 right-0 min-h-32" : "bottom-0 right-0"
               }`}>
                 <span className="text-xs font-black uppercase tracking-[0.22em]" style={{ color: accent }}>
                   0{index + 1}
