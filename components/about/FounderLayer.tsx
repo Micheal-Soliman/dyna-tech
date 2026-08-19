@@ -23,11 +23,11 @@ export default function FounderLayer({
   return (
     <motion.div 
       style={{ opacity, scale, y }} 
-      className="absolute inset-0 flex items-center justify-center z-40 px-6"
+      className="absolute inset-0 z-40 flex items-center justify-center px-6 pb-8 pt-24"
     >
       <div className={`max-w-6xl w-full grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr] gap-8 md:gap-14 items-center ${isAr ? 'md:[direction:rtl]' : ''}`}>
         {/* Image - Order changes for RTL */}
-        <div className={`relative h-[260px] md:h-[560px] w-full rounded-3xl overflow-hidden border border-white/10 ${isAr ? 'order-1 md:order-2' : 'order-2 md:order-1'}`}>
+        <div className={`relative h-[260px] w-full overflow-hidden rounded-3xl border border-white/10 md:h-[min(560px,calc(100vh-10rem))] ${isAr ? 'order-1 md:order-2' : 'order-2 md:order-1'}`}>
           <Image
             src={data.imageSrc}
             alt={data.imageAlt}

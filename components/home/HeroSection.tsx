@@ -154,7 +154,7 @@ export function HeroSection({
   }, [activeVideo]);
 
   return (
-    <section dir={isAr ? "rtl" : "ltr"} className="relative min-h-[920px] bg-[#0a0f29] text-white sm:min-h-[100svh]">
+    <section dir={isAr ? "rtl" : "ltr"} className="relative bg-[#0a0f29] text-white sm:min-h-[100svh]">
       <div className="absolute inset-0">
         <video
           className="h-full w-full object-cover object-center"
@@ -175,12 +175,12 @@ export function HeroSection({
 
       <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:96px_96px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
 
-      <div className="relative z-10 flex min-h-[920px] flex-col px-4 pb-4 pt-[4.5rem] sm:min-h-[100svh] sm:px-6 md:px-9 md:pb-6 md:pt-[5.5rem]">
+      <div className="relative z-10 flex flex-col px-4 pb-5 pt-28 sm:min-h-[100svh] sm:px-6 sm:pt-[5.5rem] md:px-9 md:pb-6">
         <motion.div
           initial="hidden"
           animate="show"
           variants={heroContainer}
-          className="mx-auto flex flex-1 flex-col items-center justify-center text-center"
+          className="mx-auto flex flex-col items-center justify-center text-center sm:flex-1"
         >
           <motion.div
             variants={heroItem}
@@ -258,7 +258,7 @@ export function HeroSection({
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.45, ease: "easeOut" }}
-          className="relative z-20 grid gap-3 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
+          className="relative z-20 mt-8 grid gap-3 sm:mt-4 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
         >
           <div>
             <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">

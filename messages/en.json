@@ -36,7 +36,7 @@
         "Cairo Festival City, The Podium, P6-109,",
         "New Cairo, Egypt"
       ],
-      "autoHubTitle": "Auto Hub",
+      "autoHubTitle": "AUTO HUB PROJECT",
       "autoHubLines": [
         "Industrial Zone",
         "New Cairo, Egypt"
@@ -618,13 +618,6 @@
     ],
     "articles": [
       {
-        "slug": "tech-info-fft-dynatech-egypt",
-        "title": "FFT Enters the Egyptian Market with DYNATECH",
-        "category": "tech-info",
-        "date": "March 26, 2024",
-        "excerpt": "Al-Ahram Auto covers the strategic partnership between DYNATECH Corporation Egypt and Germany's FFT in production and manufacturing systems."
-      },
-      {
         "slug": "ev-infrastructure-egypt-2026",
         "title": "The State of EV Infrastructure in Egypt",
         "category": "e-mobility",
@@ -669,11 +662,6 @@
     ]
   },
   "careers": {
-    "hero": {
-      "kicker": "Careers",
-      "title": "Build Egypt’s Automotive Future With Us",
-      "description": "Join DYNATECH and become part of a new industrial generation working alongside Europe’s leading automotive and manufacturing technology partners."
-    },
     "why": {
       "title": "Why Join DYNATECH?",
       "description": "DYNATECH is building more than an automotive facility — it is building an ecosystem designed around future mobility, industrial technology, and advanced infrastructure.",
@@ -694,17 +682,6 @@
           "title": "Real Industrial Impact",
           "description": "Contribute directly to Egypt’s transition toward New Energy Vehicles (NEVs), smart infrastructure, and localized industrial development."
         }
-      ]
-    },
-    "positions": {
-      "title": "Open Positions",
-      "description": "Explore opportunities across automotive operations, engineering, technical services, mobility infrastructure, and industrial development.",
-      "areas": [
-        "Automotive Operations",
-        "Engineering",
-        "Technical Services",
-        "Mobility Infrastructure",
-        "Industrial Development"
       ]
     }
   }

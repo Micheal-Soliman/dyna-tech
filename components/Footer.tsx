@@ -14,7 +14,7 @@ const footerNavigation = [
   { label: "Home", labelAr: "الرئيسية", path: siteRoutes.home },
   { label: "About", labelAr: "من نحن", path: siteRoutes.about },
   { label: "Partners", labelAr: "الشركاء", path: siteRoutes.partners },
-  { label: "Auto Hub", labelAr: "أوتو هب", path: siteRoutes.autoHub },
+  { label: "Auto Hub Project", labelAr: "مشروع مركز السيارات", path: siteRoutes.autoHub },
   { label: "Careers", labelAr: "الوظائف", path: siteRoutes.careers },
   { label: "Contact", labelAr: "تواصل معنا", path: siteRoutes.contact },
 ] as const;
@@ -73,7 +73,7 @@ export function Footer({ locale }: FooterProps) {
                   <MapPin size={17} />
                 </div>
                 <span className="block text-[10px] font-black uppercase tracking-[0.18em] text-white">
-                  {isAr ? "أوتو هب" : "Auto Hub"}
+                  {isAr ? "مشروع مركز السيارات" : "Auto Hub Project"}
                 </span>
                 <p className="mt-2 max-w-xs text-xs leading-relaxed text-zinc-400">
                   {isAr ? siteContact.locations.autoHubAr : siteContact.locations.autoHub}

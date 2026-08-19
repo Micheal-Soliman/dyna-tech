@@ -55,42 +55,9 @@ function galleryItems(id: string, isAr: boolean): GalleryItem[] {
   if (id === "fft") {
     return [
       {
-        label: isAr ? "يوم توقيع اتفاقية الشراكة مع FFT" : "FFT Partnership Agreement Signing Day",
-        src: "/fft/main.jpeg",
-        type: "image",
-        featured: true,
-      },
-      {
-        label: isAr ? "مقابلة الرئيس التنفيذي لـFFT - مترجمة إلى العربية" : "FFT CEO Interview - Arabic Subtitles",
-        src: "/fft/FFT/VID-20260624-WA0031.mp4",
-        poster: "/fft/main.jpeg",
-        type: "video",
-      },
-      {
-        label: isAr ? "الإنتاج الذكي لدى FFT" : "FFT Intelligent Production",
-        src: "/fft/FFT/IMG-20260623-WA0010.jpg",
-        type: "image",
-      },
-      {
-        label: isAr ? "خمسون عاما من FFT" : "50 Years of FFT",
-        src: "/fft/FFT/IMG-20260623-WA0013.jpg",
-        type: "image",
-      },
-      {
-        label: isAr ? "الهوية الرسمية لـFFT" : "FFT Official Identity",
-        src: "/fft/FFT/IMG-20260623-WA0015.jpg",
-        type: "image",
-      },
-      {
-        label: isAr ? "جولة داخل أنظمة إنتاج FFT" : "Inside FFT Production Systems",
+        label: isAr ? "تقنيات الإنتاج المرنة من FFT" : "FFT's Flexible Production Technologies",
         src: "/fft/FFT/VID-20260623-WA0008.mp4",
-        poster: "/fft/FFT/IMG-20260623-WA0010.jpg",
         type: "video",
-      },
-      {
-        label: isAr ? "خمسون عاما من الابتكار" : "50 Years of Innovation",
-        src: "/fft/FFT/IMG-20260623-WA0009.jpg",
-        type: "image",
       },
     ];
   }
@@ -98,15 +65,8 @@ function galleryItems(id: string, isAr: boolean): GalleryItem[] {
   if (id === "cu") {
     return [
       {
-        label: isAr ? "اتفاقية الشراكة مع CU في Hannover Messe" : "CU Partnership at Hannover Messe",
-        src: "/cu/IMG-20260622-WA0005.jpg",
-        type: "image",
-        featured: true,
-      },
-      {
         label: isAr ? "كلمة م. أحمد سرور في Hannover Messe" : "Eng. Ahmed Sorour's Speech at Hannover Messe",
         src: "/cu/VID-20260624-WA0032.mp4",
-        poster: "/cu/IMG-20260622-WA0005.jpg",
         type: "video",
       },
     ];
@@ -402,7 +362,6 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               ) : item.src && item.type === "video" ? (
                 <div className="absolute inset-0 bg-black">
                   <video
-                    poster={item.poster}
                     className="h-full w-full object-contain object-center"
                     muted
                     playsInline

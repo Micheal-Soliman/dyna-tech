@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -231,6 +231,12 @@ export default function AutoHubPage({ locale }: Props) {
   const team = projectTeam(isAr);
   const figures = projectFigures(isAr);
   const reduceMotion = useReducedMotion();
+  const introductionRef = useRef<HTMLElement | null>(null);
+  const { scrollYProgress: introductionProgress } = useScroll({
+    target: introductionRef,
+    offset: ["start end", "end start"],
+  });
+  const introductionImageY = useTransform(introductionProgress, [0, 1], [-58, 72]);
   const [activeTeamIndex, setActiveTeamIndex] = useState<number | null>(null);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
   const reveal = reduceMotion
@@ -261,36 +267,68 @@ export default function AutoHubPage({ locale }: Props) {
 
   return (
     <main dir={isAr ? "rtl" : "ltr"} lang={locale} className="min-h-screen bg-[#080d20] pt-24 text-white">
-      <section className="relative flex min-h-[650px] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-6 md:min-h-[calc(100svh-6rem)] md:px-12 md:pb-24 lg:px-20">
-        <Image
-          src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0021.jpg"
-          alt={isAr ? "التصميم ثلاثي الأبعاد لمشروع مركز السيارات" : "Hi-Res 3D Auto Hub design"}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-[#080d20]/36" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,#080d20_0%,rgba(8,13,32,0.62)_44%,rgba(8,13,32,0.08)_100%)]" />
-        <motion.div {...reveal} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }} className="relative z-10 mx-auto w-full max-w-[1440px]">
-          <h1 className="text-4xl font-black uppercase leading-[0.98] tracking-normal sm:text-5xl lg:text-[clamp(2.75rem,3.4vw,4.25rem)]">
-            {heroLines.map((line) => (
-              <span key={line} className="block lg:whitespace-nowrap">{line}</span>
-            ))}
-          </h1>
-        </motion.div>
+      <section className="relative flex min-h-[calc(100svh-6rem)] items-center overflow-hidden border-b border-white/10 bg-[#080d20] px-5 py-14 sm:px-6 md:px-12 md:py-20 lg:px-20">
+        <video
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-[#080d20]/56" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,32,0.82),rgba(8,13,32,0.35)_55%,rgba(8,13,32,0.58))]" />
+        <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
+        <div dir="ltr" className="relative mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-14">
+          <motion.div dir={isAr ? "rtl" : "ltr"} {...reveal} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>
+            <h1 className="text-4xl font-black uppercase leading-[0.98] tracking-normal sm:text-5xl lg:text-[clamp(2.65rem,3.6vw,4.5rem)]">
+              {heroLines.map((line) => (
+                <span key={line} className="block">{line}</span>
+              ))}
+            </h1>
+            <span className="mt-7 block h-px w-20 bg-[#0087cb]" />
+          </motion.div>
+
+          <motion.div {...reveal} viewport={{ once: true, amount: 0.22 }} transition={{ duration: 0.7, delay: 0.08 }} className="relative aspect-[4/3] overflow-hidden border border-white/15 bg-white shadow-[0_30px_80px_rgba(0,0,0,0.32)]">
+            <Image
+              src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0027.jpg"
+              alt={isAr ? "تصميم ثلاثي الأبعاد واضح لمبنى مشروع مركز السيارات" : "Clear 3D design of the Auto Hub building"}
+              fill
+              priority
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              className="object-cover object-top"
+            />
+          </motion.div>
+        </div>
       </section>
 
-      <section className="relative border-y border-white/10 bg-[#080d20] px-5 py-16 sm:px-6 md:px-12 md:py-24 lg:px-20">
+      <section ref={introductionRef} className="relative border-b border-white/10 bg-[#111936] px-5 py-16 sm:px-6 md:px-12 md:py-24 lg:px-20">
         <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
-        <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-          <motion.div {...reveal} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.65 }}>
+        <div dir="ltr" className="relative mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16">
+          <motion.div dir={isAr ? "rtl" : "ltr"} {...reveal} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.65 }}>
             <h2 className="text-4xl font-black uppercase leading-tight tracking-normal md:text-5xl lg:text-6xl">{copy.introductionTitle}</h2>
             <span className="mt-5 block h-px w-16 bg-[#0087cb]" />
+            <p className="mt-8 text-base leading-[1.9] text-zinc-300 md:text-lg">
+              {copy.introduction}
+            </p>
           </motion.div>
-          <motion.p {...reveal} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.65, delay: 0.06 }} className="text-base leading-[1.9] text-zinc-300 md:text-lg">
-            {copy.introduction}
-          </motion.p>
+          <motion.div {...reveal} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.65, delay: 0.06 }} className="relative aspect-[4/3] overflow-hidden border border-white/15 bg-white shadow-[0_30px_80px_rgba(0,0,0,0.28)]">
+            <motion.div
+              className="absolute -inset-y-16 inset-x-0"
+              style={{ y: reduceMotion ? 0 : introductionImageY }}
+            >
+              <Image
+                src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0017.jpg"
+                alt={isAr ? "واجهة مبنى مشروع مركز السيارات" : "Auto Hub building exterior"}
+                fill
+                sizes="(min-width: 1024px) 46vw, 100vw"
+                className="object-cover object-top"
+              />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 

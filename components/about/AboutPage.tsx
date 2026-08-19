@@ -57,9 +57,22 @@ function CeoMessage({
   content: DynatechContent['ceoMessage']
   isAr: boolean
 }) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+  const cardY = useTransform(scrollYProgress, [0, 0.28, 0.72, 1], [70, 0, 0, -80])
+  const cardOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.18, 0.78, 1],
+    [0.2, 1, 1, 0.25],
+  )
+
   return (
-    <section className="relative z-10 overflow-hidden bg-[#0a0f29]/40 px-4 py-28 sm:px-6 md:py-36">
-      <div
+    <section ref={sectionRef} className="relative z-10 overflow-hidden bg-[#0a0f29]/40 px-4 py-28 sm:px-6 md:py-36">
+      <motion.div
+        style={{ y: cardY, opacity: cardOpacity }}
         className={`relative z-10 mx-auto w-full max-w-5xl bg-[#111936]/82 p-6 shadow-[0_26px_90px_rgba(0,0,0,0.36)] backdrop-blur-sm md:p-8 lg:p-10 ${isAr ? 'border-r-4 border-[#0087cb] text-right' : 'border-l-4 border-[#0087cb]'}`}
       >
         <p className="text-xs font-black uppercase tracking-[0.24em] text-[#43becc]">
@@ -103,7 +116,7 @@ function CeoMessage({
             {content.signatureCompany}
           </p>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
@@ -208,18 +221,18 @@ export default function AboutPage({
     target: historyRef,
     offset: ['start start', 'end end'],
   })
-  const timelineXEn = useTransform(historyProgress, [0, 0.62], [80, -3100])
-  const timelineXAr = useTransform(historyProgress, [0, 0.62], [-80, 3100])
+  const timelineXEn = useTransform(historyProgress, [0, 0.05, 0.64], [80, 80, -3100])
+  const timelineXAr = useTransform(historyProgress, [0, 0.05, 0.64], [-80, -80, 3100])
   const timelineX = isAr ? timelineXAr : timelineXEn
   const timelineScale = useTransform(
     historyProgress,
-    [0, 0.08, 0.64, 0.72],
-    [0.97, 1, 1, 0.96],
+    [0, 0.06, 0.64, 0.72],
+    [0.94, 1, 1, 0.96],
   )
   const timelineOpacity = useTransform(
     historyProgress,
-    [0, 0.64, 0.72],
-    [1, 1, 0],
+    [0, 0.06, 0.64, 0.72],
+    [0, 1, 1, 0],
   )
   const locationsOpacity = useTransform(
     historyProgress,

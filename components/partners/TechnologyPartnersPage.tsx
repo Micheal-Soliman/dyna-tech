@@ -96,16 +96,17 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
           playsInline
           preload="auto"
         />
-        <div className="absolute inset-0 bg-[#080d20]/38" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.78)_0%,rgba(8,13,32,0.36)_48%,rgba(8,13,32,0.1)_100%)]" />
+        <div className="absolute inset-0 bg-[#080d20]/24" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.68)_0%,rgba(8,13,32,0.22)_48%,rgba(8,13,32,0.04)_100%)]" />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(460px,0.75fr)] lg:items-center lg:gap-10 xl:grid-cols-[minmax(0,1.15fr)_minmax(520px,0.85fr)] xl:gap-12">
+        <div dir="ltr" className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(400px,0.8fr)] lg:items-center lg:gap-12">
           <motion.div
             initial="hidden"
             animate="show"
             variants={reveal}
             transition={revealTransition}
-            className="max-w-5xl"
+            dir={isAr ? "rtl" : "ltr"}
+            className="max-w-4xl"
           >
             {content.hero.kicker ? <SectionKicker>{content.hero.kicker}</SectionKicker> : null}
             <h1 className="text-[2.75rem] font-black uppercase leading-[0.94] tracking-normal sm:text-6xl md:text-7xl lg:text-[clamp(1.9rem,2.4vw,3rem)]">
@@ -115,6 +116,14 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                 </span>
               ))}
             </h1>
+            <div className="mt-7 max-w-3xl border-s-2 border-[#43becc] bg-[#080d20]/64 p-5 backdrop-blur-sm md:p-6">
+              <p className="text-base font-semibold leading-relaxed text-white md:text-lg">
+                {content.hero.intro}
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-zinc-200 md:text-base">
+                {content.hero.supporting}
+              </p>
+            </div>
           </motion.div>
 
           <motion.div
@@ -122,14 +131,28 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
             animate="show"
             variants={reveal}
             transition={{ ...revealTransition, delay: reduceMotion ? 0 : 0.12 }}
-            className="w-full max-w-3xl border border-white/15 bg-[#0a0f29]/78 p-5 backdrop-blur-md md:p-6 lg:justify-self-end xl:p-7"
+            className="grid w-full grid-cols-2 gap-3 lg:grid-cols-1 lg:justify-self-end"
           >
-            <p className="text-lg font-semibold leading-relaxed text-white">
-              {content.hero.intro}
-            </p>
-            <p className="mt-5 text-sm leading-relaxed text-zinc-300 md:text-base">
-              {content.hero.supporting}
-            </p>
+            <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
+              <Image
+                src="/fft/main.jpeg"
+                alt={isAr ? "توقيع اتفاقية الشراكة مع FFT" : "FFT partnership agreement signing"}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 50vw"
+                className="object-cover object-top"
+              />
+            </div>
+            <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
+              <Image
+                src="/cu/IMG-20260622-WA0005.jpg"
+                alt={isAr ? "توقيع اتفاقية الشراكة مع CU" : "CU partnership agreement signing"}
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 50vw"
+                className="object-cover object-center"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
