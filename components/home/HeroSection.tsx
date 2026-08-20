@@ -158,7 +158,7 @@ export function HeroSection({
   }, [activeVideo]);
 
   return (
-    <section dir={isAr ? "rtl" : "ltr"} className="relative min-h-[100svh] overflow-hidden bg-[#0a0f29] text-white">
+    <section dir={isAr ? "rtl" : "ltr"} className="relative h-[100svh] overflow-hidden bg-[#0a0f29] text-white sm:h-auto sm:min-h-[100svh]">
       <div className="absolute inset-0">
         <video
           className="h-full w-full object-contain object-center sm:object-cover sm:object-center"
@@ -179,16 +179,16 @@ export function HeroSection({
 
       <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:96px_96px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col px-4 pb-5 pt-24 sm:px-6 sm:pt-[5.5rem] md:px-9 md:pb-6 md:pt-32">
+      <div className="relative z-10 flex h-full min-h-0 flex-col px-4 pb-4 pt-24 sm:min-h-[100svh] sm:px-6 sm:pb-5 sm:pt-[5.5rem] md:px-9 md:pb-6 md:pt-32">
         <motion.div
           initial="hidden"
           animate="show"
           variants={heroContainer}
-          className="mx-auto flex flex-1 flex-col items-center justify-start pt-4 text-center sm:justify-center sm:pt-0"
+          className="mx-auto flex min-h-0 flex-1 flex-col items-center justify-start pt-2 text-center sm:justify-center sm:pt-0"
         >
           <motion.div
             variants={heroItem}
-            className="relative mb-10 h-[48px] w-[190px] max-w-[68vw] sm:mb-4 sm:h-[66px] sm:w-[254px] md:h-[86px] md:w-[330px] xl:h-[96px] xl:w-[372px]"
+            className="relative mb-4 h-10 w-40 max-w-[62vw] sm:mb-4 sm:h-[66px] sm:w-[254px] md:h-[86px] md:w-[330px] xl:h-[96px] xl:w-[372px]"
           >
             <Image
               src="/logo-cropped.png"
@@ -202,13 +202,13 @@ export function HeroSection({
 
           <motion.h1
             variants={heroItem}
-            className="max-w-[88vw] text-[clamp(1.25rem,6.55vw,3.55rem)] font-[1000] uppercase italic leading-[1.2] tracking-[0.01em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)] sm:text-[clamp(1.05rem,5.4vw,3.55rem)] sm:leading-[1.14] lg:max-w-5xl lg:text-[clamp(1.3rem,3.45vw,3.55rem)] lg:leading-[1.12] lg:tracking-[0.04em]"
+            className="max-w-[88vw] text-[clamp(1rem,5.2vw,1.35rem)] font-[1000] uppercase italic leading-[1.14] tracking-[0.01em] text-white drop-shadow-[0_8px_26px_rgba(0,0,0,0.55)] sm:text-[clamp(1.05rem,5.4vw,3.55rem)] sm:leading-[1.14] lg:max-w-5xl lg:text-[clamp(1.3rem,3.45vw,3.55rem)] lg:leading-[1.12] lg:tracking-[0.04em]"
           >
             <span className="block whitespace-pre-line lg:hidden">
               {mobileHeadlineLine1}
             </span>
             <span className="hidden lg:block">{headlineLine1}</span>
-            <span className="my-4 block h-px w-0 sm:my-2 lg:hidden" aria-hidden="true" />
+            <span className="my-2 block h-px w-0 lg:hidden" aria-hidden="true" />
             <span className="block whitespace-pre-line text-[#43becc] lg:hidden">
               {mobileHeadlineLine2}
             </span>
@@ -219,7 +219,7 @@ export function HeroSection({
 
           <motion.div
             variants={heroItem}
-            className="mt-auto pt-[26svh] text-[9px] font-black uppercase tracking-[0.34em] text-white/58 sm:mt-4 sm:pt-0 sm:text-[10px] md:mt-5 md:text-[11px]"
+            className="mt-auto pt-4 text-[9px] font-black uppercase tracking-[0.34em] text-white/58 sm:mt-4 sm:pt-0 sm:text-[10px] md:mt-5 md:text-[11px]"
           >
             {strategicPartnersLabel}
           </motion.div>
@@ -264,7 +264,7 @@ export function HeroSection({
           initial={reduceMotion ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.45, ease: "easeOut" }}
-          className="relative z-20 mt-6 grid gap-3 sm:mt-4 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
+          className="relative z-20 mt-3 grid gap-2 sm:mt-4 sm:gap-3 md:grid-cols-[auto_1fr_auto] md:items-end md:gap-5"
         >
           <div>
             <div className="grid grid-cols-2 gap-2 sm:flex sm:gap-3">
