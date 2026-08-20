@@ -161,7 +161,7 @@ export function HeroSection({
     <section dir={isAr ? "rtl" : "ltr"} className="relative min-h-[100svh] overflow-hidden bg-[#0a0f29] text-white">
       <div className="absolute inset-0">
         <video
-          className="h-full w-full object-cover object-[52%_72%] sm:object-center"
+          className="h-full w-full object-contain object-center sm:object-cover sm:object-center"
           autoPlay
           muted
           loop
@@ -179,7 +179,7 @@ export function HeroSection({
 
       <div className="pointer-events-none absolute inset-0 opacity-10 [background-image:linear-gradient(#43becc_1px,transparent_1px),linear-gradient(90deg,#43becc_1px,transparent_1px)] [background-size:96px_96px] [mask-image:linear-gradient(to_top,black,transparent_62%)]" />
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col px-4 pb-5 pt-24 sm:px-6 sm:pt-[5.5rem] md:px-9 md:pb-6">
+      <div className="relative z-10 flex min-h-[100svh] flex-col px-4 pb-5 pt-24 sm:px-6 sm:pt-[5.5rem] md:px-9 md:pb-6 md:pt-32">
         <motion.div
           initial="hidden"
           animate="show"
