@@ -277,7 +277,7 @@ export default function AutoHubPage({ locale }: Props) {
           preload="metadata"
           aria-hidden="true"
         >
-          <source src="/Dyna Tech - 03.mp4" type="video/mp4" />
+          <source src="/BACK GROUND-FOR Auto-Hub.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[#080d20]/56" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,32,0.82),rgba(8,13,32,0.35)_55%,rgba(8,13,32,0.58))]" />
