@@ -252,7 +252,7 @@ export function HeroSection({
               knowMoreAriaLabel={isAr ? "فتح فيديو Composites United" : "Open Composites United video"}
               onKnowMore={() =>
                 setActiveVideo({
-                  src: "/hero/CARBON-CU مترجم بالعربية.mp4",
+                  src: "/hero/CARBON-CU -v1.mp4",
                   title: "Composites United",
                 })
               }
