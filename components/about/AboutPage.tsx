@@ -43,9 +43,9 @@ function VideoBackground({ fixed = false }: { fixed?: boolean }) {
       >
         <source src="/Dyna Tech - 01.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[#050915]/35" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.72),rgba(10,15,41,0.34)_45%,rgba(10,15,41,0.72)),radial-gradient(circle_at_50%_45%,rgba(0,135,203,0.12),transparent_34%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0f29]/80 to-transparent" />
+      <div className="absolute inset-0 bg-[#050915]/16" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.46),rgba(10,15,41,0.16)_45%,rgba(10,15,41,0.46)),radial-gradient(circle_at_50%_45%,rgba(0,135,203,0.08),transparent_34%)]" />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#0a0f29]/52 to-transparent" />
     </div>
   )
 }
