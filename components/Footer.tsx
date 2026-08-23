@@ -3,21 +3,12 @@ import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 
 import type { Locale } from "@/i18n/config";
-import { localizedPath, siteRoutes } from "@/lib/routes";
+import { localizedPath, primaryNavigation, siteRoutes } from "@/lib/routes";
 import { siteContact } from "@/lib/site-config";
 
 type FooterProps = {
   locale: Locale;
 };
-
-const footerNavigation = [
-  { label: "Home", labelAr: "الرئيسية", path: siteRoutes.home },
-  { label: "About", labelAr: "من نحن", path: siteRoutes.about },
-  { label: "Partners", labelAr: "الشركاء", path: siteRoutes.partners },
-  { label: "Auto Hub Project", labelAr: "مشروع مركز السيارات", path: siteRoutes.autoHub },
-  { label: "Careers", labelAr: "الوظائف", path: siteRoutes.careers },
-  { label: "Contact", labelAr: "تواصل معنا", path: siteRoutes.contact },
-] as const;
 
 export function Footer({ locale }: FooterProps) {
   const isAr = locale === "ar";
@@ -81,7 +72,7 @@ export function Footer({ locale }: FooterProps) {
               {isAr ? "روابط سريعة" : "Quick Links"}
             </h4>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {footerNavigation.map((item) => (
+              {primaryNavigation.map((item) => (
                 <Link
                   key={item.path}
                   href={localizedPath(locale, item.path)}
