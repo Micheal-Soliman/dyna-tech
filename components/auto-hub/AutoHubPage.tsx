@@ -274,7 +274,7 @@ export default function AutoHubPage({ locale }: Props) {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
         >
           <source src="/BACK GROUND-FOR Auto-Hub.mp4" type="video/mp4" />
