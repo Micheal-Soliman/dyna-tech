@@ -279,8 +279,8 @@ export default function AutoHubPage({ locale }: Props) {
         >
           <source src="/BACK GROUND-FOR Auto-Hub.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#080d20]/56" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,32,0.82),rgba(8,13,32,0.35)_55%,rgba(8,13,32,0.58))]" />
+        <div className="absolute inset-0 bg-[#080d20]/30" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,13,32,0.54),rgba(8,13,32,0.18)_55%,rgba(8,13,32,0.38))]" />
         <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div dir="ltr" className="relative mx-auto grid w-full max-w-[1440px] gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-14">
           <motion.div dir={isAr ? "rtl" : "ltr"} {...reveal} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.7 }}>

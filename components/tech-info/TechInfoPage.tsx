@@ -83,8 +83,8 @@ export default function TechInfoPage({ content, locale }: Props) {
         >
           <source src="/BACK GROUND-FOR TECH INFO.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#0a0f29]/32" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.82),rgba(10,15,41,0.36)_55%,rgba(10,15,41,0.62))]" />
+        <div className="absolute inset-0 bg-[#0a0f29]/16" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.52),rgba(10,15,41,0.18)_55%,rgba(10,15,41,0.4))]" />
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#0087cb] to-transparent" />
 

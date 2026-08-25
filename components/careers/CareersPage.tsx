@@ -57,8 +57,8 @@ export default function CareersPage({ content, locale }: Props) {
         >
           <source src="/Dyna Tech - 02.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-[#0a0f29]/42" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.82),rgba(10,15,41,0.32)_56%,rgba(10,15,41,0.68))]" />
+        <div className="absolute inset-0 bg-[#0a0f29]/20" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.52),rgba(10,15,41,0.16)_56%,rgba(10,15,41,0.42))]" />
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div className="relative mx-auto w-full max-w-7xl">
         <div className="mb-12 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">

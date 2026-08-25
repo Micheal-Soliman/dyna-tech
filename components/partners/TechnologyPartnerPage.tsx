@@ -222,15 +222,15 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             <source src="/cu/VID-20260624-WA0032.mp4" type="video/mp4" />
           </video>
         )}
-        <div className="absolute inset-0 bg-[#080d20]/10" />
+        <div className="absolute inset-0 bg-[#080d20]/5" />
         <div
           className={`absolute inset-0 ${
             isAr
-              ? "bg-[linear-gradient(270deg,rgba(8,13,32,0.6)_0%,rgba(8,13,32,0.36)_48%,rgba(8,13,32,0.04)_100%)]"
-              : "bg-[linear-gradient(90deg,rgba(8,13,32,0.6)_0%,rgba(8,13,32,0.36)_48%,rgba(8,13,32,0.04)_100%)]"
+              ? "bg-[linear-gradient(270deg,rgba(8,13,32,0.42)_0%,rgba(8,13,32,0.22)_48%,rgba(8,13,32,0.02)_100%)]"
+              : "bg-[linear-gradient(90deg,rgba(8,13,32,0.42)_0%,rgba(8,13,32,0.22)_48%,rgba(8,13,32,0.02)_100%)]"
           }`}
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.48)_0%,transparent_32%,rgba(8,13,32,0.06)_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.32)_0%,transparent_32%,rgba(8,13,32,0.03)_100%)]" />
 
         <div className="relative z-10 mx-auto w-full max-w-[1440px]">
           <motion.div

@@ -96,8 +96,8 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
           playsInline
           preload="auto"
         />
-        <div className="absolute inset-0 bg-[#080d20]/24" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.68)_0%,rgba(8,13,32,0.22)_48%,rgba(8,13,32,0.04)_100%)]" />
+        <div className="absolute inset-0 bg-[#080d20]/12" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(8,13,32,0.48)_0%,rgba(8,13,32,0.12)_48%,rgba(8,13,32,0.02)_100%)]" />
 
         <div dir="ltr" className="relative z-10 mx-auto grid w-full max-w-[1440px] gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(400px,0.8fr)] lg:items-center lg:gap-12">
           <motion.div
