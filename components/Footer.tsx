@@ -35,7 +35,7 @@ export function Footer({ locale }: FooterProps) {
                 className="h-auto w-[230px] object-contain"
               />
             </Link>
-            <div className="mt-7 max-w-[280px] border-t border-white/10 pt-5 text-zinc-500">
+            <div className="mt-7 max-w-[280px] border-t border-white/10 pt-5 text-white">
               <span className="block text-[10px] font-black uppercase leading-loose tracking-[0.22em]">
                 {footerSlogan}
               </span>
@@ -44,14 +44,14 @@ export function Footer({ locale }: FooterProps) {
 
           <div>
             <h4 className="text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? "تواجدنا" : "Presence"}
+              {isAr ? "المواقع" : "Location"}
             </h4>
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               <div className="space-y-3">
                 <span className="block min-h-8 text-[10px] font-black uppercase leading-relaxed tracking-[0.18em] text-white">
                   {isAr ? "المقر الرئيسي في CFC" : "CFC Main Office"}
                 </span>
-                <p className="max-w-xs text-xs leading-relaxed text-zinc-400">
+                <p className="max-w-xs text-xs leading-relaxed text-white">
                   {isAr ? siteContact.locations.cfcOfficeAr : siteContact.locations.cfcOffice}
                 </p>
               </div>
@@ -60,7 +60,7 @@ export function Footer({ locale }: FooterProps) {
                 <span className="block min-h-8 text-[10px] font-black uppercase leading-relaxed tracking-[0.18em] text-white">
                   {isAr ? "مشروع مركز السيارات" : "Auto Hub Project"}
                 </span>
-                <p className="max-w-xs text-xs leading-relaxed text-zinc-400">
+                <p className="max-w-xs text-xs leading-relaxed text-white">
                   {isAr ? siteContact.locations.autoHubAr : siteContact.locations.autoHub}
                 </p>
               </div>
@@ -76,7 +76,7 @@ export function Footer({ locale }: FooterProps) {
                 <Link
                   key={item.path}
                   href={localizedPath(locale, item.path)}
-                  className="text-xs font-black uppercase tracking-[0.12em] text-zinc-400 transition hover:text-white"
+                  className="text-xs font-black uppercase tracking-[0.12em] text-white transition hover:text-[#43becc]"
                 >
                   {isAr ? item.labelAr : item.label}
                 </Link>
@@ -98,7 +98,7 @@ export function Footer({ locale }: FooterProps) {
               </a>
               <a
                 href={`mailto:${siteContact.email}`}
-                className="flex items-center gap-3 text-xs font-semibold text-zinc-400 transition hover:text-white"
+                className="flex items-center gap-3 text-xs font-semibold text-white transition hover:text-[#43becc]"
               >
                 <Mail size={16} className="text-[#43becc]" />
                 {siteContact.email}
@@ -107,7 +107,7 @@ export function Footer({ locale }: FooterProps) {
           </div>
         </div>
 
-        <div className="mt-9 border-t border-white/10 pt-5 text-[9px] font-bold uppercase tracking-[0.34em] text-zinc-600">
+        <div className="mt-9 border-t border-white/10 pt-5 text-[9px] font-bold uppercase tracking-[0.34em] text-white">
           &copy; {currentYear} DYNATECH CORP - {isAr ? "جميع الحقوق محفوظة" : "ALL RIGHTS RESERVED"}
         </div>
       </div>

@@ -136,11 +136,20 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
             <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
               <Image
                 src="/fft page Videos/main.jpeg"
+                alt=""
+                fill
+                aria-hidden="true"
+                sizes="(min-width: 1024px) 40vw, 50vw"
+                className="scale-110 object-cover object-center opacity-35 blur-sm"
+              />
+              <div className="absolute inset-0 bg-[#080d20]/35" />
+              <Image
+                src="/fft page Videos/main.jpeg"
                 alt={isAr ? "توقيع اتفاقية الشراكة مع FFT" : "FFT partnership agreement signing"}
                 fill
                 priority
                 sizes="(min-width: 1024px) 40vw, 50vw"
-                className="object-cover object-bottom"
+                className="scale-[1.35] object-contain object-center"
               />
             </div>
             <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">

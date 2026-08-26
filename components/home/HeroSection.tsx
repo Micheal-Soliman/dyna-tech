@@ -219,7 +219,7 @@ export function HeroSection({
 
           <motion.div
             variants={heroItem}
-            className="mt-auto pt-4 text-[9px] font-black uppercase tracking-[0.34em] text-white/58 sm:mt-4 sm:pt-0 sm:text-[10px] md:mt-5 md:text-[11px]"
+            className="mt-auto pt-4 text-[9px] font-black uppercase tracking-[0.34em] text-white sm:mt-4 sm:pt-0 sm:text-[10px] md:mt-5 md:text-[11px]"
           >
             {strategicPartnersLabel}
           </motion.div>

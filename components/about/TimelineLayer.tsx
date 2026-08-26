@@ -24,7 +24,7 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
         <div className={`min-w-[200px] md:min-w-[280px] sticky left-0 ${isAr ? 'text-right' : ''}`}>
           <h2 className={`text-white text-5xl md:text-8xl font-black italic tracking-tighter leading-none ${isAr ? '[direction:rtl]' : ''}`}>
             {copy.titleLine1}<br/>
-            {copy.titleHighlight && <span className="text-[#0087cb]">{copy.titleHighlight}</span>}
+            {copy.titleHighlight && <span className="text-white">{copy.titleHighlight}</span>}
           </h2>
         </div>
         
@@ -32,7 +32,7 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
         {items.map((item, i) => (
           <div key={i} className={`min-w-[220px] md:min-w-[320px] relative pt-16 ${isAr ? 'text-right' : ''}`}>
             {/* Background Year */}
-            <div className={`text-[100px] md:text-[140px] font-black text-white/[0.03] absolute -top-10 ${isAr ? '-right-6' : '-left-6'} leading-none select-none`}>
+            <div className={`text-[100px] md:text-[140px] font-black text-white/[0.08] absolute -top-10 ${isAr ? '-right-6' : '-left-6'} leading-none select-none`}>
               {item.year}
             </div>
             
@@ -43,7 +43,7 @@ export default function TimelineLayer({ x, opacity, scale, copy, items, isAr = f
               <p 
                 dir={isAr ? "rtl" : "ltr"}
                 style={{ unicodeBidi: "plaintext" }}
-                className="text-zinc-400 text-xs md:text-sm leading-relaxed max-w-[280px]"
+                className="max-w-[280px] text-xs leading-relaxed text-white md:text-sm"
               >
                 {item.desc}
               </p>

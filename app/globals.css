@@ -129,6 +129,10 @@
     overflow-x: clip;
   }
 
+  p {
+    text-align: justify;
+  }
+
   html[dir="rtl"] body {
     font-family: var(--font-cairo), sans-serif;
   }

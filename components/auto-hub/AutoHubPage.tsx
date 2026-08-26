@@ -292,14 +292,14 @@ export default function AutoHubPage({ locale }: Props) {
             <span className="mt-7 block h-px w-20 bg-[#0087cb]" />
           </motion.div>
 
-          <motion.div {...reveal} viewport={{ once: true, amount: 0.22 }} transition={{ duration: 0.7, delay: 0.08 }} className="relative aspect-[4/3] overflow-hidden border border-white/15 bg-white shadow-[0_30px_80px_rgba(0,0,0,0.32)]">
+          <motion.div {...reveal} viewport={{ once: true, amount: 0.22 }} transition={{ duration: 0.7, delay: 0.08 }} className="relative aspect-[16/10] overflow-hidden border border-white/15 bg-white shadow-[0_30px_80px_rgba(0,0,0,0.32)] lg:left-8 xl:left-12">
             <Image
-              src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0027.jpg"
+              src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0021.jpg"
               alt={isAr ? "تصميم ثلاثي الأبعاد واضح لمبنى مشروع مركز السيارات" : "Clear 3D design of the Auto Hub building"}
               fill
               priority
               sizes="(min-width: 1024px) 58vw, 100vw"
-              className="object-cover object-top"
+              className="object-cover object-center"
             />
           </motion.div>
         </div>
@@ -315,19 +315,21 @@ export default function AutoHubPage({ locale }: Props) {
               {copy.introduction}
             </p>
           </motion.div>
-          <motion.div {...reveal} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.65, delay: 0.06 }} className="relative aspect-[4/3] overflow-hidden border border-white/15 bg-white shadow-[0_30px_80px_rgba(0,0,0,0.28)]">
-            <motion.div
-              className="absolute -inset-y-16 inset-x-0"
-              style={{ y: reduceMotion ? 0 : introductionImageY }}
-            >
-              <Image
-                src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0017.jpg"
-                alt={isAr ? "واجهة مبنى مشروع مركز السيارات" : "Auto Hub building exterior"}
-                fill
-                sizes="(min-width: 1024px) 46vw, 100vw"
-                className="object-cover object-top"
-              />
-            </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.65, delay: 0.06 }}
+            style={{ y: reduceMotion ? 0 : introductionImageY }}
+            className="relative aspect-[16/10] overflow-hidden border border-white/15 bg-[#080d20] shadow-[0_30px_80px_rgba(0,0,0,0.28)]"
+          >
+            <Image
+              src="/autohub/The%20Auto%20Hub/IMG-20260623-WA0028.jpg"
+              alt={isAr ? "واجهة مبنى مشروع مركز السيارات" : "Auto Hub building exterior"}
+              fill
+              sizes="(min-width: 1024px) 46vw, 100vw"
+              className="object-contain object-center"
+            />
           </motion.div>
         </div>
       </section>
