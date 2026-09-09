@@ -1,7 +1,7 @@
 "use client";
 
 import { MotionValue, motion } from "framer-motion";
-import { TimelineItem, TimelineSectionCopy } from "./types";
+import type { TimelineItem, TimelineSectionCopy } from "@/content/schema/about";
 
 type Props = {
   x: MotionValue<number>;

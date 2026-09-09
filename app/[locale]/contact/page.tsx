@@ -1,38 +1,8 @@
 import type { Locale } from "@/i18n/config";
 import Image from "next/image";
-import { getDictionary } from "@/i18n/get-dictionary";
-import { siteContact } from "@/lib/site-config";
-
-type ContactContent = {
-  hero: {
-    kicker: string;
-    title: string;
-    description: string;
-  };
-  conversation: {
-    title: string;
-    paragraphs: string[];
-  };
-  form: {
-    title: string;
-    fields: {
-      fullName: string;
-      company: string;
-      email: string;
-      phone: string;
-      inquiryType: string;
-      message: string;
-      fileUpload: string;
-    };
-    categoriesTitle: string;
-    categories: string[];
-    submitLabel: string;
-  };
-};
-
-type ContactDictionary = {
-  contact: ContactContent;
-};
+import type { ContactContent } from "@/content/schema/site";
+import type { GlobalCmsContent } from "@/content/pages/global";
+import { getPageDocument } from "@/lib/cms/page-document";
 
 function SectionKicker({
   children,
@@ -62,8 +32,12 @@ export default async function Page({
   params: { locale: Locale } | Promise<{ locale: Locale }>;
 }) {
   const { locale } = await Promise.resolve(params);
-  const dict = (await getDictionary(locale)) as ContactDictionary;
-  const content = dict.contact;
+  const [document, globalDocument] = await Promise.all([
+    getPageDocument<ContactContent>("contact", locale),
+    getPageDocument<GlobalCmsContent>("global", locale),
+  ]);
+  const contactDetails = globalDocument.content.contact;
+  const content = document.content;
   const isAr = locale === "ar";
 
   return (
@@ -74,7 +48,7 @@ export default async function Page({
     >
       <section className="relative overflow-hidden border-b border-white/10 px-5 pb-16 pt-8 sm:px-6 md:px-12 lg:px-20">
         <Image
-          src="/contact/the-podium.jpg"
+          src={String(document.media.backgroundImage)}
           alt={isAr ? "مبنى ذا بوديوم في كايرو فيستيفال سيتي" : "The Podium office building at Cairo Festival City"}
           fill
           priority
@@ -118,12 +92,16 @@ export default async function Page({
           </div>
 
           <div className="border border-white/10 bg-[#121b43] p-6">
-            <SectionKicker tone="cyan" className="mb-3">{isAr ? "البريد الإلكتروني" : "Email"}</SectionKicker>
+            <SectionKicker tone="cyan" className="mb-3">
+              {isAr
+                ? globalDocument.content.labels.emailAr
+                : globalDocument.content.labels.email}
+            </SectionKicker>
             <a
-              href={`mailto:${siteContact.email}`}
+              href={`mailto:${contactDetails.email}`}
               className="mt-3 block text-2xl font-black tracking-tight text-white transition hover:text-[#43becc]"
             >
-              {siteContact.email}
+              {contactDetails.email}
             </a>
           </div>
 
@@ -145,7 +123,7 @@ export default async function Page({
         </aside>
 
         <form
-          action={`mailto:${siteContact.email}`}
+          action={`mailto:${contactDetails.email}`}
           method="post"
           encType="text/plain"
           className="grid gap-4 border border-white/10 bg-[#121b43]/80 p-5 shadow-[0_30px_90px_rgba(0,0,0,0.35)] md:p-8"

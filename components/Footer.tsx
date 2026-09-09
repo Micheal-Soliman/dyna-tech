@@ -3,20 +3,25 @@ import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 
 import type { Locale } from "@/i18n/config";
-import { localizedPath, primaryNavigation, siteRoutes } from "@/lib/routes";
-import { siteContact } from "@/lib/site-config";
+import { localizedPath, siteRoutes } from "@/lib/routes";
+import type { GlobalCmsContent } from "@/content/pages/global";
+import type { CmsMediaMap } from "@/lib/cms/types";
 
 type FooterProps = {
   locale: Locale;
+  content: GlobalCmsContent;
+  media: CmsMediaMap;
 };
 
-export function Footer({ locale }: FooterProps) {
+export function Footer({ locale, content, media }: FooterProps) {
   const isAr = locale === "ar";
   const currentYear = new Date().getFullYear();
+  const contact = content.contact;
+  const navigation = content.navigation;
   const footerSlogan =
     locale === "ar"
-      ? "قوة دفع جديدة في صناعة السيارات في مصر"
-      : "A New Driving Force In Egypt's Automotive Industry";
+      ? content.footerSloganAr
+      : content.footerSlogan;
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#0a0f29] py-10 text-white md:py-12">
@@ -28,7 +33,7 @@ export function Footer({ locale }: FooterProps) {
           <div>
             <Link href={localizedPath(locale, siteRoutes.home)} className="inline-flex">
               <Image
-                src="/logo-cropped.png"
+                src={String(media.logo)}
                 alt="DYNATECH"
                 width={300}
                 height={76}
@@ -44,24 +49,28 @@ export function Footer({ locale }: FooterProps) {
 
           <div>
             <h4 className="text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? "المواقع" : "Location"}
+              {isAr ? content.labels.locationAr : content.labels.location}
             </h4>
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               <div className="space-y-3">
                 <span className="block min-h-8 text-[10px] font-black uppercase leading-relaxed tracking-[0.18em] text-white">
-                  {isAr ? "المقر الرئيسي في CFC" : "CFC Main Office"}
+                  {isAr
+                    ? content.labels.cfcOfficeAr
+                    : content.labels.cfcOffice}
                 </span>
                 <p className="max-w-xs text-xs leading-relaxed text-white">
-                  {isAr ? siteContact.locations.cfcOfficeAr : siteContact.locations.cfcOffice}
+                  {isAr ? contact.locations.cfcOfficeAr : contact.locations.cfcOffice}
                 </p>
               </div>
 
               <div className="space-y-3">
                 <span className="block min-h-8 text-[10px] font-black uppercase leading-relaxed tracking-[0.18em] text-white">
-                  {isAr ? "مشروع مركز السيارات" : "Auto Hub Project"}
+                  {isAr
+                    ? content.labels.autoHubProjectAr
+                    : content.labels.autoHubProject}
                 </span>
                 <p className="max-w-xs text-xs leading-relaxed text-white">
-                  {isAr ? siteContact.locations.autoHubAr : siteContact.locations.autoHub}
+                  {isAr ? contact.locations.autoHubAr : contact.locations.autoHub}
                 </p>
               </div>
             </div>
@@ -69,10 +78,10 @@ export function Footer({ locale }: FooterProps) {
 
           <div>
             <h4 className="mb-4 text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? "روابط سريعة" : "Quick Links"}
+              {isAr ? content.labels.quickLinksAr : content.labels.quickLinks}
             </h4>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-              {primaryNavigation.map((item) => (
+              {navigation.map((item) => (
                 <Link
                   key={item.path}
                   href={localizedPath(locale, item.path)}
@@ -86,29 +95,31 @@ export function Footer({ locale }: FooterProps) {
 
           <div>
             <h4 className="mb-4 text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? "تواصل" : "Connect"}
+              {isAr ? content.labels.connectAr : content.labels.connect}
             </h4>
             <div className="space-y-3 border-t border-white/10 pt-5 lg:border-t-0 lg:pt-0">
               <a
-                href={siteContact.phone.href}
+                href={contact.phone.href}
                 className="flex items-center gap-3 text-sm font-black tracking-tight text-white transition hover:text-[#43becc]"
               >
                 <Phone size={16} className="text-[#43becc]" />
-                {siteContact.phone.display}
+                {contact.phone.display}
               </a>
               <a
-                href={`mailto:${siteContact.email}`}
+                href={`mailto:${contact.email}`}
                 className="flex items-center gap-3 text-xs font-semibold text-white transition hover:text-[#43becc]"
               >
                 <Mail size={16} className="text-[#43becc]" />
-                {siteContact.email}
+                {contact.email}
               </a>
             </div>
           </div>
         </div>
 
         <div className="mt-9 border-t border-white/10 pt-5 text-[9px] font-bold uppercase tracking-[0.34em] text-white">
-          &copy; {currentYear} DYNATECH CORP - {isAr ? "جميع الحقوق محفوظة" : "ALL RIGHTS RESERVED"}
+          &copy; {currentYear} DYNATECH CORP - {isAr
+            ? content.copyrightAr
+            : content.copyright}
         </div>
       </div>
     </footer>

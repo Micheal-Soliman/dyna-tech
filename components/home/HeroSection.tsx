@@ -6,14 +6,16 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import type { HomeHeroCopy } from "@/components/home/types";
+import type { HomeHeroCopy } from "@/content/schema/site";
 import type { Locale } from "@/i18n/config";
 import { localizedPath, siteRoutes } from "@/lib/routes";
-import { siteContact } from "@/lib/site-config";
+import type { CmsMediaMap } from "@/lib/cms/types";
 
 type HeroSectionProps = {
   locale: Locale;
   content: HomeHeroCopy;
+  media: CmsMediaMap;
+  contactEmail: string;
 };
 
 function InfoCard({ title, lines }: { title: string; lines: string[] }) {
@@ -92,6 +94,8 @@ function PartnerBlock({
 
 export function HeroSection({
   locale,
+  media,
+  contactEmail,
   content: {
     heroImageAlt,
     logoAlt,
@@ -169,7 +173,7 @@ export function HeroSection({
           preload="metadata"
           aria-label={heroImageAlt}
         >
-          <source src="/hero.mp4" type="video/mp4" />
+          <source src={String(media.backgroundVideo)} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[#050915]/52 sm:bg-[#050915]/45" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,#050915_0%,rgba(5,9,21,0.94)_25%,rgba(5,9,21,0.28)_48%,rgba(5,9,21,0.48)_100%)] sm:bg-[radial-gradient(circle_at_34%_42%,rgba(67,190,204,0.16),transparent_26%),linear-gradient(90deg,rgba(3,7,18,0.62),rgba(3,7,18,0.18)_45%,rgba(3,7,18,0.62))]" />
@@ -191,7 +195,7 @@ export function HeroSection({
             className="relative mb-4 h-10 w-40 max-w-[62vw] sm:mb-4 sm:h-[66px] sm:w-[254px] md:h-[86px] md:w-[330px] xl:h-[96px] xl:w-[372px]"
           >
             <Image
-              src="/logo-cropped.png"
+              src={String(media.brandLogo)}
               alt={logoAlt}
               fill
               priority
@@ -229,14 +233,14 @@ export function HeroSection({
             className="mt-3 grid w-full max-w-[340px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start justify-center gap-2 sm:w-auto sm:max-w-none sm:gap-4 md:mt-4 md:gap-8"
           >
             <PartnerBlock
-              logoSrc="/logo-fft.png"
+              logoSrc={String(media.fftLogo)}
               logoAlt="FFT logo"
               logoClassName="object-contain drop-shadow-[0_0_18px_rgba(69,245,202,0.22)]"
               knowMoreLabel={knowMoreLabel}
               knowMoreAriaLabel={isAr ? "فتح فيديو FFT" : "Open FFT video"}
               onKnowMore={() =>
                 setActiveVideo({
-                  src: "/hero/FFT STORY مترجم عربي.mp4",
+                  src: String(media.fftVideo),
                   title: "FFT",
                 })
               }
@@ -245,14 +249,14 @@ export function HeroSection({
             <div className="h-14 w-px bg-white/55 md:h-[4.5rem]" />
 
             <PartnerBlock
-              logoSrc="/logo-cu.png"
+              logoSrc={String(media.cuLogo)}
               logoAlt="Composites United logo"
               logoClassName="object-contain drop-shadow-[0_0_18px_rgba(239,106,37,0.18)]"
               knowMoreLabel={knowMoreLabel}
               knowMoreAriaLabel={isAr ? "فتح فيديو Composites United" : "Open Composites United video"}
               onKnowMore={() =>
                 setActiveVideo({
-                  src: "/hero/CARBON-CU -v1.mp4",
+                  src: String(media.cuVideo),
                   title: "Composites United",
                 })
               }
@@ -280,10 +284,10 @@ export function HeroSection({
             <p className="mt-2 text-[10px] font-medium text-white/75 sm:mt-4 sm:text-[11px]">
               {contactLabel}{" "}
               <a
-                href={`mailto:${siteContact.email}`}
+                href={`mailto:${contactEmail}`}
                 className="pointer-events-auto text-[#43becc] transition hover:text-white"
               >
-                {siteContact.email}
+                {contactEmail}
               </a>
             </p>
           </div>

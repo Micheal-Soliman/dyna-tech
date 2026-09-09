@@ -5,13 +5,13 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowUpRight, Linkedin } from 'lucide-react'
 import Image from 'next/image'
 
-import type { DynatechContent } from './types'
-export type { DynatechContent } from './types'
+import type { DynatechContent } from '@/content/schema/about'
 
 import FounderLayer from './FounderLayer'
 import LocationsLayer from './LocationsLayer'
 import MissionVisionLayer from './MissionVisionLayer'
 import TimelineLayer from './TimelineLayer'
+import type { CmsMediaMap } from '@/lib/cms/types'
 
 function BackgroundGrid({ fixed = false }: { fixed?: boolean }) {
   return (
@@ -29,7 +29,7 @@ function BackgroundGrid({ fixed = false }: { fixed?: boolean }) {
   )
 }
 
-function VideoBackground({ fixed = false }: { fixed?: boolean }) {
+function VideoBackground({ fixed = false, src }: { fixed?: boolean; src: string }) {
   return (
     <div className={`inset-0 z-0 ${fixed ? 'fixed' : 'absolute'}`}>
       <video
@@ -41,7 +41,7 @@ function VideoBackground({ fixed = false }: { fixed?: boolean }) {
         preload="auto"
         aria-label="DYNATECH background video"
       >
-        <source src="/Dyna Tech - 01.mp4" type="video/mp4" />
+        <source src={src} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-[#050915]/8" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.34),rgba(10,15,41,0.1)_45%,rgba(10,15,41,0.34)),radial-gradient(circle_at_50%_45%,rgba(0,135,203,0.06),transparent_34%)]" />
@@ -195,9 +195,11 @@ function MobileIntro({
 
 export default function AboutPage({
   content,
+  media,
   locale,
 }: {
   content: DynatechContent
+  media: CmsMediaMap
   locale: string
 }) {
   const isAr = locale === 'ar'
@@ -246,7 +248,7 @@ export default function AboutPage({
       lang={locale}
       className="relative isolate bg-[#0a0f29]"
     >
-      <VideoBackground fixed />
+      <VideoBackground fixed src={String(media.backgroundVideo)} />
       <BackgroundGrid fixed />
 
       <MobileIntro content={content} isAr={isAr} />

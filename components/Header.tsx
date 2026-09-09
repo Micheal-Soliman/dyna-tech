@@ -8,17 +8,23 @@ import { useEffect, useState } from "react";
 
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import type { Locale } from "@/i18n/config";
-import { localizedPath, primaryNavigation, siteRoutes } from "@/lib/routes";
+import { localizedPath, siteRoutes } from "@/lib/routes";
+import type { GlobalCmsContent } from "@/content/pages/global";
+import type { CmsMediaMap } from "@/lib/cms/types";
 
 type HeaderProps = {
   locale: Locale;
+  content: GlobalCmsContent;
+  media: CmsMediaMap;
 };
 
-export function Header({ locale }: HeaderProps) {
+export function Header({ locale, content, media }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const isAr = locale === "ar";
+  const navigation = content.navigation;
+  const contactLabel = isAr ? content.labels.contactAr : content.labels.contact;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -59,12 +65,12 @@ export function Header({ locale }: HeaderProps) {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:gap-8">
           <Link href={homeHref} className="group relative flex shrink-0 items-center">
-            <div className="h-12 w-[118px] sm:h-14 sm:w-[138px] md:h-[84px] md:w-[150px]">
+            <div className="relative h-12 w-[118px] sm:h-14 sm:w-[138px] md:h-[84px] md:w-[150px]">
               <Image
-                src="/logo-cropped.png"
+                src={String(media.logo)}
                 alt="DYNATECH"
-                width={340}
-                height={84}
+                fill
+                sizes="(min-width: 768px) 150px, (min-width: 640px) 138px, 118px"
                 priority
                 className="h-full w-full object-contain object-left transition-opacity duration-300 group-hover:opacity-80"
               />
@@ -72,7 +78,7 @@ export function Header({ locale }: HeaderProps) {
           </Link>
 
           <nav className="hidden items-center rounded-full border border-white/[0.08] bg-white/[0.03] p-1.5 backdrop-blur-md lg:flex">
-            {primaryNavigation.map((item) => {
+            {navigation.map((item) => {
               const href = localizedPath(locale, item.path);
               const isActive = isNavActive(href);
 
@@ -101,7 +107,7 @@ export function Header({ locale }: HeaderProps) {
               href={localizedPath(locale, siteRoutes.contact)}
               className="group hidden items-center gap-2 rounded-full bg-white px-6 py-2.5 text-[10px] font-black uppercase tracking-widest text-black transition-all hover:bg-[#0087cb] hover:text-white md:flex"
             >
-              <span>{isAr ? "تواصل معنا" : "Contact"}</span>
+              <span>{contactLabel}</span>
               <ArrowRight size={14} />
             </Link>
 
@@ -156,7 +162,7 @@ export function Header({ locale }: HeaderProps) {
         </div>
 
         <nav className="flex-1 space-y-5 overflow-y-auto p-7">
-          {primaryNavigation.map((item) => {
+          {navigation.map((item) => {
             const href = localizedPath(locale, item.path);
             const isActive = isNavActive(href);
 
@@ -185,7 +191,7 @@ export function Header({ locale }: HeaderProps) {
             onClick={() => setIsMenuOpen(false)}
             className="flex w-full items-center justify-center rounded-md bg-[#0087cb] py-4 text-xs font-black uppercase tracking-widest text-black"
           >
-            {isAr ? "تواصل معنا" : "Contact"}
+            {contactLabel}
           </Link>
         </div>
       </aside>

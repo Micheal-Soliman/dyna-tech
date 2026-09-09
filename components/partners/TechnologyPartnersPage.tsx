@@ -4,44 +4,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-
-export type TechnologyPartnersContent = {
-  hero: {
-    kicker: string;
-    title: string;
-    intro: string;
-    supporting: string;
-  };
-  technologyPartners: {
-    kicker: string;
-    title: string;
-    partners: {
-      name: string;
-      heading: string;
-      paragraphs: string[];
-      ctaLabel: string;
-      ctaHref: string;
-    }[];
-  };
-};
+import type { CmsMediaMap } from "@/lib/cms/types";
+import type { TechnologyPartnersContent } from "@/content/schema/site";
 
 type Props = {
   content: TechnologyPartnersContent;
   locale: string;
+  media: CmsMediaMap;
 };
 
-function partnerSlug(name: string) {
-  return name.toLowerCase().includes("cu") ? "composites-united" : "fft";
-}
-
-function partnerLabel(name: string) {
-  return name.toLowerCase().includes("cu") ? "CU" : "FFT";
-}
-
-function PartnerLogo({ id }: { id: "fft" | "cu" }) {
+function PartnerLogo({ id, src }: { id: "fft" | "cu"; src: string }) {
   return (
     <Image
-      src={id === "fft" ? "/logo-fft.png" : "/logo-cu.png"}
+      src={src}
       alt={id === "fft" ? "FFT Produktionssysteme official logo" : "Composites United official logo"}
       width={id === "fft" ? 952 : 959}
       height={id === "fft" ? 376 : 729}
@@ -69,7 +44,7 @@ function SectionKicker({
   );
 }
 
-export default function TechnologyPartnersPage({ content, locale }: Props) {
+export default function TechnologyPartnersPage({ content, locale, media }: Props) {
   const isAr = locale === "ar";
   const heroTitleLines = content.hero.title.split(". ").map((line, index, lines) =>
     index < lines.length - 1 ? `${line}.` : line
@@ -89,7 +64,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
       <section className="relative flex min-h-[760px] items-center overflow-hidden px-5 pb-14 pt-32 sm:px-6 md:min-h-screen md:px-12 md:pb-16 md:pt-36 lg:px-20">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/BACK GROUND-FOR TECHNOLOGY PARTENER.mp4"
+          src={String(media.backgroundVideo)}
           autoPlay
           muted
           loop
@@ -135,7 +110,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
           >
             <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
               <Image
-                src="/fft page Videos/main.jpeg"
+                src={String(media.fftSigningImage)}
                 alt=""
                 fill
                 aria-hidden="true"
@@ -144,7 +119,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
               />
               <div className="absolute inset-0 bg-[#080d20]/35" />
               <Image
-                src="/fft page Videos/main.jpeg"
+                src={String(media.fftSigningImage)}
                 alt={isAr ? "توقيع اتفاقية الشراكة مع FFT" : "FFT partnership agreement signing"}
                 fill
                 priority
@@ -154,7 +129,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
             </div>
             <div className="relative aspect-[16/9] overflow-hidden border border-white/20 bg-[#080d20]">
               <Image
-                src="/cu/IMG-20260622-WA0005.jpg"
+                src={String(media.cuSigningImage)}
                 alt={isAr ? "توقيع اتفاقية الشراكة مع CU" : "CU partnership agreement signing"}
                 fill
                 priority
@@ -171,12 +146,12 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
         <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-5 lg:grid-cols-2">
             {content.technologyPartners.partners.map((partner, index) => {
-              const label = partnerLabel(partner.name);
-              const logoId = label.toLowerCase() as "fft" | "cu";
-              const href = `/${locale}/technology-partners/${partnerSlug(partner.name)}`;
-              const background = logoId === "fft"
-                ? "/fft page Videos/FFT/IMG-20260623-WA0009.jpg"
-                : "/logo-cu.png";
+              const logoId = partner.id;
+              const label = logoId.toUpperCase();
+              const href = `/${locale}/technology-partners/${logoId === "cu" ? "composites-united" : "fft"}`;
+              const background = String(
+                logoId === "fft" ? media.fftCardImage : media.cuLogo,
+              );
 
               return (
                 <motion.div
@@ -203,7 +178,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                     ) : (
                       <div className="absolute inset-0 bg-[#111936] [background-image:linear-gradient(#43becc12_1px,transparent_1px),linear-gradient(90deg,#43becc12_1px,transparent_1px)] [background-size:48px_48px]">
                         <Image
-                          src="/logo-cu.png"
+                          src={String(media.cuLogo)}
                           alt=""
                           fill
                           sizes="(min-width: 1024px) 50vw, 100vw"
@@ -218,7 +193,7 @@ export default function TechnologyPartnersPage({ content, locale }: Props) {
                           {partner.name}
                         </h3>
                         <div className="relative z-20 flex h-24 w-36 shrink-0 items-center justify-center border border-white/20 bg-white px-4 py-3 shadow-[0_12px_34px_rgba(0,0,0,0.22)]">
-                          <PartnerLogo id={logoId} />
+                          <PartnerLogo id={logoId} src={String(logoId === "fft" ? media.fftLogo : media.cuLogo)} />
                         </div>
                       </div>
 

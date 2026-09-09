@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [{ protocol: "https", hostname: "res.cloudinary.com" }],
+  },
   async redirects() {
     return [
       {
@@ -16,11 +19,6 @@ const nextConfig: NextConfig = {
       {
         source: "/:locale/knowledge",
         destination: "/:locale/tech-info",
-        permanent: true,
-      },
-      {
-        source: "/:locale/knowledge/:slug",
-        destination: "/:locale/tech-info/:slug",
         permanent: true,
       },
       {

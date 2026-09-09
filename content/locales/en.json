@@ -1,0 +1,220 @@
+{
+  "home": {
+    "hero": {
+      "brandLeft": "DYNATECH",
+      "brandRight": "CORP.",
+      "logoAlt": "DYNATECH Corporation",
+      "headlineLine1": "A New Driving Force In Egypt's",
+      "headlineLine2": "Automotive Industry",
+      "strategicPartnersLabel": "Strategic Partners",
+      "knowMoreLabel": "Know More",
+      "headOfficeTitle": "Head Office",
+      "headOfficeLines": [
+        "Cairo Festival City, The Podium, P6-109,",
+        "New Cairo, Egypt"
+      ],
+      "autoHubTitle": "AUTO HUB PROJECT",
+      "autoHubLines": [
+        "Industrial Zone",
+        "New Cairo, Egypt"
+      ],
+      "contactLabel": "Contact us:",
+      "privacyPolicyLabel": "Privacy Policy",
+      "primaryCtaLabel": "Explore Our Ecosystem",
+      "secondaryCtaLabel": "Contact Us",
+      "ceoQuote": "Our mission is to create a sustainable industrial ecosystem in Egypt by integrating world-class technology with local expertise.",
+      "ceoName": "Eng. Ahmed Sorour",
+      "ceoTitle": "Founder & CEO",
+      "ceoCtaLabel": "Read More",
+      "ceoSectionLabel": "Message From The Founder",
+      "ceoSubtitle": "Strategic Growth & Engineering Excellence",
+      "heroImageAlt": "DYNATECH industrial technology ecosystem",
+      "scrollLabel": "Scroll",
+      "brandOutroTagline": "Connecting Global Technology To Egypt’s Industrial Future"
+    }
+  },
+  "services": {
+    "hero": {
+      "kicker": "",
+      "title": "Two German Partners. One Shared Industrial Vision.",
+      "intro": "DYNATECH operates through a dual business model combining exclusive international industrial partnerships with a fully integrated automotive and technical infrastructure platform in Egypt.",
+      "supporting": "Together, these two platforms connect global technology leadership with regional industrial growth opportunities."
+    },
+    "technologyPartners": {
+      "kicker": "",
+      "title": "",
+      "partners": [
+        {
+          "id": "fft",
+          "name": "FFT Company",
+          "heading": "We are production optimizers",
+          "paragraphs": [
+            "Since 1974, FFT has stood for dynamism, solidity, global presence and a claim to technological leadership.",
+            "As a leading global provider of innovative, flexible and complex manufacturing systems, FFT specializes in their development, project planning and implementation.",
+            "FFT assumes overall responsibility for turnkey solutions and carries out projects worldwide, including for the automotive and aviation industries."
+          ],
+          "ctaLabel": "Know More",
+          "ctaHref": "https://www.fft.de/en/"
+        },
+        {
+          "id": "cu",
+          "name": "CU Company",
+          "heading": "About Composites United",
+          "paragraphs": [
+            "Composites United e. V. (CU), one of the world's largest networks for fiber-based multi-material lightweight design, emerged from the two associations Carbon Composites e. V. and CFK Valley e. V.",
+            "About 350 members have joined to form this high-performance industry and research association to jointly develop lightweight design solutions for the future."
+          ],
+          "ctaLabel": "Know More",
+          "ctaHref": "https://composites-united.com/en/"
+        }
+      ]
+    }
+  },
+  "accelerators": {
+    "partners": [
+      {
+        "id": "cu",
+        "name": "Composites United (CU)",
+        "title": "Composites United (CU)",
+        "paragraphs": [
+          "One of the world’s largest networks specializing in fiber-based multi-material lightweight construction, connecting manufacturers, research institutes, universities, and advanced technology organizations across Europe and globally.",
+          "With a network of approximately 350 member organizations, Composites United plays a major role in shaping the future of lightweight manufacturing and advanced material technologies."
+        ],
+        "roleTitle": "DYNATECH’S ROLE",
+        "roleText": "DYNATECH serves as the exclusive representative of Composites United in Egypt, supporting the transfer and localization of lightweight material technologies into customer-oriented industrial solutions within the Egyptian market.",
+        "scopeTitle": "Scope Of Agreement",
+        "scope": [
+          "Training & Education",
+          "Research & Development",
+          "Localization & Manufacturing of Lightweight Components"
+        ],
+        "milestoneTitle": "Partnership Milestone",
+        "milestoneText": "Strategic agreement officially announced during Hannover Messe 2022.",
+        "ctaLabel": "Learn About CU",
+        "ctaHref": "https://composites-united.com"
+      },
+      {
+        "id": "fft",
+        "name": "FFT Produktionssysteme",
+        "location": "Fulda, Germany",
+        "title": "FFT Produktionssysteme",
+        "paragraphs": [
+          "Founded in 1974, FFT is one of the world’s leading providers of intelligent and flexible manufacturing systems, delivering complex turnkey production projects across five continents for more than 50 years.",
+          "FFT operates across automotive, aviation, and industrial manufacturing sectors, supporting globally recognized clients including BMW, Volkswagen Group, and Xiaomi Auto."
+        ],
+        "roleTitle": "DYNATECH’S ROLE",
+        "roleText": "DYNATECH serves as FFT’s exclusive agency partner in Egypt, supporting the introduction of advanced manufacturing systems, industrial solutions, and future mobility infrastructure into the local market.",
+        "scopeTitle": "Scope Of Agreement",
+        "scope": [
+          "Turnkey Production Systems",
+          "After Sales & Services",
+          "Digital Innovation & Development"
+        ],
+        "milestoneTitle": "Partnership Milestone",
+        "milestoneText": "Exclusive agency agreement signed at FFT Headquarters in Fulda, Germany — November 2023.",
+        "ctaLabel": "Learn About FFT",
+        "ctaHref": "https://fft.de"
+      }
+    ],
+    "ecosystem": {
+      "title": "Two Partnerships. One Industrial Ecosystem.",
+      "paragraphs": [
+        "Through its partnerships with FFT and Composites United, DYNATECH connects advanced manufacturing systems with next generation lightweight material technologies.",
+        "Together, these agreements bring more than 100 years of combined European industrial expertise directly into Egypt’s future automotive and industrial landscape."
+      ],
+      "columns": [
+        {
+          "id": "cu",
+          "label": "CU",
+          "title": "Lightweight Innovation",
+          "items": [
+            "Advanced Materials",
+            "Composite Technologies",
+            "Research & Development",
+            "Technology Transfer",
+            "Industrial Localization"
+          ]
+        },
+        {
+          "id": "fft",
+          "label": "FFT",
+          "title": "Manufacturing Systems",
+          "items": [
+            "Factory Automation",
+            "Turnkey Production Systems",
+            "Industrial Robotics",
+            "Digital Manufacturing",
+            "Automotive Production Infrastructure"
+          ]
+        }
+      ]
+    }
+  },
+  "blog": {
+    "hero": {
+      "kicker": "Blog Hub",
+      "title": "Insights from Egypt's Automotive Technology Partner",
+      "description": "Technical perspectives on e-mobility, energy storage, lightweight materials, and industrial developments shaping Egypt and the wider region."
+    }
+  },
+  "careers": {
+    "why": {
+      "title": "Why Join DYNATECH?",
+      "description": "DYNATECH is building more than an automotive facility — it is building an ecosystem designed around future mobility, industrial technology, and advanced infrastructure.",
+      "items": [
+        {
+          "title": "International Exposure",
+          "description": "Work alongside global technology partners and gain exposure to international industrial standards and future-focused technologies."
+        },
+        {
+          "title": "Industry-First Projects",
+          "description": "Participate in projects shaping the future of electric mobility, energy systems, and advanced automotive operations in Egypt."
+        },
+        {
+          "title": "Technical Growth",
+          "description": "Develop your skills through hands-on experience, operational training, and direct involvement in next generation technologies."
+        },
+        {
+          "title": "Real Industrial Impact",
+          "description": "Contribute directly to Egypt’s transition toward New Energy Vehicles (NEVs), smart infrastructure, and localized industrial development."
+        }
+      ]
+    }
+  },
+  "contact": {
+    "hero": {
+      "kicker": "Contact Us",
+      "title": "Let’s Build What Comes Next",
+      "description": "DYNATECH invites investors, technology partners, government institutions, and industry stakeholders to collaborate in advancing the future of mobility, battery technologies, BESS, and industrial development. We look forward to building transformative and profitable opportunities together."
+    },
+    "conversation": {
+      "title": "Start The Conversation",
+      "paragraphs": [
+        "DYNATECH works in the transformation of the automotive sector across all segments of new energy vehicles (NEV) and advanced manufacturing, supported by our global technology partners.",
+        "Our team is ready to engage in discussions on investment opportunities, strategic partnerships, technical collaboration, and future mobility initiatives."
+      ]
+    },
+    "form": {
+      "title": "Form Fields",
+      "fields": {
+        "fullName": "Full Name",
+        "company": "Company / Organization",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "inquiryType": "Inquiry Type",
+        "message": "Message",
+        "fileUpload": "File Upload (Optional)"
+      },
+      "categoriesTitle": "Inquiry Categories",
+      "categories": [
+        "Partnership Inquiry",
+        "Investment Opportunity",
+        "Government Relations",
+        "Media & Press",
+        "Technical Collaboration",
+        "General Inquiry"
+      ],
+      "submitLabel": "Submit Inquiry"
+    }
+  }
+}

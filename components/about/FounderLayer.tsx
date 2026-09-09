@@ -3,7 +3,7 @@
 import { MotionValue, motion } from "framer-motion";
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
-import { DynatechContent } from "./types";
+import type { DynatechContent } from "@/content/schema/about";
 
 type Props = {
   opacity: MotionValue<number>;
@@ -32,6 +32,7 @@ export default function FounderLayer({
             src={data.imageSrc}
             alt={data.imageAlt}
             fill
+            sizes="(min-width: 768px) 45vw, 100vw"
             className="object-cover grayscale hover:grayscale-0 transition-all duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent" />

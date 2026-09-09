@@ -4,159 +4,31 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight, CheckCircle2, Image as ImageIcon } from "lucide-react";
-
-export type TechnologyPartnerContent = {
-  partners: {
-    id: string;
-    name: string;
-    location?: string;
-    title: string;
-    paragraphs: string[];
-    roleTitle: string;
-    roleText: string;
-    scopeTitle: string;
-    scope: string[];
-    milestoneTitle: string;
-    milestoneText: string;
-    ctaLabel: string;
-    ctaHref: string;
-  }[];
-  ecosystem: {
-    columns: {
-      label: string;
-      title: string;
-      items: string[];
-    }[];
-  };
-};
-
-type Partner = TechnologyPartnerContent["partners"][number];
-type EcosystemColumn = TechnologyPartnerContent["ecosystem"]["columns"][number];
+import type { EcosystemColumn, Partner, PartnerPageCopy } from "@/content/schema/site";
+import type { CmsMediaMap } from "@/lib/cms/types";
 
 type Props = {
   partner: Partner;
   ecosystemColumn: EcosystemColumn;
   locale: string;
+  media: CmsMediaMap;
+  copy: PartnerPageCopy;
 };
 
 function accentFor(id: string) {
   return id === "fft" ? "#0087cb" : "#43becc";
 }
 
-type GalleryItem = {
-  label: string;
-  src?: string;
-  poster?: string;
-  type?: "image" | "video";
-  featured?: boolean;
-};
-
-function galleryItems(id: string, isAr: boolean): GalleryItem[] {
-  if (id === "fft") {
-    return [
-      {
-        label: isAr ? "FFT في دقيقتين" : "FFT Services At A Glance In 2 Minutes",
-        src: "/fft page Videos/FFT Services @ Glance in 2min.mp4",
-        type: "video",
-        featured: true,
-      },
-      {
-        label: isAr ? "هندسة مصانع FFT" : "FFT Plant Engineering",
-        src: "/fft page Videos/FFT Plant Engineering مترجم عربي.mp4",
-        type: "video",
-      },
-      {
-        label: isAr ? "تقنيات الإنتاج المرنة من FFT" : "FFT's Flexible Production Technologies",
-        src: "/fft page Videos/FFT/VID-20260623-WA0008.mp4",
-        type: "video",
-      },
-      {
-        label: isAr ? "قصة FFT مترجمة بالعربية" : "FFT Story Translated Into Arabic",
-        src: "/hero/FFT STORY مترجم عربي.mp4",
-        type: "video",
-      },
-    ];
-  }
-
-  if (id === "cu") {
-    return [
-      {
-        label: isAr ? "كلمة م. أحمد سرور في Hannover Messe" : "Eng. Ahmed Sorour's Speech at Hannover Messe",
-        src: "/ahmedd.mp4",
-        type: "video",
-        featured: true,
-      },
-      {
-        label: isAr ? "فيديو الكربون مترجم بالعربية" : "Carbon Video Translated Into Arabic",
-        src: "/hero/CARBON-CU مترجم بالعربية.mp4",
-        type: "video",
-      },
-    ];
-  }
-
-  const label = id === "fft" ? "FFT" : "CU";
-
-  return [
-    { label: `${label} Technology` },
-    { label: `${label} Partnership` },
-    { label: `${label} Gallery` },
-  ];
-}
-
-function companyHeroCopy(id: string, isAr: boolean) {
-  if (id === "fft") {
-    return {
-      eyebrow: isAr ? "أنظمة إنتاج FFT" : "FFT production systems",
-      title: isAr ? "خطوة للأمام في الإنتاج الذكي" : "one step ahead in INTELLIGENT production",
-      paragraphs: [
-        isAr ? "نحن خبراء تحسين الإنتاج" : "We Are Production Optimizers",
-      ],
-      href: "https://www.fft.de/en/",
-    };
-  }
-
-  return {
-    eyebrow: isAr ? "شبكة Composites United" : "Composites United Network",
-    title: "Composites United e. V. (CU)",
-    paragraphs: [
-      isAr
-        ? "تعد Composites United e. V. شبكة من الشركات والمؤسسات البحثية تغطي، من خلال تجمعاتها وشبكاتها في ألمانيا والنمسا وسويسرا، سلسلة القيمة الكاملة للإنشاءات خفيفة الوزن متعددة المواد القائمة على الألياف."
-        : "Composites United e. V. is a network of companies and research institutions that covers the entire value chain for fiber-based multi-material lightweight construction with its clusters and networks in Germany, Austria, and Switzerland.",
-    ],
-    href: "https://composites-united.com/en/",
-  };
-}
-
-function PartnerLogo({ id }: { id: string }) {
+function PartnerLogo({ id, src }: { id: string; src: string }) {
   return (
     <Image
-      src={id === "fft" ? "/logo-fft.png" : "/logo-cu.png"}
+      src={src}
       alt={id === "fft" ? "FFT Produktionssysteme official logo" : "Composites United official logo"}
       width={id === "fft" ? 952 : 959}
       height={id === "fft" ? 376 : 729}
       className={id === "fft" ? "h-16 w-auto md:h-20" : "h-20 w-auto md:h-24"}
     />
   );
-}
-
-function mediaSectionCopy(id: string, isAr: boolean) {
-  if (id === "fft") {
-    return isAr
-      ? { kicker: "مكتبة الفيديو", title: "تقنيات وحلول FFT" }
-      : { kicker: "Video Library", title: "FFT Technologies And Solutions" };
-  }
-
-  return isAr
-    ? { kicker: "مكتبة الفيديو", title: "فيديوهات Composites United" }
-    : { kicker: "Video Library", title: "Composites United Videos" };
-}
-
-function mediaBadge(isAr: boolean, type?: "image" | "video") {
-  if (type === "video") {
-    return isAr ? "فيديو" : "Video";
-  }
-
-  return isAr ? "صورة" : "Image";
 }
 
 function SectionKicker({
@@ -178,11 +50,15 @@ function SectionKicker({
   );
 }
 
-export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale }: Props) {
+export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale, media, copy }: Props) {
   const isAr = locale === "ar";
   const accent = accentFor(partner.id);
-  const hero = companyHeroCopy(partner.id, isAr);
-  const mediaCopy = mediaSectionCopy(partner.id, isAr);
+  const hero = copy.hero;
+  const mediaCopy = copy.mediaSection;
+  const managedGallery = copy.gallery.map((item, index) => ({
+    ...item,
+    src: Array.isArray(media.gallery) ? String(media.gallery[index] ?? "") : undefined,
+  }));
   const reduceMotion = useReducedMotion();
   const reveal = reduceMotion
     ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
@@ -207,7 +83,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             preload="auto"
             aria-label={isAr ? "فيديو أنظمة إنتاج FFT" : "FFT production systems video"}
           >
-            <source src="/fft page Videos/FFT/VID-20260623-WA0008.mp4" type="video/mp4" />
+            <source src={String(media.backgroundVideo)} type="video/mp4" />
           </video>
         ) : (
           <video
@@ -219,7 +95,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             preload="auto"
             aria-label={isAr ? "فيديو شراكة CU" : "CU partnership video"}
           >
-            <source src="/cu/VID-20260624-WA0032.mp4" type="video/mp4" />
+            <source src={String(media.backgroundVideo)} type="video/mp4" />
           </video>
         )}
         <div className="absolute inset-0 bg-[#080d20]/5" />
@@ -244,7 +120,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               className="mb-5 inline-flex items-center gap-3 text-xs font-black uppercase tracking-[0.22em] text-zinc-300 transition hover:text-white"
             >
               <ArrowLeft size={16} />
-              {isAr ? "الشركاء" : "Partners"}
+              {copy?.backLabel ?? (isAr ? "الشركاء" : "Partners")}
             </Link>
           </motion.div>
 
@@ -260,7 +136,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
                 {hero.eyebrow}
               </SectionKicker>
               <div className="mt-4 flex min-h-20 w-fit items-center justify-center border border-white/20 bg-white/95 px-5 py-3 backdrop-blur">
-                <PartnerLogo id={partner.id} />
+                <PartnerLogo id={partner.id} src={String(media.logo)} />
               </div>
             </div>
             <h1 className="max-w-5xl text-4xl font-black leading-[1.02] tracking-normal md:text-6xl xl:text-[4rem]">
@@ -278,7 +154,7 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               className="mt-5 inline-flex items-center gap-3 px-6 py-4 text-xs font-black uppercase tracking-widest text-black transition hover:bg-white"
               style={{ backgroundColor: accent }}
             >
-              {isAr ? "اعرف المزيد" : "Know more"}
+              {hero.ctaLabel}
               <ArrowUpRight size={16} />
             </a>
           </motion.div>
@@ -357,13 +233,13 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-white px-5 py-3 text-xs font-black uppercase tracking-widest text-black transition hover:bg-[#43becc]"
           >
-            {isAr ? "اعرف المزيد" : "Know more"}
+            {mediaCopy.ctaLabel}
             <ArrowUpRight size={16} />
           </a>
         </motion.div>
 
         <div className="grid gap-5 lg:grid-cols-2">
-          {galleryItems(partner.id, isAr).map((item, index) => (
+          {managedGallery.map((item, index) => (
             <motion.div
               key={item.label}
               initial="hidden"
@@ -403,11 +279,11 @@ export default function TechnologyPartnerPage({ partner, ecosystemColumn, locale
               )}
               <div className="pointer-events-none absolute inset-x-0 top-0 bottom-32 bg-gradient-to-t from-[#080d20]/38 via-[#080d20]/5 to-transparent" />
               <div className="pointer-events-none absolute right-5 top-5 border border-white/20 bg-black/70 px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white backdrop-blur-sm">
-                {mediaBadge(isAr, item.type)}
+                {item.type === "video" ? mediaCopy.videoBadge : mediaCopy.imageBadge}
               </div>
               {item.featured && (
                 <div className="pointer-events-none absolute left-5 top-5 border border-white/20 bg-[#0087cb] px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-black shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
-                  {isAr ? "مميزة" : "Featured"}
+                  {mediaCopy.featuredLabel}
                 </div>
               )}
               <div className={`pointer-events-none absolute left-0 border-t border-white/10 bg-[#080d20]/82 p-5 backdrop-blur ${

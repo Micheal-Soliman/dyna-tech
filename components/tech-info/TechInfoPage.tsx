@@ -2,54 +2,19 @@
 
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
-
-export type TechInfoContent = {
-  hero: {
-    kicker: string;
-    title: string;
-    description: string;
-  };
-  filtersLabel: string;
-  readMoreLabel: string;
-  categories: {
-    id: string;
-    label: string;
-  }[];
-  articles: {
-    slug: string;
-    title: string;
-    category: string;
-    date: string;
-    excerpt: string;
-  }[];
-};
+import type { TechInfoContent } from "@/content/schema/site";
+import type { CmsMediaMap } from "@/lib/cms/types";
 
 type Props = {
   content: TechInfoContent;
   locale: string;
+  media: CmsMediaMap;
 };
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0 },
 };
-
-const videoLibrary = [
-  {
-    title: "IEA Battery Report",
-    titleAr: "تقرير وكالة الطاقة الدولية عن البطاريات",
-    description: "A focused technical reference on global battery market direction, electric mobility, and energy storage growth.",
-    descriptionAr: "مرجع تقني مركز عن اتجاه سوق البطاريات عالميًا، والتنقل الكهربائي، ونمو حلول تخزين الطاقة.",
-    src: "/Tech info page Videos/IEA Battery Report.mp4",
-  },
-  {
-    title: "Interview With Robin Zeng, CATL CEO",
-    titleAr: "مقابلة روبن زينج، الرئيس التنفيذي لشركة CATL",
-    description: "An executive perspective on battery innovation, supply chains, and the technologies shaping next-generation mobility.",
-    descriptionAr: "رؤية تنفيذية حول ابتكار البطاريات وسلاسل الإمداد والتقنيات التي تشكل الجيل القادم من التنقل.",
-    src: "/Tech info page Videos/Interview Robin Zing , CATL CEO.mp4",
-  },
-];
 
 function SectionKicker({ children }: { children: React.ReactNode }) {
   return (
@@ -62,8 +27,16 @@ function SectionKicker({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function TechInfoPage({ content, locale }: Props) {
+export default function TechInfoPage({ content, locale, media }: Props) {
   const isAr = locale === "ar";
+  const managedVideos = content.videoSection.items.map((video, index) => ({
+    ...video,
+    src: String(
+      index === 0
+        ? media.ieaVideo
+        : media.catlVideo,
+    ),
+  }));
 
   return (
     <main
@@ -81,7 +54,7 @@ export default function TechInfoPage({ content, locale }: Props) {
           preload="metadata"
           aria-hidden="true"
         >
-          <source src="/BACK GROUND-FOR TECH INFO.mp4" type="video/mp4" />
+          <source src={String(media.backgroundVideo)} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[#0a0f29]/16" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.52),rgba(10,15,41,0.18)_55%,rgba(10,15,41,0.4))]" />
@@ -120,14 +93,14 @@ export default function TechInfoPage({ content, locale }: Props) {
         <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(#fff_1px,transparent_1px),linear-gradient(90deg,#fff_1px,transparent_1px)] [background-size:58px_58px]" />
         <div className="relative mx-auto max-w-7xl">
           <div className="mb-9 max-w-3xl">
-            <SectionKicker>{isAr ? "مكتبة الفيديو" : "Video Library"}</SectionKicker>
+            <SectionKicker>{content.videoSection.kicker}</SectionKicker>
             <h2 className="text-3xl font-black uppercase leading-tight tracking-tight text-white md:text-5xl">
-              {isAr ? "مراجع تقنية مختارة" : "Selected Technical References"}
+              {content.videoSection.title}
             </h2>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-2">
-            {videoLibrary.map((item, index) => (
+            {managedVideos.map((item, index) => (
               <motion.article
                 key={item.src}
                 initial="hidden"
@@ -157,10 +130,10 @@ export default function TechInfoPage({ content, locale }: Props) {
                     0{index + 1}
                   </p>
                   <h3 className="mt-3 text-2xl font-black uppercase leading-tight tracking-tight text-white">
-                    {isAr ? item.titleAr : item.title}
+                    {item.title}
                   </h3>
                   <p className="mt-4 text-sm leading-relaxed text-zinc-400 md:text-base">
-                    {isAr ? item.descriptionAr : item.description}
+                    {item.description}
                   </p>
                 </div>
               </motion.article>

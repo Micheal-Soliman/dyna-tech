@@ -1,12 +1,7 @@
-import AutoHubPage, {
-  type AutoHubContent,
-} from "@/components/auto-hub/AutoHubPage";
+import AutoHubPage from "@/components/auto-hub/AutoHubPage";
+import type { AutoHubContent } from "@/content/schema/site";
 import type { Locale } from "@/i18n/config";
-import { getDictionary } from "@/i18n/get-dictionary";
-
-type AutoHubDictionary = {
-  projects: AutoHubContent;
-};
+import { getPageDocument } from "@/lib/cms/page-document";
 
 export default async function Page({
   params,
@@ -14,7 +9,6 @@ export default async function Page({
   params: { locale: Locale } | Promise<{ locale: Locale }>;
 }) {
   const { locale } = await Promise.resolve(params);
-  const dict = (await getDictionary(locale)) as AutoHubDictionary;
-
-  return <AutoHubPage content={dict.projects} locale={locale} />;
+  const document = await getPageDocument<AutoHubContent>("the-auto-hub", locale);
+  return <AutoHubPage content={document.content} media={document.media} locale={locale} />;
 }

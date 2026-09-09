@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/config";
 
-import type { DynatechContent } from "./types";
+import type { DynatechContent } from "@/content/schema/about";
 
 export const aboutContent: Record<Locale, DynatechContent> = {
   en: {

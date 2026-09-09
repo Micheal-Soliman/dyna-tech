@@ -7,21 +7,13 @@ import {
   GraduationCap,
   Rocket,
 } from "lucide-react";
-
-export type CareersPageContent = {
-  why: {
-    title: string;
-    description: string;
-    items: {
-      title: string;
-      description: string;
-    }[];
-  };
-};
+import type { CmsMediaMap } from "@/lib/cms/types";
+import type { CareersPageContent } from "@/content/schema/site";
 
 type Props = {
   content: CareersPageContent;
   locale: string;
+  media: CmsMediaMap;
 };
 
 const fadeUp = {
@@ -36,7 +28,7 @@ function BenefitIcon({ index }: { index: number }) {
   return <Factory size={24} />;
 }
 
-export default function CareersPage({ content, locale }: Props) {
+export default function CareersPage({ content, locale, media }: Props) {
   const isAr = locale === "ar";
 
   return (
@@ -55,7 +47,7 @@ export default function CareersPage({ content, locale }: Props) {
           preload="metadata"
           aria-hidden="true"
         >
-          <source src="/Dyna Tech - 02.mp4" type="video/mp4" />
+          <source src={String(media.backgroundVideo)} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-[#0a0f29]/20" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,15,41,0.52),rgba(10,15,41,0.16)_56%,rgba(10,15,41,0.42))]" />

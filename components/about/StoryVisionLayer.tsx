@@ -1,7 +1,7 @@
 "use client";
 
 import { MotionValue, motion } from "framer-motion";
-import { LegacyStoryContent } from "./types";
+import type { LegacyStoryContent } from "@/content/schema/about";
 
 type Props = {
   opacity: MotionValue<number>;

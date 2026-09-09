@@ -1,7 +1,7 @@
 "use client";
 
 import { MotionValue, motion } from "framer-motion";
-import { LocationItem, LocationsSectionCopy } from "./types";
+import type { LocationItem, LocationsSectionCopy } from "@/content/schema/about";
 
 type Props = {
   opacity: MotionValue<number>;

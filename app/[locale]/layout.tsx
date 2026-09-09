@@ -5,12 +5,10 @@ import { notFound } from "next/navigation";
 import "lenis/dist/lenis.css";
 import "../globals.css";
 
-import { AmbientMotion } from "@/components/AmbientMotion";
-import { Footer } from "@/components/Footer";
-import { GlobalMediaLightbox } from "@/components/GlobalMediaLightbox";
-import { Header } from "@/components/Header";
-import { SmoothScroll } from "@/components/SmoothScroll";
+import { AdminChrome } from "@/components/AdminChrome";
 import { locales, type Locale } from "@/i18n/config";
+import type { GlobalCmsContent } from "@/content/pages/global";
+import { getPageDocument } from "@/lib/cms/page-document";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -71,22 +69,21 @@ export default async function LocaleLayout({
 
   const locale = normalizedLocale as Locale;
   const dir = locale === "ar" ? "rtl" : "ltr";
+  const globalDocument = await getPageDocument<GlobalCmsContent>("global", locale);
 
   return (
-    <html lang={locale} dir={dir} className="dark bg-[#0a0f29]">
+    <html
+      lang={locale}
+      dir={dir}
+      data-scroll-behavior="smooth"
+      className="relative dark bg-[#0a0f29]"
+    >
       <body
         className={`${montserrat.variable} ${cairo.variable} ${
           locale === "ar" ? cairo.className : montserrat.className
         } bg-[#0a0f29] text-white antialiased`}
       >
-        <SmoothScroll />
-        <AmbientMotion />
-        <div className="site-shell">
-          <Header locale={locale} />
-          {children}
-          <Footer locale={locale} />
-        </div>
-        <GlobalMediaLightbox />
+        <AdminChrome locale={locale} globalContent={globalDocument.content} globalMedia={globalDocument.media}>{children}</AdminChrome>
       </body>
     </html>
   );

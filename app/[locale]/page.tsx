@@ -1,11 +1,8 @@
 import { HeroSection } from "@/components/home/HeroSection";
-import type { HomeContent } from "@/components/home/types";
-import { getDictionary } from "@/i18n/get-dictionary";
+import type { HomeContent } from "@/content/schema/site";
 import type { Locale } from "@/i18n/config";
-
-type HomeDictionary = {
-  home: HomeContent;
-};
+import type { GlobalCmsContent } from "@/content/pages/global";
+import { getPageDocument } from "@/lib/cms/page-document";
 
 export default async function Home({
   params,
@@ -13,6 +10,9 @@ export default async function Home({
   params: { locale: Locale } | Promise<{ locale: Locale }>;
 }) {
   const { locale } = await Promise.resolve(params);
-  const dict = (await getDictionary(locale)) as HomeDictionary;
-  return <HeroSection locale={locale} content={dict.home.hero} />;
+  const [document, globalDocument] = await Promise.all([
+    getPageDocument<HomeContent>("home", locale),
+    getPageDocument<GlobalCmsContent>("global", locale),
+  ]);
+  return <HeroSection locale={locale} content={document.content.hero} media={document.media} contactEmail={globalDocument.content.contact.email} />;
 }

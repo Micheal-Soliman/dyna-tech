@@ -1,6 +1,7 @@
 import AboutPage from "@/components/about/AboutPage";
-import { aboutContent } from "@/components/about/content";
 import type { Locale } from "@/i18n/config";
+import { getPageDocument } from "@/lib/cms/page-document";
+import type { DynatechContent } from "@/content/schema/about";
 
 export default async function Page({
   params,
@@ -8,5 +9,6 @@ export default async function Page({
   params: { locale: Locale } | Promise<{ locale: Locale }>;
 }) {
   const { locale } = await Promise.resolve(params);
-  return <AboutPage content={aboutContent[locale]} locale={locale} />;
+  const document = await getPageDocument<DynatechContent>("about-us", locale);
+  return <AboutPage content={document.content} media={document.media} locale={locale} />;
 }
