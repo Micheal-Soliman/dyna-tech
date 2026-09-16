@@ -1,0 +1,67 @@
+.admin-ui {
+  color-scheme: dark;
+  --admin-bg: #080b11;
+  --admin-panel: #10151e;
+  --admin-panel-2: #151c27;
+  --admin-line: rgba(255, 255, 255, 0.11);
+  --admin-accent: #12a7e0;
+  --admin-cyan: #43becc;
+}
+
+.admin-ui button,
+.admin-ui a,
+.admin-ui input,
+.admin-ui textarea,
+.admin-ui select,
+.admin-ui summary {
+  letter-spacing: 0;
+}
+
+.admin-button {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--admin-line);
+  border-radius: 6px;
+  padding: 0 14px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 12px;
+  font-weight: 700;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.admin-button:hover { border-color: var(--admin-cyan); color: white; }
+.admin-button:disabled { cursor: not-allowed; opacity: 0.45; }
+
+.admin-icon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--admin-line);
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.admin-icon:hover { border-color: var(--admin-cyan); color: white; }
+.admin-icon:disabled { opacity: 0.25; }
+
+.admin-group {
+  border: 1px solid var(--admin-line);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.018);
+  padding: 16px;
+}
+
+.admin-group > summary {
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 13px;
+  font-weight: 800;
+  list-style-position: inside;
+}
+
+.admin-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(67,190,204,.45) transparent; }

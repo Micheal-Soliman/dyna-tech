@@ -1,3 +1,18 @@
+import { siteRoutes } from "@/lib/routes";
+
+export const cmsPagePaths: Record<string, string> = {
+  home: siteRoutes.home,
+  "about-us": siteRoutes.about,
+  "technology-partners": siteRoutes.partners,
+  "partner-fft": `${siteRoutes.partners}/fft`,
+  "partner-cu": `${siteRoutes.partners}/composites-united`,
+  "the-auto-hub": siteRoutes.autoHub,
+  "tech-info": siteRoutes.techInfo,
+  careers: siteRoutes.careers,
+  contact: siteRoutes.contact,
+  "legal-disclaimer": siteRoutes.legalDisclaimer,
+};
+
 export const cmsPages = [
   { key: "global", label: "Global & Navigation", labelAr: "الإعدادات العامة والتنقل" },
   { key: "home", label: "Home", labelAr: "الرئيسية" },

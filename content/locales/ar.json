@@ -1,19 +1,7 @@
 {
   "home": {
     "hero": {
-      "brandLeft": "دايناتك",
-      "brandRight": "كورب.",
-      "primaryCtaLabel": "استكشف نظامنا البيئي",
-      "secondaryCtaLabel": "تواصل معنا",
-      "ceoQuote": "مهمتنا هي خلق نظام صناعي مستدام في مصر من خلال دمج التكنولوجيا العالمية مع الخبرة المحلية.",
-      "ceoName": "م. أحمد سرور",
-      "ceoTitle": "المؤسس والرئيس التنفيذي",
-      "ceoCtaLabel": "اقرأ المزيد",
-      "ceoSectionLabel": "رسالة من المؤسس",
-      "ceoSubtitle": "النمو الاستراتيجي والتميز الهندسي",
       "heroImageAlt": "نظام دايناتك للتكنولوجيا الصناعية",
-      "scrollLabel": "مرر",
-      "brandOutroTagline": "قوة دفع جديدة في صناعة السيارات في مصر",
       "logoAlt": "شعار دايناتك كوربوريشن",
       "headlineLine1": "قوة دفع جديدة في",
       "headlineLine2": "صناعة السيارات في مصر",
@@ -29,8 +17,7 @@
         "المنطقة الصناعية",
         "القاهرة الجديدة، مصر"
       ],
-      "contactLabel": "تواصل معنا:",
-      "privacyPolicyLabel": "سياسة الخصوصية"
+      "contactLabel": "تواصل معنا:"
     }
   },
   "services": {

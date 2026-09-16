@@ -1,4 +1,10 @@
 import type { NextConfig } from "next";
+import { isSafeSupabaseBrowserKey } from "./lib/cms/browser-key";
+
+const browserKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+if (browserKey && !isSafeSupabaseBrowserKey(browserKey)) {
+  throw new Error("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY must be a publishable or anon key. Never expose a Supabase secret/service-role key to the browser.");
+}
 
 const nextConfig: NextConfig = {
   images: {

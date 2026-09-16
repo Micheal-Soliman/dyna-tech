@@ -50,7 +50,8 @@ The bilingual CMS is available at `/en/admin` and `/ar/admin`. Published page co
 2. Create the first dashboard user in Supabase Authentication.
 3. Add that user's UUID to `cms_admins` using the final statement documented in the migration.
 4. Create a Cloudinary account/product environment.
-5. Copy `.env.example` to `.env.local` and fill in the Supabase and Cloudinary values.
+5. Set these variables in `.env.local`: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`, `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET`.
+   The Supabase browser key must be a `sb_publishable_` key (or legacy `anon` key), never a secret or service-role key. Rotate any secret previously placed in a `NEXT_PUBLIC_` variable.
 6. Restart the development server and open `/en/admin`.
 
 The website keeps its checked-in content and local media as fallbacks until a page and locale are published from the dashboard. Drafts are private; only rows in `cms_pages` are public.

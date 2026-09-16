@@ -1,25 +1,7 @@
 import type { Locale } from "@/i18n/config";
 import { createPublicSupabaseClient } from "@/lib/cms/supabase";
 import type { CmsDocument } from "@/lib/cms/types";
-
-function isObject(value: unknown): value is Record<string, unknown> {
-  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
-}
-
-export function mergeCmsValues<T>(fallback: T, value: unknown): T {
-  if (Array.isArray(value)) return value as T;
-  if (!isObject(fallback) || !isObject(value)) {
-    return (value === undefined || value === null ? fallback : value) as T;
-  }
-
-  const merged: Record<string, unknown> = { ...fallback };
-  for (const [key, nextValue] of Object.entries(value)) {
-    merged[key] = key in merged
-      ? mergeCmsValues(merged[key], nextValue)
-      : nextValue;
-  }
-  return merged as T;
-}
+import { mergeCmsValues } from "@/lib/cms/document-utils";
 
 export async function getCmsDocument<T>(
   pageKey: string,
@@ -43,4 +25,3 @@ export async function getCmsDocument<T>(
     return fallback;
   }
 }
-

@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { locales, type Locale } from "@/i18n/config";
 import { cmsPages, type CmsPageKey } from "@/lib/cms/config";
 import { getDefaultCmsDocument } from "@/content/default-document";
+import { hasSupabaseConfig } from "@/lib/cms/supabase";
 
 export async function GET(request: NextRequest) {
   const pageKey = request.nextUrl.searchParams.get("pageKey") ?? "home";
@@ -16,10 +17,7 @@ export async function GET(request: NextRequest) {
   }
 
   return NextResponse.json({
-    configured: Boolean(
-      process.env.NEXT_PUBLIC_SUPABASE_URL &&
-        process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
-    ),
+    configured: hasSupabaseConfig(),
     pages: cmsPages,
     document: await getDefaultCmsDocument(pageKey as CmsPageKey, locale),
   });

@@ -2,19 +2,7 @@ import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 import { verifyCmsAdmin } from "@/lib/cms/admin";
-
-const pagePaths: Record<string, string> = {
-  home: "",
-  "about-us": "/about-us",
-  "technology-partners": "/technology-partners",
-  "partner-fft": "/technology-partners/fft",
-  "partner-cu": "/technology-partners/composites-united",
-  "the-auto-hub": "/the-auto-hub",
-  "tech-info": "/tech-info",
-  careers: "/careers",
-  contact: "/contact",
-  "legal-disclaimer": "/legal-disclaimer",
-};
+import { cmsPagePaths } from "@/lib/cms/config";
 
 export async function POST(request: NextRequest) {
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
@@ -28,13 +16,12 @@ export async function POST(request: NextRequest) {
   }
 
   if (pageKey === "global") {
-    for (const path of Object.values(pagePaths)) revalidatePath(`/${locale}${path}`);
-  } else if (pageKey && pagePaths[pageKey] !== undefined) {
-    revalidatePath(`/${locale}${pagePaths[pageKey]}`);
+    revalidatePath(`/${locale}`, "layout");
+  } else if (pageKey && Object.hasOwn(cmsPagePaths, pageKey)) {
+    revalidatePath(`/${locale}${cmsPagePaths[pageKey]}`);
   } else {
     return NextResponse.json({ error: "Unknown page." }, { status: 400 });
   }
 
   return NextResponse.json({ revalidated: true });
 }
-

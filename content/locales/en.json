@@ -1,8 +1,6 @@
 {
   "home": {
     "hero": {
-      "brandLeft": "DYNATECH",
-      "brandRight": "CORP.",
       "logoAlt": "DYNATECH Corporation",
       "headlineLine1": "A New Driving Force In Egypt's",
       "headlineLine2": "Automotive Industry",
@@ -19,18 +17,7 @@
         "New Cairo, Egypt"
       ],
       "contactLabel": "Contact us:",
-      "privacyPolicyLabel": "Privacy Policy",
-      "primaryCtaLabel": "Explore Our Ecosystem",
-      "secondaryCtaLabel": "Contact Us",
-      "ceoQuote": "Our mission is to create a sustainable industrial ecosystem in Egypt by integrating world-class technology with local expertise.",
-      "ceoName": "Eng. Ahmed Sorour",
-      "ceoTitle": "Founder & CEO",
-      "ceoCtaLabel": "Read More",
-      "ceoSectionLabel": "Message From The Founder",
-      "ceoSubtitle": "Strategic Growth & Engineering Excellence",
-      "heroImageAlt": "DYNATECH industrial technology ecosystem",
-      "scrollLabel": "Scroll",
-      "brandOutroTagline": "Connecting Global Technology To Egypt’s Industrial Future"
+      "heroImageAlt": "DYNATECH industrial technology ecosystem"
     }
   },
   "services": {

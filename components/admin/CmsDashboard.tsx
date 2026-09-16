@@ -2,95 +2,86 @@
 
 import { createBrowserClient } from "@supabase/ssr";
 import type { Session } from "@supabase/supabase-js";
-import {
-  Check,
-  ChevronRight,
-  Copy,
-  DatabaseZap,
-  Eye,
-  FileText,
-  LoaderCircle,
-  LogOut,
-  Save,
-} from "lucide-react";
-import Link from "next/link";
+import { Check, ChevronLeft, ChevronRight, CircleAlert, CloudUpload, Copy, Eye, FileText, Images, Languages, LayoutDashboard, LoaderCircle, LogOut, Menu, Save, Settings, Type, X } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 
-import type { Locale } from "@/i18n/config";
-import type { CmsPageDefinition, JsonValue } from "@/lib/cms/types";
+import "./admin.css";
 import { ContentEditor } from "@/components/admin/ContentEditor";
+import { fieldLabel, groupSectionFields, type EditorPath } from "@/components/admin/editor-model";
 import { LoginForm } from "@/components/admin/LoginForm";
+import type { Locale } from "@/i18n/config";
+import { isSafeSupabaseBrowserKey } from "@/lib/cms/browser-key";
+import { cmsPagePaths } from "@/lib/cms/config";
+import { mergeCmsValues, setAtPath } from "@/lib/cms/document-utils";
+import type { CmsPageDefinition, JsonValue } from "@/lib/cms/types";
 
 type EditableDocument = { content: JsonValue; media: Record<string, JsonValue> };
-type DefaultResponse = {
-  configured: boolean;
-  pages: CmsPageDefinition[];
-  document: EditableDocument;
+type DefaultResponse = { configured: boolean; pages: CmsPageDefinition[]; document: EditableDocument };
+type ViewMode = "content" | "media" | "library";
+type MediaRow = { id: string; public_id: string; resource_type: "image" | "video" | "raw"; secure_url: string; width: number | null; height: number | null; duration: number | null; created_at: string };
+
+const pageHints: Record<string, [string, string]> = {
+  global: ["Navigation, footer and shared contact details", "القائمة والفوتر وبيانات التواصل المشتركة"],
+  home: ["Main opening page and footer details", "الواجهة الرئيسية وبيانات الفوتر"],
+  about: ["Company, CEO message and timeline", "الشركة ورسالة الرئيس التنفيذي والخط الزمني"],
+  "technology-partners": ["Partnership overview and partner cards", "نظرة عامة وبطاقات شركاء التكنولوجيا"],
+  fft: ["FFT profile, videos and gallery", "صفحة FFT والفيديوهات والمعرض"],
+  cu: ["Composites United profile and media", "صفحة Composites United والوسائط"],
+  "auto-hub": ["Project introduction, team and figures", "مقدمة المشروع والفريق والأرقام"],
+  "tech-info": ["Technology information and videos", "المعلومات التكنولوجية والفيديوهات"],
+  careers: ["Careers page and Why Join Us", "صفحة الوظائف ولماذا تنضم إلينا"],
+  contact: ["Contact copy, address and form", "نصوص التواصل والعنوان والنموذج"],
+  privacy: ["Privacy policy and website disclaimer", "سياسة الخصوصية وإخلاء المسؤولية"],
 };
-type MediaRow = {
-  id: string;
-  public_id: string;
-  resource_type: "image" | "video" | "raw";
-  secure_url: string;
-  width: number | null;
-  height: number | null;
-  duration: number | null;
-  created_at: string;
-};
 
-function setAtPath(value: JsonValue, path: (string | number)[], next: JsonValue): JsonValue {
-  if (!path.length) return next;
-  const [head, ...rest] = path;
-  if (Array.isArray(value)) {
-    const copy = [...value];
-    copy[Number(head)] = setAtPath(copy[Number(head)], rest, next);
-    return copy;
-  }
-  const object = { ...(value as Record<string, JsonValue>) };
-  object[String(head)] = setAtPath(object[String(head)], rest, next);
-  return object;
-}
+function assetName(asset: MediaRow) { return asset.public_id.split("/").at(-1) ?? asset.public_id; }
 
-function mergeEditorValues(fallback: JsonValue, saved: JsonValue | null | undefined): JsonValue {
-  if (saved === null || saved === undefined) return fallback;
-  if (Array.isArray(saved)) return saved;
-  if (
-    typeof fallback !== "object" ||
-    fallback === null ||
-    Array.isArray(fallback) ||
-    typeof saved !== "object"
-  ) {
-    return saved;
-  }
-
-  const merged = { ...(fallback as Record<string, JsonValue>) };
-  for (const [key, value] of Object.entries(saved as Record<string, JsonValue>)) {
-    merged[key] = mergeEditorValues(merged[key] ?? null, value);
-  }
-  return merged;
+function MediaCard({ asset, action, compact = false }: { asset: MediaRow; action?: ReactNode; compact?: boolean }) {
+  return <article className="overflow-hidden rounded-md border border-white/10 bg-[#0c1017]">
+    <div className={`relative bg-black ${compact ? "aspect-[4/3]" : "aspect-video"}`}>
+      {asset.resource_type === "image" ? <Image src={asset.secure_url} alt={assetName(asset)} fill sizes="(min-width:1280px) 20vw, (min-width:640px) 40vw, 100vw" className="object-contain" /> : asset.resource_type === "video" ? <video src={asset.secure_url} className="h-full w-full object-contain" muted controls={!action} playsInline preload="metadata" /> : <div className="flex h-full items-center justify-center"><FileText className="text-white/25" /></div>}
+    </div>
+    <div className="flex min-h-12 items-center gap-2 p-3"><p className="min-w-0 flex-1 truncate text-xs text-white/65" title={asset.public_id}>{assetName(asset)}</p>{action}</div>
+  </article>;
 }
 
 export default function CmsDashboard({ locale }: { locale: Locale }) {
+  const isAr = locale === "ar";
   const [session, setSession] = useState<Session | null>(null);
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
   const [pages, setPages] = useState<CmsPageDefinition[]>([]);
   const [pageKey, setPageKey] = useState("home");
   const [editingLocale, setEditingLocale] = useState<Locale>(locale);
   const [document, setDocument] = useState<EditableDocument | null>(null);
+  const [savedSnapshot, setSavedSnapshot] = useState("");
+  const [activeSection, setActiveSection] = useState("");
+  const [activeFieldGroup, setActiveFieldGroup] = useState("");
+  const [view, setView] = useState<ViewMode>("content");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [pickingPath, setPickingPath] = useState<EditorPath | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   const [uploadingPath, setUploadingPath] = useState<string | null>(null);
   const [mediaLibrary, setMediaLibrary] = useState<MediaRow[]>([]);
   const [configured, setConfigured] = useState(true);
-  const [initializing, setInitializing] = useState(false);
-  const isAr = locale === "ar";
+  const [connectionError, setConnectionError] = useState("");
+
   const supabase = useMemo(() => {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
-    return url && key ? createBrowserClient(url, key) : null;
+    return url && key && isSafeSupabaseBrowserKey(key) ? createBrowserClient(url, key) : null;
   }, []);
+  const dirty = Boolean(document && savedSnapshot && JSON.stringify(document) !== savedSnapshot);
+  const currentPage = pages.find((page) => page.key === pageKey);
+  const contentObject = document?.content && typeof document.content === "object" && !Array.isArray(document.content) ? document.content : {};
+  const sections = Object.entries(contentObject).filter(([, value]) => value !== null);
+  const selectedSection = sections.find(([key]) => key === activeSection) ?? sections[0];
+  const fieldGroups = selectedSection ? groupSectionFields(selectedSection[1], locale, pageKey, ["content", selectedSection[0]]) : [];
+  const selectedFieldGroup = fieldGroups.find((group) => group.id === activeFieldGroup) ?? fieldGroups[0];
+  const ui = { content: isAr ? "النصوص" : "Text content", media: isAr ? "الصور والفيديو" : "Images & video", library: isAr ? "مكتبة الوسائط" : "Media library" };
 
   useEffect(() => {
     if (!supabase) { setConfigured(false); setLoading(false); return; }
@@ -101,61 +92,79 @@ export default function CmsDashboard({ locale }: { locale: Locale }) {
 
   useEffect(() => {
     if (!supabase || !session) { setIsAdmin(null); return; }
-    supabase.from("cms_admins").select("user_id").eq("user_id", session.user.id).maybeSingle()
-      .then(({ data }) => setIsAdmin(Boolean(data)));
+    let active = true;
+    setConnectionError("");
+    supabase.from("cms_admins").select("user_id").eq("user_id", session.user.id).maybeSingle().then(({ data, error }) => {
+      if (!active) return;
+      if (error) setConnectionError(error.code === "PGRST205" ? "CMS tables are missing. Run the migration in Supabase SQL Editor." : error.message);
+      setIsAdmin(Boolean(data));
+    });
+    return () => { active = false; };
   }, [session, supabase]);
 
   const loadDocument = useCallback(async () => {
     if (!supabase || !session || !isAdmin) return;
     setLoading(true); setNotice("");
-    const fallbackResponse = await fetch(`/api/cms/defaults?pageKey=${encodeURIComponent(pageKey)}&locale=${editingLocale}`);
-    const fallback = (await fallbackResponse.json()) as DefaultResponse;
-    setPages(fallback.pages);
-    const [{ data: draft }, { data: published }, { data: mediaRows }] = await Promise.all([
-      supabase.from("cms_drafts").select("document").eq("page_key", pageKey).eq("locale", editingLocale).maybeSingle(),
-      supabase.from("cms_pages").select("document").eq("page_key", pageKey).eq("locale", editingLocale).maybeSingle(),
-      supabase.from("cms_media").select("id,public_id,resource_type,secure_url,width,height,duration,created_at").order("created_at", { ascending: false }).limit(24),
-    ]);
-    const savedDocument = (draft?.document ?? published?.document) as JsonValue | undefined;
-    setDocument(mergeEditorValues(fallback.document as unknown as JsonValue, savedDocument) as EditableDocument);
-    setMediaLibrary((mediaRows ?? []) as MediaRow[]);
-    setLoading(false);
+    try {
+      const fallbackResponse = await fetch(`/api/cms/defaults?pageKey=${encodeURIComponent(pageKey)}&locale=${editingLocale}`);
+      if (!fallbackResponse.ok) throw new Error("Could not load page defaults.");
+      const fallback = (await fallbackResponse.json()) as DefaultResponse;
+      setPages(fallback.pages);
+      const [draftResult, publishedResult, mediaResult] = await Promise.all([
+        supabase.from("cms_drafts").select("document").eq("page_key", pageKey).eq("locale", editingLocale).maybeSingle(),
+        supabase.from("cms_pages").select("document").eq("page_key", pageKey).eq("locale", editingLocale).maybeSingle(),
+        supabase.from("cms_media").select("id,public_id,resource_type,secure_url,width,height,duration,created_at").order("created_at", { ascending: false }).limit(60),
+      ]);
+      const queryError = draftResult.error ?? publishedResult.error ?? mediaResult.error;
+      if (queryError) throw new Error(queryError.message);
+      const savedDocument = (draftResult.data?.document ?? publishedResult.data?.document) as JsonValue | undefined;
+      const nextDocument = mergeCmsValues(fallback.document, savedDocument);
+      setDocument(nextDocument); setSavedSnapshot(JSON.stringify(nextDocument)); setMediaLibrary((mediaResult.data ?? []) as MediaRow[]);
+    } catch (error) {
+      setDocument(null); setNotice(error instanceof Error ? error.message : "Could not load CMS content.");
+    } finally { setLoading(false); }
   }, [editingLocale, isAdmin, pageKey, session, supabase]);
 
   useEffect(() => { void loadDocument(); }, [loadDocument]);
+  useEffect(() => { setActiveSection(""); setActiveFieldGroup(""); setView("content"); }, [pageKey, editingLocale]);
+  useEffect(() => { setActiveFieldGroup(""); }, [activeSection]);
+  useEffect(() => {
+    const prevent = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); };
+    window.addEventListener("beforeunload", prevent);
+    return () => window.removeEventListener("beforeunload", prevent);
+  }, [dirty]);
+
+  const canLeave = () => !dirty || window.confirm(isAr ? "عندك تعديلات لم يتم حفظها. هل تريد مغادرة الصفحة؟" : "You have unsaved changes. Leave this page?");
+  const choosePage = (nextPage: string) => { if (nextPage !== pageKey && canLeave()) { setPageKey(nextPage); setSidebarOpen(false); } };
+  const chooseLocale = (nextLocale: Locale) => { if (nextLocale !== editingLocale && canLeave()) setEditingLocale(nextLocale); };
+  const changeDocument = (path: EditorPath, value: JsonValue) => { if (document) setDocument(setAtPath(document as unknown as JsonValue, path, value) as EditableDocument); };
 
   const saveDraft = async () => {
     if (!supabase || !session || !document) return false;
     setSaving(true); setNotice("");
-    const { error } = await supabase.from("cms_drafts").upsert({
-      page_key: pageKey, locale: editingLocale, document, updated_by: session.user.id,
-    }, { onConflict: "page_key,locale" });
-    setSaving(false);
-    setNotice(error ? error.message : isAr ? "تم حفظ المسودة" : "Draft saved");
-    return !error;
+    try {
+      const { error } = await supabase.from("cms_drafts").upsert({ page_key: pageKey, locale: editingLocale, document, updated_by: session.user.id }, { onConflict: "page_key,locale" });
+      if (error) throw new Error(error.message);
+      setSavedSnapshot(JSON.stringify(document)); setNotice(isAr ? "تم حفظ المسودة بنجاح" : "Draft saved successfully"); return true;
+    } catch (error) { setNotice(error instanceof Error ? error.message : "Draft save failed"); return false; }
+    finally { setSaving(false); }
   };
 
   const publish = async () => {
     if (!supabase) return;
-    const saved = await saveDraft();
-    if (!saved) return;
+    const saved = await saveDraft(); if (!saved) return;
     setSaving(true);
-    const { error } = await supabase.rpc("publish_cms_page", { p_page_key: pageKey, p_locale: editingLocale });
-    if (!error) {
-      await fetch("/api/cms/revalidate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${session?.access_token ?? ""}`,
-        },
-        body: JSON.stringify({ pageKey, locale: editingLocale }),
-      });
-    }
-    setSaving(false);
-    setNotice(error ? error.message : isAr ? "تم النشر على الموقع" : "Published to website");
+    try {
+      const { error } = await supabase.rpc("publish_cms_page", { p_page_key: pageKey, p_locale: editingLocale });
+      if (error) throw new Error(error.message);
+      const response = await fetch("/api/cms/revalidate", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${session?.access_token ?? ""}` }, body: JSON.stringify({ pageKey, locale: editingLocale }) });
+      if (!response.ok) throw new Error("Content was published, but website refresh failed. Retry publishing.");
+      setNotice(isAr ? "تم النشر وظهر المحتوى على الموقع" : "Published and live on the website");
+    } catch (error) { setNotice(error instanceof Error ? error.message : "Publishing failed"); }
+    finally { setSaving(false); }
   };
 
-  const upload = async (file: File, path: (string | number)[]) => {
+  const upload = async (file: File, path: EditorPath) => {
     if (!supabase || !session || !document) return;
     setUploadingPath(path.join(".")); setNotice("");
     try {
@@ -167,82 +176,51 @@ export default function CmsDashboard({ locale }: { locale: Locale }) {
       const response = await fetch(`https://api.cloudinary.com/v1_1/${signatureData.cloudName}/auto/upload`, { method: "POST", body: form });
       const asset = await response.json();
       if (!response.ok) throw new Error(asset.error?.message ?? "Cloudinary upload failed");
-      setDocument(setAtPath(document as unknown as JsonValue, path, asset.secure_url) as EditableDocument);
-      await supabase.from("cms_media").insert({ public_id: asset.public_id, resource_type: asset.resource_type, secure_url: asset.secure_url, format: asset.format, width: asset.width ?? null, height: asset.height ?? null, duration: asset.duration ?? null, bytes: asset.bytes ?? null, uploaded_by: session.user.id });
+      changeDocument(path, asset.secure_url);
+      const { error: mediaError } = await supabase.from("cms_media").insert({ public_id: asset.public_id, resource_type: asset.resource_type, secure_url: asset.secure_url, format: asset.format, width: asset.width ?? null, height: asset.height ?? null, duration: asset.duration ?? null, bytes: asset.bytes ?? null, uploaded_by: session.user.id });
+      if (mediaError) throw new Error(`Uploaded to Cloudinary, but media library save failed: ${mediaError.message}`);
       setMediaLibrary((current) => [{ id: asset.asset_id ?? asset.public_id, public_id: asset.public_id, resource_type: asset.resource_type, secure_url: asset.secure_url, width: asset.width ?? null, height: asset.height ?? null, duration: asset.duration ?? null, created_at: new Date().toISOString() }, ...current]);
-      setNotice(isAr ? "تم الرفع. احفظ المسودة ثم انشر." : "Uploaded. Save the draft, then publish.");
-    } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Upload failed");
-    } finally { setUploadingPath(null); }
+      setNotice(isAr ? "تم رفع الملف. احفظ المسودة ثم انشر." : "File uploaded. Save the draft, then publish.");
+    } catch (error) { setNotice(error instanceof Error ? error.message : "Upload failed"); }
+    finally { setUploadingPath(null); }
   };
 
-  const initializeMissingPages = async () => {
-    if (!supabase || !session || pages.length === 0) return;
-    setInitializing(true); setNotice("");
-    try {
-      const combinations = pages.flatMap((page) => (["en", "ar"] as Locale[]).map((itemLocale) => ({ page, itemLocale })));
-      const defaults = await Promise.all(combinations.map(async ({ page, itemLocale }) => {
-        const response = await fetch(`/api/cms/defaults?pageKey=${encodeURIComponent(page.key)}&locale=${itemLocale}`);
-        if (!response.ok) throw new Error(`Could not load ${page.key}/${itemLocale}`);
-        const data = (await response.json()) as DefaultResponse;
-        return { page_key: page.key, locale: itemLocale, document: data.document, updated_by: session.user.id };
-      }));
-      const { error } = await supabase.from("cms_drafts").upsert(defaults, { onConflict: "page_key,locale", ignoreDuplicates: true });
-      if (error) throw error;
-      setNotice(isAr ? "تم إنشاء المسودات الناقصة لكل الصفحات واللغات." : "Missing drafts created for every page and locale.");
-      await loadDocument();
-    } catch (error) {
-      setNotice(error instanceof Error ? error.message : "Initialization failed");
-    } finally {
-      setInitializing(false);
-    }
-  };
-
-  if (!configured) return <main className="min-h-screen bg-[#080d20] p-8 text-white"><div className="mx-auto max-w-2xl border border-amber-400/30 bg-amber-400/10 p-6"><h1 className="text-2xl font-black">CMS setup required</h1><p className="mt-3 text-sm leading-7 text-white/70">Add the Supabase and Cloudinary variables from <code>.env.example</code>, then restart the development server.</p></div></main>;
+  if (!configured) return <main className="min-h-screen bg-[#080d20] p-8 text-white"><div className="mx-auto max-w-2xl border border-amber-400/30 bg-amber-400/10 p-6"><h1 className="text-2xl font-black">CMS setup required</h1><p className="mt-3 text-sm leading-7 text-white/70">Set the Supabase URL and a publishable key in <code>.env.local</code>, then restart the server.</p></div></main>;
   if (loading && !session) return <main className="flex min-h-screen items-center justify-center bg-[#080d20] text-[#43becc]"><LoaderCircle className="animate-spin" /></main>;
   if (!supabase || !session) return supabase ? <LoginForm supabase={supabase} locale={locale} /> : null;
   if (isAdmin === null) return <main className="flex min-h-screen items-center justify-center bg-[#080d20] text-[#43becc]"><LoaderCircle className="animate-spin" /></main>;
-  if (!isAdmin) return <main className="flex min-h-screen items-center justify-center bg-[#080d20] p-5 text-white"><div className="w-full max-w-lg border border-red-300/25 bg-red-400/10 p-6"><h1 className="text-2xl font-black">Administrator access required</h1><p className="mt-3 text-sm text-white/60">This account is signed in but is not listed in <code>cms_admins</code>.</p><button onClick={() => supabase.auth.signOut()} className="mt-5 h-10 border border-white/20 px-4 text-xs font-black uppercase">Sign out</button></div></main>;
+  if (!isAdmin) return <main className="flex min-h-screen items-center justify-center bg-[#080d20] p-5 text-white"><div className="w-full max-w-lg border border-red-300/25 bg-red-400/10 p-6"><h1 className="text-2xl font-black">{connectionError ? "CMS connection error" : "Administrator access required"}</h1><p className="mt-3 text-sm text-white/60">{connectionError || "This account is signed in but is not listed in cms_admins."}</p><button onClick={() => supabase.auth.signOut()} className="admin-button mt-5">Sign out</button></div></main>;
 
-  return (
-    <main dir={isAr ? "rtl" : "ltr"} className="min-h-screen bg-[#080d20] text-white">
-      <header className="sticky top-0 z-30 flex min-h-16 items-center justify-between gap-4 border-b border-white/10 bg-[#080d20]/95 px-5 backdrop-blur-xl md:px-8">
-        <div><p className="text-[10px] font-black uppercase tracking-[0.28em] text-[#43becc]">DYNATECH CMS</p><h1 className="text-lg font-black">{isAr ? "إدارة محتوى الموقع" : "Website Content"}</h1></div>
-        <div className="flex items-center gap-2">
-          <button type="button" disabled={initializing || pages.length === 0} onClick={initializeMissingPages} className="hidden h-10 items-center gap-2 border border-white/10 px-3 text-xs font-bold hover:border-[#43becc] disabled:opacity-40 sm:flex" title="Create only missing drafts from the current website"><DatabaseZap size={16} /> {initializing ? (isAr ? "جارٍ التجهيز" : "Initializing") : (isAr ? "تهيئة الصفحات" : "Initialize CMS")}</button>
-          <Link href={`/${editingLocale}`} target="_blank" className="flex h-10 items-center gap-2 border border-white/10 px-3 text-xs font-bold hover:border-[#43becc]"><Eye size={16} /> {isAr ? "معاينة" : "Preview"}</Link>
-          <button onClick={() => supabase.auth.signOut()} title="Sign out" className="flex h-10 w-10 items-center justify-center border border-white/10 hover:border-red-300 hover:text-red-300"><LogOut size={16} /></button>
-        </div>
-      </header>
+  const editorProps = { locale, pageKey, onChange: changeDocument, onUpload: upload, onPickMedia: setPickingPath, uploadingPath };
+  return <main dir={isAr ? "rtl" : "ltr"} className="admin-ui min-h-screen bg-[var(--admin-bg)] text-white">
+    <header className="sticky top-0 z-40 flex h-16 items-center justify-between gap-3 border-b border-white/10 bg-[#080b11]/95 px-4 backdrop-blur-xl md:px-6">
+      <div className="flex min-w-0 items-center gap-3"><button type="button" className="admin-icon lg:hidden" aria-label={isAr ? "فتح الصفحات" : "Open pages"} onClick={() => setSidebarOpen(true)}><Menu size={19} /></button><div className="min-w-0"><p className="text-[10px] font-black text-[#43becc]">DYNATECH CMS</p><h1 className="truncate text-base font-extrabold">{isAr ? "إدارة محتوى الموقع" : "Website content manager"}</h1></div></div>
+      <div className="flex items-center gap-2"><span className={`hidden items-center gap-2 rounded-full px-3 py-1.5 text-xs sm:flex ${dirty ? "bg-amber-400/10 text-amber-200" : "bg-emerald-400/10 text-emerald-200"}`}>{dirty ? <CircleAlert size={14} /> : <Check size={14} />}{dirty ? (isAr ? "تعديلات غير محفوظة" : "Unsaved changes") : (isAr ? "كل التعديلات محفوظة" : "All changes saved")}</span><Link href={`/${editingLocale}${cmsPagePaths[pageKey] ?? ""}`} target="_blank" className="admin-button"><Eye size={16} /><span className="hidden sm:inline">{isAr ? "معاينة الصفحة" : "Preview page"}</span></Link><button onClick={() => supabase.auth.signOut()} title={isAr ? "تسجيل الخروج" : "Sign out"} className="admin-icon"><LogOut size={16} /></button></div>
+    </header>
 
-      <div className="mx-auto grid max-w-[1600px] md:grid-cols-[260px_minmax(0,1fr)]">
-        <aside className="border-b border-white/10 p-4 md:min-h-[calc(100vh-4rem)] md:border-b-0 md:border-e">
-          <p className="mb-3 px-2 text-[10px] font-black uppercase tracking-[0.24em] text-white/40">Pages</p>
-          <nav className="grid grid-cols-2 gap-1 md:grid-cols-1">
-            {pages.map((page) => <button key={page.key} onClick={() => setPageKey(page.key)} className={`flex min-h-10 items-center justify-between px-3 text-start text-xs font-bold transition ${pageKey === page.key ? "bg-[#0087cb] text-black" : "text-white/65 hover:bg-white/5 hover:text-white"}`}><span>{isAr ? page.labelAr : page.label}</span><ChevronRight size={14} /></button>)}
-          </nav>
-        </aside>
+    <div className="mx-auto grid max-w-[1700px] lg:grid-cols-[250px_minmax(0,1fr)]">
+      {sidebarOpen && <button type="button" aria-label="Close" className="fixed inset-0 z-40 bg-black/65 lg:hidden" onClick={() => setSidebarOpen(false)} />}
+      <aside className={`${sidebarOpen ? "translate-x-0" : isAr ? "translate-x-full" : "-translate-x-full"} fixed inset-y-0 z-50 w-[280px] overflow-y-auto border-e border-white/10 bg-[#0d121a] p-4 transition-transform lg:sticky lg:top-16 lg:z-20 lg:h-[calc(100vh-4rem)] lg:w-auto lg:translate-x-0`}>
+        <div className="mb-5 flex items-center justify-between lg:hidden"><strong>{isAr ? "اختر الصفحة" : "Choose a page"}</strong><button type="button" className="admin-icon" onClick={() => setSidebarOpen(false)}><X size={17} /></button></div>
+        <p className="mb-3 px-2 text-[11px] font-bold text-white/40">{isAr ? "صفحات الموقع" : "WEBSITE PAGES"}</p>
+        <nav className="space-y-1">{pages.map((page) => { const active = pageKey === page.key; return <button key={page.key} onClick={() => choosePage(page.key)} className={`flex min-h-11 w-full items-center gap-3 rounded-md px-3 text-start text-sm font-bold transition ${active ? "bg-[#118fc3] text-white" : "text-white/66 hover:bg-white/5 hover:text-white"}`}><FileText size={16} className="shrink-0" /><span className="min-w-0 flex-1 truncate">{isAr ? page.labelAr : page.label}</span>{isAr ? <ChevronLeft size={14} /> : <ChevronRight size={14} />}</button>; })}</nav>
+        <div className="mt-8 border-t border-white/10 pt-5"><div className="flex items-center gap-2 px-2 text-xs text-white/35"><Settings size={14} /><span className="truncate">{session.user.email}</span></div></div>
+      </aside>
 
-        <section className="min-w-0 p-4 md:p-8">
-          <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3"><FileText className="text-[#43becc]" /><div><p className="text-2xl font-black uppercase">{pages.find((page) => page.key === pageKey)?.label ?? pageKey}</p><p className="text-xs text-white/45">{pageKey}</p></div></div>
-            <div className="flex rounded-sm border border-white/10 bg-[#111936] p-1">{(["en", "ar"] as Locale[]).map((item) => <button key={item} onClick={() => setEditingLocale(item)} className={`h-8 min-w-12 px-3 text-xs font-black uppercase ${editingLocale === item ? "bg-white text-black" : "text-white/55"}`}>{item}</button>)}</div>
-          </div>
+      <section className="min-w-0 px-4 py-6 md:px-7 md:py-8 xl:px-10"><div className="mx-auto max-w-6xl">
+        <div className="mb-7 flex flex-wrap items-start justify-between gap-4 border-b border-white/10 pb-6"><div><div className="mb-2 flex items-center gap-2 text-xs font-bold text-[#43becc]"><LayoutDashboard size={15} />{isAr ? "تعديل صفحة" : "Editing page"}</div><h2 className="text-2xl font-black md:text-3xl">{isAr ? currentPage?.labelAr : currentPage?.label}</h2><p className="mt-2 text-sm text-white/48">{pageHints[pageKey]?.[isAr ? 1 : 0] ?? ""}</p></div><div className="flex items-center gap-2 rounded-md border border-white/10 bg-[#10151e] p-1"><Languages size={16} className="mx-2 text-white/45" />{(["en", "ar"] as Locale[]).map((item) => <button key={item} onClick={() => chooseLocale(item)} className={`h-9 rounded px-4 text-xs font-black ${editingLocale === item ? "bg-white text-black" : "text-white/50 hover:text-white"}`}>{item === "ar" ? "العربية" : "English"}</button>)}</div></div>
+        <div className="mb-6 flex gap-1 overflow-x-auto border-b border-white/10">{(["content", "media", "library"] as ViewMode[]).map((item) => <button key={item} onClick={() => setView(item)} className={`flex min-h-12 shrink-0 items-center gap-2 border-b-2 px-4 text-sm font-bold ${view === item ? "border-[#43becc] text-white" : "border-transparent text-white/45 hover:text-white"}`}>{item === "content" ? <Type size={17} /> : item === "media" ? <CloudUpload size={17} /> : <Images size={17} />}{ui[item]}{item === "library" && <span className="rounded-full bg-white/8 px-2 py-0.5 text-[10px]">{mediaLibrary.length}</span>}</button>)}</div>
 
-          {loading || !document ? <div className="flex min-h-80 items-center justify-center"><LoaderCircle className="animate-spin text-[#43becc]" /></div> : (
-            <div className="space-y-5">
-              <details open className="border border-white/10 bg-[#111936] p-5 md:p-7"><summary className="cursor-pointer text-sm font-black uppercase tracking-[0.18em] text-[#43becc]">Content</summary><div className="mt-6"><ContentEditor value={document.content} path={["content"]} onChange={(path, next) => setDocument(setAtPath(document as unknown as JsonValue, path, next) as EditableDocument)} onUpload={upload} uploadingPath={uploadingPath} /></div></details>
-              <details open className="border border-white/10 bg-[#111936] p-5 md:p-7"><summary className="cursor-pointer text-sm font-black uppercase tracking-[0.18em] text-[#43becc]">Media</summary><p className="mt-2 text-xs leading-6 text-white/45">Upload images and videos to Cloudinary or paste an existing URL.</p><div className="mt-6"><ContentEditor value={document.media} path={["media"]} onChange={(path, next) => setDocument(setAtPath(document as unknown as JsonValue, path, next) as EditableDocument)} onUpload={upload} uploadingPath={uploadingPath} /></div></details>
-              <details className="border border-white/10 bg-[#111936] p-5 md:p-7"><summary className="cursor-pointer text-sm font-black uppercase tracking-[0.18em] text-[#43becc]">Media Library <span className="ms-2 text-white/35">{mediaLibrary.length}</span></summary><p className="mt-2 text-xs leading-6 text-white/45">Recently uploaded Cloudinary assets. Use the copy button to reuse an asset URL in another field.</p><div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{mediaLibrary.map((asset) => <article key={asset.id} className="overflow-hidden border border-white/10 bg-[#080d20]"><div className="relative aspect-video bg-black">{asset.resource_type === "image" ? <Image src={asset.secure_url} alt="" fill sizes="(min-width:1280px) 20vw, (min-width:640px) 40vw, 100vw" className="object-contain" /> : asset.resource_type === "video" ? <video src={asset.secure_url} className="h-full w-full object-contain" muted controls preload="metadata" /> : <div className="flex h-full items-center justify-center"><FileText className="text-white/30" /></div>}</div><div className="flex items-center gap-2 p-3"><p className="min-w-0 flex-1 truncate text-[10px] text-white/55" title={asset.public_id}>{asset.public_id}</p><button type="button" title="Copy URL" onClick={async () => { await navigator.clipboard.writeText(asset.secure_url); setNotice(isAr ? "تم نسخ رابط الملف" : "Media URL copied"); }} className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/10 hover:border-[#43becc] hover:text-[#43becc]"><Copy size={14} /></button></div></article>)}</div></details>
-            </div>
-          )}
+        {loading || !document ? <div className="flex min-h-96 items-center justify-center"><LoaderCircle className="animate-spin text-[#43becc]" /></div> : <>
+          {view === "content" && <div className="grid gap-6 md:grid-cols-[220px_minmax(0,1fr)]"><div><p className="mb-3 text-xs font-bold text-white/40">{isAr ? "أقسام الصفحة" : "PAGE SECTIONS"}</p><div className="grid grid-cols-2 gap-2 md:grid-cols-1">{sections.map(([key]) => <button key={key} type="button" onClick={() => setActiveSection(key)} className={`min-h-11 rounded-md px-3 text-start text-sm font-bold ${selectedSection?.[0] === key ? "bg-white/10 text-[#43becc]" : "text-white/55 hover:bg-white/5 hover:text-white"}`}>{fieldLabel(["content", key], locale)}</button>)}</div></div><div className="min-w-0 rounded-md border border-white/10 bg-[var(--admin-panel)] p-5 md:p-7">{selectedSection ? <><div className="mb-5 border-b border-white/10 pb-4"><p className="text-xs font-bold text-[#43becc]">{isAr ? "محتوى القسم" : "SECTION CONTENT"}</p><h3 className="mt-1 text-xl font-black">{fieldLabel(["content", selectedSection[0]], locale)}</h3></div>{fieldGroups.length > 1 && <div className="mb-7"><p className="mb-3 text-xs font-bold text-white/40">{isAr ? "اختر الجزء الذي تريد تعديله" : "CHOOSE WHAT TO EDIT"}</p><div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">{fieldGroups.map((group) => <button key={group.id} type="button" onClick={() => setActiveFieldGroup(group.id)} className={`min-h-11 rounded-md border px-3 text-start text-sm font-bold transition ${selectedFieldGroup?.id === group.id ? "border-[#43becc] bg-[#43becc]/10 text-[#72dbe6]" : "border-white/10 bg-[#0c1017] text-white/58 hover:border-white/25 hover:text-white"}`}>{group.label}</button>)}</div></div>}{selectedFieldGroup && <div><h4 className="mb-5 text-base font-extrabold text-white/85">{selectedFieldGroup.label}</h4><ContentEditor {...editorProps} value={selectedFieldGroup.value} path={["content", selectedSection[0]]} /></div>}</> : <p className="text-sm text-white/45">{isAr ? "لا توجد أقسام قابلة للتعديل." : "No editable sections found."}</p>}</div></div>}
+          {view === "media" && <div className="rounded-md border border-white/10 bg-[var(--admin-panel)] p-5 md:p-7"><div className="mb-6 border-b border-white/10 pb-4"><h3 className="text-xl font-black">{isAr ? "صور وفيديوهات الصفحة" : "Page images and videos"}</h3><p className="mt-2 text-sm leading-6 text-white/48">{isAr ? "اضغط رفع ملف جديد أو اختر ملفًا سبق رفعه من المكتبة." : "Upload a new file or choose an existing one from the media library."}</p></div><div className="space-y-8"><ContentEditor {...editorProps} value={document.media} path={["media"]} mediaOnly /><ContentEditor {...editorProps} value={document.content} path={["content"]} mediaOnly /></div></div>}
+          {view === "library" && <div><div className="mb-5"><h3 className="text-xl font-black">{ui.library}</h3><p className="mt-1 text-sm text-white/45">{isAr ? "كل الملفات التي تم رفعها ويمكن إعادة استخدامها." : "All uploaded files, ready to reuse."}</p></div><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">{mediaLibrary.map((asset) => <MediaCard key={asset.id} asset={asset} action={<button type="button" title={isAr ? "نسخ الرابط" : "Copy URL"} onClick={async () => { await navigator.clipboard.writeText(asset.secure_url); setNotice(isAr ? "تم نسخ رابط الملف" : "Media URL copied"); }} className="admin-icon"><Copy size={14} /></button>} />)}</div></div>}
+        </>}
 
-          <div className="sticky bottom-4 mt-6 flex flex-wrap items-center justify-between gap-3 border border-white/10 bg-[#080d20]/95 p-3 shadow-2xl backdrop-blur-xl">
-            <p className="min-h-5 text-xs text-[#43becc]">{notice}</p>
-            <div className="flex gap-2"><button disabled={saving || !document} onClick={saveDraft} className="flex h-10 items-center gap-2 border border-white/15 px-4 text-xs font-black uppercase hover:border-white disabled:opacity-50">{saving ? <LoaderCircle size={15} className="animate-spin" /> : <Save size={15} />} {isAr ? "حفظ مسودة" : "Save Draft"}</button><button disabled={saving || !document} onClick={publish} className="flex h-10 items-center gap-2 bg-[#0087cb] px-4 text-xs font-black uppercase text-black hover:bg-[#43becc] disabled:opacity-50"><Check size={16} /> {isAr ? "نشر" : "Publish"}</button></div>
-          </div>
-        </section>
-      </div>
-    </main>
-  );
+        <div className="sticky bottom-3 z-30 mt-8 flex flex-wrap items-center justify-between gap-3 rounded-md border border-white/12 bg-[#111720]/95 p-3 shadow-2xl backdrop-blur-xl"><div className="min-w-0"><p className={`text-xs font-bold ${notice ? "text-[#62d6e2]" : dirty ? "text-amber-200" : "text-white/45"}`}>{notice || (dirty ? (isAr ? "احفظ التعديلات قبل مغادرة الصفحة" : "Save your changes before leaving") : (isAr ? "المحتوى محفوظ" : "Content is saved"))}</p><p className="mt-1 hidden text-[11px] text-white/30 md:block">{isAr ? "المسودة لا تظهر للزوار. النشر يجعل التعديلات ظاهرة على الموقع." : "A draft stays private. Publish makes the changes visible on the website."}</p></div><div className="flex gap-2"><button disabled={saving || !document || !dirty} onClick={saveDraft} className="admin-button">{saving ? <LoaderCircle size={15} className="animate-spin" /> : <Save size={15} />}{isAr ? "حفظ كمسودة" : "Save draft"}</button><button disabled={saving || !document} onClick={publish} className="admin-button border-[#118fc3] bg-[#118fc3] text-white hover:bg-[#17a8e2]"><Check size={16} />{isAr ? "نشر على الموقع" : "Publish website"}</button></div></div>
+      </div></section>
+    </div>
+
+    {pickingPath && <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/75 p-3 backdrop-blur-sm" role="dialog" aria-modal="true"><div className="admin-scrollbar max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-md border border-white/15 bg-[#111720] p-5 shadow-2xl md:p-7"><div className="sticky top-0 z-10 mb-5 flex items-start justify-between gap-4 border-b border-white/10 bg-[#111720] pb-5"><div><h3 className="text-xl font-black">{isAr ? "اختر ملفًا من المكتبة" : "Choose from media library"}</h3><p className="mt-1 text-sm text-white/45">{isAr ? "اضغط على الصورة أو الفيديو لاستخدامه في هذا المكان." : "Select an image or video to use in this field."}</p></div><button type="button" className="admin-icon" onClick={() => setPickingPath(null)}><X size={17} /></button></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{mediaLibrary.map((asset) => <button type="button" key={asset.id} className="text-start transition hover:-translate-y-0.5 hover:ring-2 hover:ring-[#43becc]" onClick={() => { changeDocument(pickingPath, asset.secure_url); setPickingPath(null); setNotice(isAr ? "تم اختيار الملف. لا تنسَ حفظ المسودة." : "File selected. Remember to save the draft."); }}><MediaCard asset={asset} compact /></button>)}</div></div></div>}
+  </main>;
 }
