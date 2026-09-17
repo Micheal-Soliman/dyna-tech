@@ -1,7 +1,7 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import type { HomeContent } from "@/content/schema/site";
 import type { Locale } from "@/i18n/config";
-import type { GlobalCmsContent } from "@/content/pages/global";
+import type { GlobalCmsContent } from "@/content/schema/site";
 import { getPageDocument } from "@/lib/cms/page-document";
 
 export default async function Home({

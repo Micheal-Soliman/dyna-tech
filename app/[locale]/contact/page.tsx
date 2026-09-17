@@ -1,7 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import Image from "next/image";
-import type { ContactContent } from "@/content/schema/site";
-import type { GlobalCmsContent } from "@/content/pages/global";
+import type { ContactContent, GlobalCmsContent } from "@/content/schema/site";
 import { getPageDocument } from "@/lib/cms/page-document";
 
 function SectionKicker({
@@ -93,9 +92,7 @@ export default async function Page({
 
           <div className="border border-white/10 bg-[#121b43] p-6">
             <SectionKicker tone="cyan" className="mb-3">
-              {isAr
-                ? globalDocument.content.labels.emailAr
-                : globalDocument.content.labels.email}
+              {globalDocument.content.labels.email}
             </SectionKicker>
             <a
               href={`mailto:${contactDetails.email}`}

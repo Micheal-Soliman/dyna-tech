@@ -14,6 +14,33 @@ export type HomeHeroCopy = {
 
 export type HomeContent = { hero: HomeHeroCopy };
 
+export type GlobalCmsContent = {
+  navigation: { label: string; path: string }[];
+  contact: {
+    email: string;
+    phone: { display: string; href: string };
+    locations: { cfcOffice: string; autoHub: string };
+  };
+  labels: {
+    contact: string;
+    location: string;
+    quickLinks: string;
+    connect: string;
+    email: string;
+    cfcOffice: string;
+    autoHubProject: string;
+  };
+  footerSlogan: string;
+  copyright: string;
+};
+
+export type LegalContent = {
+  kicker: string;
+  title: string;
+  description: string;
+  sections: { title: string; body: string }[];
+};
+
 export type TechnologyPartnersContent = {
   hero: { kicker: string; title: string; intro: string; supporting: string };
   technologyPartners: {

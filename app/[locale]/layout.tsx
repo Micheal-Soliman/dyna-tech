@@ -7,7 +7,7 @@ import "../globals.css";
 
 import { AdminChrome } from "@/components/AdminChrome";
 import { locales, type Locale } from "@/i18n/config";
-import type { GlobalCmsContent } from "@/content/pages/global";
+import type { GlobalCmsContent } from "@/content/schema/site";
 import { getPageDocument } from "@/lib/cms/page-document";
 
 const montserrat = Montserrat({

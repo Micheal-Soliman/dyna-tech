@@ -1,4 +1,54 @@
 {
+  "global": {
+    "navigation": [
+      {
+        "label": "Home",
+        "path": ""
+      },
+      {
+        "label": "About Us",
+        "path": "/about-us"
+      },
+      {
+        "label": "Technology Partners",
+        "path": "/technology-partners"
+      },
+      {
+        "label": "Auto Hub Project",
+        "path": "/the-auto-hub"
+      },
+      {
+        "label": "Tech Info",
+        "path": "/tech-info"
+      },
+      {
+        "label": "Careers",
+        "path": "/careers"
+      }
+    ],
+    "contact": {
+      "email": "info@dynatech-eg.com",
+      "phone": {
+        "display": "+2 01010299 435",
+        "href": "tel:+201010299435"
+      },
+      "locations": {
+        "cfcOffice": "Cairo Festival City, The Podium, P6-109, New Cairo, Egypt.",
+        "autoHub": "Industrial Zone, New Cairo, Egypt."
+      }
+    },
+    "labels": {
+      "contact": "Contact",
+      "location": "Location",
+      "quickLinks": "Quick Links",
+      "connect": "Connect",
+      "email": "Email",
+      "cfcOffice": "CFC Main Office",
+      "autoHubProject": "Auto Hub Project"
+    },
+    "footerSlogan": "A New Driving Force In Egypt's Automotive Industry",
+    "copyright": "ALL RIGHTS RESERVED"
+  },
   "home": {
     "hero": {
       "logoAlt": "DYNATECH Corporation",
@@ -20,7 +70,105 @@
       "heroImageAlt": "DYNATECH industrial technology ecosystem"
     }
   },
-  "services": {
+  "about": {
+    "company": {
+      "kicker": "About DYNATECH",
+      "title": "The Company",
+      "lead": "",
+      "paragraphs": [
+        "Founded in 2017 under the name DYNATECH Corporation and operating in Egypt under a registered mark (DYNATECH), the company works along with its subsidiary DYNATECH for Industrial Development, this company is capitalized with EGP 15 million fully paid. Currently DYNATECH is investing in the constructing a Fully Integrated Automotive Centre for the automotive services for ICE & BEV, training, and advanced R&D automotive technologies. This Strategic Business Model built on exclusive partnerships with leading global technology entities and platforms.",
+        "This model establishes a unique ecosystem that connects international technology providers with opportunities for knowledge transfer, technology localization, and the development of a modern platform that drives business growth and contributes to shaping the future of Egypt’s automotive industry."
+      ]
+    },
+    "founder": {
+      "kicker": "Leadership",
+      "name": "Eng. Ahmed Sorour",
+      "role": "Founder & CEO",
+      "description": "Eng. Ahmed Sorour Is The Founder and CEO of DYNATECH , he brings nearly three decades of experience working with leading global automotive OEMs, including Toyota, BMW, JLR, and Volkswagen. His career includes serving in C suite roles and on the advisory boards of several major business conglomerates across the MENA region, contributing strategic leadership and industry expertise at the highest levels.",
+      "imageSrc": "/ceo.jpeg",
+      "imageAlt": "Eng. Ahmed Sorour, Founder and CEO of DYNATECH",
+      "linkedinUrl": "https://www.linkedin.com/in/eng-ahmedsorour?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      "linkedinLabel": "Learn More"
+    },
+    "ceoMessage": {
+      "kicker": "From The CEO",
+      "title": "CEO Message",
+      "paragraphs": [
+        "It is with great pleasure that we launch the new DYNATECH website, designed to offer our customers a unique experience to learn more about the services delivered through our technology partners.",
+        "We are proud to showcase FFT Produktionssysteme, a world-leading German company specializing in the development, planning, and execution of turnkey manufacturing solutions across the automotive, aerospace, white goods industries, and beyond. In addition, we will highlight the services of our technology partner, Composites United (CU)—one of the world’s largest networks dedicated to the design of composite materials and lightweight multi-material components, including aluminium, CFRP, and hybrid materials.",
+        "Visitors to our website will also be able to follow the progress of our Auto Hub Project in the New Cairo Industrial Zone, spanning 6,000 sqm. This project marks a milestone in the Egyptian automotive market as the first integrated car service centre powered by AI tools such as Machine Learning and Digital Twin technologies, transforming car maintenance from preventive to predictive to save cost & time.",
+        "The global automotive industry is undergoing an unprecedented technological transformation, shifting from internal combustion engine (ICE) powertrains to New Energy Vehicle (NEV) and rapidly evolving toward the Software-Defined Vehicle (SDV)—a connected digital platform reliant on software, over-the-air (OTA) updates, and advanced AI platforms to analyse driver and vehicle behaviour for enhanced safety and performance.",
+        "At DYNATECH EGYPT, we aim to contribute to industrial development and technology transfer, supporting the goals of Egypt Vision 2030 and positioning Egypt on the new map of global automotive industry."
+      ],
+      "signatureName": "Ahmed Sorour",
+      "signatureRole": "CEO",
+      "signatureCompany": "DYNATECH Corp – Egypt"
+    },
+    "timeline": {
+      "kicker": "Our Progress",
+      "title": "Timeline",
+      "items": [
+        {
+          "year": "2017",
+          "desc": "DYNATECH Corp. was established alongside integration into the CFK Valley network in Germany."
+        },
+        {
+          "year": "2018",
+          "desc": "Composites United membership completed and a strategic letter of intent was signed."
+        },
+        {
+          "year": "2020",
+          "desc": "DYNATECH for Industrial Development was established, and land was acquired from NUCA in New Cairo."
+        },
+        {
+          "year": "2021",
+          "desc": "Composites United officially appointed DYNATECH as its exclusive representative in Egypt."
+        },
+        {
+          "year": "2022",
+          "desc": "Strategic partnership agreement with Composites United announced in Hannover Messe - Germany."
+        },
+        {
+          "year": "2023",
+          "desc": "An exclusive agency agreement was signed with FFT Produktionssysteme GmbH in Fulda, Germany."
+        },
+        {
+          "year": "2024",
+          "desc": "Additional area acquired from NUCA for Auto Hub Project and DYNATECH main office in CFC handed over."
+        },
+        {
+          "year": "2025",
+          "desc": "The designs and licences completed for Auto Hub Project and DYNATECH office in CFC."
+        },
+        {
+          "year": "2026",
+          "desc": "CFC office fit out completed and construction of Auto Hub started."
+        },
+        {
+          "year": "2027",
+          "desc": "Soft opening and launch of Auto Hub (Q4-2027)."
+        }
+      ]
+    },
+    "locations": {
+      "kicker": "Our Presence",
+      "title": "Locations",
+      "items": [
+        {
+          "name": "DYNATECH Main Office",
+          "detail": "Cairo Festival City, The Podium, P6-109, New Cairo, Egypt."
+        },
+        {
+          "name": "DYNATECH Auto Hub Project",
+          "detail": "Industrial Zone, New Cairo, Egypt.",
+          "status": "Currently Under Construction",
+          "imageSrc": "/autohub/main.jpeg",
+          "imageAlt": "DYNATECH Auto Hub project"
+        }
+      ]
+    }
+  },
+  "technologyPartners": {
     "hero": {
       "kicker": "",
       "title": "Two German Partners. One Shared Industrial Vision.",
@@ -57,30 +205,9 @@
       ]
     }
   },
-  "accelerators": {
-    "partners": [
-      {
-        "id": "cu",
-        "name": "Composites United (CU)",
-        "title": "Composites United (CU)",
-        "paragraphs": [
-          "One of the world’s largest networks specializing in fiber-based multi-material lightweight construction, connecting manufacturers, research institutes, universities, and advanced technology organizations across Europe and globally.",
-          "With a network of approximately 350 member organizations, Composites United plays a major role in shaping the future of lightweight manufacturing and advanced material technologies."
-        ],
-        "roleTitle": "DYNATECH’S ROLE",
-        "roleText": "DYNATECH serves as the exclusive representative of Composites United in Egypt, supporting the transfer and localization of lightweight material technologies into customer-oriented industrial solutions within the Egyptian market.",
-        "scopeTitle": "Scope Of Agreement",
-        "scope": [
-          "Training & Education",
-          "Research & Development",
-          "Localization & Manufacturing of Lightweight Components"
-        ],
-        "milestoneTitle": "Partnership Milestone",
-        "milestoneText": "Strategic agreement officially announced during Hannover Messe 2022.",
-        "ctaLabel": "Learn About CU",
-        "ctaHref": "https://composites-united.com"
-      },
-      {
+  "partnerPages": {
+    "fft": {
+      "partner": {
         "id": "fft",
         "name": "FFT Produktionssysteme",
         "location": "Fulda, Germany",
@@ -101,47 +228,240 @@
         "milestoneText": "Exclusive agency agreement signed at FFT Headquarters in Fulda, Germany — November 2023.",
         "ctaLabel": "Learn About FFT",
         "ctaHref": "https://fft.de"
-      }
-    ],
-    "ecosystem": {
-      "title": "Two Partnerships. One Industrial Ecosystem.",
-      "paragraphs": [
-        "Through its partnerships with FFT and Composites United, DYNATECH connects advanced manufacturing systems with next generation lightweight material technologies.",
-        "Together, these agreements bring more than 100 years of combined European industrial expertise directly into Egypt’s future automotive and industrial landscape."
-      ],
-      "columns": [
-        {
-          "id": "cu",
-          "label": "CU",
-          "title": "Lightweight Innovation",
-          "items": [
-            "Advanced Materials",
-            "Composite Technologies",
-            "Research & Development",
-            "Technology Transfer",
-            "Industrial Localization"
-          ]
+      },
+      "ecosystemColumn": {
+        "id": "fft",
+        "label": "FFT",
+        "title": "Manufacturing Systems",
+        "items": [
+          "Factory Automation",
+          "Turnkey Production Systems",
+          "Industrial Robotics",
+          "Digital Manufacturing",
+          "Automotive Production Infrastructure"
+        ]
+      },
+      "copy": {
+        "backLabel": "Partners",
+        "mediaSection": {
+          "kicker": "Video Library",
+          "title": "FFT Technologies And Solutions",
+          "ctaLabel": "Know more",
+          "videoBadge": "Video",
+          "imageBadge": "Image",
+          "featuredLabel": "Featured"
         },
-        {
-          "id": "fft",
-          "label": "FFT",
-          "title": "Manufacturing Systems",
-          "items": [
-            "Factory Automation",
-            "Turnkey Production Systems",
-            "Industrial Robotics",
-            "Digital Manufacturing",
-            "Automotive Production Infrastructure"
-          ]
-        }
-      ]
+        "hero": {
+          "eyebrow": "FFT production systems",
+          "title": "one step ahead in INTELLIGENT production",
+          "paragraphs": [
+            "We Are Production Optimizers"
+          ],
+          "href": "https://www.fft.de/en/",
+          "ctaLabel": "Know more"
+        },
+        "gallery": [
+          {
+            "label": "FFT Services At A Glance In 2 Minutes",
+            "type": "video",
+            "featured": true
+          },
+          {
+            "label": "FFT Plant Engineering",
+            "type": "video"
+          },
+          {
+            "label": "FFT's Flexible Production Technologies",
+            "type": "video"
+          },
+          {
+            "label": "FFT Story Translated Into Arabic",
+            "type": "video"
+          }
+        ]
+      }
+    },
+    "cu": {
+      "partner": {
+        "id": "cu",
+        "name": "Composites United (CU)",
+        "title": "Composites United (CU)",
+        "paragraphs": [
+          "One of the world’s largest networks specializing in fiber-based multi-material lightweight construction, connecting manufacturers, research institutes, universities, and advanced technology organizations across Europe and globally.",
+          "With a network of approximately 350 member organizations, Composites United plays a major role in shaping the future of lightweight manufacturing and advanced material technologies."
+        ],
+        "roleTitle": "DYNATECH’S ROLE",
+        "roleText": "DYNATECH serves as the exclusive representative of Composites United in Egypt, supporting the transfer and localization of lightweight material technologies into customer-oriented industrial solutions within the Egyptian market.",
+        "scopeTitle": "Scope Of Agreement",
+        "scope": [
+          "Training & Education",
+          "Research & Development",
+          "Localization & Manufacturing of Lightweight Components"
+        ],
+        "milestoneTitle": "Partnership Milestone",
+        "milestoneText": "Strategic agreement officially announced during Hannover Messe 2022.",
+        "ctaLabel": "Learn About CU",
+        "ctaHref": "https://composites-united.com"
+      },
+      "ecosystemColumn": {
+        "id": "cu",
+        "label": "CU",
+        "title": "Lightweight Innovation",
+        "items": [
+          "Advanced Materials",
+          "Composite Technologies",
+          "Research & Development",
+          "Technology Transfer",
+          "Industrial Localization"
+        ]
+      },
+      "copy": {
+        "backLabel": "Partners",
+        "mediaSection": {
+          "kicker": "Video Library",
+          "title": "Composites United Videos",
+          "ctaLabel": "Know more",
+          "videoBadge": "Video",
+          "imageBadge": "Image",
+          "featuredLabel": "Featured"
+        },
+        "hero": {
+          "eyebrow": "Composites United Network",
+          "title": "Composites United e. V. (CU)",
+          "paragraphs": [
+            "Composites United e. V. is a network of companies and research institutions that covers the entire value chain for fiber-based multi-material lightweight construction with its clusters and networks in Germany, Austria, and Switzerland."
+          ],
+          "href": "https://composites-united.com/en/",
+          "ctaLabel": "Know more"
+        },
+        "gallery": [
+          {
+            "label": "Eng. Ahmed Sorour's Speech at Hannover Messe",
+            "type": "video",
+            "featured": true
+          },
+          {
+            "label": "Carbon Video Translated Into Arabic",
+            "type": "video"
+          }
+        ]
+      }
     }
   },
-  "blog": {
+  "autoHub": {
+    "heroLines": [
+      "6 STRATEGIC BUSINESS UNITS .",
+      "ONE INEGRATED AUTO HUB ."
+    ],
+    "introductionTitle": "Project INTRODUCTION",
+    "introduction": "The Automotive Hub Project is a comprehensive 3S Facility strategically located in the New Cairo Industrial Zone. With an operational built-up area of 6,000 sqm, the hub is designed to serve up to 40 car/day, addressing the aftermarket needs of both (ICE) & all types of (NEVs) cars. The facility will bring together a wide range of integrated automotive services, including mechanical and Electrical services, Body Shop, spare parts, SMART Repair, and specialized training centres for the latest automotive technologies. It will also include A Showroom for pre-owned vehicles , offering vehicles with extended warranty and maintenance packages. This project will be a milestone in the Egyptian automotive market, as it is planned to become the First Service Centre Powered by advanced AI tools, including Machine Learning & Digital Twin technologies, transforming car maintenance from preventive maintenance into predictive maintenance. Through these advanced AI platforms, it has become possible in car maintenance to predict and detect potential faults early, identify their exact location, and intervene at the right time to prevent breakdowns while reducing repair costs and downtime, ultimately benefiting car owners.",
+    "teamTitle": "Project Management Team",
+    "team": [
+      {
+        "category": "The Founder",
+        "name": "Eng. Ahmed Sorour",
+        "image": "/team/Eng.Ahmed Sorour.jpeg",
+        "imagePosition": "50% 15%",
+        "biography": "Eng. Ahmed is the founder and CEO of DYNATECH, he has nearly 30 years of experience working with leading global automotive OEMs, including TOYOTA, BMW, JLR, and Volkswagen. His career includes serving in C suite roles and on the advisory boards of several major business conglomerates & sovereign wealth fund across the MENA region, contributing strategic leadership and industry expertise at the highest levels."
+      },
+      {
+        "category": "The Architect",
+        "name": "Eng. Peter Maher",
+        "image": "/team/Eng.Peter Maher.jpeg",
+        "imagePosition": "50% 35%",
+        "biography": "Eng. Peter brings over 20 years of experience in designing major residential, commercial, and hospitality projects. Throughout his career, he has collaborated with leading organizations, including Orascom Development, Living In, GIZ-GmbH, and government institutions such as CAOA. His architectural approach is guided by a modern design philosophy that prioritizes environmental sustainability, efficiency, and the principle of “form follows function” in both design and material selection, while preserving the aesthetic quality and visual appeal of each project. Peter is the founder of Genesis Design Studio, recognized as one of Egypt’s leading design houses"
+      },
+      {
+        "category": "The Structure Designer",
+        "name": "Dr. Ahmed El Nadi",
+        "image": "/team/Dr.Ahmed El Nadi.jpeg",
+        "imagePosition": "50% 12%",
+        "biography": "DR. Ahmed is a Structural Engineering Consultant and Assistant Professor (PHD) with over 18 years of experience in structural analysis and design across residential, commercial, industrial, high-rise, and special structures. He has contributed to major reinforced-concrete towers, infrastructure, water, and wastewater projects, with international research published in seismic behaviour, resilient structures, offshore foundations, strengthening, and advanced finite-element modelling."
+      },
+      {
+        "category": "The High-Tech Advisor",
+        "name": "Eng. Saleh Saadany",
+        "image": "/team/Eng.Saleh El Saadany.jpeg",
+        "imagePosition": "50% 28%",
+        "biography": "He brings over 30 years of experience in managing and operating automotive service centres, with a proven track record working with leading international automotive brands, including BMW and Land Rover. He has played a key role in redesigning, equipping, upgrading, and modernizing several BMW Group service centres across Egypt and the Gulf region, significantly enhancing their operational efficiency. He has also served as a consultant to multiple automotive agencies, supporting improvements in productivity, service quality, and overall operational performance."
+      }
+    ],
+    "figuresTitle": "The Auto Hub — Key Project Figures",
+    "figures": [
+      {
+        "label": "Built-Up Area (BUA)",
+        "value": "6,000 sqm",
+        "countTo": 6000,
+        "suffix": " sqm",
+        "description": "of state-of-the-art facility space"
+      },
+      {
+        "label": "Service Capacity",
+        "value": "36",
+        "countTo": 36,
+        "description": "fully equipped work bays handling up to 40 vehicles daily"
+      },
+      {
+        "label": "Strategic Infrastructure",
+        "value": "6",
+        "countTo": 6,
+        "description": "Structured across 6 Strategic Business Units (SBUs)"
+      },
+      {
+        "label": "Financial Investment",
+        "value": "250M EGP",
+        "countTo": 250,
+        "suffix": "M EGP",
+        "description": "projected initial investment"
+      },
+      {
+        "label": "Profitability",
+        "value": "12%",
+        "countTo": 12,
+        "suffix": "%",
+        "description": "expected Return on Investment (ROI)"
+      },
+      {
+        "label": "Leadership Expertise",
+        "value": "30 years",
+        "countTo": 30,
+        "suffix": " years",
+        "description": "Backed by 30 years of automotive industry management experience"
+      },
+      {
+        "label": "Project Timeline",
+        "value": "Q4 2027",
+        "description": "Soft opening projected for Q4 2027"
+      },
+      {
+        "label": "Market Innovation",
+        "value": "1ST",
+        "countTo": 1,
+        "suffix": "ST",
+        "description": "service centre in Egypt& MENA region featuring real-time Battery Electric Vehicle (BEV) diagnostics powered by AI and Machine Learning"
+      }
+    ],
+    "galleryTitle": "Project Gallery"
+  },
+  "techInfo": {
     "hero": {
       "kicker": "Blog Hub",
       "title": "Insights from Egypt's Automotive Technology Partner",
       "description": "Technical perspectives on e-mobility, energy storage, lightweight materials, and industrial developments shaping Egypt and the wider region."
+    },
+    "videoSection": {
+      "kicker": "Video Library",
+      "title": "Selected Technical References",
+      "items": [
+        {
+          "title": "IEA Battery Report",
+          "description": "A focused technical reference on global battery market direction, electric mobility, and energy storage growth."
+        },
+        {
+          "title": "Interview With Robin Zeng, CATL CEO",
+          "description": "An executive perspective on battery innovation, supply chains, and the technologies shaping next-generation mobility."
+        }
+      ]
     }
   },
   "careers": {
@@ -203,5 +523,36 @@
       ],
       "submitLabel": "Submit Inquiry"
     }
+  },
+  "legal": {
+    "kicker": "Legal",
+    "title": "Privacy Policy / Website Disclaimer",
+    "description": "This page outlines the legal terms, content ownership, liability limitations, and partner rights related to the use of the DYNATECH website.",
+    "sections": [
+      {
+        "title": "1. Ownership of Content & Intellectual Property",
+        "body": "All content published and made available on this site, including but not limited to text, graphics, logos, images, audio clips, digital downloads, data compilations, and software, is the property of DYNATECH, its content suppliers, partners, or affiliated companies, except information shared by other official known sources. All such content is protected by international and national copyright and intellectual property laws. Unauthorized copying, reproduction, redistribution, or publishing of any material from this website without explicit written consent is strictly prohibited."
+      },
+      {
+        "title": "2. Informational Purposes Only",
+        "body": "The information provided on this website is for general informational purposes only and does not constitute professional advice. While we endeavour to keep the information up to date and correct, DYNATECH makes no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the website or the information, products, services, or related graphics contained on the website."
+      },
+      {
+        "title": "3. Limitation of Liability",
+        "body": "In no event shall DYNATECH, its affiliated companies, directors, employees, or partners be liable for any direct, indirect, incidental, consequential, or punitive damages arising out of your access to, use of, or inability to use this website, or any errors or omissions in its content."
+      },
+      {
+        "title": "4. External Links Disclaimer",
+        "body": "This website may contain links to external websites that are not provided, maintained, or in any way affiliated with DYNATECH. Please note that we do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites."
+      },
+      {
+        "title": "5. Reservation of Rights",
+        "body": "We reserve the full right to make additions, deletions, or modifications to the content on this website, as well as to update this legal disclaimer, at any time without prior notice."
+      },
+      {
+        "title": "6. Our Partners Rights",
+        "body": "All visual content, including teaser videos and audio tracks, is protected by intellectual property laws. Our partners, including FFT Produktionssysteme GmbH and Composites United (CU), and their affiliated entities retain all rights to their respective technical and non-technical information, trademarks, and engineering designs mentioned in this website."
+      }
+    ]
   }
 }

@@ -9,7 +9,7 @@ import { Header } from "@/components/Header";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import type { Locale } from "@/i18n/config";
 import type { CmsMediaMap } from "@/lib/cms/types";
-import type { GlobalCmsContent } from "@/content/pages/global";
+import type { GlobalCmsContent } from "@/content/schema/site";
 
 export function AdminChrome({
   children,

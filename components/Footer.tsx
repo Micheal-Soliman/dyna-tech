@@ -4,7 +4,7 @@ import { Mail, Phone } from "lucide-react";
 
 import type { Locale } from "@/i18n/config";
 import { localizedPath, siteRoutes } from "@/lib/routes";
-import type { GlobalCmsContent } from "@/content/pages/global";
+import type { GlobalCmsContent } from "@/content/schema/site";
 import type { CmsMediaMap } from "@/lib/cms/types";
 
 type FooterProps = {
@@ -14,14 +14,10 @@ type FooterProps = {
 };
 
 export function Footer({ locale, content, media }: FooterProps) {
-  const isAr = locale === "ar";
   const currentYear = new Date().getFullYear();
   const contact = content.contact;
   const navigation = content.navigation;
-  const footerSlogan =
-    locale === "ar"
-      ? content.footerSloganAr
-      : content.footerSlogan;
+  const footerSlogan = content.footerSlogan;
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-[#0a0f29] py-10 text-white md:py-12">
@@ -49,28 +45,24 @@ export function Footer({ locale, content, media }: FooterProps) {
 
           <div>
             <h4 className="text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? content.labels.locationAr : content.labels.location}
+              {content.labels.location}
             </h4>
             <div className="mt-5 grid gap-5 sm:grid-cols-2">
               <div className="space-y-3">
                 <span className="block min-h-8 text-[10px] font-black uppercase leading-relaxed tracking-[0.18em] text-white">
-                  {isAr
-                    ? content.labels.cfcOfficeAr
-                    : content.labels.cfcOffice}
+                  {content.labels.cfcOffice}
                 </span>
                 <p className="max-w-xs text-xs leading-relaxed text-white">
-                  {isAr ? contact.locations.cfcOfficeAr : contact.locations.cfcOffice}
+                  {contact.locations.cfcOffice}
                 </p>
               </div>
 
               <div className="space-y-3">
                 <span className="block min-h-8 text-[10px] font-black uppercase leading-relaxed tracking-[0.18em] text-white">
-                  {isAr
-                    ? content.labels.autoHubProjectAr
-                    : content.labels.autoHubProject}
+                  {content.labels.autoHubProject}
                 </span>
                 <p className="max-w-xs text-xs leading-relaxed text-white">
-                  {isAr ? contact.locations.autoHubAr : contact.locations.autoHub}
+                  {contact.locations.autoHub}
                 </p>
               </div>
             </div>
@@ -78,7 +70,7 @@ export function Footer({ locale, content, media }: FooterProps) {
 
           <div>
             <h4 className="mb-4 text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? content.labels.quickLinksAr : content.labels.quickLinks}
+              {content.labels.quickLinks}
             </h4>
             <div className="grid grid-cols-2 gap-x-4 gap-y-2">
               {navigation.map((item) => (
@@ -87,7 +79,7 @@ export function Footer({ locale, content, media }: FooterProps) {
                   href={localizedPath(locale, item.path)}
                   className="text-xs font-black uppercase tracking-[0.12em] text-white transition hover:text-[#43becc]"
                 >
-                  {isAr ? item.labelAr : item.label}
+                  {item.label}
                 </Link>
               ))}
             </div>
@@ -95,7 +87,7 @@ export function Footer({ locale, content, media }: FooterProps) {
 
           <div>
             <h4 className="mb-4 text-[10px] font-black uppercase tracking-[0.36em] text-[#0087cb]">
-              {isAr ? content.labels.connectAr : content.labels.connect}
+              {content.labels.connect}
             </h4>
             <div className="space-y-3 border-t border-white/10 pt-5 lg:border-t-0 lg:pt-0">
               <a
@@ -117,9 +109,7 @@ export function Footer({ locale, content, media }: FooterProps) {
         </div>
 
         <div className="mt-9 border-t border-white/10 pt-5 text-[9px] font-bold uppercase tracking-[0.34em] text-white">
-          &copy; {currentYear} DYNATECH CORP - {isAr
-            ? content.copyrightAr
-            : content.copyright}
+          &copy; {currentYear} DYNATECH CORP - {content.copyright}
         </div>
       </div>
     </footer>

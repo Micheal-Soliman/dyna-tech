@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import type { LegalContent } from "@/content/pages/legal";
+import type { LegalContent } from "@/content/schema/site";
 import type { Locale } from "@/i18n/config";
 import { getPageDocument } from "@/lib/cms/page-document";
 

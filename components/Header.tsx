@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import type { Locale } from "@/i18n/config";
 import { localizedPath, siteRoutes } from "@/lib/routes";
-import type { GlobalCmsContent } from "@/content/pages/global";
+import type { GlobalCmsContent } from "@/content/schema/site";
 import type { CmsMediaMap } from "@/lib/cms/types";
 
 type HeaderProps = {
@@ -24,7 +24,7 @@ export function Header({ locale, content, media }: HeaderProps) {
   const pathname = usePathname();
   const isAr = locale === "ar";
   const navigation = content.navigation;
-  const contactLabel = isAr ? content.labels.contactAr : content.labels.contact;
+  const contactLabel = content.labels.contact;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -92,16 +92,14 @@ export function Header({ locale, content, media }: HeaderProps) {
                       : "text-zinc-400 hover:bg-white/5 hover:text-white"
                   }`}
                 >
-                  {isAr ? item.labelAr : item.label}
+                  {item.label}
                 </Link>
               );
             })}
           </nav>
 
           <div className="flex shrink-0 items-center gap-3">
-            <div className="hidden md:block">
-              <LocaleSwitcher className="border-none bg-transparent px-3 py-2 text-[10px] font-black uppercase text-white transition-all hover:bg-white/5 hover:text-[#0087cb] hover:ring-1 hover:ring-[#0087cb]/40" />
-            </div>
+            <LocaleSwitcher className="border-none bg-transparent px-2.5 py-2 text-xs font-black text-white transition-all hover:bg-white/5 hover:text-[#0087cb] hover:ring-1 hover:ring-[#0087cb]/40 sm:px-3" />
 
             <Link
               href={localizedPath(locale, siteRoutes.contact)}
@@ -175,17 +173,13 @@ export function Header({ locale, content, media }: HeaderProps) {
                   isActive ? "translate-x-2 text-[#0087cb]" : "text-zinc-500 hover:text-white"
                 }`}
               >
-                {isAr ? item.labelAr : item.label}
+                {item.label}
               </Link>
             );
           })}
         </nav>
 
         <div className="space-y-4 border-t border-white/5 bg-zinc-900/50 p-8">
-          <LocaleSwitcher
-            className="justify-start p-0 font-bold text-white"
-            onNavigate={() => setIsMenuOpen(false)}
-          />
           <Link
             href={localizedPath(locale, siteRoutes.contact)}
             onClick={() => setIsMenuOpen(false)}

@@ -30,7 +30,7 @@ export function LocaleSwitcher({
         router.push(nextPath);
       }}
     >
-      {nextLocale.toUpperCase()}
+      {nextLocale === "ar" ? "عربي" : "EN"}
     </button>
   );
 }

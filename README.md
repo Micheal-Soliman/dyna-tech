@@ -34,13 +34,15 @@ Supported locales are `en` and `ar`. Legacy route names are redirected centrally
 
 ## Project Structure
 
-- `content/` is the single source of checked-in content, media defaults, localization payloads, and content schemas.
+- `content/locales/en.json` and `content/locales/ar.json` are the only checked-in sources for page content and translations.
+- `content/media.ts` contains media-path defaults only; it must not contain page copy.
+- `content/schema/` contains TypeScript shapes only; it must not contain page copy.
 - `lib/cms/` contains CMS infrastructure only: Supabase clients, authentication helpers, content merging, and page loading.
 - `app/` contains thin route files that request content through `getPageDocument()`.
 - `components/` contains presentation and interaction code without hardcoded page copy or media paths.
 - `supabase/` contains the database schema, RLS policies, and publish function.
 
-To change a local fallback, edit the relevant file under `content/`. Once Supabase is configured, the dashboard overrides those defaults per page and locale without changing the React components.
+To change a local fallback, edit the matching language file in `content/locales/`. Once Supabase is configured, the dashboard overrides those defaults per page and locale without changing the React components.
 
 ## Content Dashboard
 

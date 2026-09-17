@@ -165,7 +165,7 @@ export function HeroSection({
     <section dir={isAr ? "rtl" : "ltr"} className="relative h-[100svh] overflow-hidden bg-[#0a0f29] text-white sm:h-auto sm:min-h-[100svh]">
       <div className="absolute inset-0">
         <video
-          className="h-full w-full object-contain object-center sm:object-cover sm:object-center"
+          className="h-full w-full object-contain object-center sm:object-cover"
           autoPlay
           muted
           loop
